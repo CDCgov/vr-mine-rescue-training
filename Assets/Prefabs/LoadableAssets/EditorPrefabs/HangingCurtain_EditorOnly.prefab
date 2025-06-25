@@ -1,0 +1,327 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6505305102521487666
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6505305102521487667}
+  m_Layer: 0
+  m_Name: MarkerContainer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6505305102521487667
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6505305102521487666}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6505305103732701597}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6505305103249543573
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6505305103249543574}
+  - component: {fileID: 6505305103249543570}
+  - component: {fileID: 6505305103249543569}
+  - component: {fileID: 6640507289841495114}
+  - component: {fileID: 8890646798774144465}
+  - component: {fileID: 7534061067240027170}
+  - component: {fileID: -8289569492275509704}
+  m_Layer: 7
+  m_Name: HangingCurtain_EditorOnly
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6505305103249543574
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6505305103249543573}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 6505305103732701597}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &6505305103249543570
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6505305103249543573}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Radius: 0.25
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6505305103249543569
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6505305103249543573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9838162d94c8dbb4fb4efb6a84648bc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlacementTypeOverride: 4
+  DisplayName: Hanging Curtain
+  HierarchyItemPrefab: {fileID: 360079312126257609, guid: 9ee643898b2846948bfdbc04e7c68d7f,
+    type: 3}
+  hierarchyContainer: {fileID: 0}
+  editorLayer: 6
+  simParent: {fileID: 0}
+  UserSuppliedName: 
+  AssetWindowName: 
+  componentInfo_Name:
+    instanceDisplayName: 
+    instanceUserSuppliedName: 
+    exposureLevel: 0
+    componentName: Name
+    objectInfo: {fileID: 0}
+  componentInfo_Transform:
+    transformComponent: {fileID: 0}
+    positionExposureLevel: 2
+    position: {x: 0, y: 0, z: 0}
+    rotationExposureLevel: 2
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    scaleExposureLevel: 2
+    localScale: {x: 0, y: 0, z: 0}
+  IsResizable: 0
+  ScaledMaterial: {fileID: 0}
+  SetLayerOnSelection: 0
+  PlacementAnchor: {fileID: 0}
+--- !u!114 &6640507289841495114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6505305103249543573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba6783f0dcdbaaf4f943465d79cb5a92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MineLayerTileManager: {fileID: 0}
+  Placer: {fileID: 0}
+  CanPlaceOnFloor: 0
+  CanPlaceOnWall: 0
+  CanPlaceOnRoof: 0
+  ParentToMineTile: 1
+  placementLayer: 6
+  placement_anchor: {fileID: 0}
+  placed: 0
+  isIgnoreSave: 0
+  ShowSelectionBox: 0
+  RotateToSurface: 0
+--- !u!114 &8890646798774144465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6505305103249543573}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7af90d4f50f9f64783f0b833c4db584, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  VentilationManager: {fileID: 0}
+  MineVentControl:
+    DisplayName: 
+    Density: 1
+    Explosiveness: 1
+    Flammability: 1
+    MaxHealth: 0
+    Health: 100
+    Indestructible: 0
+    PrefabResource: 
+    AddedResistance: 0
+  ToggleHotkey: 0
+--- !u!114 &7534061067240027170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6505305103249543573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1da9f94fc5a6a6445b74388b11e3828e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LoadableAssetManager: {fileID: 0}
+  IsLifeline: 0
+  ComponentName: Curtain
+  CableType: 3
+  Component: {fileID: 594710894171238344}
+  GizmosHidden: 0
+  CableHangerIndex: 0
+  CableHangerID: BRATTICE_HOOK
+--- !u!114 &-8289569492275509704
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6505305103249543573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cd4da084de00cd468379fc214aeb3d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RuntimeCableEditor: {fileID: 0}
+  RuntimeMarkerEditor: {fileID: 0}
+--- !u!1 &6505305103732701596
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6505305103732701597}
+  - component: {fileID: 6505305103732701595}
+  - component: {fileID: 6505305103732701594}
+  - component: {fileID: 594710894171238344}
+  m_Layer: 0
+  m_Name: CableScripts
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6505305103732701597
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6505305103732701596}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 6505305102521487667}
+  m_Father: {fileID: 6505305103249543574}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!23 &6505305103732701595
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6505305103732701596}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 376a728127896fb40a7981310a55e7e3, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &6505305103732701594
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6505305103732701596}
+  m_Mesh: {fileID: 0}
+--- !u!114 &594710894171238344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6505305103732701596}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05341c5044ff59948846541365efef87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CheckPointInterference: 1
+  InterferenceDistance: 0.2
+  CableDiameter: 0.05
+  CableHangerWidth: 0.08
+  DefaultCableSlope: 0.2
+  SegmentsPerMeter: 8
+  CableHangerPosition: 2
+  CableHangerPrefab: {fileID: 1856735617386740, guid: f8774c90b4ffed24d923cdab776323d0,
+    type: 3}
+  CableMaterial: {fileID: 0}
+  CableNodes:
+  - Position: {x: 0, y: 0, z: 0}
+    Slope: 0
+    ShowCableHanger: 0
+    FixedPosition: 1
+    NodeIndex: 0
+  GeneratedMesh: {fileID: 0}

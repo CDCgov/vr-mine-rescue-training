@@ -1,0 +1,247 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5509201475779740505
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4050107755156424256}
+  - component: {fileID: 7554572029660028788}
+  - component: {fileID: 2663696896709722228}
+  - component: {fileID: 1522309347463217113}
+  m_Layer: 0
+  m_Name: ComponentInfo
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4050107755156424256
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5509201475779740505}
+  m_LocalRotation: {x: -0.000000021855694, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8226168294389219069}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7554572029660028788
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5509201475779740505}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03c9409171ddb71448474a26530dec43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  componentName: Physics Rigidbody
+  m_component: {fileID: 0}
+  massExposureLevel: 0
+  mass: 1
+--- !u!114 &2663696896709722228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5509201475779740505}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed9339c9e8e087c49b8c8ced6326ade3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  componentName: Audio Source
+  AudioSourceDetail: 
+  m_component: {fileID: 0}
+  volumeExposureLevel: 0
+  volume: 1
+--- !u!114 &1522309347463217113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5509201475779740505}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d55ee120336a7248bdf3cd31b5d9970, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  componentName: Interactable
+  m_component: {fileID: 0}
+  interactableExposureLevel: 0
+  IsInteractable: 1
+--- !u!1001 &2373684564711293511
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -3288772586144976979, guid: dcfdcb535729006489c62c5dbb08d45b,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -3288772586144976979, guid: dcfdcb535729006489c62c5dbb08d45b,
+        type: 3}
+      propertyPath: IsLargeItem
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -3288772586144976979, guid: dcfdcb535729006489c62c5dbb08d45b,
+        type: 3}
+      propertyPath: ModelRenderer
+      value: 
+      objectReference: {fileID: 6651455660101908530}
+    - target: {fileID: -3288772586144976979, guid: dcfdcb535729006489c62c5dbb08d45b,
+        type: 3}
+      propertyPath: SnapToController
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -3288772586144976979, guid: dcfdcb535729006489c62c5dbb08d45b,
+        type: 3}
+      propertyPath: IgnoreSnapPosition
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -3288772586144976979, guid: dcfdcb535729006489c62c5dbb08d45b,
+        type: 3}
+      propertyPath: glowMaterials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -3288772586144976979, guid: dcfdcb535729006489c62c5dbb08d45b,
+        type: 3}
+      propertyPath: glowMaterials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 492d043dfd251cb46a8343f84e38dac6, type: 2}
+    - target: {fileID: 5969589423218080954, guid: dcfdcb535729006489c62c5dbb08d45b,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5969589423218080954, guid: dcfdcb535729006489c62c5dbb08d45b,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5969589423218080954, guid: dcfdcb535729006489c62c5dbb08d45b,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5969589423218080954, guid: dcfdcb535729006489c62c5dbb08d45b,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5969589423218080954, guid: dcfdcb535729006489c62c5dbb08d45b,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5969589423218080954, guid: dcfdcb535729006489c62c5dbb08d45b,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.000000021855694
+      objectReference: {fileID: 0}
+    - target: {fileID: 5969589423218080954, guid: dcfdcb535729006489c62c5dbb08d45b,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5969589423218080954, guid: dcfdcb535729006489c62c5dbb08d45b,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5969589423218080954, guid: dcfdcb535729006489c62c5dbb08d45b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5969589423218080954, guid: dcfdcb535729006489c62c5dbb08d45b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5969589423218080954, guid: dcfdcb535729006489c62c5dbb08d45b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7242742762364292777, guid: dcfdcb535729006489c62c5dbb08d45b,
+        type: 3}
+      propertyPath: m_Name
+      value: CinderBlock_MPEditorOnly
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 5815050188136425745, guid: dcfdcb535729006489c62c5dbb08d45b, type: 3}
+    - {fileID: 1703074504829011707, guid: dcfdcb535729006489c62c5dbb08d45b, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: dcfdcb535729006489c62c5dbb08d45b, type: 3}
+--- !u!1 &4932111890977426670 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7242742762364292777, guid: dcfdcb535729006489c62c5dbb08d45b,
+    type: 3}
+  m_PrefabInstance: {fileID: 2373684564711293511}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &8226168294389219069 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5969589423218080954, guid: dcfdcb535729006489c62c5dbb08d45b,
+    type: 3}
+  m_PrefabInstance: {fileID: 2373684564711293511}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &6651455660101908530 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 8989099264442595957, guid: dcfdcb535729006489c62c5dbb08d45b,
+    type: 3}
+  m_PrefabInstance: {fileID: 2373684564711293511}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &-5600733426363401688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4932111890977426670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9838162d94c8dbb4fb4efb6a84648bc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlacementTypeOverride: 100
+  DisplayName: Cinder Block
+  HierarchyItemPrefab: {fileID: 360079312126257609, guid: d9bfda6fec448a14faf8cebad6aa76f2,
+    type: 3}
+  hierarchyContainer: {fileID: 0}
+  editorLayer: 1
+  simParent: {fileID: 0}
+  UserSuppliedName: 
+  AssetWindowName: 
+  componentInfo_Name:
+    instanceDisplayName: Cinder Block
+    instanceUserSuppliedName: 
+    exposureLevel: 0
+    componentName: Name
+    objectInfo: {fileID: 0}
+  componentInfo_Transform:
+    transformComponent: {fileID: 0}
+    positionExposureLevel: 0
+    position: {x: 0, y: 0, z: 0}
+    rotationExposureLevel: 0
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    scaleExposureLevel: 0
+    localScale: {x: 0, y: 0, z: 0}
+  IsResizable: 0
+  ScaledMaterial: {fileID: 0}
+  SetLayerOnSelection: 0
+  isNetworked: 1

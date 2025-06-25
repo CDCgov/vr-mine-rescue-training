@@ -1,0 +1,16 @@
+﻿# Valid values are Desktop, CAVE, or HMD
+#SystemType: Desktop
+SystemType: Desktop
+# Number of screens in CAVE configuration
+NumScreens: 6
+# Overlap in degrees between screens
+Overlap: 40
+# IP Address of the computer running the Vicon data server
+ViconIP: 10.85.10.138
+# Segment name of the tracker used to determine movement direction
+MovementMocapSegment: Wand1:Wand1
+WandConfiguration:
+- SegmentName: Wand1:Wand1
+  WandType: CapLamp
+- SegmentName: Wand2:Wand2
+  WandType: CapLamp

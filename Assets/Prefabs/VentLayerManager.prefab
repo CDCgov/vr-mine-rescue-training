@@ -1,0 +1,114 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1148164362259893313
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1148164362259893314}
+  - component: {fileID: 1148164362259893315}
+  - component: {fileID: 1148164362259893312}
+  - component: {fileID: -7935504873665935956}
+  m_Layer: 0
+  m_Name: VentLayerManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1148164362259893314
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1148164362259893313}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -50.26107, y: 27.372425, z: -90.75885}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1148164362259893315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1148164362259893313}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66025b542c3cf8a4096e4910d02a725c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  junctionPrefab: {fileID: 1312361070662518410, guid: b8115bd5afe6e9343bb16a5c96eb9a45,
+    type: 3}
+  airwayPrefab: {fileID: 7670313051825202553, guid: 0e8eea51e9c060f43b87ff83c37e2dc5,
+    type: 3}
+  CreateUIObjects: 0
+--- !u!114 &1148164362259893312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1148164362259893313}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba6783f0dcdbaaf4f943465d79cb5a92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MineLayerTileManager: {fileID: 0}
+  Placer: {fileID: 0}
+  CanPlaceOnFloor: 0
+  CanPlaceOnWall: 0
+  CanPlaceOnRoof: 0
+  ParentToMineTile: 1
+  placement_anchor: {fileID: 0}
+  placed: 0
+  isIgnoreSave: 0
+  ShowSelectionBox: 1
+  RotateToSurface: 1
+--- !u!114 &-7935504873665935956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1148164362259893313}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9838162d94c8dbb4fb4efb6a84648bc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlacementTypeOverride: 100
+  DisplayName: VentLayerManager
+  HierarchyItemPrefab: {fileID: 360079312126257609, guid: d9bfda6fec448a14faf8cebad6aa76f2,
+    type: 3}
+  editorLayer: 4
+  simParent: {fileID: 0}
+  UserSuppliedName: 
+  AssetWindowName: 
+  componentInfo_Name:
+    instanceDisplayName: 
+    instanceUserSuppliedName: 
+    exposureLevel: 2
+    componentName: Name
+    objectInfo: {fileID: 0}
+  componentInfo_Transform:
+    transformComponent: {fileID: 0}
+    positionExposureLevel: 2
+    position: {x: 0, y: 0, z: 0}
+    rotationExposureLevel: 2
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    scaleExposureLevel: 2
+    localScale: {x: 0, y: 0, z: 0}
+  IsResizable: 0
+  ScaledMaterial: {fileID: 0}
+  SetLayerOnSelection: 0
+  PlacementAnchor: {fileID: 0}

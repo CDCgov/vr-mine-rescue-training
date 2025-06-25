@@ -1,0 +1,284 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3103390763081365943
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3275794528261074670}
+  - component: {fileID: 4922066571856096329}
+  - component: {fileID: 2778348803191770388}
+  - component: {fileID: 6316368764053660554}
+  - component: {fileID: 7771703573706732437}
+  - component: {fileID: 9187849636093274901}
+  - component: {fileID: 913650480508059110}
+  - component: {fileID: 7396674894044582934}
+  - component: {fileID: 1252164624711006315}
+  - component: {fileID: 8372261610444125371}
+  - component: {fileID: 6050619005903879400}
+  - component: {fileID: 8714864998774268596}
+  - component: {fileID: -1802023657705786563}
+  m_Layer: 0
+  m_Name: TemplateStopping
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 4294967295
+  m_IsActive: 1
+--- !u!4 &3275794528261074670
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3103390763081365943}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &4922066571856096329
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3103390763081365943}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 6.1579275, y: 2.1924453, z: 0.14200005}
+  m_Center: {x: -0.0037794113, y: 1.0589144, z: -0.000000022351742}
+--- !u!114 &2778348803191770388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3103390763081365943}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d84420eede6b5f24790e021a769ea722, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MineEquipment:
+    DisplayName: Stopping
+    Density: 2.3
+    Explosiveness: 0
+    Flammability: 0
+    MaxHealth: 0
+    Health: 100
+    Indestructible: 0
+    PrefabResource: MineElements/Stopping
+--- !u!114 &6316368764053660554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3103390763081365943}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9838162d94c8dbb4fb4efb6a84648bc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlacementTypeOverride: 5
+  DisplayName: Stopping
+  HierarchyItemPrefab: {fileID: 360079312126257609, guid: d9bfda6fec448a14faf8cebad6aa76f2,
+    type: 3}
+  editorLayer: 4
+  simParent: {fileID: 0}
+  UserSuppliedName: 
+  AssetWindowName: 
+  componentInfo_Name:
+    instanceDisplayName: 
+    instanceUserSuppliedName: 
+    exposureLevel: 0
+    componentName: Name
+    objectInfo: {fileID: 0}
+  componentInfo_Transform:
+    transformComponent: {fileID: 0}
+    positionExposureLevel: 0
+    position: {x: 0, y: 0, z: 0}
+    rotationExposureLevel: 0
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    scaleExposureLevel: 0
+    localScale: {x: 0, y: 0, z: 0}
+  IsResizable: 0
+  ScaledMaterial: {fileID: 0}
+  SetLayerOnSelection: 0
+  PlacementAnchor: {fileID: 0}
+--- !u!114 &7771703573706732437
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3103390763081365943}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ffd2c7860cd74d438d71d09635eaae8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MineMapSymbolManager: {fileID: 0}
+  Symbol: {fileID: 11400000, guid: 1ab9830908462514cb6616b910809f25, type: 2}
+  SymbolAsset:
+    m_AssetGUID: 1ab9830908462514cb6616b910809f25
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  Color: {r: 1, g: 1, b: 1, a: 1}
+  MineSegment: {fileID: 0}
+  ShowOnMapMan: 0
+  DoNotDelete: 0
+  ConstantUpdate: 1
+  FontSize: -1
+  SymbolText: 
+  ComponentInfo_MineSegment: {fileID: 0}
+--- !u!114 &9187849636093274901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3103390763081365943}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6dafc58569c9b974f902b7d5d35b7360, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  VentilationManager: {fileID: 0}
+  PlaneWidth: 5
+  PlaneHeight: 5
+  PlaneOffset: {x: 0, y: 0, z: 0}
+  AddedResistance: 2000
+  UseDefaultResistance: 0
+--- !u!114 &913650480508059110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3103390763081365943}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 361d55cf8cc6d144bb0e7c4386a587d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EquipmentName: Stopping
+  Status: Idle
+  Priority: 10
+  SessionEventManager: {fileID: 0}
+  SystemManager: {fileID: 0}
+  DebriefSceneLoader: {fileID: 0}
+--- !u!114 &7396674894044582934
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3103390763081365943}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab2bae330a0492042a05d059a20d4632, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObjectName: Stopping
+  Priority: 9
+  SessionEventManager: {fileID: 0}
+  SystemManager: {fileID: 0}
+--- !u!208 &1252164624711006315
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3103390763081365943}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 3.0000002, y: 1.067, z: 0.071}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 1.067, z: 0}
+  m_TimeToStationary: 0.5
+--- !u!114 &8372261610444125371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3103390763081365943}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 840e8433e2ccc424ea7283ce9043122c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SoundMaterial: 6
+  MaterialSounds: {fileID: 11400000, guid: 81c137031e7d40c42a27386158d3e712, type: 2}
+  Priority: 10
+--- !u!114 &6050619005903879400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3103390763081365943}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba6783f0dcdbaaf4f943465d79cb5a92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MineLayerTileManager: {fileID: 0}
+  Placer: {fileID: 0}
+  CanPlaceOnFloor: 1
+  CanPlaceOnWall: 0
+  CanPlaceOnRoof: 0
+  ParentToMineTile: 1
+  placement_anchor: {fileID: 0}
+  placed: 0
+  isIgnoreSave: 0
+  ShowSelectionBox: 1
+  RotateToSurface: 1
+--- !u!114 &8714864998774268596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3103390763081365943}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e0470221ee9006479fdc6a538effe45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  VentResistancePlane: {fileID: 0}
+--- !u!114 &-1802023657705786563
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3103390763081365943}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25e2854d5218723478f2224130900af6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaterialManager: {fileID: 0}

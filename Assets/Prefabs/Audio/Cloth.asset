@@ -1,0 +1,83 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c0620715cad716449a19fbb8d276655, type: 3}
+  m_Name: Cloth
+  m_EditorClassIdentifier: 
+  AudioMaterialName: Cloth
+  MaterialType: 1
+  FallbackCollisionType: 1
+  VolumeCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.2
+      inSlope: 0.8
+      outSlope: 0.8
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0.8
+      outSlope: 0.8
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  ImpactNormalBias: 0.1
+  SizeBias: 0
+  MassVolumeBias: 0.15
+  MassPitchBias: 0
+  VelocityPitchBias: 0
+  PitchRandomness: 0.001
+  RelativeVelocityThreshold:
+    Min: 0
+    Max: 8
+  ReferenceSizeBounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0.17326166, y: 0.13886166, z: 0.2668209}
+  ReferenceImpactVelocity: 4.43
+  ReferenceMass: 1
+  Priority: 0
+  AudioSounds:
+  - Key: 1
+    Sounds:
+    - {fileID: 11400000, guid: e94165f007edd044280350e0986823b9, type: 2}
+    - {fileID: 11400000, guid: 572867c9648dad14dbb9a452f00a955c, type: 2}
+  - Key: 0
+    Sounds:
+    - {fileID: 11400000, guid: 199db8ee4ce7c09448b18d355d0d0953, type: 2}
+    - {fileID: 11400000, guid: 1929375851304974ca5245a2c0ddf3fe, type: 2}
+  - Key: 2
+    Sounds:
+    - {fileID: 11400000, guid: 3602282d587b2334c96d910821ba1eed, type: 2}
+    - {fileID: 11400000, guid: 8b57e472172e50448976c141dd578a4e, type: 2}
+  - Key: 4
+    Sounds:
+    - {fileID: 11400000, guid: f0549a61a0cb7d94b9de10800d0e0559, type: 2}
+    - {fileID: 11400000, guid: 5df11ea8c818dfd4bb5728b54aefb009, type: 2}
+    - {fileID: 11400000, guid: e39813e9b306c1b4496fb5ac15548570, type: 2}
+    - {fileID: 11400000, guid: 6a884e611dd5e79438193e6c976e9451, type: 2}
+  - Key: 3
+    Sounds:
+    - {fileID: 11400000, guid: 8b0a9675b710b3143853399076e2373c, type: 2}
+    - {fileID: 11400000, guid: 33a5a51746e71724bb59223d815e943f, type: 2}
+  - Key: 5
+    Sounds:
+    - {fileID: 11400000, guid: c6b993f1da2db784d934db50fbfe79a4, type: 2}
+    - {fileID: 11400000, guid: 95b5a6224d6677c4eb83b90558f29d8b, type: 2}

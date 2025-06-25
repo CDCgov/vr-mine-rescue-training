@@ -1,0 +1,20 @@
+// Each #kernel tells which function to compile; you can have many kernels
+#pragma kernel WaterSurfaceCompute
+
+// Create a RenderTexture with enableRandomWrite flag and set it
+// with cs.SetTexture
+RWTexture2D<float4> Result;
+
+[numthreads(8,8,1)]
+void WaterSurfaceCompute(uint3 id : SV_DispatchThreadID)
+{
+    // TODO: insert actual code here!
+
+    float val = sin(id.x / 25.0) + cos(id.y / 25.0);
+    float4 res = float4(val, val, val, 1);
+
+    //Result[id.xy] = float4(id.x & id.y, (id.x & 15)/15.0, (id.y & 15)/15.0, 0.0);
+    //Result[id.xy] = float4(1, 0, 1, 1);
+    Result[id.xy] = res;
+}
+ 

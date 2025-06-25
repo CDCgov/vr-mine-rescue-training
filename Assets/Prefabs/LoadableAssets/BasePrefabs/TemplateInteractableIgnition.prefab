@@ -1,0 +1,117 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &8885860298936215435
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1503270621991474095, guid: 9fecb5353fa8f9f4baff11742d4ac196,
+        type: 3}
+      propertyPath: m_Name
+      value: TemplateInteractableIgnition
+      objectReference: {fileID: 0}
+    - target: {fileID: 2488213996835168700, guid: 9fecb5353fa8f9f4baff11742d4ac196,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2488213996835168700, guid: 9fecb5353fa8f9f4baff11742d4ac196,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2488213996835168700, guid: 9fecb5353fa8f9f4baff11742d4ac196,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2488213996835168700, guid: 9fecb5353fa8f9f4baff11742d4ac196,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2488213996835168700, guid: 9fecb5353fa8f9f4baff11742d4ac196,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.000000021855694
+      objectReference: {fileID: 0}
+    - target: {fileID: 2488213996835168700, guid: 9fecb5353fa8f9f4baff11742d4ac196,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2488213996835168700, guid: 9fecb5353fa8f9f4baff11742d4ac196,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2488213996835168700, guid: 9fecb5353fa8f9f4baff11742d4ac196,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2488213996835168700, guid: 9fecb5353fa8f9f4baff11742d4ac196,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2488213996835168700, guid: 9fecb5353fa8f9f4baff11742d4ac196,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1503270621991474095, guid: 9fecb5353fa8f9f4baff11742d4ac196,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3721605695228725489}
+    - targetCorrespondingSourceObject: {fileID: 1503270621991474095, guid: 9fecb5353fa8f9f4baff11742d4ac196,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1303896350729336113}
+  m_SourcePrefab: {fileID: 100100000, guid: 9fecb5353fa8f9f4baff11742d4ac196, type: 3}
+--- !u!1 &8037898899157152804 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1503270621991474095, guid: 9fecb5353fa8f9f4baff11742d4ac196,
+    type: 3}
+  m_PrefabInstance: {fileID: 8885860298936215435}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3721605695228725489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8037898899157152804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abca0db902c516448a33729cdb64a170, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IgnitionSource: {fileID: 1303896350729336113}
+--- !u!114 &1303896350729336113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8037898899157152804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 336d708715a0b174eb46d71bfa8476bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NetworkManager: {fileID: 0}
+  VentilationManager: {fileID: 0}
+  VentGraphExplosionPrefab: {fileID: 5659333265859414729, guid: 93741d247776d3b44a84f04ccd9a01d4,
+    type: 3}
+  IgnitionSourceEnabled: 1
+  EnableExplosionVisual: 1
+  EnableExplosionAudio: 1
+  ExplosionExplosiveRangeOnly: 0

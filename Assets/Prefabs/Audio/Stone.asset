@@ -1,0 +1,84 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c0620715cad716449a19fbb8d276655, type: 3}
+  m_Name: Stone
+  m_EditorClassIdentifier: 
+  AudioMaterialName: Stone
+  MaterialType: 0
+  FallbackCollisionType: 0
+  VolumeCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.2
+      inSlope: 0.8
+      outSlope: 0.8
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0.8
+      outSlope: 0.8
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  ImpactNormalBias: 0.1
+  SizeBias: 0
+  MassVolumeBias: 0.15
+  MassPitchBias: 0
+  VelocityPitchBias: 0
+  PitchRandomness: 0.001
+  RelativeVelocityThreshold:
+    Min: 0
+    Max: 8
+  ReferenceSizeBounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0.195, y: 0.095, z: 0.095}
+  ReferenceImpactVelocity: 4.43
+  ReferenceMass: 1
+  Priority: 0
+  AudioSounds:
+  - Key: 4
+    Sounds:
+    - {fileID: 11400000, guid: e06e021814051924f8cd60720bdacfdd, type: 2}
+    - {fileID: 11400000, guid: 50c45504bf126f74cabcac9489a35050, type: 2}
+    - {fileID: 11400000, guid: d136e79d519ca6042b352ba1520e05a2, type: 2}
+    - {fileID: 11400000, guid: 5d834f8bdd879f7479dc7737360bb3cb, type: 2}
+    - {fileID: 11400000, guid: 38e605058d467744faf2c87009d4de6b, type: 2}
+  - Key: 0
+    Sounds:
+    - {fileID: 11400000, guid: a91f6aa7605668444ba899e2e5a6bde5, type: 2}
+    - {fileID: 11400000, guid: ee717f0ca5bb42241b906217ccce5057, type: 2}
+  - Key: 3
+    Sounds:
+    - {fileID: 11400000, guid: 4ed766ef926c58b4bb4feeeccb174794, type: 2}
+    - {fileID: 11400000, guid: 7a06e6d0c7b542b4c86e2dc6ed692662, type: 2}
+  - Key: 1
+    Sounds:
+    - {fileID: 11400000, guid: b7bca140c07068d4b98e7701ad70374a, type: 2}
+    - {fileID: 11400000, guid: c1e4d365331411a44be72594641739a1, type: 2}
+  - Key: 2
+    Sounds:
+    - {fileID: 11400000, guid: 905b97acb3e344d438859139dc7bc869, type: 2}
+    - {fileID: 11400000, guid: 13587a36891fc73408e018169f8369ad, type: 2}
+  - Key: 5
+    Sounds:
+    - {fileID: 11400000, guid: 3126f82ca2a022c419323db5bded1b37, type: 2}
+    - {fileID: 11400000, guid: 84c5e423ab06e0b4db96c841ccc530b8, type: 2}

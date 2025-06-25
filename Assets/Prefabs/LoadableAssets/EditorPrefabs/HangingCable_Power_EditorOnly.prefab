@@ -1,0 +1,358 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6505305102521487666
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6505305102521487667}
+  m_Layer: 0
+  m_Name: MarkerContainer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6505305102521487667
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6505305102521487666}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6505305103732701597}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6505305103249543573
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6505305103249543574}
+  - component: {fileID: 6505305103249543570}
+  - component: {fileID: 6505305103249543569}
+  - component: {fileID: 3132795559974488004}
+  - component: {fileID: 8134030753891010754}
+  - component: {fileID: 41365130996350794}
+  - component: {fileID: -8752802895857545079}
+  m_Layer: 7
+  m_Name: HangingCable_Power_EditorOnly
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6505305103249543574
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6505305103249543573}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 6505305103732701597}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &6505305103249543570
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6505305103249543573}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Radius: 0.25
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6505305103249543569
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6505305103249543573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9838162d94c8dbb4fb4efb6a84648bc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlacementTypeOverride: 100
+  DisplayName: Power Cable
+  HierarchyItemPrefab: {fileID: 360079312126257609, guid: 9ee643898b2846948bfdbc04e7c68d7f,
+    type: 3}
+  editorLayer: 6
+  simParent: {fileID: 0}
+  UserSuppliedName: 
+  AssetWindowName: 
+  componentInfo_Name:
+    instanceDisplayName: 
+    instanceUserSuppliedName: 
+    exposureLevel: 0
+    componentName: Name
+    objectInfo: {fileID: 0}
+  componentInfo_Transform:
+    transformComponent: {fileID: 0}
+    positionExposureLevel: 2
+    position: {x: 0, y: 0, z: 0}
+    rotationExposureLevel: 2
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+    scaleExposureLevel: 2
+    localScale: {x: 0, y: 0, z: 0}
+  IsResizable: 0
+  ScaledMaterial: {fileID: 0}
+  SetLayerOnSelection: 0
+  PlacementAnchor: {fileID: 0}
+--- !u!114 &3132795559974488004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6505305103249543573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba6783f0dcdbaaf4f943465d79cb5a92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MineLayerTileManager: {fileID: 0}
+  Placer: {fileID: 0}
+  CanPlaceOnFloor: 0
+  CanPlaceOnWall: 0
+  CanPlaceOnRoof: 0
+  ParentToMineTile: 1
+  placement_anchor: {fileID: 0}
+  placed: 0
+  isIgnoreSave: 0
+  ShowSelectionBox: 0
+  RotateToSurface: 1
+--- !u!114 &8134030753891010754
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6505305103249543573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1da9f94fc5a6a6445b74388b11e3828e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LoadableAssetManager: {fileID: 0}
+  IsLifeline: 0
+  ComponentName: Cable
+  CableType: 1
+  Component: {fileID: 6505305103732701593}
+  GizmosHidden: 0
+  CableHangerIndex: 0
+  CableHangerID: U_HANGER
+--- !u!114 &41365130996350794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6505305103249543573}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f0f7166d6fe45847bf8e10b1d1bed39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ComponentName: Lifeline
+  IsMetric: 1
+  Component: {fileID: 6505305103732701598}
+  lifelineItems: []
+  Tags: []
+  DirectionalMarkers: []
+  TagsFlipped: 0
+  DirFlipped: 0
+  LGenerator: {fileID: 6505305103732701598}
+  IndividualMarkerContainer: {fileID: 6505305102521487667}
+  Cable: {fileID: 6505305103732701593}
+  CableInfo: {fileID: 0}
+  TagColors: {fileID: 11400000, guid: ac8397ba382b4b24a83407135738892d, type: 2}
+  ColorIndex: 0
+--- !u!114 &-8752802895857545079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6505305103249543573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cd4da084de00cd468379fc214aeb3d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RuntimeCableEditor: {fileID: 0}
+  RuntimeMarkerEditor: {fileID: 0}
+--- !u!1 &6505305103732701596
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6505305103732701597}
+  - component: {fileID: 6505305103732701595}
+  - component: {fileID: 6505305103732701594}
+  - component: {fileID: 6505305103732701593}
+  - component: {fileID: 6505305103732701598}
+  m_Layer: 0
+  m_Name: CableScripts
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6505305103732701597
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6505305103732701596}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 6505305102521487667}
+  m_Father: {fileID: 6505305103249543574}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!23 &6505305103732701595
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6505305103732701596}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 3fa47a9449fe12f43a3aaede4e780556, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &6505305103732701594
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6505305103732701596}
+  m_Mesh: {fileID: 0}
+--- !u!114 &6505305103732701593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6505305103732701596}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e96b7fe72242f48419783c80bda8a25d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CheckPointInterference: 1
+  InterferenceDistance: 0.03
+  CableDiameter: 0.05
+  CableHangerWidth: 0.08
+  DefaultCableSlope: 0
+  SegmentsPerMeter: 8
+  CableHangerPosition: 2
+  CableHangerPrefab: {fileID: 1856735617386740, guid: f8774c90b4ffed24d923cdab776323d0,
+    type: 3}
+  CableMaterial: {fileID: 2100000, guid: 3fa47a9449fe12f43a3aaede4e780556, type: 2}
+  CableNodes:
+  - Position: {x: 0, y: 0, z: 0}
+    Slope: 0
+    ShowCableHanger: 0
+    FixedPosition: 1
+    NodeIndex: 0
+  GeneratedMesh: {fileID: 0}
+--- !u!114 &6505305103732701598
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6505305103732701596}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 313bfc30bf9b99c48975f9e783c6b26d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MarkerDistance: 2
+  TagDistance: 3
+  EscapewayColor: {r: 0, g: 1, b: 0, a: 1}
+  EscapeColor: 1
+  CableGeometryRef: {fileID: 6505305103732701593}
+  MarkerPrefab: {fileID: 1932371190426932, guid: 141bb8f87536d414e89b226fe129df79,
+    type: 3}
+  TagPrefab: {fileID: 1716846990559792, guid: 9ad2a9a63511b514c8c71028a9419228, type: 3}
+  MandoorPrefab: {fileID: 1753449389863748, guid: 44555def3711ecc4ca41669f8c30d196,
+    type: 3}
+  BranchLinePrefab: {fileID: 1384331947033706, guid: ca2c63cc3b902404e8da79e0c4021543,
+    type: 3}
+  RefugeChamberPrefab: {fileID: 1116325117368014, guid: 3bbe95129333ad141961962eb791d5ba,
+    type: 3}
+  SCSRCachePrefab: {fileID: 1237077701203450, guid: 084c4e39f6cebca45905cdbc131b9121,
+    type: 3}
+  IsBranchLine: 0
+  ReferencePoints: []

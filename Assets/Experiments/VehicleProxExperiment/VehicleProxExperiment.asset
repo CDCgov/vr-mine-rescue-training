@@ -1,0 +1,92 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6a226f13d3a02344900f0cf608302c5, type: 3}
+  m_Name: VehicleProxExperiment
+  m_EditorClassIdentifier: 
+  ReloadSceneEveryTrial: 0
+  EnableDetailedLogs: 0
+  ShowPIDOutput: 0
+  MachinePrefabs:
+  - {fileID: 1520866430623584, guid: c8b9e4790d080414eae0e9b02ffcdd4e, type: 2}
+  - {fileID: 1401951507122414, guid: fe4f24cbe584f594dac38c53fe91684d, type: 2}
+  - {fileID: 1077966067294514, guid: 68bdba62b99864e4eb6007ecca8367cf, type: 2}
+  - {fileID: 1893542866655204, guid: 29bcbb0dae72ed543b9619425afb7860, type: 2}
+  - {fileID: 1018050024362290, guid: e978794f71e7cfa40a89628722d10966, type: 2}
+  - {fileID: 1999429035926486, guid: f3ce2afc5f877e04d80a4d5d2fdf3610, type: 2}
+  - {fileID: 1030785301673884, guid: 4703fc7a9ba9d1143bd902d16bc53b08, type: 2}
+  - {fileID: 1431250313950064, guid: 8630138a0c3b2c34d911266ebdde803d, type: 2}
+  MachineConstants:
+  - Name: 10SC32B
+    EmptyWeight: 55000
+    LoadCapacity: 30000
+    InitialSpeed: 7
+    BrakeTorqueFtLb: 34000
+    AccelTorqueFtLb: 34000
+    WheelWeight: 507
+    WheelDampingRate: 2
+  - Name: BH20
+    EmptyWeight: 78000
+    LoadCapacity: 40000
+    InitialSpeed: 6.5
+    BrakeTorqueFtLb: 61000
+    AccelTorqueFtLb: 61000
+    WheelWeight: 1525
+    WheelDampingRate: 2
+  - Name: CAIScoop
+    EmptyWeight: 35750
+    LoadCapacity: 20000
+    InitialSpeed: 5
+    BrakeTorqueFtLb: 19500
+    AccelTorqueFtLb: 19500
+    WheelWeight: 500
+    WheelDampingRate: 2
+  - Name: CH816C
+    EmptyWeight: 76300
+    LoadCapacity: 36000
+    InitialSpeed: 5
+    BrakeTorqueFtLb: 52500
+    AccelTorqueFtLb: 52500
+    WheelWeight: 1200
+    WheelDampingRate: 2
+  ProxConfigs:
+  - Name: Large
+    Yellow:
+      Front: 20
+      Right: 10
+      Left: 10
+      Back: 18
+    Red:
+      Front: 15
+      Right: 7
+      Left: 7
+      Back: 15
+  - Name: Small
+    Yellow:
+      Front: 20
+      Right: 8
+      Left: 8
+      Back: 18
+    Red:
+      Front: 10
+      Right: 4
+      Left: 4
+      Back: 10
+  - Name: ExtraSmall
+    Yellow:
+      Front: 10
+      Right: 6
+      Left: 6
+      Back: 10
+    Red:
+      Front: 5
+      Right: 3
+      Left: 3
+      Back: 5

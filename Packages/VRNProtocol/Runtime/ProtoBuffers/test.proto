@@ -1,0 +1,15 @@
+﻿syntax = "proto3";
+
+//import "google/protobuf/empty.proto";
+
+message ProtoTestMessage {
+  string message = 1;
+  int32 intVal = 2;
+  double dblVal = 3;
+  repeated string comments = 4;
+}
+
+
+//service TestService {
+//    rpc GetTestMessage(google.protobuf.Empty) returns (ProtoTestMessage) {}    
+//}

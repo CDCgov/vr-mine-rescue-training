@@ -1,0 +1,830 @@
+﻿syntax = "proto3";
+
+//import "google/protobuf/empty.proto";
+import "google/protobuf/timestamp.proto";
+
+enum VRNPacketType {
+    Unknown = 0;
+    Discovery = 1;
+    NetObjectSync = 2;
+    RequestWorldState = 3;
+    NetObjectSyncMulti = 4;
+    //RequestJoinWorld = 4;
+    RequestJoinServer = 22;
+    RequestJoinSpectator = 23;
+    RequestNewPlayerID = 24;
+    RequestOwnership = 5;  
+    SpawnObject = 6;
+    DestroyObject = 7;
+    StateDataUpdate = 8;
+    RequestClientState = 20;
+    RequestClientList = 21;  
+    NetObjectMessage = 25;
+    PlayerMessage = 26;
+    RequestSpawnObject = 27;
+    SetNetworkUpdateRate = 28;
+    CalVerificationData = 29;
+    CalVerificationTest = 30;
+    NetworkReset = 31;
+    Ping = 32;
+    PingResponse = 33;
+    
+    
+    SetOwner = 100;
+    LoadScene = 101;
+    TeleportAll = 102;
+    PlayerJoined = 103;
+    PlayerLeft = 104;
+    ClientConnected = 105;
+    ClientDisconnected = 106;
+    ClientLoadedScene = 107;
+    SetVentVisualization = 108;
+    PlayAudioClip = 109;
+    RandomSeed = 110;
+
+    SendClientState = 200;
+    SendClientList = 201;
+    SendPlayerList = 202;
+    SendSpectatorInfo = 203;
+    SendBG4SimData = 204;
+    SendAltStatus = 205;
+    SendCalibrationData = 206;
+    SendVentGraph = 207;
+    SendSymbolManagerState = 208;
+    SendNetworkedObjectList = 209;
+    SendBatteryStatus = 210;
+    SendSystemStatus = 211;
+    SendAudioCollision = 212;
+
+    VentilationUpdate = 301;
+    RequestMineAtmosphere = 302;
+    SendMineAtmosphere = 303;
+
+    TextMessage = 1000;
+    AssignClientInfo = 1001;
+    AssignPlayerID = 1004;
+    AssignPlayerRole = 1003;
+    
+    VRPlayerInfo = 1002;
+    VRSocket = 1500;
+    VRSocketAssignRequest = 1501;
+    VRSocketAssigned = 1502;
+    VRSocketVacateRequest = 1503;
+    VRSocketVacate = 1504;
+    VRRequestSetHeldStatus = 1600;
+    VRSetHeldStatus = 1601;
+
+    DissonancePacket = 2001;
+
+    LogFooter = 3001;
+    LogEvent = 3002;
+
+    RelayClientJoined = 4001;
+    RelayClientLeft = 4002;
+    RelayClientListChanged = 4003;
+    RelayClientKick = 4004;
+    RelayClientStats = 4005;
+
+}
+
+enum VRNPlayerRole {
+    UnknownRole = 0;
+    Captain = 1;
+    GasMan = 2;
+    MapMan = 3;
+    SecondGasMan = 4;
+    TailCaptain = 5;
+    VRTech = 6;
+    Alt_1 = 101;
+    Alt_2 = 102;
+    Alt_3 = 103;
+    Alt_4 = 104;
+    Alt_5 = 105;
+    Alt_6 = 106;
+    Alt_7 = 107;
+    Alt_8 = 108;
+    Invisible = 1000;
+}
+
+enum VRNPlayerEquipmentType {
+    VRNPlayerEquipmentTypeUnknown = 0;
+    VRNPlayerEquipmentTypeGasMeter = 1;
+    VRNPlayerEquipmentTypeSoundingStick = 2;
+    VRNPlayerEquipmentTypeSentinel = 3;
+    VRNPlayerEquipmentTypeChalk = 4;
+    VRNPlayerEquipmentTypeRadio = 5;
+    VRNPlayerEquipmentTypeMap = 6;
+    VRNPlayerEquipmentTypeSmoke = 7;
+    VRNPlayerEquipmentTypeLaserChalk = 8;
+}
+
+enum VRNToggleAction {
+    ToggleOff = 0;
+    ToggleOn = 1;
+    ToggleSwitch = 2;
+}
+
+enum VRNPlayerMessageType {
+    PM_Unknown = 0;
+    PM_SetDominantHand = 1;
+    PM_SetBG4Pressure = 2;
+    PM_SilenceBG4Alarm = 3;
+    PM_ResetEquipment = 4;
+    PM_ToggleDebugMode = 5;
+    PM_ToggleTranslation = 6;
+    PM_ToggleRotation = 7;
+    PM_ResetToTeleport = 8;
+    PM_RecomputeCalibrationOffset = 9;
+    PM_ResetCalibrationOffset = 10;
+    PM_SetCalibrationRotation = 11;
+    PM_TuneCalibrationRotation = 12;
+    PM_SetFloorCalibration = 13;
+    PM_TwoControllerCalibration = 14;
+    PM_ToggleUserTeleport = 15;
+    PM_ForceLinkLine = 19;
+    PM_DeafenPlayer = 20;
+    PM_MutePlayer = 21;
+    PM_L_Grip_On = 22;
+    PM_R_Grip_On = 23;
+    PM_SetPlayerHeight = 24;
+    PM_SetPlayerMode = 25;
+    PM_ResetFloorCalibration=26;
+    PM_RespawnEquipment=27;
+    PM_SetMasterVolume = 100;
+    PM_SetCollisionMasterVolume = 101;
+    PM_SetFireMasterVolume = 102;
+    PM_SetFootfallsVolume = 103;
+    PM_SetFireBurningVolume = 104;
+    PM_SetFireExtinguished = 105;
+    PM_SetFireExtinguisher = 106;
+    PM_SetGeneralCollisionsVolume = 107;
+    PM_SetStretcherCollisionVolume = 108;
+    PM_SetVentVisualization = 200;
+}
+
+enum VRNVRInteraction {
+    VRI_None = 0;
+    VRI_Activated = 1;
+    VRI_Deactivated = 2;
+    VRI_PickedUp = 3;
+    VRI_Dropped = 4;
+    VRI_PrimaryButtonPressed = 5;
+    VRI_SecondaryButtonPressed = 6;
+    VRI_JoystickPressed = 7;
+}
+
+enum VRNPacketDestination {
+    Direct = 0;
+    Broadcast = 1;
+}
+
+enum VRNSceneLoadState {
+    None = 0;
+    Loading = 1;
+    ReadyToActivate = 2;
+    Active = 3;
+}
+
+enum VRNBG4AlarmState {
+    Off = 0;
+    Silenced = 1;
+    LowPressureAlarm = 2;
+    CriticalPressureAlarm = 3;
+}
+
+enum VRNCalibrationSource {
+    CalHead = 0;
+    CalRightController = 1;
+    CalLeftController = 2;
+}
+
+message VRNQuaternion {
+    float w = 1;
+    float x = 2;
+    float y = 3;
+    float z = 4;
+}
+
+message VRNVector3 {
+    float x = 1;
+    float y = 2; 
+    float z = 3;
+}
+
+message VRNVector2 {
+    float x = 1;
+    float y = 2;
+}
+
+message VRNColor {
+    float r = 1;
+    float g = 2;
+    float b = 3;
+}
+
+message VRNHeader {
+    VRNPacketType packetType = 1;    
+    VRNPacketDestination packetDest = 2;
+    string message = 3;
+    int64 tickCount = 4;
+    float serverTime = 5;
+    uint64 rpcID = 6;
+    int32 destClientID = 7;
+    int32 packetSize = 8;
+    int32 fromClientID = 9;
+
+}
+
+message VRNRelayClientInfo {
+    int32 clientID = 1;
+    string ipAddress = 2;
+}
+
+message VRNRelayClientList {
+    repeated VRNRelayClientInfo clientList = 1;
+}
+
+message VRNClientStats {
+    int32 clientID = 1;
+    float connectTime = 2;
+    float avgBitRate = 3;
+    float avgPingRTT = 4;
+    float reliablePipelineRTT = 5;
+    float reliablePipelineRTTVar = 6;
+    int32 reliableSendQueueCount = 7;
+}
+
+message VRNRelayClientStatsList {
+    repeated VRNClientStats clientStats = 1;
+}
+
+message VRNNetObjMessage {
+    bytes objID = 1;
+    string messageType = 2;
+}
+
+message VRNAntilatencyStatus {
+    int32 clientID = 1;
+    int32 playerID = 2;
+    string statusText = 3;
+}
+
+message VRNPingResponse {
+    int32 clientID = 1;
+}
+
+message VRNPlayerMessage {
+    int32 playerID = 1;
+    VRNPlayerMessageType messageType = 2;
+    oneof playerMessageData {
+        string textData = 3;        
+        float floatData = 4;
+        int32 intData = 5;
+        bool boolData = 6;
+        VRNVector2 vec2Data = 7;
+        VRNVector3 vec3Data = 8;
+        VRNQuaternion quaternionData = 9;
+        VRNBG4SimData bg4Data = 10;
+	}
+}
+
+message VRNMsgDamageFire {
+    float dmgAmount = 1;
+    int32 playerID = 2;
+}
+
+message VRNDiscovery {
+  string serverName = 1; 
+  repeated string notes = 100;
+}
+
+message VRNRequestWorldState {
+    int32 clientID = 1;
+}
+
+message VRNCalibrationOffsetData {
+    int32 clientID = 1;
+    int32 playerID = 2;
+    VRNVector3 offsetPos = 3;
+    VRNQuaternion offsetRot = 4;
+}
+
+message VRNCalVerificationData {
+    int32 clientID = 1;
+    int32 playerID = 2;
+    VRNVector3 referencePoint = 3;
+    VRNVector3 verificationPoint = 4;
+}
+
+message VRNStateDataUpdate {
+    string stateID = 1;
+    int32 clientIDSource = 2;
+    bytes stateData = 3;
+}
+
+message VRNNetObjSyncMulti {
+    int32 numObjectSyncs = 1;
+}
+
+message VRNNetObjSync {
+    bytes objID = 1;
+    int32 ownerID = 2;
+}
+
+message VRNLinkLineSyncData {
+    int32 PlayerSource = 1;
+    bool Clipped = 2; 
+}
+
+message VRNPhysicsSyncData {
+    VRNVector3 position = 1;
+    VRNQuaternion rotation = 2;
+    VRNVector3 velocity = 3;
+    VRNVector3 angularVelocity = 4;
+    bool isKinematic = 5;
+    bool useGravity = 6;
+}
+message VRNLaserPointerState {
+    bool isLaserEnabled = 1;
+    int32 laserMode = 2;
+    float laserActivationLevel = 3;
+}
+
+message VRNInteractionData {
+    VRNVRInteraction Interaction = 1;
+}
+
+message VRNRequestJoinWorld {
+    string playerName = 1;
+}
+
+message VRNRequestJoinServer {
+    string clientName = 1;
+}
+
+message VRNRequestNewPlayerID {
+    int32 clientID = 1;
+    string playerName = 2;
+}
+
+message VRNRequestOwnership {
+    bytes objID = 1;
+    int32 clientID = 2;
+}
+
+message VRNRequestMineAtmosphere {
+    VRNVector3 position = 1;
+
+}
+
+message VRNSendMineAtmosphere {
+    VRNVector3 position = 1;
+    float Oxygen = 2;
+    float CarbonMonoxide = 3;
+    float Methane = 4;
+    float HydrogenSulfide = 5;
+}
+
+message VRNSpawnObject {
+    bytes objID = 1;
+    int32 ownerID = 2;
+    string assetID = 3;
+    bool spawnActivated = 4;
+    VRNTransformData startPosition = 5;
+    int32 sceneID = 6;
+    bool ownerExclusive = 7;
+}
+
+message VRNNetworkUpdateRate {
+    float ObjectUpdateRate = 2;
+    float VRUpdateRate = 3;
+}
+
+
+message VRNNetworkedObjectList {
+    int32 sceneID = 1;
+    repeated VRNSpawnObject ObjectList = 3;
+    repeated bytes DestroyedSceneObjects = 4;
+}
+
+message VRNDestroyObject {
+    bytes objID = 1;
+}
+
+message VRNSetOwner {
+    bytes objID = 1;
+    int32 ownerClientID = 2;
+}
+
+message VRNAssignClientInfo {
+    int32 clientID = 1;
+    //int32 playerID = 2;
+}
+
+message VRNAssignPlayerID {
+    int32 clientID = 1;
+    int32 playerID = 2;
+}
+
+message VRNAssignPlayerRole {
+    int32 playerID = 1;
+    VRNPlayerRole Role = 2;
+    bool leftHandDominant = 3;
+}
+
+message VRNTransformData {
+    VRNQuaternion rotation = 1;
+    VRNVector3 position = 2;
+}
+
+message VRNTextMessage {
+    string message = 1;
+}
+
+message VRNFloatData {
+    float floatData = 1;
+}
+
+message VRNBoolData {
+    bool boolData = 1;
+}
+
+message VRNPlayerList {
+    repeated VRNVRPlayerInfo PlayerList = 1;
+}
+
+message VRNVRPlayerInfo {
+    int32 clientID = 1;
+    int32 playerID = 2;
+    string name = 6;
+    VRNPlayerRole Role = 7;
+    bool onLinkLine = 8;
+
+    VRNTransformData head = 3;
+    VRNTransformData leftController = 4;
+    VRNTransformData rightController = 5;
+    bool leftControllerTracked = 14;
+    bool rightControllerTracked = 15;
+
+    VRNTransformData rigOffset = 9;
+    float playerHeight = 10;
+
+    bool leftGrip = 11;
+    bool rightGrip = 12;
+    int32 playerMode = 13;
+}
+
+message VRNBG4SimData {
+    int32 clientID = 1;
+    int32 playerID = 2;
+    VRNBG4AlarmState alarmState = 3;
+    int32 oxygenPressure = 4;
+    int32 baselinePressure = 5;
+    int32 remainingTime = 6;
+    bool lowPressure = 7;
+    bool criticalPressure = 8;    
+    bool oxygenCylOpen = 9;
+}
+
+message VRNSentinelInfo {
+    int32 playerID = 1;
+    float pressure = 2;
+}
+
+message VRNSpectatorInfo {
+    int32 clientID = 1;
+    string ipAddress = 5;
+    string name = 6;
+}
+
+message VRNLoadScene {
+    string sceneName = 1;
+    bool allowSceneActivation = 2;
+    int32 sceneID = 3;
+}
+
+message VRNClientConnectionStatus {
+    int32 clientID = 1;
+    bool connected = 2;
+}
+
+message VRNClientState {
+    int32 clientID = 1;
+    //int32 playerID = 2;
+    string playerName = 3;
+    VRNSceneLoadState sceneLoadState = 4;
+    string sceneName = 5;
+}
+
+message VRNActivationState {
+    bool activated = 1;
+    float activatationLevel = 2;
+}
+
+message VRNTeleportAll {
+    string teleportTarget = 1;
+    float teleportTime = 2;
+}
+
+message VRNSimState {
+    string activeScene = 1;
+    string teleportTarget = 2;
+    int32 activeSceneID = 3;
+}
+
+message VRNSymbolManagerState {
+    string symbolManagerName = 1;
+    repeated VRNSymbolData symbols = 2;
+    bytes symbolManagerID = 3;
+    int32 playerID = 4;
+    int32 clientID = 5;
+}
+
+message VRNSymbolData {
+    int64 symbolID = 1;
+    string symbolClass = 2;
+    string addressable = 3;
+    VRNVector2 size = 4;
+    VRNColor color = 5;
+    bool ignoreRotation = 6;
+    bool spanEntry = 7;
+    bool preserveAspect = 8;
+    string symbolText = 9;
+
+    VRNVector3 WorldPosition = 12;
+    VRNQuaternion WorldRotation = 13;
+
+    bytes symbolData = 100;
+}
+
+
+message VRNDissonancePacket {
+    int32 clientID = 1;
+    bytes dissonanceData = 2;
+}
+
+enum VRNVentVisEffect {
+    VRNVentVisEffectNone = 0;
+    VRNVentVisEffectArrows = 1;
+    VRNVentVisEffectFirstPersonArrows = 2;
+    VRNVentVisEffectTrails = 3;
+}
+
+enum VRNVentVisColor {
+    VRNVentVisColorNone = 0;
+    VRNVentVisColorContam = 1;
+    VRNVentVisColorMethane = 2;
+    VRNVentVisColorTemperature = 3;
+}
+
+message VRNVentVisualization {
+    VRNToggleAction ToggleAction = 1;
+    //VRNVentVisEffect VisEffect = 2;
+    //VRNVentVisColor VisColor = 3;
+    string VisEffectPrefab = 4;
+    string VisData = 5;
+
+    bool VisEnabledDM = 6;
+    bool VisEnabledPlayer = 7;
+    bool VisEnabledSpectator = 8; 
+}
+
+message VRNVentGraph {
+    repeated VRNVentJunction Junctions = 10;
+    repeated VRNVentAirway Airways = 11;
+    repeated VRNVentFire Fires = 12;
+}
+
+message VRNVentJunction {
+    int32 JunctionID = 1;
+    int32 MFireID = 2;
+    bool IsStartJunction = 3;
+    bool IsInAtmosphere = 4;
+    VRNVector3 WorldPosition = 5;
+    float CH4Concentration = 6;
+    float TotalAirFlow = 7;
+    float TotalContaminant = 8;
+    float TotalCH4 = 9;
+    float ContamConcentration = 10;
+    float TemperatureInter = 11;
+    float TotalHeat = 12;
+    bool ConditionChanged = 13;
+    float Temperature = 14;
+    float Elevation = 15;
+    float CH4InitialConc = 16;
+    int32 AtmosphereJuncType = 17;
+    float AtmosphereTemperature = 18;
+}
+
+message VRNVentAirway {
+    int32 AirwayID = 1;
+    int32 MFireID = 2;
+    float Resistance = 3;
+    float AddedResistance = 4;
+    float ControlResistance = 5;
+    float CH4EmissionRate = 6;
+    int32 StartJunction = 7;
+    int32 EndJunction = 8;
+    float CrossSectionalArea = 9;
+    int32 FlowDirection = 10;
+    float FlowRate = 11;
+    float FrictionFactor = 12;
+    float Length = 13;
+    float Perimeter = 14;
+    float RockTemperature = 16;
+    float ThermalConductivity = 17;
+    float ThermalDefusivity = 18;
+    int32 Type = 19;
+    float OverrideResistance = 20;
+}
+
+message VRNVentFire {
+    int32 FireID = 1;
+    int32 MFireID = 2;
+    int32 AirwayID = 3;
+    VRNVector3 WorldPosition = 4;
+}
+
+message VRNFireStatus {
+    float FireHealth = 1;
+    int32 playerID = 2;
+}
+
+message VRNFireExtinguisherStatus {
+    float PercentFull = 1;
+    bool IsActive = 2;
+}
+
+message VRNBatteryStatus {
+    int32 clientID = 1;
+    string statusMessage = 10;
+}
+
+message VRNSystemStatus {
+    int32 clientID = 1;
+
+    float frameRate = 10;
+    bool appFocused = 11;
+    bool appPaused = 12;
+}
+
+message VRNLogHeader {
+    string activeScene = 1;
+    string teleportTarget = 2;
+    string sessionName = 3;
+    google.protobuf.Timestamp logStartTime = 4;
+}
+
+message VRNLogFooter {
+    int32 numMessages = 1;
+    float sessionDuration = 2;
+}
+
+enum VRNLogEventType {
+    VRNLogEventTypeMessage = 0;
+
+    VRNLogEventTypePickupObj = 10;
+    VRNLogEventTypeDropObj = 11;
+    VRNLogEventTypeLinkLineAttach = 12;
+    VRNLogEventTypeLinkLineDetach = 13;
+
+    VRNLogEventTypeDateAndInitial = 20;
+
+    VRNLogEventTypeDoorOpen = 30;
+    VRNLogEventTypeDoorClose = 31;
+    VRNLogEventTypeDoorKnock = 32;
+
+    VRNLogEventTypeRoofCheck = 40;
+    VRNLogEventTypeRibCheck = 41;
+
+    VRNLogEventTypeCurtainHalfHang = 50;
+    VRNLogEventTypeCurtainFullHang = 51;
+    //VRNLogEventTypeCurtainDrop = 52;
+    VRNLogEventTypeCurtainRemove = 53;
+    VRNLogEventTypeRolledCurtainPickedUp = 54;
+    VRNLogEventTypeRolledCurtainDropped = 55;
+
+    VRNLogEventTypeGasCheck = 60;
+    VRNLogEventTypeSentinelInspect = 61;
+
+    VRNLogEventTypeFireStarted = 70;
+    VRNLogEventTypeFireExtinguished = 71;  
+    VRNLogEventTypeFireExtinguisherDischarge = 72;
+    VRNLogEventTypeFireExtinguisherPickedUp = 73;
+    VRNLogEventTypeFireExtinguisherDropped = 74;
+
+    VRNLogEventTypeNPCStartFollow = 80;
+    VRNLogEventTypeNPCStopFollow = 81;
+    VRNLogEventTypeNPCStatusUpdate = 82;
+
+    VRNLogEventTypeSentinelLow = 83;
+    VRNLogEventTypeSentinelEmpty = 84;
+    
+    VRNLogEventTypeSmokeTube = 90;
+
+    VRNLogEventTypePostInstall = 100;
+    VRNLogEventTypePostRemoved = 101;
+
+    VRNLogEventTypeEquipmentAdded = 200;
+    VRNLogEventTypeEquipmentRemoved = 201;
+
+    VRNLogEventTypeNPCPlacedOnStretcher = 300;
+    VRNLogEventTypeNPCRemovedFromStretcher = 301;
+
+    VRNLogEventTypeMineExplosion = 400;
+    VRNLogEventTypeZoneViolation = 401;
+
+    VRNLogEventTypeDMAction = 1000;
+    VRNLogEventTypeDMSpawnObject = 1001;
+    VRNLogEventTypeNPCDeath = 1002;
+    VRNLogEventTypeNPCUnconscious = 1003;
+}
+
+enum VRNLogObjectType {
+    VRNLogObjectTypeUnknown = 0;
+    VRNLogObjectTypeGeneric = 1;
+    VRNLogObjectTypeFireExtinguisher = 2;
+    VRNLogObjectTypeCurtain = 3;
+    VRNLogObjectTypeGasMeter = 4;
+    VRNLogObjectTypeSentinel = 5;
+    VRNLogObjectTypeChalk = 6;
+    VRNLogObjectTypeSoundingStick = 7;
+    VRNLogObjectTypeLinkLineCarabiner = 8;
+    VRNLogObjectTypeSmokeTube = 9;
+    VRNLogObjectTypeBG4 = 10;
+}
+
+message VRNLogEvent  {
+    int32 eventID = 1;
+    VRNLogEventType eventType = 2;
+    float timestamp = 3;
+    VRNVector3 position = 4;
+    VRNQuaternion rotation = 5;
+    string positionMetadata = 6;
+
+    VRNLogObjectType objectType = 10;
+    bytes objID = 11;
+    string objectName = 12;
+    
+    int32 sourcePlayerID = 20;
+    int32 targetPlayerID = 21;
+
+    string message = 100;
+
+}
+
+message VRNSocketData {
+    string socketID = 1;
+    bytes objectID = 4;
+    string objectIDString = 2; 
+    //int32 socketMessageType = 3;
+}
+
+message VRNObjectHeldState {
+    bytes objectID = 1;
+    bool objectHeld = 2;
+    int32 heldByClientID = 3;
+}
+
+message VRNNPCData {
+    int32 targetPlayerID = 1;
+    bool isStanding = 2;
+    bool isFollowing =3;
+    VRNVector3 npcPosition = 4;
+    VRNQuaternion npcRotation = 14;
+    VRNVector3 navDestination = 13;    
+    int32 animatorState = 5;
+    float animTime = 6;
+    bool walking = 7;
+    bool atDestination = 8;
+    bool running = 9;
+    bool crouching = 10;
+    uint32 equipmentFlags = 15;
+    float ForwardVelocity = 11;
+    float LateralVelocity = 12;
+}
+
+message VRNAudioCollisionData {
+    VRNVector3 position = 1;
+    string audioName = 2;
+    int32 clipIndex = 3;
+    int32 audioType = 4;
+    float volume = 5;
+    float pitch = 6;
+}
+
+message VRNRandomSeedData {
+    int32 seed = 1;
+}
+
+message VRNHalfCurtainData {
+    bool grabbed = 1;
+    VRNVector3 hangPosition = 2;
+}
+
+message VRNStretcherData {
+    bool npcActive = 1;
+    bool bg4Active = 2;
+    bool npcAlive = 3;
+    string npcName = 4;
+}

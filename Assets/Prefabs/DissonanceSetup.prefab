@@ -1,0 +1,143 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1224010807529704680
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1220817605393805998}
+  - component: {fileID: 1254816209308929936}
+  - component: {fileID: 4043777990944867265}
+  - component: {fileID: 5359419811353174854}
+  - component: {fileID: 5934939040764661630}
+  - component: {fileID: 5555310052365946868}
+  m_Layer: 0
+  m_Name: DissonanceSetup
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1220817605393805998
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1224010807529704680}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1254816209308929936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1224010807529704680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cb4dc319de88dc4cb76c47aafb46b1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _lastPrefabError: 
+  _isMuted: 1
+  _isDeafened: 0
+  _oneMinusBaseRemoteVoiceVolume: 0
+  _playbackPrefab: {fileID: 0}
+  _playbackPrefab2: {fileID: 0}
+  _micName: 
+  _playerPriority: 0
+  _tokens:
+    _tokens: []
+--- !u!114 &4043777990944867265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1224010807529704680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5048384bc7d9ae49b28df075721aec6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DissonanceComms: {fileID: 1254816209308929936}
+  VoiceReceiptTrigger: {fileID: 5934939040764661630}
+  VoiceBroadcastTrigger: {fileID: 5359419811353174854}
+  RadioInteractable: {fileID: 0}
+  DMOverrideOn: 0
+  DMDeafenOverride: 0
+  DMMuteOverride: 0
+--- !u!114 &5359419811353174854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1224010807529704680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a066ddbf125f9546bcadc947418566b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _tokens:
+    _tokens: []
+  _channelTypeExpanded: 1
+  _metadataExpanded: 1
+  _activationModeExpanded: 0
+  _tokensExpanded: 0
+  _ampExpanded: 0
+  _activationFaderSettings:
+    _volume: 1
+    _fadeInTicks: 0
+    _fadeOutTicks: 1500000
+  _triggerFaderSettings:
+    _volume: 1
+    _fadeInTicks: 7500000
+    _fadeOutTicks: 11500000
+  _broadcastPosition: 1
+  _channelType: 0
+  _inputName: 
+  _mode: 1
+  _muted: 0
+  _playerId: 
+  _useTrigger: 0
+  _roomName: Global
+  _priority: -2
+--- !u!114 &5934939040764661630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1224010807529704680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3737438748cf23f448d18cd2c6192e95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _tokens:
+    _tokens: []
+  _roomName: Global
+  _useTrigger: 0
+--- !u!114 &5555310052365946868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1224010807529704680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4174cd63a7f22748b3b42f14daea805, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NetworkManager: {fileID: 0}

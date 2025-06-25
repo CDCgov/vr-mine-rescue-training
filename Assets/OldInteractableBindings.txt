@@ -1,0 +1,64 @@
+onActivate:     RefugeNPCBehaviors::FollowInteractor
+onActivate:     RefugeNPCBehaviors::FollowInteractor
+onActivate:     RefugeNPCBehaviors::FollowInteractor
+onActivate:     RefugeNPCBehaviors::FollowInteractor
+
+onActivate:     InjuredNPCIdleBehavior::EndIdleLoop
+onSelectEnter:  InjuredNPCIdleBehavior::OnGrab
+
+
+onSelectEnter:  SocketSfx::PlaySocketSfx
+onSelectEnter:  SocketSfx::PlaySocketSfx
+onSelectEnter:  SocketSfx::PlaySocketSfx
+onSelectEnter:  SocketSfx::PlaySocketSfx
+onSelectEnter:  SocketSfx::PlaySocketSfx
+onSelectEnter:  SocketSfx::PlaySocketSfx
+onSelectEnter:  SocketSfx::PlaySocketSfx
+
+onSelectExit:   NetSyncGrabState::SetGrabbed
+onSelectEnter:  NetSyncGrabState::SetGrabbed
+onSelectEnter:  NetSyncGrabState::SetGrabbed
+onSelectExit:   NetSyncGrabState::SetGrabbed
+onSelectEnter:  NetSyncGrabState::SetGrabbed
+onSelectExit:   NetSyncGrabState::SetGrabbed
+onSelectEnter:  NetSyncGrabState::SetGrabbed
+onSelectExit:   NetSyncGrabState::SetGrabbed
+
+onActivate:     ChalkBehavior::ActivateChalk
+onActivate:     ChalkBehavior::ActivateChalk
+
+onActivate:     CurtainBehavior::OnActivate
+onSelectEnter:  CurtainBehavior::OnPickup
+onSelectExit:   CurtainBehavior::OnDrop
+onActivate:     CurtainBehavior::OnActivate
+onSelectEnter:  CurtainBehavior::OnPickup
+onSelectExit:   CurtainBehavior::OnDrop
+
+onActivate:     TakeDownCurtainBehavior::OnActivate
+onActivate:     TakeDownCurtainBehavior::OnActivate
+
+onActivate:     BlownCurtainInteraction::OnRollup
+onSelectEnter:  BlownCurtainInteraction::OnRollup
+
+onActivate:     FireExtinguisherInteraction::ActivateFireExtinguisher
+onDeactivate:   FireExtinguisherInteraction::DeactivateFireExtinguisher
+onActivate:     FireExtinguisherInteraction::ActivateFireExtinguisher
+onDeactivate:   FireExtinguisherInteraction::DeactivateFireExtinguisher
+
+onActivate:     GasMeterDisplay::ActivateGasMeter
+onDeactivate:   GasMeterDisplay::DeactivateGasMeter
+onActivate:     GasMeterDisplay::ActivateGasMeter
+onDeactivate:   GasMeterDisplay::DeactivateGasMeter
+
+onSelectEnter:  AdjustMapBoard::OnGrab
+onSelectExit:   AdjustMapBoard::OnRelease
+
+onSelectEnter:  PostBehavior::OnPickup
+onSelectExit:   PostBehavior::OnDrop
+
+onActivate:     PowerCenterBehavior::TogglePowerCenter
+
+onActivate:     Sentinel::SilenceAlarm
+
+onActivate:     SmokeTubeInteraction::OnActivate
+onDeactivate:   SmokeTubeInteraction::OnDeactivate
