@@ -42,12 +42,26 @@ Purchase and import the following packages to restore project's functionality:
 
 ### Textures
 * Before launching Unity, download and extract the VR-MRT Texture Pack into the Unity project "Assets" folder, it matches the folder structure of the Unity project and will place the large texture files into the VR-MRT
+* Link to texture pack: [Here](https://centersfordiseasecontrol.sharefile.com/d-s01688ced18ab4e0082c9d239f1786cf8)
 
 ### Other Licenses
 * BAH - License Needed for Miner Avatar, DO NOT DELETE [BAH License](/External/BAH/license.txt)
+* [AsyncIO](/Packages/VRMineExternal/Runtime/Plugins/AsyncIOLICENSE.md)
+* [CsvHelper](/Packages/VRMineExternal/Runtime/Plugins/CsvHelper-License-Apache-2.0.mhtml)
+* [Delaunator](/Packages/Delaunator/LICENSE.md)
 * [EzySlice](/Licenses/EzySlice.license)
 * [geometry3sharp](/Licenses/geometry3sharp.license)
+* [glTFast](/Packages/glTFast/LICENSE.md)
+* [Google Protobuf](/Packages/VRMineExternal/Runtime/Plugins/Google.ProtobufLICENSE.md)
+* [KDTree](/Packages/VRMineExternal/Runtime/KDTree/LICENSE.txt)
+* [MathNet Numerics](/Packages/VRMineExternal/Runtime/Plugins/MathNetNumericsLICENSE.md)
+* [Microsoft-BCL-AsyncInterfaces](/Packages/VRMineExternal/Runtime/Plugins/Microsoft-BCL-AsyncInterfaces-License.txt)
+* [MonitoredUndo](/Packages/VRMineExternal/Runtime/Plugins/MonitoredUndolicense.md)
+* [Protobuf Net](/Packages/VRMineExternal/Runtime/Plugins/protobuf-net-licence.txt)
 * [OpusDotNet](/Licenses/OpusDotNet.license.md)
+* [Unity Octree](/Packages/VRMineExternal/Runtime/UnityOctree/LICENSE)
+* [Yaml Dot Net](/Packages/VRMineExternal/Runtime/Plugins/YamlDotNetLICENSE.txt)
+* [zlib](/Packages/VRMineExternal/Runtime/Plugins/zlib License.html)
 
 ## Public Domain Standard Notice
 
