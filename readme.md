@@ -1,7 +1,6 @@
 # VR-MRT
-VR-MRT is a training platform designed to supplement current mine rescue training. VR-MRT is intended to improve mine rescue team members' procedural, collaborative, and problem-solving skills for an underground emergency response.
-
-VR-MRT consists of five modules: Scenario Editor, Simulation Module, Director Module, Spectator Module, and Debrief Module.
+## Overview
+VR-MRT is a training platform designed to supplement current mine rescue training. VR-MRT is intended to improve mine rescue team members' procedural, collaborative, and problem-solving skills for an underground emergency response. VR-MRT consists of five modules:
 
 * Scenario Editor: Allows users to create, modify and share mine rescue scenarios. Using a desktop computer setup, users can place the objects in the scene, set up the ventilation, and change properties.
 * Simulation Module: Allows users to work through the NIOSH provided or user created scenarios. Users will join using head mounted displays (HMDs) either remotely or co-located in the same space.
