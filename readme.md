@@ -61,7 +61,7 @@ Purchase and import the following packages to restore project's functionality:
 * [OpusDotNet](/Licenses/OpusDotNet.license.md)
 * [Unity Octree](/Packages/VRMineExternal/Runtime/UnityOctree/LICENSE)
 * [Yaml Dot Net](/Packages/VRMineExternal/Runtime/Plugins/YamlDotNetLICENSE.txt)
-* [zlib](/Packages/VRMineExternal/Runtime/Plugins/zlib License.html)
+* [zlib](/Packages/VRMineExternal/Runtime/Plugins/zlib%20License.html)
 
 ## Public Domain Standard Notice
 
