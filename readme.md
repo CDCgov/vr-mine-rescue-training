@@ -58,7 +58,7 @@ Purchase and import the following packages to restore project's functionality:
 * [geometry3sharp](/Licenses/geometry3sharp.license)
 * [glTFast](/Packages/glTFast/LICENSE.md)
 * [Google Protobuf](/Packages/VRMineExternal/Runtime/Plugins/Google.ProtobufLICENSE.md)
-* [KDTree](/Packages/VRMineExternal/Runtime/KDTree/LICENSE.txt)
+* [KDTree](/Packages/VRMineExternal/Runtime/KDTree/LICENSE)
 * [MathNet Numerics](/Packages/VRMineExternal/Runtime/Plugins/MathNetNumericsLICENSE.md)
 * [Microsoft-BCL-AsyncInterfaces](/Packages/VRMineExternal/Runtime/Plugins/Microsoft-BCL-AsyncInterfaces-License.txt)
 * [MonitoredUndo](/Packages/VRMineExternal/Runtime/Plugins/MonitoredUndolicense.md)
@@ -66,7 +66,7 @@ Purchase and import the following packages to restore project's functionality:
 * [OpusDotNet](/Licenses/OpusDotNet.license.md)
 * [Unity Octree](/Packages/VRMineExternal/Runtime/UnityOctree/LICENSE)
 * [Yaml Dot Net](/Packages/VRMineExternal/Runtime/Plugins/YamlDotNetLICENSE.txt)
-* [zlib](/Packages/VRMineExternal/Runtime/Plugins/zlib License.html)
+* [zlib](/Packages/VRMineExternal/Runtime/Plugins/zlib%20License.html)
 
 ## Public Domain Standard Notice
 
