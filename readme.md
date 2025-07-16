@@ -10,6 +10,11 @@ VR-MRT is a training platform designed to supplement current mine rescue trainin
   
 ## External Dependencies 
 
+### Link to MFIRE Server
+* Please follow the link here to the MFIRE Server repository: [MFIREServer](https://github.com/CDCgov/MFIREServer)
+* This server is needed to run the dynamic ventilation capabilities of VR-MRT
+
+
 ### Main Project
 Purchase and import the following packages to restore project's functionality:
 
