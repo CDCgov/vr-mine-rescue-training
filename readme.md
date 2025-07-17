@@ -46,8 +46,9 @@ Purchase and import the following packages to restore project's functionality:
   * Microsoft.Bcl.AsyncInterfaces
 
 ### Textures
+
 * Before launching Unity, download and extract the VR-MRT Texture Pack into the Unity project "Assets" folder, it matches the folder structure of the Unity project and will place the large texture files into the VR-MRT
-* Link to texture pack: [Here](https://centersfordiseasecontrol.sharefile.com/d-s01688ced18ab4e0082c9d239f1786cf8)
+* Link to [texture pack](https://ftp.cdc.gov/pub/niosh/mining/VR-MRT-TexturePack.zip)
 
 ### Other Licenses
 * BAH - License Needed for Miner Avatar, DO NOT DELETE [BAH License](/External/BAH/license.txt)
