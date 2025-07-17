@@ -1,5 +1,7 @@
 # VR-MRT
+
 ## Overview
+
 VR-MRT is a training platform designed to supplement current mine rescue training. VR-MRT is intended to improve mine rescue team members' procedural, collaborative, and problem-solving skills for an underground emergency response. VR-MRT consists of five modules:
 
 * Scenario Editor: Allows users to create, modify and share mine rescue scenarios. Using a desktop computer setup, users can place the objects in the scene, set up the ventilation, and change properties.
@@ -7,18 +9,21 @@ VR-MRT is a training platform designed to supplement current mine rescue trainin
 * Director Module: Allows the trainer to set up, record, monitor, and control the simulation. Using a desktop computer setup, the trainer can change users' settings (e.g., roles, handedness), load scenarios, move the team around the mine (i.e., teleport), and provide them with additional items.
 * Spectator Module: Allows additional people to view what is going on in a simulation. Using a desktop computer setup, this module includes an overhead view as well as a chase camera view following the captain.
 * Debrief Module: Allows users to play back the log file that was collected in the director module for an after-action review of the simulation.
-  
-## External Dependencies 
+
+## External Dependencies
 
 ### Link to MFIRE Server
+
 * Please follow the link here to the MFIRE Server repository: [MFIREServer](https://github.com/CDCgov/MFIREServer)
 * This server is needed to run the dynamic ventilation capabilities of VR-MRT
 
 
+
 ### Main Project
+
 Purchase and import the following packages to restore project's functionality:
 
-* CamelotVFX_Fire&Smoke - [Camelot](https://assetstore.unity.com/packages/vfx/particles/fire-explosions/camelotvfx-fire-smoke-11105)
+* CamelotVFX\_Fire\&Smoke - [Camelot](https://assetstore.unity.com/packages/vfx/particles/fire-explosions/camelotvfx-fire-smoke-11105)
 * Cross Platform Input - Deprecated, not currently used due to HMD focus. [CI Blog Post](https://discussions.unity.com/t/crossplatforminput-deprecated/707231/3)
 * geometry3sharp - [geometry3sharp](https://github.com/gradientspace/geometry3Sharp)
 * GoogleMatDesignIcons - [Google Assets](https://developers.google.com/fonts/faq)
@@ -37,6 +42,7 @@ Purchase and import the following packages to restore project's functionality:
 ### Plugins needed in Packages/VRMineExternal/Runtime/Plugins
 
 * Microsoft Plugins:
+
   * System.Buffers
   * System.Collections.Immutable
   * System.Memory
@@ -51,21 +57,22 @@ Purchase and import the following packages to restore project's functionality:
 * Link to [texture pack](https://ftp.cdc.gov/pub/niosh/mining/VR-MRT-TexturePack.zip)
 
 ### Other Licenses
+
 * BAH - License Needed for Miner Avatar, DO NOT DELETE [BAH License](/Assets/External/BAH/license.txt)
 * [AsyncIO](/Packages/VRMineExternal/Runtime/Plugins/AsyncIOLICENSE.md)
 * [CsvHelper](/Packages/VRMineExternal/Runtime/Plugins/CsvHelper-License-Apache-2.0.mhtml)
 * [Delaunator](/Packages/Delaunator/LICENSE.md)
-* [EzySlice](/Licenses/EzySlice.license)
-* [geometry3sharp](/Licenses/geometry3sharp.license)
+* [EzySlice](/Licenses/EzySlice.license.txt)
+* [geometry3sharp](/Licenses/geometry3sharp.license.txt)
 * [glTFast](/Packages/glTFast/LICENSE.md)
-* [Google Protobuf](/Packages/VRMineExternal/Runtime/Plugins/Google.ProtobufLICENSE)
-* [KDTree](/Packages/VRMineExternal/Runtime/KDTree/LICENSE)
+* [Google Protobuf](/Packages/VRMineExternal/Runtime/Plugins/Google.ProtobufLICENSE.txt)
+* [KDTree](/Packages/VRMineExternal/Runtime/KDTree/LICENSE.txt)
 * [MathNet Numerics](/Packages/VRMineExternal/Runtime/Plugins/MathNetNumericsLICENSE.md)
 * [Microsoft-BCL-AsyncInterfaces](/Packages/VRMineExternal/Runtime/Plugins/Microsoft-BCL-AsyncInterfaces-License.txt)
 * [MonitoredUndo](/Packages/VRMineExternal/Runtime/Plugins/MonitoredUndolicense.md)
 * [Protobuf Net](/Packages/VRMineExternal/Runtime/Plugins/protobuf-net-licence.txt)
-* [OpusDotNet](/Assets/Licenses/OpusDotNet.license.md)
-* [Unity Octree](/Packages/VRMineExternal/Runtime/UnityOctree/LICENSE)
+* [OpusDotNet](/Licenses/OpusDotNet.license.md)
+* [Unity Octree](/Packages/VRMineExternal/Runtime/UnityOctree/LICENSE.txt)
 * [Yaml Dot Net](/Packages/VRMineExternal/Runtime/Plugins/YamlDotNetLICENSE.txt)
 * [zlib](/Packages/VRMineExternal/Runtime/Plugins/zlib%20License.html)
 
@@ -93,7 +100,7 @@ WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 PARTICULAR PURPOSE. See the Apache Software License for more details.
 
 You should have received a copy of the Apache Software License along with this
-program. If not, see (<http://www.apache.org/licenses/LICENSE-2.0.html>)
+program. If not, see ([http://www.apache.org/licenses/LICENSE-2.0.html](http://www.apache.org/licenses/LICENSE-2.0.html))
 
 The source code forked from other open source projects will inherit its license.
 
@@ -130,3 +137,4 @@ Please refer to [CDC's Template Repository](https://github.com/CDCgov/template)
 for more information about [contributing to this repository](https://github.com/CDCgov/template/blob/master/CONTRIBUTING.md),
 [public domain notices and disclaimers](https://github.com/CDCgov/template/blob/master/DISCLAIMER.md),
 and [code of conduct](https://github.com/CDCgov/template/blob/master/code-of-conduct.md).
+
