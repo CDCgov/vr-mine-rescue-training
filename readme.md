@@ -72,7 +72,7 @@ Purchase and import the following packages to restore project's functionality:
 * [MonitoredUndo](/Packages/VRMineExternal/Runtime/Plugins/MonitoredUndolicense.md)
 * [Protobuf Net](/Packages/VRMineExternal/Runtime/Plugins/protobuf-net-licence.txt)
 * [OpusDotNet](/Licenses/OpusDotNet.license.md)
-* [Unity Octree](/Packages/VRMineExternal/Runtime/UnityOctree/LICENSE.txt)
+* [Unity Octree](Packages/VRMineExternal/Runtime/UnityOctree/LICENCE.txt)
 * [Yaml Dot Net](/Packages/VRMineExternal/Runtime/Plugins/YamlDotNetLICENSE.txt)
 * [zlib](/Packages/VRMineExternal/Runtime/Plugins/zlib%20License.html)
 
