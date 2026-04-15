@@ -649,7 +649,6 @@ MonoBehaviour:
   CurrentOwner: {fileID: 0}
   InteractableRigidbody: {fileID: 7331170411837232903}
   ActiveInteractors: []
-  InteractableType: 0
   IsGrabbable: 1
   GrabWithoutOwnerChange: 0
   KeepOriginalParent: 1
@@ -698,6 +697,7 @@ MonoBehaviour:
   DisplayName: Gas Meter - MSA Polaris
   HierarchyItemPrefab: {fileID: 360079312126257609, guid: d9bfda6fec448a14faf8cebad6aa76f2,
     type: 3}
+  hierarchyContainer: {fileID: 0}
   editorLayer: 1
   simParent: {fileID: 0}
   UserSuppliedName: 
@@ -777,7 +777,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 8116152109954578260, guid: 61b02ea0032841140809253b9c9574c1, type: 2}
+  - {fileID: 21299254892479222, guid: 7f6d7d15e37d7f243af81760c858af1f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -821,8 +821,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 12
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 61b02ea0032841140809253b9c9574c1, type: 2}
-  m_sharedMaterial: {fileID: 8116152109954578260, guid: 61b02ea0032841140809253b9c9574c1,
+  m_fontAsset: {fileID: 11400000, guid: 7f6d7d15e37d7f243af81760c858af1f, type: 2}
+  m_sharedMaterial: {fileID: 21299254892479222, guid: 7f6d7d15e37d7f243af81760c858af1f,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -949,7 +949,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 8116152109954578260, guid: 61b02ea0032841140809253b9c9574c1, type: 2}
+  - {fileID: 21299254892479222, guid: 7f6d7d15e37d7f243af81760c858af1f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -993,8 +993,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 9.99
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 61b02ea0032841140809253b9c9574c1, type: 2}
-  m_sharedMaterial: {fileID: 8116152109954578260, guid: 61b02ea0032841140809253b9c9574c1,
+  m_fontAsset: {fileID: 11400000, guid: 7f6d7d15e37d7f243af81760c858af1f, type: 2}
+  m_sharedMaterial: {fileID: 21299254892479222, guid: 7f6d7d15e37d7f243af81760c858af1f,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -1121,7 +1121,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 8116152109954578260, guid: 61b02ea0032841140809253b9c9574c1, type: 2}
+  - {fileID: 21299254892479222, guid: 7f6d7d15e37d7f243af81760c858af1f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1165,8 +1165,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 9.99
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 61b02ea0032841140809253b9c9574c1, type: 2}
-  m_sharedMaterial: {fileID: 8116152109954578260, guid: 61b02ea0032841140809253b9c9574c1,
+  m_fontAsset: {fileID: 11400000, guid: 7f6d7d15e37d7f243af81760c858af1f, type: 2}
+  m_sharedMaterial: {fileID: 21299254892479222, guid: 7f6d7d15e37d7f243af81760c858af1f,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -1293,7 +1293,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 8116152109954578260, guid: 61b02ea0032841140809253b9c9574c1, type: 2}
+  - {fileID: 21299254892479222, guid: 7f6d7d15e37d7f243af81760c858af1f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1337,8 +1337,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 9999
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 61b02ea0032841140809253b9c9574c1, type: 2}
-  m_sharedMaterial: {fileID: 8116152109954578260, guid: 61b02ea0032841140809253b9c9574c1,
+  m_fontAsset: {fileID: 11400000, guid: 7f6d7d15e37d7f243af81760c858af1f, type: 2}
+  m_sharedMaterial: {fileID: 21299254892479222, guid: 7f6d7d15e37d7f243af81760c858af1f,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -1617,9 +1617,6 @@ MonoBehaviour:
   isOn: 1
   Temperature: 6500
   RGBValue: FFFFFF
-  CastShadows: 0
-  VolumetricIntensity: 1
-  UsesSeperateModelWhenOff: 0
 --- !u!1001 &3142124497210895423
 PrefabInstance:
   m_ObjectHideFlags: 0
