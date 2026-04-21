@@ -6,7 +6,7 @@ public class LightSwitchInteraction : Interactable {
     public bool LightOn = false;
     public GameObject LightObject;
 
-    public override void Interact()
+    public override void Interact(Transform interactor)
     {
         LightOn = !LightOn;
         LightObject.SetActive(LightOn);

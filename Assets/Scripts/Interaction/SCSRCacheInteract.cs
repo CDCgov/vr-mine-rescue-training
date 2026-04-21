@@ -103,7 +103,7 @@ public class SCSRCacheInteract : Interactable {
 		}
 	}
 
-	public override void Interact()
+	public override void Interact(Transform interactor)
 	{
 		_RotationDirection = !_RotationDirection;
 		//_IsAnimating = true;

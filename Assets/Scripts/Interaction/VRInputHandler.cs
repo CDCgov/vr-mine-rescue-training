@@ -260,7 +260,7 @@ public class VRInputHandler : MonoBehaviour
         Interactable inter = other.gameObject.GetComponent<Interactable>();
         if(inter != null && _triggerValue > 0.1f)
         {
-            inter.Interact();
+            inter.Interact(transform);
         }
     }
     private void OnTriggerExit(Collider other)

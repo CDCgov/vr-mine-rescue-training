@@ -940,6 +940,17 @@ public class PlayerManager : MonoBehaviour
     //    NetworkManager.SendPlayerMessage(PlayerID, messageType, msg);
     //}
 
+    public bool TryGetCurrentPlayerPosition(out Vector3 pos)
+    {
+        if (CurrentPlayer != null && CurrentPlayer.HeadTransform != null)
+        {
+            pos = CurrentPlayer.HeadTransform.position;
+            return true;
+        }
+
+        pos = Vector3.zero;
+        return false;
+    }
 
     public void RequestPlayerID()
     {

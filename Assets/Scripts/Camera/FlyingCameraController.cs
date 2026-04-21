@@ -187,7 +187,7 @@ public class FlyingCameraController : MonoBehaviour
                     Interactable interact = hit.collider.GetComponent<Interactable>();
                     if (interact != null)
                     {
-                        interact.Interact();
+                        interact.Interact(transform);
                     }
                 }
             }

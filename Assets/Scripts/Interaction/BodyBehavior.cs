@@ -28,8 +28,14 @@ public class BodyBehavior : MonoBehaviour, IInteractableObject, INetSync
         {
             if (!_hasBeenAssessed)
             {
+                Vector3 pos;
+                if (PlayerManager == null || !PlayerManager.TryGetCurrentPlayerPosition(out pos))
+                {
+                    pos = transform.position;
+                }
+
                 NetworkManager.LogSessionEvent(VRNLogEventType.NpcstatusUpdate, $"Condition: Dead",
-                    transform.position, transform.rotation, BodyName);
+                    pos, Quaternion.identity, BodyName);
 
                 _hasBeenAssessed = true;
             }

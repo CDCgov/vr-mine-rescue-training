@@ -19,7 +19,7 @@ public class TestGrab : MonoBehaviour {
                 SCSRCacheInteract scsr = hit.collider.GetComponent<SCSRCacheInteract>();
                 if(scsr != null)
                 {
-                    scsr.Interact();
+                    scsr.Interact(transform);
                 }
             }
         }

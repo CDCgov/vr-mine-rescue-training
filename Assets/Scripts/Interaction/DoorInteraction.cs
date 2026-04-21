@@ -193,7 +193,7 @@ public class DoorInteraction : Interactable, INetSync, IInteractableObject, ISel
         //}
     }
 
-    public override void Interact()
+    public override void Interact(Transform interactor)
     {
         if (_animate)
         {
@@ -203,19 +203,23 @@ public class DoorInteraction : Interactable, INetSync, IInteractableObject, ISel
         //Debug.Log("Door interact script called " + nInteractCalled + " times.");
         //CustomXRInteractable doorInteractable = GetComponent<CustomXRInteractable>();
         Vector3 pos = transform.position;
+        if (interactor != null)
+            pos = interactor.position;
+
         //if (doorInteractable != null)
         //    pos = doorInteractable.InteractorTransform.position;
 
         _bOpening = !_bOpening;
         SetDoorState(_bOpening);
 
-        if (_netObj == null || NetworkManager == null)
-            return;
+        //if (_netObj == null || NetworkManager == null)
+        //    return;
+
 
         if (_bOpening)
         {
-            _netObj.SendMessage("OPEN", new VRNTextMessage());
-            NetworkManager.LogSessionEvent(new VRNLogEvent
+            _netObj?.SendMessage("OPEN", new VRNTextMessage());
+            NetworkManager?.LogSessionEvent(new VRNLogEvent
             {
                 EventType = VRNLogEventType.DoorOpen,
                 ObjectName = DoorName,
@@ -226,8 +230,8 @@ public class DoorInteraction : Interactable, INetSync, IInteractableObject, ISel
         }
         else
         {
-            _netObj.SendMessage("CLOSED", new VRNTextMessage());
-            NetworkManager.LogSessionEvent(new VRNLogEvent
+            _netObj?.SendMessage("CLOSED", new VRNTextMessage());
+            NetworkManager?.LogSessionEvent(new VRNLogEvent
             {
                 EventType = VRNLogEventType.DoorClose,
                 ObjectName = DoorName,
@@ -372,7 +376,7 @@ public class DoorInteraction : Interactable, INetSync, IInteractableObject, ISel
 
     public void OnActivated(Transform interactor)
     {
-        Interact();
+        Interact(interactor);
     }
 
     public void OnDeactivated(Transform interactor)
@@ -395,7 +399,7 @@ public class DoorInteraction : Interactable, INetSync, IInteractableObject, ISel
         if (_netObj == null || _netObj.HasAuthority)
             SetDoorState(!IsDoorOpen);
         else
-            Interact();
+            Interact(transform);
     }
 
     public string GetObjectDisplayName()

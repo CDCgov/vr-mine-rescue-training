@@ -777,8 +777,15 @@ public class NPCController : MonoBehaviour, INetSync, IInteractableObject, ISele
                     condition = "Conscious";
 
                 _hasBeenAssessed = true;
+
+                Vector3 pos;
+                if (PlayerManager == null || !PlayerManager.TryGetCurrentPlayerPosition(out pos))
+                {
+                    pos = transform.position;
+                }
+
                 NetworkManager.LogSessionEvent(VRNLogEventType.NpcstatusUpdate, $"Condition: {condition}", 
-                    transform.position, transform.rotation, NPCName);
+                    pos, Quaternion.identity, NPCName);
                 //_cachedPlayer = PlayerManager.CurrentPlayer;                
             }
 
