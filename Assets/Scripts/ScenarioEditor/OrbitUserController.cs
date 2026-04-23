@@ -80,7 +80,7 @@ public class OrbitUserController : MonoBehaviour
         UpdateState();
         AdjustVelocity();
 
-        body.velocity = velocity;
+        body.linearVelocity = velocity;
         ClearState();
     }
 
@@ -92,7 +92,7 @@ public class OrbitUserController : MonoBehaviour
 
     void UpdateState()
     {
-        velocity = body.velocity;
+        velocity = body.linearVelocity;
         /*if (OnGround || SnapToGround() || CheckSteepContacts())
         {
             if (groundContactCount > 1)

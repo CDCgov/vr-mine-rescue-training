@@ -110,7 +110,7 @@ namespace BAHDOL
 			if (HMDRotatesPlayer) RotatePlayerToHMD();
 			if (EnableLinearMovement) StickMovement();
 			if (EnableRotation) SnapTurn();
-			Velocity = _rigidbody.velocity;
+			Velocity = _rigidbody.linearVelocity;
 
 			UpdatePlayerMeshTransform();
 		}

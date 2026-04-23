@@ -20,7 +20,7 @@ public class ReportCarPosition : MonoBehaviour
         Rigidbody rb = col.gameObject.GetComponentInParent<Rigidbody>();
         if(rb != null)
         {
-            Debug.Log("Car velocity: " + rb.velocity.magnitude);
+            Debug.Log("Car velocity: " + rb.linearVelocity.magnitude);
         }
         //sw.WriteLine(Time.time + "," + col.transform.position.x + "," + col.transform.position.y + "," + col.transform.position.z + "," + col.transform.rotation.eulerAngles.x + "," + col.transform.rotation.eulerAngles.y + "," + col.transform.rotation.eulerAngles.z + "," + rb.velocity.magnitude);
     }

@@ -21,7 +21,7 @@ public class SimpleAICarInitialCondition : MonoBehaviour
             Rigidbody rb = gameObject.GetComponent<Rigidbody>();
             Debug.Log(rb.angularVelocity);
             //Vector3 dir = -gameObject.transform.right;
-            Debug.Log(rb.velocity);
+            Debug.Log(rb.linearVelocity);
         }
     }
 

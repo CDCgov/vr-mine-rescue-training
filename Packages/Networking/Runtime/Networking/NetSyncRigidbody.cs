@@ -61,7 +61,7 @@ public class NetSyncRigidbody : MonoBehaviour, INetSync
 
         if (_rb != null)
         {
-            _rb.velocity = _lastSyncVelocity;
+            _rb.linearVelocity = _lastSyncVelocity;
             _rb.useGravity = _useGravity;
             _rb.isKinematic = _isKinematic;
         }
@@ -75,7 +75,7 @@ public class NetSyncRigidbody : MonoBehaviour, INetSync
         {
             _lastSyncPos = _rb.position;
             _lastSyncRot = _rb.rotation;
-            _lastSyncVelocity = _rb.velocity;
+            _lastSyncVelocity = _rb.linearVelocity;
             _isKinematic = _rb.isKinematic;
         }
 
@@ -106,7 +106,7 @@ public class NetSyncRigidbody : MonoBehaviour, INetSync
             {
                 delta.Normalize();
                 var correctionVel = delta / Time.fixedDeltaTime;
-                _rb.velocity += correctionVel;
+                _rb.linearVelocity += correctionVel;
             }
 
         }

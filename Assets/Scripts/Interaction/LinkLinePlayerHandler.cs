@@ -1,13 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.XR.Interaction.Toolkit;
+
 
 public class LinkLinePlayerHandler : MonoBehaviour
 {
     public LinkLineObject _HeldLinkLine;
-    public XRDirectInteractor _DirInt;
-    public XRSocketInteractor _SockInt;
+    public UnityEngine.XR.Interaction.Toolkit.Interactors.XRDirectInteractor _DirInt;
+    public UnityEngine.XR.Interaction.Toolkit.Interactors.XRSocketInteractor _SockInt;
     public TeleportController TeleportCont;
     
     

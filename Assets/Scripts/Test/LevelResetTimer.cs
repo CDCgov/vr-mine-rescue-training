@@ -51,7 +51,7 @@ public class LevelResetTimer : MonoBehaviour
             {
                 Trucks[i].transform.position = _StartPositions[i];
                 Trucks[i].transform.rotation = _StartRotations[i];
-                _TruckRigidbodies[i].velocity = Vector3.zero;
+                _TruckRigidbodies[i].linearVelocity = Vector3.zero;
                 _TruckLoads[i].RestartScore();
             }
             

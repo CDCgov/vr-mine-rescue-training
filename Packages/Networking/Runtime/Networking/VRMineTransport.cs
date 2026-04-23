@@ -94,13 +94,18 @@ public abstract class VRMineTransport : MonoBehaviour
         settings.WithFragmentationStageParameters(32000);
         settings.WithReliableStageParameters(32);
         
-        settings.WithBaselibNetworkInterfaceParameters(2048, 4096, 4096);
+        //settings.WithBaselibNetworkInterfaceParameters(2048, 4096, 4096);
         //settings.WithBaselibNetworkInterfaceParameters(64, 64, 4096);
 
-        settings.WithNetworkConfigParameters(disconnectTimeoutMS: 8000); 
+        settings.WithNetworkConfigParameters(
+            disconnectTimeoutMS: 8000,
+            receiveQueueCapacity: 2048,
+            sendQueueCapacity: 4096,
+            maxMessageSize: 4096
+            ); 
 
         if (SimulateLatency)
-            settings.WithSimulatorStageParameters(30, 256, 100, 15);
+            settings.WithSimulatorStageParameters(30, 256, ApplyMode.AllPackets, 100, 15);
 
         //settings.WithDataStreamParameters(100000);
         //settings.WithPipelineParameters()
@@ -221,7 +226,7 @@ public abstract class VRMineTransport : MonoBehaviour
                 };
                 _connections.Add(connData);
 
-                var remoteAddr = NetworkDriver.RemoteEndPoint(c);
+                var remoteAddr = NetworkDriver.GetRemoteEndpoint(c);
                 Debug.Log($"Accepted a connection from {remoteAddr.Address}, {_connections.Count} connected clients");
 
                 OnClientConnected(c);
@@ -288,7 +293,7 @@ public abstract class VRMineTransport : MonoBehaviour
                 }
                 else if (cmd == NetworkEvent.Type.Disconnect)
                 {
-                    var remoteAddr = NetworkDriver.RemoteEndPoint(conn);
+                    var remoteAddr = NetworkDriver.GetRemoteEndpoint(conn);
 
                     Debug.Log($"Client {remoteAddr.Address} disconnected from server");
 
@@ -319,7 +324,7 @@ public abstract class VRMineTransport : MonoBehaviour
 
     public void Listen(ushort port)
     {
-        var endpoint = NetworkEndPoint.AnyIpv4; // The local address to which the client will connect to is 127.0.0.1
+        var endpoint = NetworkEndpoint.AnyIpv4; // The local address to which the client will connect to is 127.0.0.1
         endpoint.Port = port;
         if (NetworkDriver.Bind(endpoint) != 0)
             Debug.Log($"Failed to bind to port {port}");
@@ -329,9 +334,9 @@ public abstract class VRMineTransport : MonoBehaviour
 
     public void Connect(string address, ushort port)
     {
-        NetworkEndPoint ep = new NetworkEndPoint();
+        NetworkEndpoint ep = new NetworkEndpoint();
 
-        if (!NetworkEndPoint.TryParse(address, port, out ep))
+        if (!NetworkEndpoint.TryParse(address, port, out ep))
         {
             //try dns lookup
             var ip = System.Net.Dns.GetHostEntry(address);
@@ -344,7 +349,7 @@ public abstract class VRMineTransport : MonoBehaviour
             var ipstr = ip.AddressList[0].ToString();
             Debug.Log($"Found ip {ipstr} for address {address}");
 
-            ep = NetworkEndPoint.Parse(ipstr, port);
+            ep = NetworkEndpoint.Parse(ipstr, port);
         }
 
         Debug.Log($"VRMineTransport: Connecting to {ep.Address} : {ep.Port}");
@@ -352,7 +357,7 @@ public abstract class VRMineTransport : MonoBehaviour
         Connect(ep);
     }
 
-    public void Connect(NetworkEndPoint endpoint)
+    public void Connect(NetworkEndpoint endpoint)
     {
         //endpoint.Port = port;
         _clientConnection = NetworkDriver.Connect(endpoint);
@@ -450,7 +455,7 @@ public abstract class VRMineTransport : MonoBehaviour
                     sendQueue.Enqeuue(pipeline, data, length, conn);
                 else
                 {
-                    Debug.LogError($"VRMineTransport: Couldn't find send queue for connection {conn.InternalId}");
+                    Debug.LogError($"VRMineTransport: Couldn't find send queue for connection {conn.ToString()}");
                 }
             }
             return true;

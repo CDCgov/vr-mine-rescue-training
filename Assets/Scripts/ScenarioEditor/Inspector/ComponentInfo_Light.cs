@@ -101,8 +101,8 @@ public class ComponentInfo_Light : ModularComponentInfo, ISaveableComponent
 
         foreach (var hdrpLight in GetLightsHDRP())
         {
-            hdrpLight.lightUnit = LightUnit.Lumen;
-            hdrpLight.SetIntensity(intensity, LightUnit.Lumen);
+            hdrpLight.lightUnit = UnityEngine.Rendering.LightUnit.Lumen;
+            hdrpLight.SetIntensity(intensity, UnityEngine.Rendering.LightUnit.Lumen);
             hdrpLight.SetRange(range);
             hdrpLight.EnableColorTemperature(true);
             hdrpLight.SetColor(color, Temperature);

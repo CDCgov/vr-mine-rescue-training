@@ -28,7 +28,7 @@ public class SimpleLocomotion : MonoBehaviour
 
     public LocomotionSystem Loco;
     public SceneFadeManager SceneFadeManager;
-    public TeleportationProvider TeleProvider;
+    public UnityEngine.XR.Interaction.Toolkit.Locomotion.Teleportation.TeleportationProvider TeleProvider;
     //[UnityEngine.Serialization.FormerlySerializedAs("watcher")]
     //public XRJoystickWatcher Watcher;
 
@@ -194,7 +194,7 @@ public class SimpleLocomotion : MonoBehaviour
 
     void Teleport(Vector3 dest)
     {
-        TeleportRequest teleReq = new TeleportRequest
+        UnityEngine.XR.Interaction.Toolkit.Locomotion.Teleportation.TeleportRequest teleReq = new UnityEngine.XR.Interaction.Toolkit.Locomotion.Teleportation.TeleportRequest
         {
             destinationPosition = dest,
             destinationRotation = transform.rotation,

@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 using UnityEngine.XR;
-using UnityEngine.XR.Interaction.Toolkit;
+
 using UnityEngine.SceneManagement;
 
 public class VRDebugUIController : MonoBehaviour
@@ -18,7 +18,7 @@ public class VRDebugUIController : MonoBehaviour
 
 
     private Canvas _canvas;
-    private XRInteractorLineVisual[] _lineVisuals;
+    private UnityEngine.XR.Interaction.Toolkit.Interactors.Visuals.XRInteractorLineVisual[] _lineVisuals;
 
     //public bool DebugMode
     //{
@@ -95,7 +95,7 @@ public class VRDebugUIController : MonoBehaviour
     private void EnableLineVisual(bool bEnable)
     {
         if (bEnable)
-            _lineVisuals = FindObjectsOfType<XRInteractorLineVisual>();
+            _lineVisuals = FindObjectsOfType<UnityEngine.XR.Interaction.Toolkit.Interactors.Visuals.XRInteractorLineVisual>();
 
         if (_lineVisuals != null)
         {

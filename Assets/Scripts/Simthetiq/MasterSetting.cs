@@ -75,7 +75,7 @@ public class MasterSetting : MonoBehaviour
     public void RigidBodyInit()
     {
         bH20Rigidbody.mass = bH20Mass;
-        bH20Rigidbody.drag = bH20Drag;
-        bH20Rigidbody.angularDrag = bH20AngularDrag;
+        bH20Rigidbody.linearDamping = bH20Drag;
+        bH20Rigidbody.angularDamping = bH20AngularDrag;
     }
 }

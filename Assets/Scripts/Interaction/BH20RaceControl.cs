@@ -85,7 +85,7 @@ public class BH20RaceControl : MonoBehaviour
     private void StopVehicle(GameObject vehicle)
     {
         vehicle.GetComponent<BH20GamepadControl>().enabled = false;
-        vehicle.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        vehicle.GetComponent<Rigidbody>().linearVelocity = Vector3.zero;
     }
 
     private void CreateFire(Vector3 pos)

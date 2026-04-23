@@ -147,7 +147,7 @@ public class VRMineRelay : VRMineTransport
     {
         _lastClientIDAssigned++;
 
-        var remoteAddr = NetworkDriver.RemoteEndPoint(client);
+        var remoteAddr = NetworkDriver.GetRemoteEndpoint(client);
 
         RelayClientInfo info = new RelayClientInfo
         {
@@ -388,7 +388,7 @@ public class VRMineRelay : VRMineTransport
         result = NetworkDriver.BeginSend(pipeline, connData.conn, out writer);
         if (result < 0)
         {
-            var endPoint = NetworkDriver.RemoteEndPoint(connData.conn);
+            var endPoint = NetworkDriver.GetRemoteEndpoint(connData.conn);
 
             var statusCode = (StatusCode)result;
             Debug.LogError($"VRMineTransport:  Error sending packet to {endPoint.Address}: {statusCode.ToString()}");
@@ -401,7 +401,7 @@ public class VRMineRelay : VRMineTransport
         result = NetworkDriver.EndSend(writer);
         if (result < 0)
         {
-            var endPoint = NetworkDriver.RemoteEndPoint(connData.conn);
+            var endPoint = NetworkDriver.GetRemoteEndpoint(connData.conn);
 
             var statusCode = (StatusCode)result;
             Debug.LogError($"VRMineTransport:  Error sending packet to {endPoint.Address}: {statusCode.ToString()}");
@@ -435,7 +435,7 @@ public class VRMineRelay : VRMineTransport
                 else
                     state = "Not Created";
 
-                Debug.Log($"Disconnecting client {client.ClientID} ({client.Connection.InternalId}) - ({state})");
+                Debug.Log($"Disconnecting client {client.ClientID} ({client.Connection.ToString()}) - ({state})");
                 Disconnect(client.Connection);
                 _clientInfo.Remove(client.Connection);
                 return true;
@@ -601,7 +601,11 @@ public class VRMineRelay : VRMineTransport
         NativeArray<byte> sendBuffer;
         NativeArray<byte> sharedBuffer;
 
-        var reliableStageId = NetworkPipelineStageCollection.GetStageId(typeof(ReliableSequencedPipelineStage));
+        //details on changes to NetworkPipelineStageCollection at https://docs.unity3d.com/Packages/com.unity.transport@6.5/changelog/CHANGELOG.html
+
+        //var reliableStageId = NetworkPipelineStageCollection.GetStageId(typeof(ReliableSequencedPipelineStage));
+
+        var reliableStageId = NetworkPipelineStageId.Get<ReliableSequencedPipelineStage>();
         NetworkDriver.GetPipelineBuffers(_reliablePipeline, reliableStageId, client.Connection,
             out receiveBuffer, out sendBuffer, out sharedBuffer);
 
@@ -655,7 +659,7 @@ public class VRMineRelay : VRMineTransport
 
                     UpdateReliabilityStats(client);
 
-                    var endPoint = NetworkDriver.RemoteEndPoint(client.Connection);
+                    var endPoint = NetworkDriver.GetRemoteEndpoint(client.Connection);
 
                     float clientTime = Time.realtimeSinceStartup - client.ConnectTime;
 

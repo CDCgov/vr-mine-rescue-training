@@ -16,10 +16,10 @@ public class LimitSpeed : MonoBehaviour
     
     void FixedUpdate () 
     {
-        float speed = _rb.velocity.magnitude;
+        float speed = _rb.linearVelocity.magnitude;
         if (speed > MaxSpeed)
         {
-            _rb.velocity = _rb.velocity.normalized * MaxSpeed;
+            _rb.linearVelocity = _rb.linearVelocity.normalized * MaxSpeed;
         }
     }
 }

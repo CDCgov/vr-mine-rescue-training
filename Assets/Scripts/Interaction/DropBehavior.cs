@@ -41,7 +41,7 @@ public class DropBehavior : MonoBehaviour
         }
         if (ItemRigidbody != null)
         {
-            ItemRigidbody.velocity = HandVelocity;
+            ItemRigidbody.linearVelocity = HandVelocity;
             
         }
     }

@@ -40,12 +40,12 @@ public class BH20Controller : MonoBehaviour
     public void SpeedBoost(float value)
     {
         Vector3 dir;
-        if (_rb.velocity.magnitude > 0.1f)
-            dir = _rb.velocity.normalized;
+        if (_rb.linearVelocity.magnitude > 0.1f)
+            dir = _rb.linearVelocity.normalized;
         else
             dir = transform.forward;
 
-        _rb.velocity = _rb.velocity + dir * value;
+        _rb.linearVelocity = _rb.linearVelocity + dir * value;
     }
 
     public void Accelerate(float value)

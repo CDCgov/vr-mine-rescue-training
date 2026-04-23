@@ -143,7 +143,7 @@ public class SceneObjectResetManager : SceneManagerBase
 
         if (data.ObjectReference.TryGetComponent<Rigidbody>(out var rb))
         {
-            rb.velocity = Vector3.zero;
+            rb.linearVelocity = Vector3.zero;
             rb.angularVelocity = Vector3.zero;
         }
 

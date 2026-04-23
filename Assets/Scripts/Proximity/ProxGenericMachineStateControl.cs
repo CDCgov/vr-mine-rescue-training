@@ -32,7 +32,7 @@ public class ProxGenericMachineStateControl : MonoBehaviour
         if (_rb == null || _proxController == null)
             return;
 
-        float speed = _rb.velocity.magnitude;
+        float speed = _rb.linearVelocity.magnitude;
 
         if (speed > NormalMaxSpeed && _currentState != MovingState)
         {

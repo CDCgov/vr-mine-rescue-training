@@ -601,8 +601,8 @@ public class ComponentInspector_Light : ComponentInspector<ComponentInfo_Light>
 
         foreach (var hdrpLight in TargetComponentInfo.GetLightsHDRP())
         {
-            hdrpLight.lightUnit = LightUnit.Lumen;
-            hdrpLight.SetIntensity(intensity, LightUnit.Lumen);
+            hdrpLight.lightUnit = UnityEngine.Rendering.LightUnit.Lumen;
+            hdrpLight.SetIntensity(intensity, UnityEngine.Rendering.LightUnit.Lumen);
         }
         
 

@@ -10,7 +10,7 @@ public class VRMinePipelineTestRelay : VRMineRelayBase
         
     }
 
-    protected override void OnClientDataMessage(NetworkConnection client, DataStreamReader reader, NetworkPipeline pipeline)
+    protected override void OnClientDataMessage(NetworkConnection client, Unity.Collections.DataStreamReader reader, NetworkPipeline pipeline)
     {
         var pipelineName = _pipelineNames[pipeline];
         var str = reader.ReadFixedString512();

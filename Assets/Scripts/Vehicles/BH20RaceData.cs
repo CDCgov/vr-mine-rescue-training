@@ -76,7 +76,7 @@ public class BH20RaceData : MonoBehaviour
         transform.rotation = _startRot;
 
         var rb = GetComponent<Rigidbody>();
-        rb.velocity = Vector3.zero;
+        rb.linearVelocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
     }
 

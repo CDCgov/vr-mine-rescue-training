@@ -1,10 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.XR.Interaction.Toolkit;
 
 
-public class XRDirectDeselectExtension : XRDirectInteractor
+
+public class XRDirectDeselectExtension : UnityEngine.XR.Interaction.Toolkit.Interactors.XRDirectInteractor
 {
     
 }
