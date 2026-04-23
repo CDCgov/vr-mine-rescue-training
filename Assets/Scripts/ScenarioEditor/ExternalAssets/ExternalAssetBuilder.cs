@@ -530,7 +530,8 @@ public static class ExternalAssetBuilder
 
                 var lodRenderer = lodChild.GetComponent<MeshRenderer>();
 
-                lodRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+                if (metadata.UseLowDetailShadowCaster)
+                    lodRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
 
                 List<MeshRenderer> rendererList = null;
                 if (!lodMeshRenderers.TryGetValue(lodNumber, out rendererList))
@@ -587,13 +588,16 @@ public static class ExternalAssetBuilder
                 lodLevel++;
             }
 
-            //setup shadow caster
-            var shadowFilter = groupObj.AddComponent<MeshFilter>();
-            var shadowRend = groupObj.AddComponent<MeshRenderer>();
+            if (metadata.UseLowDetailShadowCaster)
+            {
+                //setup shadow caster
+                var shadowFilter = groupObj.AddComponent<MeshFilter>();
+                var shadowRend = groupObj.AddComponent<MeshRenderer>();
 
-            var shadowMesh = lods[lods.Count - 1].renderers[0].GetComponent<MeshFilter>().sharedMesh;
-            shadowFilter.sharedMesh = shadowMesh;
-            shadowRend.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.ShadowsOnly;
+                var shadowMesh = lods[lods.Count - 1].renderers[0].GetComponent<MeshFilter>().sharedMesh;
+                shadowFilter.sharedMesh = shadowMesh;
+                shadowRend.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.ShadowsOnly;
+            }
 
 
             // Sort lods by decreasing detail so they are added correctly to the lod group

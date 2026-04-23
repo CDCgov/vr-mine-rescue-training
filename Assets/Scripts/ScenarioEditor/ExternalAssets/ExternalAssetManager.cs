@@ -473,6 +473,7 @@ public class ExternalAssetManager : SceneManagerBase
             GeometryFilename = geometryFileNameNoPath,
             LODLevels = GetDefaultLODValues(4),
             MeshColliderName = "LOD2",
+            UseLowDetailShadowCaster = false,
             BasePrefabs = basePrefabs,
             ResetPivot = false,
             PlacementOptions = new LoadablePlacementOptions

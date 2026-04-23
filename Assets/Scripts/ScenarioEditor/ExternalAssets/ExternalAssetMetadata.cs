@@ -77,6 +77,9 @@ public class ExternalAssetMetadata
     [Description("Screen relative height ratio for each LOD level - number should match number of LOD levels in model file")]
     public List<LODLevelData> LODLevels;
 
+    [Description("If true, use the lowest detail LOD as the shadow caster")]
+    public bool UseLowDetailShadowCaster;
+
     [Description("Map of material IDs to mesh names, to override that mesh's material. Use ALL: MaterialID to override all")]
     public Dictionary<string, string> MeshMaterialOverrides;
 
@@ -124,6 +127,8 @@ public class ExternalAssetMetadata
         PhysicalProperties = new LoadablePhysicalProperties();
         
         Components = new List<ExternalAssetComponent>();
+
+        UseLowDetailShadowCaster = false;
     }
 
 }
