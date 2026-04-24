@@ -94,14 +94,14 @@ public abstract class VRMineTransport : MonoBehaviour
         settings.WithFragmentationStageParameters(32000);
         settings.WithReliableStageParameters(32);
         
-        //settings.WithBaselibNetworkInterfaceParameters(2048, 4096, 4096);
+        //settings.WithBaselibNetworkInterfaceParameters(/*receiveQueueCapacity*/2048, /*sendQueueCapacity*/4096, /*maximumPayloadSize*/4096);
         //settings.WithBaselibNetworkInterfaceParameters(64, 64, 4096);
 
         settings.WithNetworkConfigParameters(
             disconnectTimeoutMS: 8000,
             receiveQueueCapacity: 2048,
             sendQueueCapacity: 4096,
-            maxMessageSize: 4096
+            maxMessageSize: 1400
             ); 
 
         if (SimulateLatency)
