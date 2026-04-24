@@ -12,4 +12,5 @@ public class SkyboxData : ScriptableObject
     public VolumeProfile VolumeProfile;
     public GameObject LightPrefab;
     public int SortOrder = 0;
+    public bool HasDirectionalShadowCaster = false;
 }
