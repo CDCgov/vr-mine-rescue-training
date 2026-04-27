@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.XR;
 using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.XR.Interaction.Toolkit.Locomotion.Teleportation;
 
 
 
@@ -26,9 +27,9 @@ public class SimpleLocomotion : MonoBehaviour
     public GameObject TeleportTargetReticle;
     public Transform ReticleTransform;
 
-    public LocomotionSystem Loco;
+    //public LocomotionSystem Loco;
     public SceneFadeManager SceneFadeManager;
-    public UnityEngine.XR.Interaction.Toolkit.Locomotion.Teleportation.TeleportationProvider TeleProvider;
+    public TeleportationProvider TeleProvider;
     //[UnityEngine.Serialization.FormerlySerializedAs("watcher")]
     //public XRJoystickWatcher Watcher;
 
@@ -194,7 +195,7 @@ public class SimpleLocomotion : MonoBehaviour
 
     void Teleport(Vector3 dest)
     {
-        UnityEngine.XR.Interaction.Toolkit.Locomotion.Teleportation.TeleportRequest teleReq = new UnityEngine.XR.Interaction.Toolkit.Locomotion.Teleportation.TeleportRequest
+        TeleportRequest teleReq = new TeleportRequest
         {
             destinationPosition = dest,
             destinationRotation = transform.rotation,

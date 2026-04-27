@@ -69,7 +69,7 @@ public class ConfigureMinerXRRig : MonoBehaviour
 #if DISSONANCE
     public DissonanceTest DissonanceSoundToggle;
 #endif
-    public XRHapticShake XRHapticShake;
+    //public XRHapticShake XRHapticShake;
 
     private List<Guid> _equippedItems;
     private VRNPlayerRole _assignedRole;
@@ -123,10 +123,10 @@ public class ConfigureMinerXRRig : MonoBehaviour
 
         _playerEquipmentSockets = GetComponentsInChildren<PlayerEquipmentSocket>();
 
-        if (XRHapticShake == null)
-        {
-            XRHapticShake = gameObject.GetComponent<XRHapticShake>();
-        }
+        //if (XRHapticShake == null)
+        //{
+        //    XRHapticShake = gameObject.GetComponent<XRHapticShake>();
+        //}
         PlayerManager.PlayerIDAssigned += OnPlayerIDAssigned;
 
         //NetworkManager.PlayerRoleChanged += ConfigurePlayerRole;
