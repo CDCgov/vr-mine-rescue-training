@@ -23,9 +23,9 @@ public struct DeferredMeshCollider
 
 public struct MeshColliderBakeJob : IJobParallelFor
 {
-    private NativeArray<int> meshIds;
+    private NativeArray<EntityId> meshIds;
 
-    public MeshColliderBakeJob(NativeArray<int> meshIds)
+    public MeshColliderBakeJob(NativeArray<EntityId> meshIds)
     {
         this.meshIds = meshIds;
     }
@@ -439,11 +439,11 @@ public class LoadableAssetManager : SceneManagerBase
             MeshColliderCookingOptions.EnableMeshCleaning |
             MeshColliderCookingOptions.UseFastMidphase;
 
-        NativeArray<int> meshIds = new NativeArray<int>(_deferredMeshColliders.Count, Allocator.Persistent);
+        NativeArray<EntityId> meshIds = new NativeArray<EntityId>(_deferredMeshColliders.Count, Allocator.Persistent);
 
         for (int i = 0; i < _deferredMeshColliders.Count; ++i)
         {
-            meshIds[i] = _deferredMeshColliders[i].Mesh.GetInstanceID();
+            meshIds[i] = _deferredMeshColliders[i].Mesh.GetEntityId();
         }
 
         var job = new MeshColliderBakeJob(meshIds);
