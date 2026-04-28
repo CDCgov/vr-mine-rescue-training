@@ -726,6 +726,11 @@ public class Placer : LayerControlledClass
         if (_selPlaceable != null)
             _selPlaceable.SetPlaced();
 
+        if (_activeGizmo != null)
+        {
+            _activeGizmo.CompleteMouseDrag(_selectedObject);
+        }
+
         SwitchActiveGizmos(_activeGizmoType);
     }
 

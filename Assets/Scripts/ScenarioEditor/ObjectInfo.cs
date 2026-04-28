@@ -105,6 +105,10 @@ public class ObjectInfo : MonoBehaviour, ISaveableComponent
             if (componentInfo_Transform == null)
                 return false;
 
+            //temporary fix to allow transform gizmos for cable nodes
+            if (editorLayer == LayerManager.EditorLayer.Cables)
+                return true;
+
             return componentInfo_Transform.positionExposureLevel == Inspector.ExposureLevel.Editable;
         }
     }
