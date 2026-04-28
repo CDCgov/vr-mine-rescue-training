@@ -623,6 +623,7 @@ public class LoadableAssetManager : SceneManagerBase
 
         sw.Stop();
 
+        ExternalAssetManager.Cleanup();
         Debug.Log($"External Assets loading took {sw.Elapsed.TotalSeconds:F2}s");
     }
 
