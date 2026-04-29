@@ -1331,7 +1331,6 @@ MonoBehaviour:
   RaycastDistance: 0.5
   HandRigidbody: {fileID: 1674902829}
   InteractCheckOffset: {x: 0, y: 0, z: 0.05}
-  AlwaysShowLineRenderer: 0
   ActiveGraphicsRaycaster: 0
   ControllerLineRender: {fileID: 2324312260154758495}
   PlayerManager: {fileID: 0}
@@ -1607,8 +1606,6 @@ MonoBehaviour:
   m_StopLineAtSelection: 0
   m_SnapEndpointIfAvailable: 1
   m_LineBendRatio: 0.5
-  m_BendingEnabledInteractionLayers:
-    m_Bits: 4294967295
   m_OverrideInteractorLineOrigin: 1
   m_LineOriginTransform: {fileID: 0}
   m_LineOriginOffset: 0
@@ -2674,7 +2671,6 @@ MonoBehaviour:
     m_AssetGUID: 23ed074d7aec32043957bc548e69af42
     m_SubObjectName: 
     m_SubObjectType: 
-    m_SubObjectGUID: 
     m_EditorAssetChanged: 0
   HeadColliderTransform: {fileID: 8172149671988819759}
   WarningColor: {r: 0, g: 1, b: 0, a: 0}
@@ -2713,7 +2709,6 @@ GameObject:
   - component: {fileID: 5905697679904797339}
   - component: {fileID: 5053664779736013856}
   - component: {fileID: 2868337273475237702}
-  - component: {fileID: 599070591815172048}
   m_Layer: 0
   m_Name: Camera
   m_TagString: MainCamera
@@ -2780,7 +2775,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 3739073815
+    m_Bits: 3739073847
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -2988,7 +2983,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OutOfBoundsCullingMask:
     serializedVersion: 2
-    m_Bits: 1049348
+    m_Bits: 1049380
   WallsAndFloorMask:
     serializedVersion: 2
     m_Bits: 1024
@@ -2996,66 +2991,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   BoundsRadius: 0.1
---- !u!114 &599070591815172048
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1495383862660058452}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 26d6499a6bd256e47b859377446493a1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_IsGlobal: 0
-  fadeRadius: 0
-  priority: 0
-  customPasses:
-  - rid: 3619428023000104961
-  injectionPoint: 3
-  m_TargetCamera: {fileID: 1495383862660058454}
-  useTargetCamera: 1
-  references:
-    version: 2
-    RefIds:
-    - rid: 3619428023000104961
-      type: {class: DrawRenderersCustomPass, ns: UnityEngine.Rendering.HighDefinition,
-        asm: Unity.RenderPipelines.HighDefinition.Runtime}
-      data:
-        m_Name: Custom Pass
-        enabled: 1
-        targetColorBuffer: 0
-        targetDepthBuffer: 0
-        clearFlags: 0
-        passFoldout: 0
-        m_Version: 0
-        filterFoldout: 1
-        rendererFoldout: 0
-        renderQueueType: 5
-        layerMask:
-          serializedVersion: 2
-          m_Bits: 32
-        sortingCriteria: 51
-        overrideMode: 1
-        overrideMaterial: {fileID: 0}
-        overrideMaterialPassIndex: 0
-        overrideMaterialPassName: Forward
-        overrideShader: {fileID: 0}
-        overrideShaderPassIndex: 0
-        overrideShaderPassName: Forward
-        overrideDepthState: 0
-        depthCompareFunction: 4
-        depthWrite: 1
-        overrideStencil: 0
-        stencilReferenceValue: 64
-        stencilWriteMask: 192
-        stencilReadMask: 192
-        stencilCompareFunction: 8
-        stencilPassOperation: 0
-        stencilFailOperation: 0
-        stencilDepthFailOperation: 0
-        shaderPass: 0
 --- !u!1 &1495383862885359071
 GameObject:
   m_ObjectHideFlags: 0
@@ -3412,7 +3347,6 @@ MonoBehaviour:
   RaycastDistance: 0.5
   HandRigidbody: {fileID: 1924242890}
   InteractCheckOffset: {x: 0, y: 0, z: 0.05}
-  AlwaysShowLineRenderer: 0
   ActiveGraphicsRaycaster: 0
   ControllerLineRender: {fileID: 6580717127469830936}
   PlayerManager: {fileID: 0}
@@ -3688,8 +3622,6 @@ MonoBehaviour:
   m_StopLineAtSelection: 0
   m_SnapEndpointIfAvailable: 1
   m_LineBendRatio: 0.5
-  m_BendingEnabledInteractionLayers:
-    m_Bits: 4294967295
   m_OverrideInteractorLineOrigin: 1
   m_LineOriginTransform: {fileID: 0}
   m_LineOriginOffset: 0
