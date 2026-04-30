@@ -73,6 +73,26 @@ public class ToggleObject : MonoBehaviour, IInteractableObject, ISelectableObjec
         {
             _netObj.RegisterMessageHandler(HandleNetObjMessage);
         }
+
+        var toggleHandler = GetComponentInChildren<ToggleHandler>();
+        if (toggleHandler != null)
+            toggleHandler.PopulateBehavior(this);
+
+        bool isOn = true;
+        if (LightsToToggle != null)
+        {
+            foreach (var light  in LightsToToggle)
+            {
+                if (!light.enabled)
+                {
+                    isOn = false;
+                    break;
+                }
+            }    
+        }
+
+        ProcessToggle(isOn, false, false, force:true);
+
     }
 
     //public void Update()
@@ -118,13 +138,14 @@ public class ToggleObject : MonoBehaviour, IInteractableObject, ISelectableObjec
         ProcessToggle(!IsOn, true);
     }
 
-    void ProcessToggle(bool isOn, bool sendMessageOut = false)
+    void ProcessToggle(bool isOn, bool sendMessageOut = false, bool playAudio = true, bool force = false)
     {
-        if (IsOn == isOn)
+        if (!force && IsOn == isOn)
             return;
         
         IsOn = isOn;
-        if(ToggleSource != null && ToggleSfxClip != null)
+
+        if(ToggleSource != null && ToggleSfxClip != null && playAudio)
         {
             ToggleSource.clip = ToggleSfxClip;
             ToggleSource.Play();
