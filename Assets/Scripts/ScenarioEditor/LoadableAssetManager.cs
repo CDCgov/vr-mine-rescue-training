@@ -32,7 +32,7 @@ public struct MeshColliderBakeJob : IJobParallelFor
 
     public void Execute(int index)
     {
-        Physics.BakeMesh(meshIds[index], false);
+        Physics.BakeMesh(meshIds[index], false, LoadableAssetManager.MeshColliderCookingOptions);
     }
 }
 
@@ -48,6 +48,7 @@ public class LoadableAssetManager : SceneManagerBase
     //public LoadableAssetCollection Loadables;
     //public const string DefaultResourcePath = "Managers/LoadableAssetManager";
     public static bool EnableExternalAssetLoading = true;
+    public static MeshColliderCookingOptions MeshColliderCookingOptions;
 
     public static LoadableAssetManager GetDefault(GameObject self) 
     {
@@ -433,6 +434,11 @@ public class LoadableAssetManager : SceneManagerBase
         System.Diagnostics.Stopwatch sw = new System.Diagnostics.Stopwatch();
         sw.Start();
 
+        MeshColliderCookingOptions = MeshColliderCookingOptions.WeldColocatedVertices |
+            MeshColliderCookingOptions.CookForFasterSimulation |
+            MeshColliderCookingOptions.EnableMeshCleaning |
+            MeshColliderCookingOptions.UseFastMidphase;
+
         NativeArray<int> meshIds = new NativeArray<int>(_deferredMeshColliders.Count, Allocator.Persistent);
 
         for (int i = 0; i < _deferredMeshColliders.Count; ++i)
@@ -455,6 +461,7 @@ public class LoadableAssetManager : SceneManagerBase
         {
             var geomObjInfo = _deferredMeshColliders[i].GeomObjInfo;
             var meshCollider = _deferredMeshColliders[i].TargetObject.AddComponent<MeshCollider>();
+            meshCollider.cookingOptions = MeshColliderCookingOptions;
             meshCollider.sharedMesh = _deferredMeshColliders[i].Mesh;
 
             if (geomObjInfo != null)
@@ -616,6 +623,7 @@ public class LoadableAssetManager : SceneManagerBase
 
         sw.Stop();
 
+        ExternalAssetManager.Cleanup();
         Debug.Log($"External Assets loading took {sw.Elapsed.TotalSeconds:F2}s");
     }
 

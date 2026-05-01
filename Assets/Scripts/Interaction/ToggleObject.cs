@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class ToggleObject : MonoBehaviour, IInteractableObject
+public class ToggleObject : MonoBehaviour, IInteractableObject, ISelectableObjectAction
 {
     public AudioClip ToggleSfxClip;
     public AudioSource ToggleSource;
@@ -19,13 +19,15 @@ public class ToggleObject : MonoBehaviour, IInteractableObject
 
     public ActivationState CanActivate => ActivationState.Ready;
 
+    public string SelectableActionName => "Toggle";
+
     public void OnActivated(Transform interactor)
     {
-        if(ToggleSfxClip == null || ToggleSource == null || ObjectsToToggle == null || LightsToToggle == null)
-        {
-            ToggleHandler handler = GetComponentInChildren<ToggleHandler>();
-            handler.PopulateBehavior(this);
-        }
+        //if(ToggleSfxClip == null || ToggleSource == null || ObjectsToToggle == null || LightsToToggle == null)
+        //{
+        //    ToggleHandler handler = GetComponentInChildren<ToggleHandler>();
+        //    handler.PopulateBehavior(this);
+        //}
         DoToggle();
     }
 
@@ -47,12 +49,12 @@ public class ToggleObject : MonoBehaviour, IInteractableObject
 
     public void OnPrimaryButtonPressed(Transform interactor, bool pressed)
     {
-        if (ToggleSfxClip == null || ToggleSource == null || ObjectsToToggle == null || LightsToToggle == null)
-        {
-            ToggleHandler handler = GetComponentInChildren<ToggleHandler>();
-            handler.PopulateBehavior(this);
-        }
-        DoToggle();
+        //if (ToggleSfxClip == null || ToggleSource == null || ObjectsToToggle == null || LightsToToggle == null)
+        //{
+        //    ToggleHandler handler = GetComponentInChildren<ToggleHandler>();
+        //    handler.PopulateBehavior(this);
+        //}
+        //DoToggle();
     }
 
     public void OnSecondaryButtonPressed(Transform interactor, bool pressed)
@@ -71,6 +73,26 @@ public class ToggleObject : MonoBehaviour, IInteractableObject
         {
             _netObj.RegisterMessageHandler(HandleNetObjMessage);
         }
+
+        var toggleHandler = GetComponentInChildren<ToggleHandler>();
+        if (toggleHandler != null)
+            toggleHandler.PopulateBehavior(this);
+
+        bool isOn = true;
+        if (LightsToToggle != null)
+        {
+            foreach (var light  in LightsToToggle)
+            {
+                if (!light.enabled)
+                {
+                    isOn = false;
+                    break;
+                }
+            }    
+        }
+
+        ProcessToggle(isOn, false, false, force:true);
+
     }
 
     //public void Update()
@@ -116,52 +138,62 @@ public class ToggleObject : MonoBehaviour, IInteractableObject
         ProcessToggle(!IsOn, true);
     }
 
-    void ProcessToggle(bool isOn, bool sendMessageOut = false)
+    void ProcessToggle(bool isOn, bool sendMessageOut = false, bool playAudio = true, bool force = false)
     {
-        if(IsOn != isOn)
-        {
-            IsOn = isOn;
-            if(ToggleSource != null && ToggleSfxClip != null)
-            {
-                ToggleSource.clip = ToggleSfxClip;
-                ToggleSource.Play();
-            }
-            foreach (AudioSource audio in AudioToToggle)
-            {
-                if (IsOn)
-                {
-                    audio.Play();
-                }
-                else
-                {
-                    audio.Stop();
-                }
-            }
-            foreach(GameObject obj in ObjectsToToggle)
-            {
-                obj.SetActive(IsOn);
-            }
-            foreach(Light light in LightsToToggle)
-            {
-                light.enabled = IsOn;
-            }
+        if (!force && IsOn == isOn)
+            return;
+        
+        IsOn = isOn;
 
-            onToggle.Invoke(IsOn);
-            if (sendMessageOut)
+        if(ToggleSource != null && ToggleSfxClip != null && playAudio)
+        {
+            ToggleSource.clip = ToggleSfxClip;
+            ToggleSource.Play();
+        }
+
+        foreach (AudioSource audio in AudioToToggle)
+        {
+            if (IsOn)
             {
-                VRNTextMessage vRNTextMessage = new VRNTextMessage();
-                
-                if (IsOn)
-                {
-                    _netObj.SendMessage("TG_ON", vRNTextMessage);
-                }
-                else
-                {
-                    _netObj.SendMessage("TG_OFF", vRNTextMessage);
-                }
-                //vRNTextMessage.Message = IsOn.ToString();
-                //_netObj.SendMessage("MSG_TG", vRNTextMessage);
+                audio.Play();
+            }
+            else
+            {
+                audio.Stop();
             }
         }
+
+        foreach(GameObject obj in ObjectsToToggle)
+        {
+            obj.SetActive(IsOn);
+        }
+
+        foreach(Light light in LightsToToggle)
+        {
+            light.enabled = IsOn;
+        }
+
+        onToggle.Invoke(IsOn);
+        if (sendMessageOut)
+        {
+            VRNTextMessage vRNTextMessage = new VRNTextMessage();
+                
+            if (IsOn)
+            {
+                _netObj.SendMessage("TG_ON", vRNTextMessage);
+            }
+            else
+            {
+                _netObj.SendMessage("TG_OFF", vRNTextMessage);
+            }
+            //vRNTextMessage.Message = IsOn.ToString();
+            //_netObj.SendMessage("MSG_TG", vRNTextMessage);
+        }
+        
+    }
+
+    public void PerformSelectableObjectAction()
+    {
+        OnActivated(transform);
     }
 }

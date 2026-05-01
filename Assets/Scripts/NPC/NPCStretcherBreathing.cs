@@ -34,18 +34,24 @@ public class NPCStretcherBreathing : MonoBehaviour, IInteractableObject
     public ActivationState CanActivate
     {
         get
-        {           
+        {
+            Vector3 pos;
+            if (PlayerManager == null || !PlayerManager.TryGetCurrentPlayerPosition(out pos))
+            {
+                pos = transform.position;
+            }
+
             if (!_hasBeenAssessed && !StretcherAnimator.GetBool("Breathing"))
             {
                 NetworkManager.LogSessionEvent(VRNLogEventType.NpcstatusUpdate, $"Condition: Dead",
-                    transform.position, transform.rotation, gameObject.name);
+                    pos, Quaternion.identity, gameObject.name);
 
                 _hasBeenAssessed = true;
             }
             else if (!_hasBeenAssessed && StretcherAnimator.GetBool("Breathing")) 
             {
                 NetworkManager.LogSessionEvent(VRNLogEventType.NpcstatusUpdate, $"Condition: Alive",
-                    transform.position, transform.rotation, gameObject.name);
+                    pos, Quaternion.identity, gameObject.name);
 
                 _hasBeenAssessed = true;
             }

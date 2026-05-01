@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PhoneInteract : Interactable {
     public PhoneNode node;
-    public override void Interact()
+    public override void Interact(Transform interactor)
     {
         node.PlaySimpleMessage();
     }

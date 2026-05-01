@@ -69,9 +69,11 @@ namespace BAHDOL
             foreach (var param in animator.parameters)
             {
                 if(param.name == "TurnLeft" || param.name == "TurnRight")
-                {
                     continue;
-                }
+                
+                if (param.type != AnimatorControllerParameterType.Bool)
+                    continue;
+
                 animator.SetBool(param.name, false);
             }
         }

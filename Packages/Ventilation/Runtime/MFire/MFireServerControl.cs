@@ -39,6 +39,17 @@ public class MFireServerControl : MonoBehaviour
         }
     }
 
+    public bool IsConnected
+    {
+        get
+        {
+            if (ServerConnection == null || !ServerConnection.IsConnected)
+                return false;
+
+            return true;
+        }
+    }
+
 	/*public static MFCUpdateMineState GetMineState()
 	{
 		lock (_stateLockObj)
@@ -325,16 +336,36 @@ public class MFireServerControl : MonoBehaviour
 
 	private void OnEnable()
 	{
-		if (ServerConnection == null)
-		{
-			Debug.Log("Connecting to MFire");
-			ServerConnection = new MFireConnection();
-			MFireRunning = false;
-			ServerConnection.Connect("127.0.0.1");
-			ServerConnection.MFireCmdReceived += OnMFireCmdReceived;
-            //ServerConnection.PacketDecodeError += OnPacketDecodeError;
-		}
+        Connect();
 	}
+
+    private void Connect()
+    {
+        if (ServerConnection == null)
+        {
+            Debug.Log("Connecting to MFire");
+            ServerConnection = new MFireConnection();
+            MFireRunning = false;
+            ServerConnection.Connect("127.0.0.1");
+            ServerConnection.MFireCmdReceived += OnMFireCmdReceived;
+            //ServerConnection.PacketDecodeError += OnPacketDecodeError;
+        }
+    }
+
+    private void Disconnect()
+    {
+        if (ServerConnection == null)
+            return;
+
+        ServerConnection.Dispose();
+        ServerConnection = null;
+    }
+
+    public void Reconnect()
+    {
+        Disconnect();
+        Connect();
+    }
 
     private void OnPacketDecodeError(string message)
     {
@@ -387,8 +418,9 @@ public class MFireServerControl : MonoBehaviour
 	private void OnDisable()
 	{
 		Debug.Log("Disconnecting from MFire");
-		ServerConnection.Dispose();
-		ServerConnection = null;
+        //ServerConnection.Dispose();
+        //ServerConnection = null;
+        Disconnect();
 		MFireRunning = false;
 	}
 
@@ -428,8 +460,16 @@ public class MFireServerControl : MonoBehaviour
         //if (ventControl != null)
         //    _ = ventControl.InitializeVentilation();
 
-        if (ServerConnection == null || _mfireConfigParameters == null || !ServerConnection.IsConnected)
+        if (_mfireConfigParameters == null)
             return;
+
+        if (ServerConnection == null || !ServerConnection.IsConnected)
+        {
+            if (ServerConnection != null)
+                Disconnect();
+
+            Connect();
+        }
 
         ServerConnection.SendResetSimulation();
         //ServerConnection.SendMFireCmd(_mfireConfigParameters);

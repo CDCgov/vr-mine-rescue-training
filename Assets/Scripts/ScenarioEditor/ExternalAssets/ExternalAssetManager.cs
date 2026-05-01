@@ -39,9 +39,9 @@ public class ExternalAssetManager : SceneManagerBase
 
     private Dictionary<string, ExternalAssetMetadata> _metadata;
     private Dictionary<int, LODValues> _defaultLODValues;
-    //private Dictionary<string, ExternalAssetMetadata> _geometryFileMap;
 
-    //private Dictionary<string, Material> _customMats;
+    private List<LODGroup> _lodGroupCache = new List<LODGroup>();
+    private List<MeshFilter> _meshFilterCache = new List<MeshFilter>();
 
     public bool IsMetadataLoaded
     {
@@ -225,14 +225,22 @@ public class ExternalAssetManager : SceneManagerBase
         int floorLayer = LayerMask.NameToLayer("Floor");
         if (asset.EditorLayer == NIOSH_EditorLayers.LayerManager.EditorLayer.Mine)
         {
-            var objs = asset.GeometryObject.GetComponentsInChildren<MeshFilter>();
-            if (objs != null)
+            _meshFilterCache.Clear();
+            asset.GeometryObject.GetComponentsInChildren<MeshFilter>(_meshFilterCache);
+            foreach (var obj in _meshFilterCache)
             {
-                foreach (var obj in objs)
-                {
-                    obj.gameObject.layer = floorLayer;
-                }
+                obj.gameObject.layer = floorLayer;
             }
+            _meshFilterCache.Clear();
+
+            //also put lod group objects on the floor layer as they may contain colliders
+            _lodGroupCache.Clear();
+            asset.GeometryObject.GetComponentsInChildren<LODGroup>(_lodGroupCache);
+            foreach (var lod in _lodGroupCache)
+            {
+                lod.gameObject.layer = floorLayer;
+            }
+            _lodGroupCache.Clear();
         }
 
         if (assetData.ResetPivot)
@@ -473,6 +481,7 @@ public class ExternalAssetManager : SceneManagerBase
             GeometryFilename = geometryFileNameNoPath,
             LODLevels = GetDefaultLODValues(4),
             MeshColliderName = "LOD2",
+            UseLowDetailShadowCaster = false,
             BasePrefabs = basePrefabs,
             ResetPivot = false,
             PlacementOptions = new LoadablePlacementOptions
@@ -587,4 +596,12 @@ public class ExternalAssetManager : SceneManagerBase
         Util.DontDestroyOnLoad(gameObject);
     }
 
+    public void Cleanup()
+    {
+        _lodGroupCache.Clear();
+        _lodGroupCache.Capacity = 0;
+
+        _meshFilterCache.Clear();
+        _meshFilterCache.Capacity = 0;
+    }
 }

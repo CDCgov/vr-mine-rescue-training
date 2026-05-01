@@ -142,7 +142,7 @@ public class VRDebugUIController : MonoBehaviour
             var cam = Camera.main;
 
             var pos = cam.transform.position + cam.transform.forward * 1.2f;
-            pos.y = 0;
+            pos.y = 0.25f;
             transform.position = pos;
 
             _canvas.worldCamera = cam;

@@ -210,7 +210,7 @@ public class UIDMAudioMixerControls : MonoBehaviour
         Dictionary<int, PlayerRepresentation>.ValueCollection playerRepresentations = PlayerManager.PlayerList.Values;
         foreach (PlayerRepresentation player in playerRepresentations)
         {
-            float setHeight = player.RigTransform.InverseTransformPoint(player.HeadTransform.position).y;
+            //float setHeight = player.RigTransform.InverseTransformPoint(player.HeadTransform.position).y;
             //Debug.Log("Player manager updated: " + PlayerManager.CurrentPlayer)
             PlayerManager.SendPlayerMessage(player.PlayerID, vRNPlayerMessageType, (float)value);
         }

@@ -255,7 +255,7 @@ public class MandoorInteract : Interactable {
     //{
     //    transform.localRotation = reader.ReadQuaternion();
     //}
-    public override void Interact()
+    public override void Interact(Transform interactor)
     {
         Debug.Log("Door clicked");
         if (_RotationDirection)

@@ -684,11 +684,25 @@ public class ScenarioSaveLoad : MonoBehaviour
         {
             Destroy(_sceneLighting);
             _sceneLighting = null;
-        }    
+        }
+
+        //temporary fix for two directional lights in DM mode
+        var dmActionsController = FindAnyObjectByType<DMActionsController>();
+        if (dmActionsController != null && dmActionsController.DMLight != null)
+        {
+            if (skyboxData.HasDirectionalShadowCaster)
+            {
+                dmActionsController.DMLight.shadows = LightShadows.None;
+            }
+            else
+            {
+                dmActionsController.DMLight.shadows = LightShadows.Hard;
+            }
+        }
 
         if (skyboxData.LightPrefab != null)
         {
-            _sceneLighting = Instantiate<GameObject>(skyboxData.LightPrefab);
+            _sceneLighting = Instantiate<GameObject>(skyboxData.LightPrefab);            
         }
         
     }

@@ -60,6 +60,7 @@ public class VentilationControl : SceneManagerBase, ISerializationCallbackReceiv
     private VRNVentGraph _originalVentGraph = null;
 
     private System.Diagnostics.Stopwatch _timer = new System.Diagnostics.Stopwatch();
+    private Task _mfireConnectTask = null;
 
     private void Awake()
     {
@@ -232,9 +233,29 @@ public class VentilationControl : SceneManagerBase, ISerializationCallbackReceiv
         _serverControl.AdvanceMFireSimulation();
     }
 
+    private bool MFIREConnectInProgress()
+    {
+        if (_mfireConnectTask != null)
+        {
+            if (_mfireConnectTask.IsCompleted)
+                _mfireConnectTask = null;
+        }
+
+        if (_mfireConnectTask != null) 
+        {
+            Debug.LogError($"MFIRE: Error attempted to initialize ventilation while initialization in progress");
+            return true;
+        }
+
+        return false;
+    }
+
     public void ResetSimulation()
     {
         if (_serverControl == null)
+            return;
+
+        if (MFIREConnectInProgress())
             return;
 
         Debug.Log("Vent: Reseting Sim");
@@ -249,7 +270,7 @@ public class VentilationControl : SceneManagerBase, ISerializationCallbackReceiv
         }
 
         //_serverControl.ResetMFireSimulation();
-        _ = InitializeMFIRE();
+        _mfireConnectTask = InitializeMFIRE();
     }
 
 
@@ -257,6 +278,11 @@ public class VentilationControl : SceneManagerBase, ISerializationCallbackReceiv
     {
         if (NetworkManager == null)
             return;
+
+        if (MFIREConnectInProgress())
+        {            
+            return;
+        }
 
         InitializeVectorFields();
 
@@ -269,7 +295,12 @@ public class VentilationControl : SceneManagerBase, ISerializationCallbackReceiv
             }
 
             if (VentilationProvider == VentilationProvider.MFIRE)
-                await InitializeMFIRE();
+            {
+                _mfireConnectTask = InitializeMFIRE();
+                await _mfireConnectTask;
+
+                _mfireConnectTask = null;
+            }
 
             if (_mfireInitialized || VentilationProvider != VentilationProvider.MFIRE)
             {
@@ -368,6 +399,37 @@ public class VentilationControl : SceneManagerBase, ISerializationCallbackReceiv
         {
             Debug.LogError($"MFIRE: Couldn't find MFIRE Server Control");
             return;
+        }
+
+        if (!_serverControl.IsConnected)
+        {
+            Debug.Log($"MFIRE: Attempting to reconnect to server");
+
+            _serverControl.Reconnect();
+            //await Task.Delay(250);
+
+            //for (int i = 0; i < 3; i++)
+            //{
+            //    if (_serverControl.IsConnected)
+            //        break;
+
+            //    if (this == null || gameObject == null || !gameObject.activeInHierarchy)
+            //    {
+            //        Debug.Log($"MFIRE: Vent initialization cancelled");
+            //        return;
+            //    }
+
+            //    await Task.Delay(1000);                
+            //}
+
+            //currently IsConnected should return true if either the connection is established
+            //or a connection attempt is in progress, so it will return true immediately
+
+            if (!_serverControl.IsConnected)
+            {
+                Debug.LogError($"MFIRE: Reconnect attempt failed");
+                return;
+            }
         }
 
         GameObject mineNetworkObj = GameObject.Find("MineNetwork");

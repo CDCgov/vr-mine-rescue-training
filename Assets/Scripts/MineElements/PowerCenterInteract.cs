@@ -83,7 +83,7 @@ public class PowerCenterInteract : Interactable, IInteractableObject {
         }
     }
 
-    public override void Interact()
+    public override void Interact(Transform interactor)
     {
         IsOn = !IsOn;
 
@@ -141,7 +141,7 @@ public class PowerCenterInteract : Interactable, IInteractableObject {
 
     public void OnActivated(Transform interactor)
     {
-        Interact();
+        Interact(interactor);
     }
 
     public void OnDeactivated(Transform interactor)
