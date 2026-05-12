@@ -117,6 +117,14 @@ public class PlacerGizmo : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         }
     }
 
+    public void CompleteMouseDrag(GameObject selectedObject)
+    {
+        if (selectedObject != null && selectedObject.TryGetComponent<PlaceableCable>(out var cable))
+        {
+            cable.CableInfo.RegenerateMesh(true);
+        }
+    }
+
     public void AlignGizmo(GameObject selectedObject)
     {
         if (selectedObject == null || _collider == null)
@@ -128,7 +136,15 @@ public class PlacerGizmo : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
             return;
         }
 
-        transform.position = selectedObject.transform.position;
+        if (selectedObject.TryGetComponent<PlaceableCable>(out var cable) &&
+            cable.SelectedNode != null && cable.SelectedNode.CableNode != null)
+        {
+            transform.position = cable.SelectedNode.CableNode.Position;
+        }
+        else
+        {
+            transform.position = selectedObject.transform.position;
+        }
 
         float distanceToCam = Vector3.Distance(selectedObject.transform.position, Camera.main.transform.position);
         float colliderSize = Mathf.Clamp(Mathf.Max(_collider.bounds.size.x, _collider.bounds.size.y, _collider.bounds.size.z), 0.5f, 3);
@@ -203,9 +219,21 @@ public class PlacerGizmo : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
     void TranslateObject(Transform obj, Ray oldRay, Ray newRay)
     {        
-        var camRay = new Ray(Camera.main.transform.position, Camera.main.transform.forward);       
+        var camRay = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
 
-        Vector3 oldPos = obj.position;
+        //temporary fix to allow moving cable nodes
+        obj.TryGetComponent<PlaceableCable>(out var cable);
+        NodeGizmo node = null;
+
+        if (cable != null && cable.SelectedNode != null && cable.SelectedNode.CableNode != null)
+            node = cable.SelectedNode;
+
+        Vector3 oldPos;
+
+        if (node == null)
+             oldPos = obj.position;
+        else
+            oldPos = node.CableNode.Position;
 
         ComputeGizmoPlane(out var gizmoPlane, out var gizmoMask, camRay, oldPos);
 
@@ -216,7 +244,16 @@ public class PlacerGizmo : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
         var delta = newPt - oldPt;
         delta.Scale(gizmoMask);
-        obj.position += delta;
+
+        if (node == null)
+            obj.position += delta;
+        else
+        {
+            node.CableNode.Position += delta;
+            node.transform.position = node.CableNode.Position;
+
+            cable.CableInfo.RegenerateMesh(false);
+        }
     }
 
     void ResizeObject(Transform obj, ScenarioCursorData oldCursor, ScenarioCursorData newCursor)

@@ -258,6 +258,9 @@ public class NetBroadcastSpawner : MonoBehaviour
         player.CalibrationTransform = offsetObj.transform;
         player.HeadTransform = headObj.transform;
 
+        //note that player.Head.Object is actually the prefab root for the player
+        player.PlayerObject = player.Head.Object;
+
         headOffset = new GameObject($"Head_Offset_{player.Name}_{player.PlayerID}");
         headOffset.transform.SetParent(player.HeadTransform);
         //headOffset.transform.localPosition = Vector3.zero;
@@ -295,19 +298,7 @@ public class NetBroadcastSpawner : MonoBehaviour
             mplayerInfo.PlayerID = player.PlayerID;
         }
 
-        //leftHandOffset.transform.SetParent(player.LeftController.tr)
-
-        //player.Head.Object.transform.SetParent(TeleportManager.ActiveTeleportTarget, false);
-
         UpdatePlayerVisual(player, player.PlayerRole);
-
-        player.PlayerObject = player.Head.Object;
-
-        //player.PlayerRoleChanged += (playerRole) =>
-        //{
-        //    UpdatePlayerVisual(player, playerRole);
-        //};
-
 
         CustomXRSocket[] xrSocks = player.Head.Object.transform.GetComponentsInChildren<CustomXRSocket>();
         Debug.Log("Player socket count: " + xrSocks.Length);
@@ -367,9 +358,11 @@ public class NetBroadcastSpawner : MonoBehaviour
         {
             SpawnPlayer(player);
         }
-        MinerFinalIK minerFinalIK = null;
+        //MinerFinalIK minerFinalIK = null;
 
-        minerFinalIK = player.Head.Object.GetComponent<MinerFinalIK>();
+        //minerFinalIK = player.Head.Object.GetComponent<MinerFinalIK>();
+        player.PlayerObject.TryGetComponent<MinerFinalIK>(out var minerFinalIK);
+
         player.RigTransform.localRotation = player.RigOffset.Rotation;
         player.RigTransform.localPosition = player.RigOffset.Position;
 
@@ -377,7 +370,7 @@ public class NetBroadcastSpawner : MonoBehaviour
         player.HeadTransform.localPosition = player.Head.Position;
         player.HeadTransform.localRotation = player.Head.Rotation;
 
-        var player_t = player.Head.Object.transform;
+        var player_t = player.PlayerObject.transform;
 
         //compute body position & rotation by moving the head position to zero y
         var bodyPos = player.Head.Position;
@@ -392,10 +385,12 @@ public class NetBroadcastSpawner : MonoBehaviour
         //raycast to find floor
         if (Physics.Raycast(bodyPosGlobal, Vector3.down, out var hit, dist, _raycastMask))
         {
+            Debug.DrawLine(bodyPosGlobal, hit.point, Color.green);
             bodyPosGlobal.y = hit.point.y;
         }
         else if (player.Head.Object.transform.parent != null)
         {
+            Debug.DrawLine(bodyPosGlobal, bodyPosGlobal + Vector3.down * dist, Color.red);
             bodyPosGlobal.y = player.Head.Object.transform.parent.position.y;
         }
         else

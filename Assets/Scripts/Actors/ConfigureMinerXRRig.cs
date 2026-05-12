@@ -41,6 +41,7 @@ public class ConfigureMinerXRRig : MonoBehaviour
     public GameObject RightHandPencil;
 
     public Camera HeadCamera;
+    public GameObject CapLamp;
 
     /*
 	//Map
@@ -537,6 +538,11 @@ public class ConfigureMinerXRRig : MonoBehaviour
                     if (!result)
                         throw new Exception($"Failed to spawn equipment {equip}");
                 }
+            }
+
+            if (CapLamp != null)
+            {
+                CapLamp.SetActive(minerProfile.EnableCapLamp);
             }
 
             _equipmentSpawned = true;

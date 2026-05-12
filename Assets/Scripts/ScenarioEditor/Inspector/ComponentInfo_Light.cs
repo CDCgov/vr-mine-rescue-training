@@ -135,6 +135,8 @@ public class ComponentInfo_Light : ModularComponentInfo, ISaveableComponent
                         mat.SetColor("_EmissiveColor", Color.black);
                     }
                 }
+
+                HDMaterial.ValidateMaterial(mat);
             }
             Debug.Log($"Setting emissive color from Component Info? {color.ToString()}");
         }

@@ -11,4 +11,5 @@ public class MinerProfile : ScriptableObject
     public List<VRNPlayerEquipmentType> DisabledEquipment;
     public List<VRNPlayerEquipmentType> AddedEquipment;
     public bool EnableBG4 = true;
+    public bool EnableCapLamp = true;
 }
