@@ -700,6 +700,20 @@ public class ScenarioSaveLoad : MonoBehaviour
             }
         }
 
+        //fix for same issue in spectator scene
+        var sceneLight = GameObject.FindGameObjectWithTag("SceneDirectionalLight");
+        if (sceneLight != null)
+        {
+            if (skyboxData.HasDirectionalShadowCaster)
+            {
+                sceneLight.SetActive(false);
+            }
+            else
+            {
+                sceneLight.SetActive(true);
+            }
+        }
+
         if (skyboxData.LightPrefab != null)
         {
             _sceneLighting = Instantiate<GameObject>(skyboxData.LightPrefab);            
