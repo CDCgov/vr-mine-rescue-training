@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
-using Cinemachine;
+using Unity.Cinemachine;
 
 
 [RequireComponent(typeof(CinemachineBrain))]
@@ -51,7 +51,7 @@ public class SpectatorCameraController : MonoBehaviour
             player.PlayerRoleChanged += OnPlayerRoleChanged;
         }
 
-        _overrideID = _cineBrain.SetCameraOverride(-1, _virtCam, _virtCam, 0, -1);
+        _overrideID = _cineBrain.SetCameraOverride(-1, 1000, _virtCam, _virtCam, 0, -1);
 
         RetargetPlayer();
     }

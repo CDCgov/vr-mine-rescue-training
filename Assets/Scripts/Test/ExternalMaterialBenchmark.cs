@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using Cinemachine;
+using Unity.Cinemachine;
 using System.Text;
 using UnityEngine.UI;
 

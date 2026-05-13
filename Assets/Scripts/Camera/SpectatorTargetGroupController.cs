@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.AddressableAssets;
-using Cinemachine;
+using Unity.Cinemachine;
 using System;
 using System.Threading.Tasks;
 
@@ -143,9 +143,9 @@ public class SpectatorTargetGroupController : MonoBehaviour
     {
         var cineTarget = new CinemachineTargetGroup.Target
         {
-            target = targetTransform,
-            radius = 2,
-            weight = 1,
+            Object = targetTransform,
+            Radius = 2,
+            Weight = 1,
         };
 
         _targetList.Add(cineTarget);

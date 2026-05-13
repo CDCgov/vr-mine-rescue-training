@@ -10,7 +10,7 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 //using EzySlice;
 using DataStructures.ViliWonka.KDTree;
 using UnityEngine.SceneManagement;
-using Cinemachine.Utility;
+using Unity.Cinemachine;
 using System.IO;
 using System.IO.Compression;
 

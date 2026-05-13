@@ -315,7 +315,7 @@ public class ActorHost : MonoBehaviour, INetSync, IInputTarget, ISelectableObjec
                 Debug.Log("Adding player orbit cam");
                 var orbitCam = Util.InstantiateResource("OrbitCam");
                 orbitCam.transform.SetParent(sceneCamParent.transform, false);
-                var vcam = orbitCam.GetComponent<Cinemachine.CinemachineVirtualCamera>();
+                var vcam = orbitCam.GetComponent<Unity.Cinemachine.CinemachineVirtualCamera>();
                 vcam.transform.position = transform.position;
                 vcam.Follow = transform;
                 vcam.LookAt = transform;
