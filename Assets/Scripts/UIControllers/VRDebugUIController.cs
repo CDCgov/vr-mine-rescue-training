@@ -135,7 +135,7 @@ public class VRDebugUIController : MonoBehaviour
         EnableUI(false);
     }
 
-    private void EnableUI(bool bEnable)
+    public void EnableUI(bool bEnable)
     {
         if (bEnable)
         {
@@ -143,6 +143,14 @@ public class VRDebugUIController : MonoBehaviour
 
             var pos = cam.transform.position + cam.transform.forward * 1.2f;
             pos.y = 0.25f;
+
+            if (PlayerManager != null && PlayerManager.CurrentPlayer != null && PlayerManager.CurrentPlayer.RigTransform != null)
+            {
+                var rigPos = PlayerManager.CurrentPlayer.RigTransform.position;
+
+                pos.y = rigPos.y + 0.25f;
+            }
+
             transform.position = pos;
 
             _canvas.worldCamera = cam;
