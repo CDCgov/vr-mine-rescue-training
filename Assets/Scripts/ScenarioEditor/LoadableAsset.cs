@@ -1,9 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using NIOSH_EditorLayers;
 using UnityEngine.Serialization;
 using System.ComponentModel;
+using UnityEngine.UIElements;
+using System;
+using Unity.Properties;
 
 public enum LoadableAssetSource
 {
@@ -67,9 +71,9 @@ public enum LoadableAssetCategories : uint
 }
 
 [CreateAssetMenu(menuName = "Scenario Editor/LoadableAsset")]
-public class LoadableAsset : ScriptableObject
+public class LoadableAsset : ScriptableObject, INotifyBindablePropertyChanged
 {
-    public string AssetID;
+    [CreateProperty] public string AssetID;
     public LoadableAssetSource Source;
 
     [System.NonSerialized]
@@ -82,13 +86,14 @@ public class LoadableAsset : ScriptableObject
 
     public GameObject GeometryObject;
     public List<LoadableBasePrefabData> BasePrefabs;
+   
+    [CreateProperty] public string AssetWindowName;
+    [CreateProperty] public Sprite Icon;
 
-    public string AssetWindowName;
-    public Sprite Icon;
-    
-    public LayerManager.EditorLayer EditorLayer;
-    public bool ShowInAssetWindow = true;
-    public bool AllowNavMeshModifiers = true;
+    [CreateProperty] public LayerManager.EditorLayer EditorLayer;
+    [CreateProperty] public bool ShowInAssetWindow = true;
+    [CreateProperty] public bool AllowNavMeshModifiers = true;
+
     public LoadablePlacementOptions PlacementOptions;
 
     public LoadablePhysicalProperties PhysicalProperties;
@@ -98,6 +103,10 @@ public class LoadableAsset : ScriptableObject
     public HashSet<string> Tags;
 
     public string TooltipInfo;
+
+    public event EventHandler<BindablePropertyChangedEventArgs> propertyChanged;
+
+    
 
     //public GameObject GetAsset(bool isEditor)
     //{
@@ -180,5 +189,10 @@ public class LoadableAsset : ScriptableObject
     public string GetTooltip()
     {
         return TooltipInfo;
+    }
+
+    void Notify([CallerMemberName] string property = "")
+    {
+        propertyChanged?.Invoke(this, new BindablePropertyChangedEventArgs(property));
     }
 }
