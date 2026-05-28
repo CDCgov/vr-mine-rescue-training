@@ -129,6 +129,8 @@ GameObject:
   m_Component:
   - component: {fileID: 212950618}
   - component: {fileID: 212950617}
+  - component: {fileID: 212950620}
+  - component: {fileID: 212950619}
   m_Layer: 5
   m_Name: UIDocument
   m_TagString: Untagged
@@ -175,6 +177,32 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &212950619
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 212950616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44b5b11bc7791e84d928b4d84b8c68e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: VRMineCore::UIExternalAssetLoadProgress
+  ProgressBarName: LoadProgress
+--- !u!114 &212950620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 212950616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f75ff35a6dc47a1449a5d704407b1cda, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: VRMineCore::UIExternalAssetList
+  LoadableAssetManager: {fileID: 0}
 --- !u!1 &247395292
 GameObject:
   m_ObjectHideFlags: 0
@@ -260,53 +288,6 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -67.96709, y: 0, z: -1.82817}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &297369195
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 297369197}
-  - component: {fileID: 297369196}
-  m_Layer: 0
-  m_Name: ExternalAssetsEditorDS
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &297369196
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 297369195}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: efa09c1ccb14a2d4888fe4a8c4210fec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: VRMineCore::ExternalAssetsEditorDS
-  ExternalAssetManager: {fileID: 0}
-  LoadableAssetManager: {fileID: 0}
-  Target: {fileID: 212950617}
---- !u!4 &297369197
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 297369195}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -674,5 +655,4 @@ SceneRoots:
   - {fileID: 212950618}
   - {fileID: 677897692}
   - {fileID: 247395295}
-  - {fileID: 297369197}
   - {fileID: 645452973}

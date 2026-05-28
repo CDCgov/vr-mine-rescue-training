@@ -1,1 +1,32 @@
-VisualElement {}
+:root {
+    --bg-color-light: rgb(170, 170, 170);
+    --bg-color-dark: rgb(75, 75, 75);
+}
+
+VisualElement {
+    background-color: var(--bg-color-dark);
+}
+
+.unity-button {
+    background-color: var(--bg-color-light);
+    border-radius: 5px;
+    border-color: black;
+    border-width: 2px;
+}
+
+.fire-icon {
+    background-image: url("project://database/Assets/Art/GoogleMaterialSymbols/emergency_heat_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.svg?fileID=7388822144124034973&guid=5912a6a0258a01f4eb1fd82e482c08b9&type=3#emergency_heat_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24");
+    -unity-background-image-tint-color: rgb(255, 0, 0);
+}
+
+.panel {
+    background-color: var(--bg-color-light);
+    padding-top: 2px;
+    padding-right: 2px;
+    padding-bottom: 2px;
+    padding-left: 2px;
+    margin-top: 5px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    margin-left: 5px;
+}

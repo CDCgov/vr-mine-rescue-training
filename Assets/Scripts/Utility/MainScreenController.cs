@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class MainScreenController : MonoBehaviour
 {
@@ -95,5 +96,14 @@ public class MainScreenController : MonoBehaviour
     {
         Debug.Log("Exiting VR Mine");
         Application.Quit();
+    }
+
+    void Update()
+    {
+        //temporary hotkey for testing external asset viewer/editor
+        if (Input.GetKeyDown(KeyCode.E) && Input.GetKey(KeyCode.LeftAlt) && Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.LeftControl))
+        {
+            SceneManager.LoadScene("ExternalAssetsEditorTest");
+        }
     }
 }
