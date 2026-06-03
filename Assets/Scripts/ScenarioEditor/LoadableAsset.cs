@@ -106,6 +106,9 @@ public class LoadableAsset : ScriptableObject, INotifyBindablePropertyChanged
 
     public event EventHandler<BindablePropertyChangedEventArgs> propertyChanged;
 
+    [System.NonSerialized]
+    public MeshRenderer[] MeshRenderers;
+
     
 
     //public GameObject GetAsset(bool isEditor)

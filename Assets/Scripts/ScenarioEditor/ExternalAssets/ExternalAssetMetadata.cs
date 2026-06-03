@@ -61,6 +61,8 @@ public class ExternalAssetMetadata
     public string SourceFolder;
     [YamlIgnore]
     public string SourceFile;
+    [YamlIgnore]
+    public List<LoadableLogMessageData> ImportLogMessages;
 
     [Description("# Unique ID that identifies the asset in the scenario file and the VR-MRT")]
     public string AssetID;
@@ -129,6 +131,18 @@ public class ExternalAssetMetadata
         Components = new List<ExternalAssetComponent>();
 
         UseLowDetailShadowCaster = false;
+    }
+
+    public void AddImportLog(string log, LogType logType = LogType.Error)
+    {
+        if (ImportLogMessages == null)
+            ImportLogMessages = new List<LoadableLogMessageData>();
+
+        ImportLogMessages.Add(new LoadableLogMessageData
+        {
+            Message = log,
+            LogType = logType,
+        });
     }
 
 }

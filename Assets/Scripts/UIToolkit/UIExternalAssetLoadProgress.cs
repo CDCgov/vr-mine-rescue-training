@@ -11,6 +11,7 @@ public class UIExternalAssetLoadProgress : MonoBehaviour, INotifyBindablePropert
 
     [CreateProperty] public string LoadMessage { get; set; }
     [CreateProperty] public float LoadProgress { get; set; }
+    [CreateProperty] public DisplayStyle ShowProgressBar => LoadProgress != 1.0f ? DisplayStyle.Flex : DisplayStyle.None;
 
     public string ProgressBarName = "LoadProgress";
     private UIDocument _uiDocument;
@@ -60,8 +61,7 @@ public class UIExternalAssetLoadProgress : MonoBehaviour, INotifyBindablePropert
         LoadMessage = progressMessage;
         LoadProgress = progress;
 
-        Notify("LoadMessage");
-        Notify("LoadProgress");
+        Notify(null);
     }
 
     void Notify([CallerMemberName] string property = "")

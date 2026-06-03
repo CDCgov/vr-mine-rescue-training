@@ -1,17 +1,52 @@
 :root {
     --bg-color-light: rgb(170, 170, 170);
     --bg-color-dark: rgb(75, 75, 75);
+    --bg-color-field: rgb(0, 7, 70);
+    --panel-background: rgb(55, 55, 55);
+    --button-color: rgb(0, 30, 150);
+    --button-hover: rgb(0, 40, 195);
+    --button-pressed: rgb(0, 52, 255);
+    --border-default: rgb(20,20,20);
+    --border-focused: rgb(0, 82, 255);
+    --progress-bar-color: rgb(0, 30, 150);
+    --light-blue: rgb(0, 94, 255);
+    --text-color-field: rgb(255, 255, 255);
 }
 
-VisualElement {
+.window {
     background-color: var(--bg-color-dark);
 }
 
 .unity-button {
-    background-color: var(--bg-color-light);
+    background-color: var(--button-color);
+    color: white;
     border-radius: 5px;
-    border-color: black;
+    border-color: var(--border-default);
     border-width: 2px;
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+}
+
+.unity-button:hover:enabled {
+    background-color: var(--button-hover);
+    border-color:var(--border-default);
+}
+
+.unity-button:active:enabled {
+    background-color: var(--button-pressed);
+    border-color:var(--border-default);
+}
+
+.unity-button:hover:enabled:focus {
+    background-color: var(--button-hover);
+    border-color:var(--border-focused);
+}
+
+.unity-button:active:enabled:focus {
+    background-color: var(--button-pressed);
+    border-color:var(--border-focused);
 }
 
 .fire-icon {
@@ -20,13 +55,245 @@ VisualElement {
 }
 
 .panel {
-    background-color: var(--bg-color-light);
+    background-color: var(--panel-background);
+}
+
+.field-label {
+    font-size: 13px;
+    -unity-font-style: bold;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.field-value {
+    font-size: 12px;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.field-box {
+    color: var(--text-color-field);
+    -unity-text-align: middle-left;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    padding-left: 6px;
+    padding-top: 2px;
+    padding-right: 6px;
+    padding-bottom: 2px;
+}
+
+.unity-group-box {
     padding-top: 2px;
     padding-right: 2px;
     padding-bottom: 2px;
     padding-left: 2px;
-    margin-top: 5px;
-    margin-right: 5px;
-    margin-bottom: 5px;
-    margin-left: 5px;
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+    border-bottom-left-radius: 6px;
+    margin-top: 6px;
+    margin-right: 3px;
+    margin-bottom: 6px;
+    margin-left: 3px;
+    border-left-color: rgb(0, 0, 0);
+    border-right-color: rgb(0, 0, 0);
+    border-top-color: rgb(0, 0, 0);
+    border-bottom-color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
+    -unity-font-style: bold;
+    font-size: 13px;
+}
+
+.unity-group-box > Label {
+    margin-top: 1px;
+    margin-right: 1px;
+    margin-bottom: 1px;
+    margin-left: 1px;
+    padding-top: 1px;
+    padding-right: 1px;
+    padding-bottom: 1px;
+    padding-left: 1px;
+}
+
+.unity-group-box > Label.unity-group-box__label {
+    font-size: 16px;
+}
+
+.unity-progress-bar__container {
+    background-color: var(--bg-color-dark);
+}
+
+.unity-progress-bar__background {
+    background-color: var(--bg-color-dark);
+    border-color: var(--border-default);
+}
+
+.unity-progress-bar__progress {
+    background-color: var(--progress-bar-color);
+    margin: 0;
+}
+
+.unity-progress-bar__title-container {
+    color: rgb(255, 255, 255);
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.label__screen-title {
+    color: rgb(255, 255, 255);
+    -unity-font-style: bold;
+    font-size: 18px;
+    -unity-text-align: upper-center;
+}
+
+.label__panel-title {
+    color: rgb(255, 255, 255);
+    -unity-font-style: bold;
+    font-size: 15px;
+    -unity-text-align: upper-left;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    margin-top: 6px;
+    margin-right: 6px;
+    margin-bottom: 6px;
+    margin-left: 6px;
+}
+
+.window-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    margin-top: 3px;
+    margin-right: 3px;
+    margin-bottom: 3px;
+    margin-left: 3px;
+    padding-top: 3px;
+    padding-right: 3px;
+    padding-bottom: 3px;
+    padding-left: 3px;
+    color: rgb(255, 255, 255);
+    -unity-text-align: middle-center;
+    justify-content: center;
+    background-color: var(--panel-background);
+}
+
+.container__horizontal-buttons {
+    flex-direction: row;
+    width: 100%;
+    height: 30px;
+    align-content: flex-end;
+    align-self: center;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.container__vertical-scroll {
+    flex-grow: 1;
+    flex-basis: 100px;
+}
+
+.unity-collection-view__item.unity-list-view__item {
+    color: rgb(255, 255, 255);
+}
+
+.unity-collection-view__item.unity-list-view__item.unity-collection-view__item:hover.unity-list-view__item:hover {
+    background-color: transparent;
+}
+
+.unity-collection-view__item:hover {
+    color: rgb(78, 134, 255);
+    background-color: transparent;
+}
+
+.unity-collection-view__item--selected {
+    color: rgb(78, 194, 255);
+    background-color: transparent;
+}
+
+.unity-collection-view:focus:enabled .unity-collection-view__item--selected {
+    color: rgb(78, 194, 255);
+    background-color: transparent;
+}
+
+.unity-collection-view__item--selected:hover {
+    color: rgb(78, 255, 230);
+    background-color: transparent;
+}
+
+.monospace-text {
+    -unity-font-definition: url("project://database/Assets/Art/Fonts/anonymous-pro/AnonymousPro-Regular.ttf?fileID=12800000&guid=2e6c14bc551af3c44a038512cf61c454&type=3#AnonymousPro-Regular");
+    font-size: 12px;
+}
+
+.large-text-box {
+    white-space: normal;
+}
+
+.field-editor__container {
+    background-color: transparent;
+    flex-direction: row;
+}
+
+.field-editor__label {
+    margin-top: 6px;
+    margin-right: 6px;
+    margin-bottom: 6px;
+    margin-left: 6px;
+    justify-content: center;
+    -unity-text-align: middle-left;
+    width: 225px;
+}
+
+.field-editor__editor {
+    background-color: transparent;
+    flex-grow: 1;
+}
+
+.field-editor__editor > .unity-base-field__input {
+    border-radius: 6px;
+    padding: 4px;
+}
+
+.unity-base-field__input.unity-text-field__input {
+    background-color: transparent;
+    border-color:var(--border-default);
+}
+
+.unity-base-field__input:enabled.unity-text-field__input:enabled {
+    background-color: transparent;
+    border-color:var(--border-default);
+}
+
+.unity-base-text-field:focus:enabled > .unity-base-text-field__input {
+    background-color: transparent;
+    border-color:var(--border-focused);
+}
+
+.unity-base-field__input:hover.unity-text-field__input:hover {
+    border-color:var(--button-hover);
+}
+
+.unity-base-text-field:focus:enabled > .unity-base-text-field__input:hover {
+    border-color:var(--border-focused);
+}
+
+.unity-base-slider__dragger.unity-base-slider--movable {
+    border-color:var(--border-focused);
 }

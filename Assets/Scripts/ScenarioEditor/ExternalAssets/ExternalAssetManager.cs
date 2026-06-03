@@ -174,6 +174,7 @@ public class ExternalAssetManager : SceneManagerBase
         //temporary fix - add colliders to all mesh objects
        
         var meshRend = asset.GeometryObject.GetComponentsInChildren<MeshRenderer>();
+        asset.MeshRenderers = meshRend;
 
         foreach (var rend in meshRend)
         {

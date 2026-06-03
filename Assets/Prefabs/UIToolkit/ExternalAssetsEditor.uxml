@@ -1,29 +1,25 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <ui:Template name="ExternalAssetDetails" src="project://database/Assets/Prefabs/UIToolkit/ExternalAssetDetails.uxml?fileID=9197481963319205126&amp;guid=786808f0956f67948885c964e3206090&amp;type=3#ExternalAssetDetails"/>
     <Style src="project://database/Assets/UI%20Toolkit/DefaultUSS.uss?fileID=7433441132597879392&amp;guid=428b4e6fb25c6294c9f0a8ddbb7d203b&amp;type=3#DefaultUSS"/>
-    <ui:VisualElement name="VisualElement" style="flex-grow: 1;">
-        <ui:ProgressBar value="1.58" title="load progress" high-value="1" name="LoadProgress">
+    <ui:VisualElement name="VisualElement" class="window" style="flex-grow: 1;">
+        <ui:Label text="External Asset Viewer" name="ScreenTitle" class="label__screen-title"/>
+        <ui:ProgressBar value="0.68" title="load progress" high-value="1" name="LoadProgress">
             <Bindings>
                 <ui:DataBinding property="title" data-source-path="LoadMessage" binding-mode="ToTarget" data-source-type="ExternalAssetsEditorDS, VRMineCore"/>
                 <ui:DataBinding property="value" data-source-path="LoadProgress" binding-mode="ToTarget" data-source-type="ExternalAssetsEditorDS, VRMineCore" update-trigger="EveryUpdate"/>
+                <ui:DataBinding property="style.display" data-source-path="ShowProgressBar" data-source-type="UIExternalAssetLoadProgress, VRMineCore" binding-mode="ToTarget"/>
             </Bindings>
         </ui:ProgressBar>
-        <ui:Label text="Label" name="LoadMessage">
-            <Bindings>
-                <ui:DataBinding property="text" data-source-path="LoadMessage" binding-mode="ToTarget"/>
-            </Bindings>
-        </ui:Label>
-        <ui:Label text="Label" name="LoadProgress">
-            <Bindings>
-                <ui:DataBinding property="text" data-source-path="LoadProgress" binding-mode="ToTarget"/>
-            </Bindings>
-        </ui:Label>
+        <ui:VisualElement style="flex-grow: 1; flex-direction: row;">
+            <ui:GroupBox text="External Assets" class="panel" style="flex-basis: 25px; flex-grow: 1;">
+                <ui:ListView name="ExternalAssetList" item-template="project://database/Assets/Prefabs/UIToolkit/ExternalAssetListItem.uxml?fileID=9197481963319205126&amp;guid=935dd0bc8ab21e9488f16d43098769e3&amp;type=3#ExternalAssetListItem" binding-source-selection-mode="AutoAssign" fixed-item-height="332" virtualization-method="DynamicHeight" show-border="true" reorderable="true"/>
+            </ui:GroupBox>
+            <ui:GroupBox text="Selected Asset Details" class="panel" style="flex-basis: 33px; flex-grow: 1;">
+                <ui:Instance template="ExternalAssetDetails" name="ExternalAssetDetails" style="flex-grow: 1; height: 100%; width: 100%;"/>
+            </ui:GroupBox>
+        </ui:VisualElement>
         <ui:Button text="Button">
             <ui:Image class="fire-icon" style="width: 24px; height: 24px; align-items: auto; align-self: flex-start;"/>
         </ui:Button>
-        <ui:VisualElement style="flex-grow: 1; flex-direction: row;">
-            <ui:ListView name="ExternalAssetList" item-template="project://database/Assets/Prefabs/UIToolkit/ExternalAssetListItem.uxml?fileID=9197481963319205126&amp;guid=935dd0bc8ab21e9488f16d43098769e3&amp;type=3#ExternalAssetListItem" binding-source-selection-mode="AutoAssign" fixed-item-height="150" virtualization-method="DynamicHeight" show-border="true" reorderable="true" class="panel" style="flex-basis: 33px; flex-grow: 1;"/>
-            <ui:Instance template="ExternalAssetDetails" name="ExternalAssetDetails" class="panel" style="flex-basis: 33px; flex-grow: 1;"/>
-        </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

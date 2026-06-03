@@ -4,6 +4,7 @@ using System.Runtime.CompilerServices;
 using Unity.Properties;
 using UnityEngine.UIElements;
 using System.Collections.Generic;
+using System.Linq;
 
 public class UIExternalAssetList : MonoBehaviour, INotifyBindablePropertyChanged
 {
@@ -18,6 +19,17 @@ public class UIExternalAssetList : MonoBehaviour, INotifyBindablePropertyChanged
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        if (LoadableAssetManager == null)
+            LoadableAssetManager = LoadableAssetManager.GetDefault(gameObject);
+
+        Init();
+    }
+
+    void Init()
+    {
+        if (LoadableAssetManager == null)
+            return;
+
         if (!TryGetComponent<UIDocument>(out _uiDocument))
             return;
 
@@ -25,22 +37,47 @@ public class UIExternalAssetList : MonoBehaviour, INotifyBindablePropertyChanged
         if (_assetListView == null)
             return;
 
-        if (LoadableAssetManager == null)
-            LoadableAssetManager = LoadableAssetManager.GetDefault(gameObject);
-
         ModalProgressBar.ProgressChanged += OnProgressChanged;
+
+        _assetListView.selectedIndicesChanged += OnListViewSelectionChanged;
 
         UpdateList();
     }
 
-    void OnDestroy()
+    void OnEnable()
+    {
+        Init();
+    }
+
+    void OnDisable()
     {
         ModalProgressBar.ProgressChanged -= OnProgressChanged;
     }
 
+    private void OnListViewSelectionChanged(IEnumerable<int> indices)
+    {
+        var obj = _assetListView.selectedItem;
+        if (obj == null)
+            return;
+
+        var asset = obj as ExternalAssetDS;
+        if (asset == null)
+            return;
+
+        ExternalAssetEditorEvents.RaiseExternalAssetSelected(asset);
+    }
+
+    void OnDestroy()
+    {
+        
+    }
+
     void OnProgressChanged()
     {
-        UpdateList();
+        if ( ModalProgressBar.ProgressValue >= 1 || ModalProgressBar.ProgressValue < 0)
+        {
+            UpdateList();
+        }        
     }
 
     void UpdateList()
@@ -48,6 +85,9 @@ public class UIExternalAssetList : MonoBehaviour, INotifyBindablePropertyChanged
         List<ExternalAssetDS> assetList = new List<ExternalAssetDS>();
         foreach (var loadable in LoadableAssetManager.GetAllLoadableAssets())
         {
+            if (loadable.ExternalAssetMetadata == null)
+                continue;
+
             assetList.Add(new ExternalAssetDS
             {
                 LoadableAsset = loadable,
