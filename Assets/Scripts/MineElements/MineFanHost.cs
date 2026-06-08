@@ -7,6 +7,21 @@ public class MineFanHost : MineElementHostBase, IMineElementHost, ISelectableObj
     public VentFanData FanData;
     public MineFan MineFan;
 
+    private VentFan _fan;
+
+    public void SetFan(VentFan fan)
+    {
+        _fan = fan;
+    }
+
+    public void ScaleFanSpeed(float scale)
+    {
+        if (FanData == null || _fan == null)
+            return;
+
+        _fan.SetFanData(FanData, scale);
+    }
+
     public MineElement GetMineElement()
     {
         return MineFan;
