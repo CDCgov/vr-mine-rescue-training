@@ -7,6 +7,22 @@ using UnityEngine.AddressableAssets;
 using UnityEngine;
 using UnityEngine.Rendering.HighDefinition;
 
+public class ExternalAssetFileData
+{
+    public string Filename;
+    public ExternalAssetMetadata Metadata;
+    public LoadableAsset LoadableAsset;
+    public List<string> LoadErrors;
+
+    public void AddError(string error)
+    {
+        if (LoadErrors == null)
+            LoadErrors = new List<string>();
+
+        LoadErrors.Add(error);
+    }
+}
+
 public class ExternalAssetManager : SceneManagerBase
 {
     public static ExternalAssetManager GetDefault(GameObject self)
@@ -35,7 +51,7 @@ public class ExternalAssetManager : SceneManagerBase
     public MaterialManager MaterialManager;
 
     public LODLevelDefaults LODLevelDefaults;
-
+    public List<ExternalAssetFileData> FileData;
 
     private Dictionary<string, ExternalAssetMetadata> _metadata;
     private Dictionary<int, LODValues> _defaultLODValues;
@@ -107,6 +123,17 @@ public class ExternalAssetManager : SceneManagerBase
         }
     }
 
+    public IEnumerable<ExternalAssetFileData> GetExternalAssetFileData()
+    {
+        if (FileData == null || FileData.Count <= 0)
+            yield break;
+
+        foreach (var fileData in FileData)
+        {
+            yield return fileData;
+        }
+    }
+
     //public static async Task<GameObject> LoadGeometryObject(ExternalAssetMetadata assetData)
     //{
     //    await Task.Delay(150);
@@ -118,7 +145,8 @@ public class ExternalAssetManager : SceneManagerBase
     //    return obj;
     //}
 
-    public async Task<LoadableAsset> BuildLoadableAsset(ExternalAssetMetadata assetData, LoadableAssetManager loadableAssetManager, AudioMaterialList amList)
+    public async Task<ExternalAssetFileData> BuildLoadableAsset(ExternalAssetFileData fileData, ExternalAssetMetadata assetData, 
+        LoadableAssetManager loadableAssetManager, AudioMaterialList amList)
     {
         if (MaterialManager == null)
             MaterialManager = MaterialManager.GetDefault(gameObject);
@@ -353,6 +381,7 @@ public class ExternalAssetManager : SceneManagerBase
                 if (!MaterialManager.TryFindMaterial(ov.Value, out mat))
                 {
                     Debug.LogError($"Couldn't find material override {ov.Value} for {assetData.AssetID}");
+                    assetData.AddImportLog($"Error: Couldn't find material override {ov.Value} for {assetData.AssetID}");
                     continue;
                 }
 
@@ -366,7 +395,8 @@ public class ExternalAssetManager : SceneManagerBase
             }
         }
 
-        return asset;
+        fileData.LoadableAsset = asset;
+        return fileData;
     }
 
     public void LoadMetadataFiles() 
@@ -375,22 +405,49 @@ public class ExternalAssetManager : SceneManagerBase
             SystemManager = SystemManager.GetDefault();
         if (MaterialManager == null)
             MaterialManager = MaterialManager.GetDefault(gameObject);
-       
+
+        FileData = new List<ExternalAssetFileData>();
 
         Dictionary<string, ExternalAssetMetadata> metadata = new Dictionary<string, ExternalAssetMetadata>();
         Dictionary<string, ExternalAssetMetadata> geometryFileMap = new Dictionary<string, ExternalAssetMetadata>();
 
         foreach (var file in GetMetadataFiles(SystemManager.SystemConfig.ExternalAssetsFolder))
         {
-            var assetData = LoadMetadataFile(file);
-
-            if (assetData != null && assetData.GeometryFilename != null && assetData.GeometryFilename.Length > 0)
+            var fileData = new ExternalAssetFileData
             {
-                metadata.Add(assetData.AssetID, assetData);
+                Filename = Path.GetFileName(file),
+            };
 
-                if (!geometryFileMap.ContainsKey(assetData.GeometryFilename))
-                    geometryFileMap.Add(assetData.GeometryFilename, assetData);
+            try
+            {
+                var assetData = LoadMetadataFile(file);
+                fileData.Metadata = assetData;
+
+                if (assetData != null && assetData.GeometryFilename != null && assetData.GeometryFilename.Length > 0)
+                {
+                    metadata.Add(assetData.AssetID, assetData);
+
+                    if (!geometryFileMap.ContainsKey(assetData.GeometryFilename))
+                        geometryFileMap.Add(assetData.GeometryFilename, assetData);
+                }
+                else
+                {
+                    if (assetData == null)
+                    {
+                        fileData.AddError("Error reading metadata");
+                    }
+                    else if (assetData.GeometryFilename == null || assetData.GeometryFilename.Length <= 0)
+                    {
+                        fileData.AddError("No geometry file specified");
+                    }
+                }
             }
+            catch (System.Exception ex)
+            {
+                fileData.AddError($"Error reading metadata: {ex.Message}");
+            }
+
+            FileData.Add(fileData);
         }
 
         foreach (var geometryFile in GetGeometryFiles(SystemManager.SystemConfig.ExternalAssetsFolder))

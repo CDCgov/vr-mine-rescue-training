@@ -10,14 +10,14 @@
                 <ui:DataBinding property="style.display" data-source-path="ShowProgressBar" data-source-type="UIExternalAssetLoadProgress, VRMineCore" binding-mode="ToTarget"/>
             </Bindings>
         </ui:ProgressBar>
-        <ui:VisualElement style="flex-grow: 1; flex-direction: row;">
-            <ui:GroupBox text="External Assets" class="panel" style="flex-basis: 25px; flex-grow: 1;">
+        <ui:TwoPaneSplitView fixed-pane-initial-dimension="375" style="flex-grow: 1; flex-direction: row;">
+            <ui:GroupBox text="External Assets" class="panel" style="width: 300px;">
                 <ui:ListView name="ExternalAssetList" item-template="project://database/Assets/Prefabs/UIToolkit/ExternalAssetListItem.uxml?fileID=9197481963319205126&amp;guid=935dd0bc8ab21e9488f16d43098769e3&amp;type=3#ExternalAssetListItem" binding-source-selection-mode="AutoAssign" fixed-item-height="332" virtualization-method="DynamicHeight" show-border="true" reorderable="true"/>
             </ui:GroupBox>
             <ui:GroupBox text="Selected Asset Details" class="panel" style="flex-basis: 33px; flex-grow: 1;">
                 <ui:Instance template="ExternalAssetDetails" name="ExternalAssetDetails" style="flex-grow: 1; height: 100%; width: 100%;"/>
             </ui:GroupBox>
-        </ui:VisualElement>
+        </ui:TwoPaneSplitView>
         <ui:Button text="Button">
             <ui:Image class="fire-icon" style="width: 24px; height: 24px; align-items: auto; align-self: flex-start;"/>
         </ui:Button>

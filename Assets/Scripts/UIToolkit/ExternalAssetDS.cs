@@ -12,6 +12,8 @@ using System.Data.Common;
 public class ExternalAssetDS : INotifyBindablePropertyChanged
 {
     public LoadableAsset LoadableAsset;
+    public ExternalAssetFileData FileData;
+    public ExternalAssetMetadata Metadata;
 
     private static StringBuilder _sb = new StringBuilder();
 
@@ -31,6 +33,9 @@ public class ExternalAssetDS : INotifyBindablePropertyChanged
     { 
         get
         {
+            if (LoadableAsset == null)
+                return "Unknown";
+
             return LoadableAsset.EditorLayer.ToString();
         } 
     }
@@ -80,11 +85,11 @@ public class ExternalAssetDS : INotifyBindablePropertyChanged
             if (LoadableAsset.GeometryObject != null)
             {
                 var meshFilters = LoadableAsset.GeometryObject.GetComponentsInChildren<MeshFilter>();
-                _sb.AppendFormat("<color=aqua>Number of meshes:</color> {0}\n", meshFilters.Length);
+                _sb.AppendFormat("<style=highlight>Number of meshes:</style> {0}\n", meshFilters.Length);
                 count = 0;
                 foreach (var meshFilter in meshFilters)
                 {
-                    _sb.AppendFormat("<color=#CCCCCC>Mesh:</color> {0} <color=#CCCCCC>Triangles:</color> {1}\n", meshFilter.mesh.name, meshFilter.mesh.triangles.Length / 3);
+                    _sb.AppendFormat("<style=gray>Mesh:</style> {0} <style=gray>Triangles:</style> {1}\n", meshFilter.mesh.name, meshFilter.mesh.triangles.Length / 3);
                     count++;
                     if (count > 75)
                     {
@@ -98,21 +103,21 @@ public class ExternalAssetDS : INotifyBindablePropertyChanged
             {
                 if (geomObjInfo.MeshColliders != null && geomObjInfo.MeshColliders.Count > 0)
                 {
-                    _sb.AppendFormat("<color=aqua>Number of mesh colliders:</color> {0}\n", geomObjInfo.MeshColliders.Count);
+                    _sb.AppendFormat("<style=highlight>Number of mesh colliders:</style> {0}\n", geomObjInfo.MeshColliders.Count);
                     count = 0;
                     foreach (var col in geomObjInfo.MeshColliders)
                     {
-                        _sb.AppendFormat("<color=#CCCCCC>Collider:</color> {0} <color=#CCCCCC>Triangles:</color> {1}\n", col.name, col.sharedMesh.triangles.Length / 3);
+                        _sb.AppendFormat("<style=gray>Collider:</style> {0} <style=gray>Triangles:</style> {1}\n", col.name, col.sharedMesh.triangles.Length / 3);
                     }
                 }
 
                 if (geomObjInfo.OtherColliders != null && geomObjInfo.OtherColliders.Count > 0)
                 {
-                    _sb.AppendFormat("<color=aqua>Number of other colliders:</color> {0}\n", geomObjInfo.OtherColliders.Count);
+                    _sb.AppendFormat("<style=highlight>Number of other colliders:</style> {0}\n", geomObjInfo.OtherColliders.Count);
                     count = 0;
                     foreach (var col in geomObjInfo.OtherColliders)
                     {
-                        _sb.AppendFormat("<color=#CCCCCC>Collider:</color> {0}\n", col.name);
+                        _sb.AppendFormat("<style=gray>Collider:</style> {0}\n", col.name);
                         count++;
                         if (count > 75)
                         {
@@ -125,11 +130,11 @@ public class ExternalAssetDS : INotifyBindablePropertyChanged
 
             if (LoadableAsset.MeshRenderers != null)
             {
-                _sb.AppendFormat("<color=aqua>Number of mesh renderers:</color> {0}\n", LoadableAsset.MeshRenderers.Length);
+                _sb.AppendFormat("<style=highlight>Number of mesh renderers:</style> {0}\n", LoadableAsset.MeshRenderers.Length);
                 count = 0;
                 foreach (var rend in LoadableAsset.MeshRenderers)
                 {
-                    _sb.AppendFormat("<color=#CCCCCC>Renderer:</color> {0}\n", rend.name);
+                    _sb.AppendFormat("<style=gray>Renderer:</style> {0}\n", rend.name);
                     count++;
                     if (count > 75)
                     {
