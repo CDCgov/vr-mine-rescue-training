@@ -9,13 +9,13 @@ using System;
 public class NetworkSystemManager : MonoBehaviour {
     public NetworkSystem NetworkSys;
 
-    private void Update()
-    {
-        if (Input.GetKeyUp(KeyCode.Alpha1))
-        {
-            Debug.Log(NetworkSys._Nodes.Count);
-        }
-    }
+    //private void Update()
+    //{
+    //    if (Input.GetKeyUp(KeyCode.Alpha1))
+    //    {
+    //        Debug.Log(NetworkSys._Nodes.Count);
+    //    }
+    //}
 
     public List<T> GetNodes<T>()
     {

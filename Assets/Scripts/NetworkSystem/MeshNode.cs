@@ -96,19 +96,19 @@ public class MeshNode : NetworkNode {
     }
     
     // Update is called once per frame
-    void Update () {
-        if (Input.GetKeyUp(KeyCode.Return))
-        {            
-            if (debug)
-            {
-                DestroyMeshNode();
-            }
-        }
-        if (Input.GetKeyUp(KeyCode.F1))
-        {
-            Visualize();
-        }
-    }
+    //void Update () {
+    //    if (Input.GetKeyUp(KeyCode.Return))
+    //    {            
+    //        if (debug)
+    //        {
+    //            DestroyMeshNode();
+    //        }
+    //    }
+    //    if (Input.GetKeyUp(KeyCode.F1))
+    //    {
+    //        Visualize();
+    //    }
+    //}
 
     public override void SendToReceivers(string message)
     {

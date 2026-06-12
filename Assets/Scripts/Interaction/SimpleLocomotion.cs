@@ -225,11 +225,11 @@ public class SimpleLocomotion : MonoBehaviour
             UpdateTeleportDestination();
         }
 
-
-        if (Input.GetKeyUp(KeyCode.Home))
-        {
-            Teleport(_startPos);
-        }
+        //TODO: Is this still needed?
+        //if (Input.GetKeyUp(KeyCode.Home))
+        //{
+        //    Teleport(_startPos);
+        //}
     }
 
     void TeleportButtonPressed(bool buttonPressed)

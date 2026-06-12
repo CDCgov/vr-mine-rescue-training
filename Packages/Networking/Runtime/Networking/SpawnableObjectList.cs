@@ -14,9 +14,9 @@ public class SpawnableObject
     public bool SpanEntry = false;
     public bool SpawnNestedObjects = false;
 
-    public void Spawn(Camera camera, LayerMask layerMask, NetworkManager networkManager)
+    public void Spawn(Camera camera, Vector3 screenPoint, LayerMask layerMask, NetworkManager networkManager)
     {
-        Ray mouseRay = camera.ScreenPointToRay(Input.mousePosition);
+        Ray mouseRay = camera.ScreenPointToRay(screenPoint);
 
         Spawn(mouseRay, layerMask, networkManager);
     }

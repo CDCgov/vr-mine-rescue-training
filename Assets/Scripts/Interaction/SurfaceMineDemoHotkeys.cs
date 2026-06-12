@@ -15,16 +15,16 @@ public class SurfaceMineDemoHotkeys : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-            SetCamActive(0);
-        else if (Input.GetKeyDown(KeyCode.Alpha2))
-            SetCamActive(1);
-        else if (Input.GetKeyDown(KeyCode.Alpha3))
-            SetCamActive(2);
-        else if (Input.GetKeyDown(KeyCode.Alpha4))
-            SetCamActive(3);
-        else if (Input.GetKeyDown(KeyCode.Alpha5))
-            SetCamActive(4);
+        //if (Input.GetKeyDown(KeyCode.Alpha1))
+        //    SetCamActive(0);
+        //else if (Input.GetKeyDown(KeyCode.Alpha2))
+        //    SetCamActive(1);
+        //else if (Input.GetKeyDown(KeyCode.Alpha3))
+        //    SetCamActive(2);
+        //else if (Input.GetKeyDown(KeyCode.Alpha4))
+        //    SetCamActive(3);
+        //else if (Input.GetKeyDown(KeyCode.Alpha5))
+        //    SetCamActive(4);
     }
 
     void SetCamActive(int index)

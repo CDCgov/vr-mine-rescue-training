@@ -11,6 +11,8 @@ public class EventSystemTabNavigation : MonoBehaviour
 
     private EventSystem _eventSystem;
 
+    /*
+
     void Start()
     {
         TryGetComponent<EventSystem>(out _eventSystem);
@@ -58,4 +60,5 @@ public class EventSystemTabNavigation : MonoBehaviour
 
         }
     }
+    */
 }

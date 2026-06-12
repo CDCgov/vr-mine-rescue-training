@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+[System.Obsolete]
 public class DebriefInputModule : StandaloneInputModule
 {
     public void GetHoveredObject()

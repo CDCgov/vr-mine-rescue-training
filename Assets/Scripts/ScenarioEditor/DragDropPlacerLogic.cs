@@ -378,25 +378,25 @@ public class DragDropPlacerLogic : PlacerLogic
 
     void PanObject()
     {
-        Vector3 panningInput = Vector3.zero;
-        if (Input.GetKey(KeyCode.LeftArrow))
-        {
-            panningInput += Vector3.forward;
-        }
-        if (Input.GetKey(KeyCode.DownArrow))
-        {
-            panningInput += Vector3.left;
-        }
-        if (Input.GetKey(KeyCode.UpArrow))
-        {
-            panningInput += Vector3.right;
-        }
-        if (Input.GetKey(KeyCode.RightArrow))
-        {
-            panningInput += Vector3.back;
-        }
+        //Vector3 panningInput = Vector3.zero;
+        //if (Input.GetKey(KeyCode.LeftArrow))
+        //{
+        //    panningInput += Vector3.forward;
+        //}
+        //if (Input.GetKey(KeyCode.DownArrow))
+        //{
+        //    panningInput += Vector3.left;
+        //}
+        //if (Input.GetKey(KeyCode.UpArrow))
+        //{
+        //    panningInput += Vector3.right;
+        //}
+        //if (Input.GetKey(KeyCode.RightArrow))
+        //{
+        //    panningInput += Vector3.back;
+        //}
 
-        selectedObject.transform.position += panningInput * panSensitivity;
+        //selectedObject.transform.position += panningInput * panSensitivity;
 
     }
 
@@ -405,21 +405,21 @@ public class DragDropPlacerLogic : PlacerLogic
     /// </summary>
     void ScaleObject()
     {
-        Vector3 scaleInput = Vector3.zero;
-        Vector3 currentScale = selectedObject.transform.localScale;
-        if (Input.GetKey(KeyCode.Z))
-        {
-            scaleInput += new Vector3(0.1f, 0.1f, 0.1f);
-        }
-        if (Input.GetKey(KeyCode.C))
-        {
-            scaleInput += new Vector3(-0.1f, -0.1f, -0.1f);
-        }
-        selectedObject.transform.localScale = new Vector3(
-                                                Mathf.Clamp(currentScale.x + scaleInput.x,minScaleSize,maxScaleSize),
-                                                Mathf.Clamp(currentScale.y + scaleInput.y, minScaleSize, maxScaleSize),
-                                                Mathf.Clamp(currentScale.z + scaleInput.z, minScaleSize, maxScaleSize)
-                                                );
+    //    Vector3 scaleInput = Vector3.zero;
+    //    Vector3 currentScale = selectedObject.transform.localScale;
+    //    if (Input.GetKey(KeyCode.Z))
+    //    {
+    //        scaleInput += new Vector3(0.1f, 0.1f, 0.1f);
+    //    }
+    //    if (Input.GetKey(KeyCode.C))
+    //    {
+    //        scaleInput += new Vector3(-0.1f, -0.1f, -0.1f);
+    //    }
+    //    selectedObject.transform.localScale = new Vector3(
+    //                                            Mathf.Clamp(currentScale.x + scaleInput.x,minScaleSize,maxScaleSize),
+    //                                            Mathf.Clamp(currentScale.y + scaleInput.y, minScaleSize, maxScaleSize),
+    //                                            Mathf.Clamp(currentScale.z + scaleInput.z, minScaleSize, maxScaleSize)
+    //                                            );
     }
 
     /// <summary>
@@ -427,16 +427,16 @@ public class DragDropPlacerLogic : PlacerLogic
     /// </summary>
     void RotateObject()
     {
-        Vector3 eulers = Vector3.zero;
-        if (Input.GetKey(KeyCode.Q))
-        {
-            eulers += new Vector3(0, 1, 0) * rotationSensitivity;
-        }
-        if (Input.GetKey(KeyCode.E))
-        {
-            eulers += new Vector3(0, -1,0) * rotationSensitivity;
-        }
-        selectedObject.transform.Rotate(eulers);
+        //Vector3 eulers = Vector3.zero;
+        //if (Input.GetKey(KeyCode.Q))
+        //{
+        //    eulers += new Vector3(0, 1, 0) * rotationSensitivity;
+        //}
+        //if (Input.GetKey(KeyCode.E))
+        //{
+        //    eulers += new Vector3(0, -1,0) * rotationSensitivity;
+        //}
+        //selectedObject.transform.Rotate(eulers);
 
     }
 

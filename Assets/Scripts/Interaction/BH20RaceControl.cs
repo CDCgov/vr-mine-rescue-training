@@ -35,52 +35,52 @@ public class BH20RaceControl : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            SceneManager.LoadScene("BH20Race");
-        }
+    //void Update()
+    //{
+    //    if (Input.GetKeyDown(KeyCode.R))
+    //    {
+    //        SceneManager.LoadScene("BH20Race");
+    //    }
 
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            Player1Vehicle.GetComponent<BH20RaceData>().ResetPosition();
-        }
+    //    if (Input.GetKeyDown(KeyCode.Alpha1))
+    //    {
+    //        Player1Vehicle.GetComponent<BH20RaceData>().ResetPosition();
+    //    }
 
         
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            Player2Vehicle.GetComponent<BH20RaceData>().ResetPosition();
-        }
+    //    if (Input.GetKeyDown(KeyCode.Alpha2))
+    //    {
+    //        Player2Vehicle.GetComponent<BH20RaceData>().ResetPosition();
+    //    }
 
-        if (Input.GetKeyDown(KeyCode.V))
-        {
-            bool bThirdPerson = CinemachineCam.activeSelf;
+    //    if (Input.GetKeyDown(KeyCode.V))
+    //    {
+    //        bool bThirdPerson = CinemachineCam.activeSelf;
 
-            CinemachineCam.SetActive(!bThirdPerson);
-            _player1Cam.gameObject.SetActive(bThirdPerson);
-            _player2Cam.gameObject.SetActive(bThirdPerson);
+    //        CinemachineCam.SetActive(!bThirdPerson);
+    //        _player1Cam.gameObject.SetActive(bThirdPerson);
+    //        _player2Cam.gameObject.SetActive(bThirdPerson);
 
-            _player1Marker.SetActive(!bThirdPerson);
-            _player2Marker.SetActive(!bThirdPerson);
+    //        _player1Marker.SetActive(!bThirdPerson);
+    //        _player2Marker.SetActive(!bThirdPerson);
 
-        }
+    //    }
 
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            FixedVCam.SetActive(!FixedVCam.activeSelf);
-        }
+    //    if (Input.GetKeyDown(KeyCode.C))
+    //    {
+    //        FixedVCam.SetActive(!FixedVCam.activeSelf);
+    //    }
 
-        if (Input.GetKeyDown(KeyCode.Backspace))
-        {
-            StopVehicle(Player1Vehicle);
-            StopVehicle(Player2Vehicle);
+    //    if (Input.GetKeyDown(KeyCode.Backspace))
+    //    {
+    //        StopVehicle(Player1Vehicle);
+    //        StopVehicle(Player2Vehicle);
 
-            CreateFire(Player1Vehicle.transform.position);
-            CreateFire(Player2Vehicle.transform.position);
+    //        CreateFire(Player1Vehicle.transform.position);
+    //        CreateFire(Player2Vehicle.transform.position);
 
-        }
-    }
+    //    }
+    //}
 
     private void StopVehicle(GameObject vehicle)
     {

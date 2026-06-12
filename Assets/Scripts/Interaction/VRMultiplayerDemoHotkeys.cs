@@ -30,42 +30,42 @@ public class VRMultiplayerDemoHotkeys : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            // if (_autoExposure != null)
-            // {
-            //     _autoExposure.keyValue.value = Random.Range(0.0f, 10.0f);
-            // }
+    //void Update()
+    //{
+    //    if (Input.GetKeyDown(KeyCode.Space))
+    //    {
+    //        // if (_autoExposure != null)
+    //        // {
+    //        //     _autoExposure.keyValue.value = Random.Range(0.0f, 10.0f);
+    //        // }
 
-            _fading = true;
-            _fadeProgress = 0;
-            _fadeStart = Time.time;
-        }
+    //        _fading = true;
+    //        _fadeProgress = 0;
+    //        _fadeStart = Time.time;
+    //    }
 
-        //if (_fading && _autoExposure != null)
-        //{
-        //    _fadeProgress = (Time.time - _fadeStart) / FadeDuration;
+    //    //if (_fading && _autoExposure != null)
+    //    //{
+    //    //    _fadeProgress = (Time.time - _fadeStart) / FadeDuration;
 
-        //    float fadeValue = 0;
-        //    if (_fadeProgress >= 1.0f)
-        //    {
-        //        fadeValue = 1.0f;
-        //        _fading = false;
-        //    }
-        //    if (_fadeProgress < 0.5f)
-        //    {
-        //        fadeValue = 1.0f - (_fadeProgress * 2);
-        //    }
-        //    else
-        //    {
-        //        fadeValue = (_fadeProgress - 0.5f) * 2;
-        //    }
+    //    //    float fadeValue = 0;
+    //    //    if (_fadeProgress >= 1.0f)
+    //    //    {
+    //    //        fadeValue = 1.0f;
+    //    //        _fading = false;
+    //    //    }
+    //    //    if (_fadeProgress < 0.5f)
+    //    //    {
+    //    //        fadeValue = 1.0f - (_fadeProgress * 2);
+    //    //    }
+    //    //    else
+    //    //    {
+    //    //        fadeValue = (_fadeProgress - 0.5f) * 2;
+    //    //    }
 
-        //    _autoExposure.keyValue.value = fadeValue;
+    //    //    _autoExposure.keyValue.value = fadeValue;
 
             
-        //}
-    }
+    //    //}
+    //}
 }

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class UIMousePanAndZoom : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IScrollHandler, IPointerClickHandler
@@ -56,7 +57,7 @@ public class UIMousePanAndZoom : MonoBehaviour, IBeginDragHandler, IDragHandler,
 
         var oldScale = Target.localScale;
         RectTransformUtility.ScreenPointToLocalPointInRectangle(Target.parent.GetComponent<RectTransform>(), 
-            Input.mousePosition, null /*null for screen space overlay*/, out var bp);
+            Mouse.current.GetPositionVec3(), null /*null for screen space overlay*/, out var bp);
         //basePos = Target.parent.InverseTransformPoint(basePos);
         var basePos = new Vector3(bp.x, bp.y, 0);
         //Debug.Log($"BasePos: {basePos}");

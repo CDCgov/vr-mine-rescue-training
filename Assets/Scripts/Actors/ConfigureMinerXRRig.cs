@@ -821,6 +821,7 @@ public class ConfigureMinerXRRig : MonoBehaviour
         if (needsConfigured && !_roleConfigurationInProgress && NetworkManager.ActiveSceneID >= 0)
             ConfigurePlayerRole(_assignedRole);
 
+        /*
         if (Input.GetKeyUp(KeyCode.Alpha1))
         {
             //SetMinerRole(MineRescuerXRRole.Captain);
@@ -875,6 +876,7 @@ public class ConfigureMinerXRRig : MonoBehaviour
                     break;
             }
         }
+        */
 
         //if (Input.GetKeyUp(KeyCode.L))
         //{

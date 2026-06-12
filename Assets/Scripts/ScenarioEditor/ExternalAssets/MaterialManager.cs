@@ -10,6 +10,7 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 using System.Runtime.InteropServices;
 using Unity.Collections;
 using GLTFast;
+using UnityEngine.InputSystem;
 
 public class MaterialManager : SceneManagerBase
 {
@@ -18,6 +19,10 @@ public class MaterialManager : SceneManagerBase
     private Dictionary<string, MaterialMetadata> _metadata;
 
     private List<Texture2D> _activeTextures = new List<Texture2D>();
+
+    private InputAction _actionReloadMaterialSettings;
+    private InputAction _actionWireframeMode;
+    private InputAction _actionReloadGraphicsConfig;
 
     public static MaterialManager GetDefault(GameObject self)
     {
@@ -478,10 +483,18 @@ public class MaterialManager : SceneManagerBase
         return null;
     }
 
+    private void Start()
+    {
+        _actionReloadGraphicsConfig = InputSystem.actions.FindAction("ReloadGraphicsConfig");
+        _actionWireframeMode = InputSystem.actions.FindAction("EnableWireframeMode");
+        _actionReloadMaterialSettings = InputSystem.actions.FindAction("ReloadMaterialSettings");
+    }
+
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.M) && Input.GetKey(KeyCode.LeftAlt) && 
-            Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.LeftControl))
+        //if (Input.GetKeyDown(KeyCode.M) && Input.GetKey(KeyCode.LeftAlt) && 
+        //    Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.LeftControl))
+        if (_actionReloadMaterialSettings?.WasPerformedThisFrame() == true)
         {
             ReloadMaterialSettings();
             //var placer = Placer.GetDefault();
@@ -491,14 +504,16 @@ public class MaterialManager : SceneManagerBase
             //}
         }
 
-        if (Input.GetKeyDown(KeyCode.Y) && Input.GetKey(KeyCode.LeftAlt) &&
-            Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.LeftControl))
+        //if (Input.GetKeyDown(KeyCode.Y) && Input.GetKey(KeyCode.LeftAlt) &&
+        //    Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.LeftControl))
+        if (_actionWireframeMode?.WasPerformedThisFrame() == true)
         {
             WireframeMode();
         }
 
-        if (SystemManager != null && Input.GetKeyDown(KeyCode.G) && Input.GetKey(KeyCode.LeftAlt) &&
-           Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.LeftControl))
+        //if (SystemManager != null && Input.GetKeyDown(KeyCode.G) && Input.GetKey(KeyCode.LeftAlt) &&
+        //   Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.LeftControl))
+        if (_actionReloadGraphicsConfig?.WasPerformedThisFrame() == true)
         {
             SystemManager.LoadGraphicsConfig();
         }

@@ -142,8 +142,8 @@ public class ExternalMaterialBenchmark : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R))
-            RestartTiming();
+        //if (Input.GetKeyDown(KeyCode.R))
+        //    RestartTiming();
 
         UpdateText();
     }

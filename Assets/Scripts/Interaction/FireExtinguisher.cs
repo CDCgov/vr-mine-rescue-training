@@ -23,37 +23,37 @@ public class FireExtinguisher : MonoBehaviour
     {
         if (_isGrabbed)
         {
-            if (Input.GetButton("Fire1"))
-            {
-                if (!_isOn)
-                {
-                    ExtinguisherEmitter.Play();
-                    ExtinguisherAudio.Play();
-                    FirstPuffEmitter.Play();
-                    _isOn = true;
-                }
-                if(Physics.Raycast(transform.position, transform.forward, out _rHit, 2))
-                {
-                    if(_rHit.collider.tag == "Fire")
-                    {                        
-                        FireInteraction fI = _rHit.collider.GetComponent<FireInteraction>();
-                        if(fI != null)
-                        {
-                            fI.OnExtinguish();
-                        }
-                    }
-                }
-            }
-            else
-            {
-                if (_isOn)
-                {
-                    ExtinguisherEmitter.Stop();
-                    ExtinguisherAudio.Stop();
-                    FirstPuffEmitter.Stop();              
-                    _isOn = false;
-                }
-            }
+            //if (Input.GetButton("Fire1"))
+            //{
+            //    if (!_isOn)
+            //    {
+            //        ExtinguisherEmitter.Play();
+            //        ExtinguisherAudio.Play();
+            //        FirstPuffEmitter.Play();
+            //        _isOn = true;
+            //    }
+            //    if(Physics.Raycast(transform.position, transform.forward, out _rHit, 2))
+            //    {
+            //        if(_rHit.collider.tag == "Fire")
+            //        {                        
+            //            FireInteraction fI = _rHit.collider.GetComponent<FireInteraction>();
+            //            if(fI != null)
+            //            {
+            //                fI.OnExtinguish();
+            //            }
+            //        }
+            //    }
+            //}
+            //else
+            //{
+            //    if (_isOn)
+            //    {
+            //        ExtinguisherEmitter.Stop();
+            //        ExtinguisherAudio.Stop();
+            //        FirstPuffEmitter.Stop();              
+            //        _isOn = false;
+            //    }
+            //}
         }
     }
 

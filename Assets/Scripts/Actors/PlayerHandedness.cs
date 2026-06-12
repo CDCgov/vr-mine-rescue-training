@@ -34,13 +34,13 @@ public class PlayerHandedness : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyUp(KeyCode.Backspace))
-        {
-            OnSwitchHand();
-        }
-    }
+    //void Update()
+    //{
+    //    if (Input.GetKeyUp(KeyCode.Backspace))
+    //    {
+    //        OnSwitchHand();
+    //    }
+    //}
 
     public void OnSwitchHand()
     {        

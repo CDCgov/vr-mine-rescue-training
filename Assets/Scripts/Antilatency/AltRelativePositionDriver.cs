@@ -2,19 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.XR;
+using Unity.XR.OpenVR;
 
 public class AltRelativePositionDriver : MonoBehaviour
 {
     public AltPoseDriver ReferenceDriver;
     public XRNode InputDeviceNode;
     public Transform HeadTransform;
+    public InputAction ControllerPose;
 
-    private InputDevice _inputDevice;
+    private UnityEngine.XR.InputDevice _inputDevice;
     private Vector3 _cachedPosition;
     private Quaternion _cachedRotation;
 
     private Vector3 _lastPositionRel;
     private Quaternion _lastRotationRel;
+
+    private XRController _xrController;
+    private Pose _pose;
 
     // Start is called before the first frame update
     void Start()
@@ -22,7 +29,67 @@ public class AltRelativePositionDriver : MonoBehaviour
         _cachedPosition = transform.localPosition;
         _cachedRotation = Quaternion.identity;
 
+        FindXRController();
+    }
 
+    private void FindXRController()
+    {
+        switch (InputDeviceNode)
+        {
+            case XRNode.LeftHand:
+                _xrController = XRController.leftHand;
+                break;
+
+            case XRNode.RightHand:
+                _xrController = XRController.rightHand;
+                break;
+        }
+
+    }
+
+    private void UpdateDevicePosition(out Vector3 pos, out Quaternion rot, out bool isTracking )
+    {
+        pos = transform.localPosition;
+        rot = Quaternion.identity;
+        isTracking = false;
+
+        if (!_inputDevice.TryGetFeatureValue(UnityEngine.XR.CommonUsages.isTracked, out isTracking))
+        {
+            return;
+        }
+
+        FindXRController();
+
+        if (ControllerPose != null)
+        {
+            var pose = ControllerPose.ReadValue<Pose>();
+            pos = pose.position;
+            rot = pose.rotation;
+        }
+        else if (_xrController != null)
+        {
+            pos = _xrController.devicePosition.ReadValue();
+            rot = _xrController.deviceRotation.ReadValue();
+        }
+        else
+        {
+            Vector3 nativePosition;
+            Quaternion nativeRotation;
+
+            if (_inputDevice.TryGetFeatureValue(UnityEngine.XR.CommonUsages.devicePosition, out nativePosition))
+            {
+                pos = nativePosition;
+            }
+
+
+            if (_inputDevice.TryGetFeatureValue(UnityEngine.XR.CommonUsages.deviceRotation, out nativeRotation))
+            {
+                rot = nativeRotation;
+            }
+        }
+
+        _cachedPosition = pos;
+        _cachedRotation = rot;
     }
 
     void UpdateTracking()
@@ -36,27 +103,15 @@ public class AltRelativePositionDriver : MonoBehaviour
                 return;
         }
 
-        Vector3 nativePosition;
-        Quaternion nativeRotation;
 
-        Vector3 pos = transform.localPosition;
-        Quaternion rot = Quaternion.identity;
-        bool isTracking = false;
-        if(_inputDevice.TryGetFeatureValue(CommonUsages.isTracked, out isTracking))
-        {
-            if (_inputDevice.TryGetFeatureValue(CommonUsages.devicePosition, out nativePosition))
-            {
-                pos = nativePosition;
-                _cachedPosition = pos;
-            }
-
-
-            if (_inputDevice.TryGetFeatureValue(CommonUsages.deviceRotation, out nativeRotation))
-            {
-                rot = nativeRotation;
-                _cachedRotation = rot;
-            }
-        }
+        //Vector3 pos = transform.localPosition;
+        //Quaternion rot = Quaternion.identity;
+        //bool isTracking = false;
+        //if(_inputDevice.TryGetFeatureValue(UnityEngine.XR.CommonUsages.isTracked, out isTracking))
+        //{
+        //    UpdateDevicePosition(out pos, out rot);
+        //}
+        UpdateDevicePosition(out Vector3 pos, out Quaternion rot, out bool isTracking);
 
         //if (ReferenceDriver != null)
         //{

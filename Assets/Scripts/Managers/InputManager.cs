@@ -18,6 +18,7 @@ public class InputManager : MonoBehaviour
     
     }
     
+    /*
     void Update () 
     {
         if (_kmTarget != null)
@@ -105,5 +106,5 @@ public class InputManager : MonoBehaviour
 
             _kmTarget.ProcessCustomInput();
         }
-    }
+    }*/
 }

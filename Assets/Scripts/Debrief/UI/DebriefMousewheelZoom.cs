@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 
 public class DebriefMousewheelZoom : MonoBehaviour, IScrollHandler
 {
@@ -35,7 +36,7 @@ public class DebriefMousewheelZoom : MonoBehaviour, IScrollHandler
             PointerEventData pointer = new PointerEventData(EventSystem.current);
             if (pointer != null) 
             {
-                pointer.position = Input.mousePosition;
+                pointer.position = Mouse.current.GetPositionVec3();
                 List<RaycastResult> raycastResults = new List<RaycastResult>();
                 EventSystem.current.RaycastAll(pointer, raycastResults);
                 if (raycastResults.Count > 0)
@@ -50,7 +51,7 @@ public class DebriefMousewheelZoom : MonoBehaviour, IScrollHandler
                 }
             }
         }
-        if (RectTransformUtility.RectangleContainsScreenPoint(rt, Input.mousePosition))
+        if (RectTransformUtility.RectangleContainsScreenPoint(rt, Mouse.current.GetPositionVec3()))
         {
             //Debug.Log($"MOUSE INSIDE RECT");
             DebriefUIController.Zoom(wheel);

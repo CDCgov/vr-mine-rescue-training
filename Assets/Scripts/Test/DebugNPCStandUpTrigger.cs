@@ -19,10 +19,10 @@ public class DebugNPCStandUpTrigger : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.F12))
-        {
-            Animator.SetTrigger("StandUp");
-        }
+        //if (Input.GetKeyUp(KeyCode.F12))
+        //{
+        //    Animator.SetTrigger("StandUp");
+        //}
 
         if (ShowNPCVelocity)
         {

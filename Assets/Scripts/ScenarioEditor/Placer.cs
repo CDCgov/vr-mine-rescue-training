@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
+using UnityEngine.InputSystem;
 using NIOSH_EditorLayers;
 using NIOSH_MineCreation;
 
@@ -369,9 +370,9 @@ public class Placer : LayerControlledClass
             _selMouseMove.OnScenarioEditorMouseMove(this, _cursorHit, _currentCursor);
         }
 
-        if (Input.GetMouseButtonUp(0))
+        if (Mouse.current.leftButton.wasReleasedThisFrame)
         {
-            float mouseDist = Vector3.Distance(_startDragCursor.MousePos, Input.mousePosition);
+            float mouseDist = Vector3.Distance(_startDragCursor.MousePos, Mouse.current.GetPositionVec3());
             if (!_dragInProcess && mouseDist < 10.0f)
             {
                 bool selectionLocked = false;
@@ -398,7 +399,7 @@ public class Placer : LayerControlledClass
         if (inputLocked)
             return;
 
-        if (Input.GetMouseButtonDown(0))
+        if (Mouse.current.leftButton.wasPressedThisFrame)
         {
             //perform gizmo raycast
             RaycastGizmos();
@@ -406,16 +407,16 @@ public class Placer : LayerControlledClass
             RaiseMouseButtonDown(0);
         }
 
-        if (Input.GetMouseButton(0) && (_dragStarting || _dragInProcess))
+        if (Mouse.current.leftButton.isPressed && (_dragStarting || _dragInProcess))
         {
             ProcessMouseDrag();
         }
 
-        if (Input.GetMouseButtonDown(1))
+        if (Mouse.current.rightButton.wasPressedThisFrame)
         {
             RaiseMouseButtonDown(1);
         }
-        else if (Input.GetMouseButtonUp(1))
+        else if (Mouse.current.rightButton.wasReleasedThisFrame)
         {
             RaiseMouseButtonUp(1);
         }
@@ -494,6 +495,8 @@ public class Placer : LayerControlledClass
 
     private void ProcessKeyboardInput()
     {
+        return;
+
         if (inputLocked)
             return;
 
@@ -643,7 +646,7 @@ public class Placer : LayerControlledClass
     {
         var cursor = new ScenarioCursorData();
 
-        cursor.MousePos = Input.mousePosition;
+        cursor.MousePos = Mouse.current.GetPositionVec3();
         //cursor.SceneRay = Camera.main.ScreenPointToRay(cursor.MousePos);
         if (GetSceneRay(out var ray))
             cursor.SceneRay = ray;
@@ -673,7 +676,7 @@ public class Placer : LayerControlledClass
     {
         if (!_dragInProcess)
         {
-            var mouseDist = Vector3.Distance(Input.mousePosition, _startDragCursor.MousePos);
+            var mouseDist = Vector3.Distance(Mouse.current.GetPositionVec3(), _startDragCursor.MousePos);
             if (mouseDist > 5.0f)
             {
                 _dragInProcess = true;
@@ -1559,11 +1562,11 @@ public class Placer : LayerControlledClass
 
         try
         {
-            var viewportPoint = Camera.main.ScreenToViewportPoint(Input.mousePosition);
+            var viewportPoint = Camera.main.ScreenToViewportPoint(Mouse.current.GetPositionVec3());
             if (viewportPoint.x < 0 || viewportPoint.x > 1 || viewportPoint.y < 0 || viewportPoint.y > 1)
                 return false;
 
-            ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            ray = Camera.main.ScreenPointToRay(Mouse.current.GetPositionVec3());
         }
         catch (Exception ex)
         {

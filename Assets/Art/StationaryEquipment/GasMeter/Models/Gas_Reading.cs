@@ -13,14 +13,14 @@ public class Gas_Reading : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update () {
+    //void Update () {
 
-        if (Input.GetButtonDown("GasReading"))
-        {
-            gasReading = !gasReading;
-            GasMeter.SetActive(gasReading);
+    //    if (Input.GetButtonDown("GasReading"))
+    //    {
+    //        gasReading = !gasReading;
+    //        GasMeter.SetActive(gasReading);
             
-        }
+    //    }
         
-    }
+    //}
 }

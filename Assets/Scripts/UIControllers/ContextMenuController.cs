@@ -74,6 +74,8 @@ public class ContextMenuController : MonoBehaviour
 
     bool subMenuOpen;
 
+    private InputActionEventManager _inputActions = new InputActionEventManager();
+
     // Start is called before the first frame update
     void Start()
     {
@@ -107,6 +109,10 @@ public class ContextMenuController : MonoBehaviour
         if (Placer != null)
             Placer.SelectedObjectChanged += OnSelectedObjectChanged;
 
+        _inputActions.RegisterPerformedHandler("Delete", (context) =>
+        {
+            RemoveTarget();
+        });
     }
 
     //use interaction disabling to force color
@@ -129,6 +135,9 @@ public class ContextMenuController : MonoBehaviour
 
     private void OnDestroy()
     {
+        if (_inputActions != null)
+            _inputActions.Dispose();
+
         ///Toggles
         if (addNodeToggle) addNodeToggle.onValueChanged.RemoveListener(ToggleAddNode);
         if (swapNodeToggle) swapNodeToggle.onValueChanged.RemoveListener(ToggleSwapNode);
@@ -155,10 +164,10 @@ public class ContextMenuController : MonoBehaviour
         if (target == null)
             return;
 
-        if (Input.GetKeyDown(KeyCode.Delete) || Input.GetKeyDown(KeyCode.Backspace))
-        {
-            RemoveTarget();
-        }
+        //if (Input.GetKeyDown(KeyCode.Delete) || Input.GetKeyDown(KeyCode.Backspace))
+        //{
+        //    RemoveTarget();
+        //}
     }
 
     //If target is active and visible, position UI, otherwise disable

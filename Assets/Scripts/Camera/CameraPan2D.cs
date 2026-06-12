@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 
 
 [RequireComponent(typeof(Camera))]
@@ -36,15 +37,15 @@ public class CameraPan2D : MonoBehaviour, IPointerClickHandler
         //}
 
         bool overUIObject = EventSystem.current != null && EventSystem.current.IsPointerOverGameObject();
-        bool buttonHeld = Input.GetMouseButton(0) || Input.GetMouseButton(2);
+        bool buttonHeld = Mouse.current.leftButton.isPressed || Mouse.current.rightButton.isPressed;
 
         //if (EventSystem.current.currentSelectedGameObject != null)
         //    Debug.Log($"CurrentSelectedGameObject: {EventSystem.current.currentSelectedGameObject.name}");
 
-        if ((Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(2)) && !overUIObject)
+        if ((Mouse.current.leftButton.wasPressedThisFrame || Mouse.current.rightButton.wasPressedThisFrame) && !overUIObject)
             _mouseCaptured = true;
 
-        var pos = _camera.ScreenToWorldPoint(Input.mousePosition);
+        var pos = _camera.ScreenToWorldPoint(Mouse.current.GetPositionVec3());
 
         if (buttonHeld && _mouseCaptured)
         {
@@ -61,7 +62,7 @@ public class CameraPan2D : MonoBehaviour, IPointerClickHandler
             _mouseStartPos = pos;
 
             _camera.transform.position = _camera.transform.position - delta;
-            _mouseStartPos = _camera.ScreenToWorldPoint(Input.mousePosition);
+            _mouseStartPos = _camera.ScreenToWorldPoint(Mouse.current.GetPositionVec3());
         }
         else
         {

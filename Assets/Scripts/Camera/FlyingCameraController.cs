@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 
 public class FlyingCameraController : MonoBehaviour
 {
@@ -26,6 +27,8 @@ public class FlyingCameraController : MonoBehaviour
     private Quaternion _lookAdjustRot = Quaternion.identity;
     private Vector3 _lookAdjustment = Vector3.zero;
 
+    private InputAction _actionCameraFastMove;
+    private InputAction _actionCameraSlowMove;
 
     public FlyingCameraController()
     {
@@ -55,6 +58,9 @@ public class FlyingCameraController : MonoBehaviour
         if (SystemManager == null)
             SystemManager = SystemManager.GetDefault();
 
+        _actionCameraFastMove = InputSystem.actions.FindAction("CameraFastMove");
+        _actionCameraSlowMove = InputSystem.actions.FindAction("CameraSlowMove");
+        
         SystemManager.MainCameraChanged += () =>
         {
             _camera = SystemManager.MainCamera;
@@ -90,12 +96,12 @@ public class FlyingCameraController : MonoBehaviour
 
         float maxSpeed = MoveSpeed;
 
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (_actionCameraFastMove?.IsPressed() == true)
         {
             maxSpeed = FastMoveSpeed;
         }
 
-        if (Input.GetKey(KeyCode.LeftAlt))
+        if (_actionCameraSlowMove?.IsPressed() == true)
         {
             maxSpeed *= 0.33f;
         }
@@ -163,9 +169,9 @@ public class FlyingCameraController : MonoBehaviour
         if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject())
             return;
 
-        if (Input.GetMouseButtonDown(0))
+        if (Mouse.current.leftButton.wasPressedThisFrame)
         {
-            Ray mouseRay = _camera.ScreenPointToRay(Input.mousePosition);
+            Ray mouseRay = _camera.ScreenPointToRay(Mouse.current.GetPositionVec3());
 
             RaycastHit hit;
 
@@ -197,29 +203,29 @@ public class FlyingCameraController : MonoBehaviour
             return;				
 
         //if (Input.GetKey(KeyCode.C))
-        if (!Input.GetKey(KeyCode.LeftAlt) && !Input.GetKey(KeyCode.RightAlt))
-        {
-            int startKey = (int)KeyCode.Alpha0;
-            int endKey = (int)KeyCode.Alpha9;
+        //if (!Input.GetKey(KeyCode.LeftAlt) && !Input.GetKey(KeyCode.RightAlt))
+        //{
+        //    int startKey = (int)KeyCode.Alpha0;
+        //    int endKey = (int)KeyCode.Alpha9;
 
-            for (int i = startKey; i <= endKey; i++)
-            {
-                if (Input.GetKeyDown((KeyCode)i))
-                {
-                    int camNumber = i - startKey;
+        //    for (int i = startKey; i <= endKey; i++)
+        //    {
+        //        if (Input.GetKeyDown((KeyCode)i))
+        //        {
+        //            int camNumber = i - startKey;
 
-                    if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
-                    {
-                        Debug.LogFormat("Saving camera position {0}", camNumber);
-                        SaveCameraPosition(camNumber);
-                    }
-                    else
-                    {
-                        Debug.LogFormat("Switching to camera position {0}", camNumber);
-                        LoadCameraPosition(camNumber);
-                    }
-                }
-            }
-        }
+        //            if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+        //            {
+        //                Debug.LogFormat("Saving camera position {0}", camNumber);
+        //                SaveCameraPosition(camNumber);
+        //            }
+        //            else
+        //            {
+        //                Debug.LogFormat("Switching to camera position {0}", camNumber);
+        //                LoadCameraPosition(camNumber);
+        //            }
+        //        }
+        //    }
+        //}
     }
 }

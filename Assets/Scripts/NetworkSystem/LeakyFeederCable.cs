@@ -21,13 +21,13 @@ public class LeakyFeederCable : MonoBehaviour {
     List<int> _triList;
     List<int> _centerIndexes;
 
-    private void Update()
-    {
-        if (Input.GetKeyUp(KeyCode.F1))
-        {
-            VisualizeField();            
-        }
-    }
+    //private void Update()
+    //{
+    //    if (Input.GetKeyUp(KeyCode.F1))
+    //    {
+    //        VisualizeField();            
+    //    }
+    //}
 
 
     private void VisualizeField()

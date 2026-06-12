@@ -23,6 +23,8 @@ public class SpecatorViewController : MonoBehaviour
     private bool _mineMapsDisplayed = false;
     //private Dictionary<int, Transform> _playerPositions;
 
+    private InputActionEventManager _inputActions = new InputActionEventManager();
+
     void Start()
     {
         if (NetworkManager == null)
@@ -40,6 +42,38 @@ public class SpecatorViewController : MonoBehaviour
         if (DirectionalLight != null)
             _directionalLight = DirectionalLight.GetComponent<Light>();
 
+        _inputActions.RegisterPerformedHandler("ShowSpectatorMap", (context) => 
+        {
+            ShowMineMaps(!_mineMapsDisplayed);
+        });
+
+        _inputActions.RegisterPerformedHandler("SpectatorShowMap1", (context) =>
+        {
+            ToggleMineMap(0);
+        });
+
+        _inputActions.RegisterPerformedHandler("SpectatorShowMap2", (context) =>
+        {
+            ToggleMineMap(1);
+        });
+
+        _inputActions.RegisterPerformedHandler("SpectatorToggleDirectionalLighting", (context) =>
+        {
+            if (DirectionalLight != null && _directionalLight != null)
+            {
+                DirectionalLight.SetActive(!DirectionalLight.activeSelf);
+                if (DirectionalLight.activeSelf && !_directionalLight.enabled)
+                {
+                    _directionalLight.enabled = true;
+                }
+            }
+        });
+    }
+
+    private void OnDestroy()
+    {
+        if (_inputActions != null)
+            _inputActions.Dispose();
     }
 
     private void OnClientIDAssigned(int obj)
@@ -84,33 +118,33 @@ public class SpecatorViewController : MonoBehaviour
         MineMaps[index].SetActive(!MineMaps[index].activeSelf);
     }
 
-    void Update()
-    {
-        if (UseControlKey && !Input.GetKey(KeyCode.LeftControl) && !Input.GetKey(KeyCode.RightControl))
-            return;
+    //void Update()
+    //{
+    //    if (UseControlKey && !Input.GetKey(KeyCode.LeftControl) && !Input.GetKey(KeyCode.RightControl))
+    //        return;
 
-        if (Input.GetKeyDown(EnableSpectatorMapHotkey))
-        {
-            ShowMineMaps(!_mineMapsDisplayed);
-        }
+    //    if (Input.GetKeyDown(EnableSpectatorMapHotkey))
+    //    {
+    //        ShowMineMaps(!_mineMapsDisplayed);
+    //    }
 
-        if (Input.GetKeyDown(Map1Hotkey))
-        {
-            ToggleMineMap(0);
-        }
+    //    if (Input.GetKeyDown(Map1Hotkey))
+    //    {
+    //        ToggleMineMap(0);
+    //    }
 
-        if (Input.GetKeyDown(Map2Hotkey))
-        {
-            ToggleMineMap(1);
-        }
+    //    if (Input.GetKeyDown(Map2Hotkey))
+    //    {
+    //        ToggleMineMap(1);
+    //    }
 
-        if (DirectionalLight != null && _directionalLight != null && Input.GetKeyDown(EnableSpectatorDirectionalLightHotkey))
-        {
-            DirectionalLight.SetActive(!DirectionalLight.activeSelf);
-            if (DirectionalLight.activeSelf && !_directionalLight.enabled)
-            {
-                _directionalLight.enabled = true;
-            }
-        }
-    }
+    //    if (DirectionalLight != null && _directionalLight != null && Input.GetKeyDown(EnableSpectatorDirectionalLightHotkey))
+    //    {
+    //        DirectionalLight.SetActive(!DirectionalLight.activeSelf);
+    //        if (DirectionalLight.activeSelf && !_directionalLight.enabled)
+    //        {
+    //            _directionalLight.enabled = true;
+    //        }
+    //    }
+    //}
 }

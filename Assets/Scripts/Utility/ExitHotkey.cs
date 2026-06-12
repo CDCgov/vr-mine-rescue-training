@@ -17,22 +17,22 @@ public class ExitHotkey : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        if  (Input.GetKeyDown(ExitKey))
-        {
-            //Application.Quit();
-            _keyHeld = true;
-            _targetTime = Time.time + HoldTime;
-        }
-        if (Input.GetKeyUp(ExitKey))
-        {
-            _keyHeld = false;
-        }
+    //void Update()
+    //{
+    //    if  (Input.GetKeyDown(ExitKey))
+    //    {
+    //        //Application.Quit();
+    //        _keyHeld = true;
+    //        _targetTime = Time.time + HoldTime;
+    //    }
+    //    if (Input.GetKeyUp(ExitKey))
+    //    {
+    //        _keyHeld = false;
+    //    }
 
-        if (_keyHeld && Time.time > _targetTime)
-        {
-            Application.Quit();
-        }
-    }
+    //    if (_keyHeld && Time.time > _targetTime)
+    //    {
+    //        Application.Quit();
+    //    }
+    //}
 }

@@ -162,13 +162,13 @@ public class MineSegNavTest : MonoBehaviour
     void Update () 
     {
 
-        if (RestartOnKeypress)
-        {
-            if (Input.GetKeyDown(RestartKey))
-            {
-                Restart();
-            }
-        }
+        //if (RestartOnKeypress)
+        //{
+        //    if (Input.GetKeyDown(RestartKey))
+        //    {
+        //        Restart();
+        //    }
+        //}
 
         if (_destSegment == null)
             return;

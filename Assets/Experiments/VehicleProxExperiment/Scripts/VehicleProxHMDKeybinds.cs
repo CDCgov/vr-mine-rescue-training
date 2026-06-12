@@ -18,7 +18,7 @@ public class VehicleProxHMDKeybinds : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        /*
         if (Input.GetKeyDown(KeyCode.X))
         {
             Time.timeScale = 1;
@@ -46,5 +46,6 @@ public class VehicleProxHMDKeybinds : MonoBehaviour
             ExperimentManager.TerminateExperiment();
             ExperimentManager.CCLoadExperiment("VP_HMD");
         }
+        */
     }
 }

@@ -10,7 +10,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.Rendering;
-
+using UnityEngine.InputSystem;
 
 // TODO split this out into a controller and factory methods so UI can later control the factory
 public class ScenarioSaveLoad : MonoBehaviour
@@ -157,6 +157,8 @@ public class ScenarioSaveLoad : MonoBehaviour
 
     private string _workingScenarioName = null;
     private bool _loadInProgress = false;
+
+    private InputAction _actionSceneLightingToggle;
 
     public string WorkingScenarioName
     {
@@ -361,6 +363,11 @@ public class ScenarioSaveLoad : MonoBehaviour
 
         if (_scenePlacer == null)
             _scenePlacer = Placer.GetDefault();
+
+        if (InputSystem.actions.TryFindAction("SceneLightingToggle", out _actionSceneLightingToggle))
+        {
+            _actionSceneLightingToggle.performed += OnActionSceneLightingToggle;
+        }
     }
 
     private void OnEnable()
@@ -376,6 +383,15 @@ public class ScenarioSaveLoad : MonoBehaviour
     private void OnDestroy()
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
+
+        if (_actionSceneLightingToggle != null)
+            _actionSceneLightingToggle.performed -= OnActionSceneLightingToggle;
+    }
+
+    private void OnActionSceneLightingToggle(InputAction.CallbackContext context)
+    {
+        if (IsScenarioEditor)
+            EnableSceneLighting(!_sceneLightingEnabled);
     }
 
     public string GetScenarioFilePath()
@@ -898,11 +914,12 @@ public class ScenarioSaveLoad : MonoBehaviour
                 return;
         }
 
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            if (IsScenarioEditor)
-                EnableSceneLighting(!_sceneLightingEnabled);
-        }
+        //if (Input.GetKeyDown(KeyCode.L))
+        //if (_actionSceneLightingToggle?.WasPressedThisFrame() == true)
+        //{
+        //    if (IsScenarioEditor)
+        //        EnableSceneLighting(!_sceneLightingEnabled);
+        //}
     }
 
     //public string GetWorkingScenarioName()

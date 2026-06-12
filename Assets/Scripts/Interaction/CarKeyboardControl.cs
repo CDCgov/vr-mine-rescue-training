@@ -14,34 +14,34 @@ public class CarKeyboardControl : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        float steering = 0;
-        float accel = 0;
-        float braking = 0;
+    //void Update()
+    //{
+    //    float steering = 0;
+    //    float accel = 0;
+    //    float braking = 0;
 
-        if (Input.GetKey(KeyCode.W))
-        {
-            accel = 1;
-        }
-        else if (Input.GetKey(KeyCode.S))
-        {
-            accel = -1;
-        }
-        else
-        {
-            braking = -1;
-        }
+    //    if (Input.GetKey(KeyCode.W))
+    //    {
+    //        accel = 1;
+    //    }
+    //    else if (Input.GetKey(KeyCode.S))
+    //    {
+    //        accel = -1;
+    //    }
+    //    else
+    //    {
+    //        braking = -1;
+    //    }
 
-        if (Input.GetKey(KeyCode.A))
-        {
-            steering = -15;
-        }
-        else if (Input.GetKey(KeyCode.D))
-        {
-            steering = 15;
-        }
+    //    if (Input.GetKey(KeyCode.A))
+    //    {
+    //        steering = -15;
+    //    }
+    //    else if (Input.GetKey(KeyCode.D))
+    //    {
+    //        steering = 15;
+    //    }
 
-        //_carControl.Move(steering, accel, braking, 0);
-    }
+    //    //_carControl.Move(steering, accel, braking, 0);
+    //}
 }

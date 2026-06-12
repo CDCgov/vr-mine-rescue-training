@@ -14,16 +14,16 @@ public class SimpleAICarInitialCondition : MonoBehaviour
         //myCar.ContinuousMove(0, 1, 0, 0, true);
     }
 
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            Rigidbody rb = gameObject.GetComponent<Rigidbody>();
-            Debug.Log(rb.angularVelocity);
-            //Vector3 dir = -gameObject.transform.right;
-            Debug.Log(rb.linearVelocity);
-        }
-    }
+    //void Update()
+    //{
+    //    if (Input.GetKeyDown(KeyCode.Alpha1))
+    //    {
+    //        Rigidbody rb = gameObject.GetComponent<Rigidbody>();
+    //        Debug.Log(rb.angularVelocity);
+    //        //Vector3 dir = -gameObject.transform.right;
+    //        Debug.Log(rb.linearVelocity);
+    //    }
+    //}
 
     public void Restart()
     {

@@ -632,13 +632,13 @@ public class ExternalAssetManager : SceneManagerBase
 
 #if UNITY_EDITOR
 
-    private void Update()
-    {
-        if (Input.GetKey(KeyCode.M) && Input.GetKeyDown(KeyCode.Backslash)) 
-        {
-            SaveMetadataFiles();
-        }
-    }
+    //private void Update()
+    //{
+    //    if (Input.GetKey(KeyCode.M) && Input.GetKeyDown(KeyCode.Backslash)) 
+    //    {
+    //        SaveMetadataFiles();
+    //    }
+    //}
 
 #endif
 

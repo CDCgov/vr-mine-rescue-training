@@ -615,12 +615,12 @@ public class LoadableAssetManager : SceneManagerBase
                 continue;
             }
 
-            if (taskFailureCount > 0)
-            {
-                Debug.LogError($"{taskFailureCount} load tasks failed");
-            }
-
             _loadables.Add(asset.AssetID, asset);
+        }
+
+        if (taskFailureCount > 0)
+        {
+            Debug.LogError($"{taskFailureCount} load tasks failed");
         }
 
         sw.Stop();

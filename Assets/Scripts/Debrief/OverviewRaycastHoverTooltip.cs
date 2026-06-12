@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 using TMPro;
 
 public class OverviewRaycastHoverTooltip : MonoBehaviour
@@ -32,7 +33,7 @@ public class OverviewRaycastHoverTooltip : MonoBehaviour
     void Update()
     {
         RaycastHit hit = new RaycastHit();
-        Ray ray = OverviewCamera.ScreenPointToRay(Input.mousePosition);
+        Ray ray = OverviewCamera.ScreenPointToRay(Mouse.current.GetPositionVec3());
         LayerMask mask = (1 << 9);
         LayerMask mas2 = (1 << 21);
         LayerMask mask3 = (1 << 22);
@@ -44,9 +45,9 @@ public class OverviewRaycastHoverTooltip : MonoBehaviour
         RaycastHit priortyHit = new RaycastHit();
         bool priority = false;
         int priorityVal = 1000000;
-        if ((Input.GetMouseButtonDown(0)))
+        if (Mouse.current.leftButton.wasPressedThisFrame)
         {
-            _mouseDownPos = Input.mousePosition;
+            _mouseDownPos = Mouse.current.GetPositionVec3();
             //Debug.Log(_mouseDownPos);
         }
         foreach (RaycastHit raycastHit in hits)
@@ -152,8 +153,8 @@ public class OverviewRaycastHoverTooltip : MonoBehaviour
 
 
 
-            if (Input.GetMouseButtonUp(0) && (Input.mousePosition == _mouseDownPos) && 
-                RectTransformUtility.RectangleContainsScreenPoint(OverviewRect, Input.mousePosition))
+            if (Mouse.current.leftButton.wasReleasedThisFrame && (Mouse.current.GetPositionVec3() == _mouseDownPos) && 
+                RectTransformUtility.RectangleContainsScreenPoint(OverviewRect, Mouse.current.GetPositionVec3()))
             {
 
 

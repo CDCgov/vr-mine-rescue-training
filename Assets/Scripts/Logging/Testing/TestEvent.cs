@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Obsolete]
 public class TestEvent : MonoBehaviour {
 
     // Use this for initialization
@@ -10,10 +11,10 @@ public class TestEvent : MonoBehaviour {
     }
     
     // Update is called once per frame
-    void Update () {
-        if (Input.GetKeyUp(KeyCode.LeftAlt))
-        {
+    //void Update () {
+    //    if (Input.GetKeyUp(KeyCode.LeftAlt))
+    //    {
 
-        }
-    }
+    //    }
+    //}
 }

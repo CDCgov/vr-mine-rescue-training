@@ -694,12 +694,12 @@ public class VehicleExperiment : MonoBehaviour
 
 	void Update()
 	{
-		//If we're in a condition where we are waiting for user input, flag it back to allow respawning, mostly for demos
-		if (Timer.GetTime() >= 25 && _UserInputAwait) 
-		{
-			if(Input.GetKeyUp(KeyCode.R))
-				_UserInputAwait = false;
-		}
+		////If we're in a condition where we are waiting for user input, flag it back to allow respawning, mostly for demos
+		//if (Timer.GetTime() >= 25 && _UserInputAwait) 
+		//{
+		//	if(Input.GetKeyUp(KeyCode.R))
+		//		_UserInputAwait = false;
+		//}
 
 		//Clear frames when the level loads
 		if(_WaitForFrameBuffer && Time.frameCount > (_CurrentFrame + FrameBuffer))

@@ -87,34 +87,34 @@ public class HandheldRadio : MonoBehaviour {
                 _trackingDelay = Time.time + 1;
             }
         }
-        if (Input.GetKeyUp(KeyCode.Alpha9))
-        {
-            Debug.Log(_netSys.GetNodeType(0));
-        }
-        if (Input.GetKeyUp(KeyCode.Alpha0))
-        {
-            if (_lastNodeInRange != null)
-            {
-                if (_lastNodeInRange.InRange(transform.position))
-                {
+        //if (Input.GetKeyUp(KeyCode.Alpha9))
+        //{
+        //    Debug.Log(_netSys.GetNodeType(0));
+        //}
+        //if (Input.GetKeyUp(KeyCode.Alpha0))
+        //{
+        //    if (_lastNodeInRange != null)
+        //    {
+        //        if (_lastNodeInRange.InRange(transform.position))
+        //        {
 
-                }
-                else
-                {
-                    foreach (NetworkNode node in _netSys.GetAllNodesOfID(NetworkID))
-                    {
+        //        }
+        //        else
+        //        {
+        //            foreach (NetworkNode node in _netSys.GetAllNodesOfID(NetworkID))
+        //            {
 
-                    }
-                }
-            }
-            else
-            {
-                foreach (NetworkNode node in _netSys.GetAllNodesOfID(NetworkID))
-                {
-                    Debug.Log(node.GetType());
-                }
-            }
-        }
+        //            }
+        //        }
+        //    }
+        //    else
+        //    {
+        //        foreach (NetworkNode node in _netSys.GetAllNodesOfID(NetworkID))
+        //        {
+        //            Debug.Log(node.GetType());
+        //        }
+        //    }
+        //}
     }
 
     void MessagePacket()

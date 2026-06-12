@@ -175,14 +175,14 @@ public class MultiUserActorHost : ActorHost
             //_animWalkSpeed = InputMoveVector.magnitude;
 
             //Vector3 motion = InputMoveVector * Speed * Time.deltaTime;
-            if (Input.GetButton("Fire1"))
-            {
-                Vector3 moveVector = _steeringCap.transform.forward;
-                moveVector.y = 0;
-                Vector3 motion = moveVector * Speed * Time.deltaTime;
-                motion = transform.rotation * motion;
-                transform.position += motion;
-            }
+            //if (Input.GetButton("Fire1"))
+            //{
+            //    Vector3 moveVector = _steeringCap.transform.forward;
+            //    moveVector.y = 0;
+            //    Vector3 motion = moveVector * Speed * Time.deltaTime;
+            //    motion = transform.rotation * motion;
+            //    transform.position += motion;
+            //}
             //if (_vicHost != null)
             //{
             //    _vicHost.UpdateVicon();
@@ -340,25 +340,25 @@ public class MultiUserActorHost : ActorHost
         ShowBody(!bEnable); // hide body when in first-person camera mode
     }
 
-    private void GamepadAim()
-    {
-        float h = Input.GetAxis("AimHorizontal");
-        float v = Input.GetAxis("AimVertical") * 0.45f;
+    //private void GamepadAim()
+    //{
+    //    float h = Input.GetAxis("AimHorizontal");
+    //    float v = Input.GetAxis("AimVertical") * 0.45f;
 
-        //Debug.LogFormat("{0:F2}, {1:F2}", h, v);
+    //    //Debug.LogFormat("{0:F2}, {1:F2}", h, v);
 
-        Vector3 currentRot = HeadTransform.rotation.eulerAngles;
+    //    Vector3 currentRot = HeadTransform.rotation.eulerAngles;
 
-        float oldpitch = currentRot.x;
+    //    float oldpitch = currentRot.x;
 
-        currentRot.x += v * AimSpeed * Time.deltaTime;
-        if (currentRot.x > 25 && currentRot.x < 335)
-            currentRot.x = oldpitch;
-        currentRot.y += h * AimSpeed * Time.deltaTime;
-        currentRot.z = 0;
+    //    currentRot.x += v * AimSpeed * Time.deltaTime;
+    //    if (currentRot.x > 25 && currentRot.x < 335)
+    //        currentRot.x = oldpitch;
+    //    currentRot.y += h * AimSpeed * Time.deltaTime;
+    //    currentRot.z = 0;
 
-        HeadTransform.rotation = Quaternion.Euler(currentRot);
-    }
+    //    HeadTransform.rotation = Quaternion.Euler(currentRot);
+    //}
 
     protected override void ShowBody(bool bShow)
     {
@@ -565,10 +565,10 @@ public class MultiUserActorHost : ActorHost
                     Hands[capIndex].position = hit.point + hit.normal.normalized * 0.01f;
                     //HandSprite.transform.Translate(new Vector3(0, 0, 0.001f), Space.Self);
                 }
-                if (Input.GetButtonUp("Fire2")) //UPDATE TO WHATEVER INTERACTION DEVICE WE CHOOSE?
-                {
-                    inter.Interact(this);
-                }
+                //if (Input.GetButtonUp("Fire2")) //UPDATE TO WHATEVER INTERACTION DEVICE WE CHOOSE?
+                //{
+                //    inter.Interact(this);
+                //}
             }
             else
             {

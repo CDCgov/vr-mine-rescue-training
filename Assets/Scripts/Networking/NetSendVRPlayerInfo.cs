@@ -955,17 +955,17 @@ public class NetSendVRPlayerInfo : MonoBehaviour
 
         CheckControllerInput(_leftDevice);
 
-        if (Input.GetKeyDown(KeyCode.Backslash))
-        {
-            Debug.Log("Computing Calibration Offset");
-            RecomputeCalibrationOffset(VRNCalibrationSource.CalRightController);
-        }
+        //if (Input.GetKeyDown(KeyCode.Backslash))
+        //{
+        //    Debug.Log("Computing Calibration Offset");
+        //    RecomputeCalibrationOffset(VRNCalibrationSource.CalRightController);
+        //}
 
-        if (Input.GetKeyDown(KeyCode.Backspace))
-        {
-            Debug.Log("Setting floor calibration");
-            SetFloorCalibration(VRNCalibrationSource.CalRightController);
-        }
+        //if (Input.GetKeyDown(KeyCode.Backspace))
+        //{
+        //    Debug.Log("Setting floor calibration");
+        //    SetFloorCalibration(VRNCalibrationSource.CalRightController);
+        //}
 
         if (PlayerManager.CurrentPlayer != null && RightControllerTransform != null)
             PlayerManager.CurrentPlayer.SampleControllerStability(RightControllerTransform.position, 90);

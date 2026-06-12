@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 
 public class ResearcherCamController : MonoBehaviour, IInputTarget
 {
@@ -36,6 +37,8 @@ public class ResearcherCamController : MonoBehaviour, IInputTarget
 
     private Dictionary<string, Transform> _mocapLights;
 
+    private InputAction _actionCameraFastMove;
+    private InputAction _actionCameraSlowMove;
 
     public ResearcherCamController()
     {
@@ -92,6 +95,9 @@ public class ResearcherCamController : MonoBehaviour, IInputTarget
             SystemManager = SystemManager.GetDefault();
         if (MocapManager == null)
             MocapManager = MocapManager.GetDefault();
+
+        _actionCameraFastMove = InputSystem.actions.FindAction("CameraFastMove");
+        _actionCameraSlowMove = InputSystem.actions.FindAction("CameraSlowMove");
 
         SystemManager.MainCameraChanged += () =>
         {
@@ -152,12 +158,12 @@ public class ResearcherCamController : MonoBehaviour, IInputTarget
 
         float maxSpeed = MoveSpeed;
 
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (_actionCameraFastMove?.IsPressed() == true)
         {
             maxSpeed = FastMoveSpeed;
         }
 
-        if (Input.GetKey(KeyCode.LeftAlt))
+        if (_actionCameraSlowMove?.IsPressed() == false)
         {
             maxSpeed *= 0.33f;
         }
@@ -331,16 +337,16 @@ public class ResearcherCamController : MonoBehaviour, IInputTarget
     }
 
 
-    private HangingCable _cable;
+    //private HangingCable _cable;
 
     public void ProcessCustomInput()
     {
         if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject())
             return;
 
-        if (Input.GetMouseButtonDown(0))
+        if (Mouse.current.leftButton.wasPressedThisFrame)
         {
-            Ray mouseRay = _camera.ScreenPointToRay(Input.mousePosition);
+            Ray mouseRay = _camera.ScreenPointToRay(Mouse.current.GetPositionVec3());
 
             RaycastHit hit;
 
@@ -386,112 +392,112 @@ public class ResearcherCamController : MonoBehaviour, IInputTarget
         if (EventSystem.current != null && EventSystem.current.currentSelectedGameObject != null)
             return;
 
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            Ray mouseRay = _camera.ScreenPointToRay(Input.mousePosition);
+        //if (Input.GetKeyDown(KeyCode.Q))
+        //{
+        //    Ray mouseRay = _camera.ScreenPointToRay(Input.mousePosition);
 
-            RaycastHit hit;
-            int mask = LayerMask.GetMask("Floor", "Roof", "Walls");
+        //    RaycastHit hit;
+        //    int mask = LayerMask.GetMask("Floor", "Roof", "Walls");
 
-            if (Physics.Raycast(mouseRay, out hit, 100.0f, mask, QueryTriggerInteraction.Ignore))
-            {
-                Debug.LogFormat("Researcher Clicked {0}", hit.collider.name);
+        //    if (Physics.Raycast(mouseRay, out hit, 100.0f, mask, QueryTriggerInteraction.Ignore))
+        //    {
+        //        Debug.LogFormat("Researcher Clicked {0}", hit.collider.name);
 
-                if (_cable == null)
-                {
-                    GameObject go = new GameObject();
-                    go.name = "HangingCableTest";
+        //        if (_cable == null)
+        //        {
+        //            GameObject go = new GameObject();
+        //            go.name = "HangingCableTest";
 
-                    MeshFilter mf = go.AddComponent<MeshFilter>();
-                    MeshRenderer mr = go.AddComponent<MeshRenderer>();
+        //            MeshFilter mf = go.AddComponent<MeshFilter>();
+        //            MeshRenderer mr = go.AddComponent<MeshRenderer>();
 
-                    _cable = go.AddComponent<HangingCable>();
-                    _cable.GeneratedMesh = new Mesh();
-                    mf.sharedMesh = _cable.GeneratedMesh;
+        //            _cable = go.AddComponent<HangingCable>();
+        //            _cable.GeneratedMesh = new Mesh();
+        //            mf.sharedMesh = _cable.GeneratedMesh;
 
-                }
+        //        }
 
-                _cable.AppendNode(hit.point, true);
-                _cable.RegenerateMesh();
-            }
-        }
+        //        _cable.AppendNode(hit.point, true);
+        //        _cable.RegenerateMesh();
+        //    }
+        //}
 
-        if (Input.GetKeyDown(KeyCode.O))
-        {
-            var audioAlert = GetComponent<ProxAudioAlert>();
-            var proxMWC = GetComponent<ProxMWC>();
+        //if (Input.GetKeyDown(KeyCode.O))
+        //{
+        //    var audioAlert = GetComponent<ProxAudioAlert>();
+        //    var proxMWC = GetComponent<ProxMWC>();
 
-            if (audioAlert != null && proxMWC != null)
-            {
-                if (proxMWC.ProxSystemID == 0)
-                {
-                    proxMWC.ProxSystemID = 100;
-                    audioAlert.SetProxZone(ProxZone.GreenZone);
-                }
-                else
-                {
-                    proxMWC.ProxSystemID = 0;
-                }
-            }
+        //    if (audioAlert != null && proxMWC != null)
+        //    {
+        //        if (proxMWC.ProxSystemID == 0)
+        //        {
+        //            proxMWC.ProxSystemID = 100;
+        //            audioAlert.SetProxZone(ProxZone.GreenZone);
+        //        }
+        //        else
+        //        {
+        //            proxMWC.ProxSystemID = 0;
+        //        }
+        //    }
 
-        }
+        //}
 
         //if (Input.GetKey(KeyCode.C))
-        if (!Input.GetKey(KeyCode.LeftAlt) && !Input.GetKey(KeyCode.RightAlt))
-        {
-            int startKey = (int)KeyCode.Alpha0;
-            int endKey = (int)KeyCode.Alpha9;
+        //if (!Input.GetKey(KeyCode.LeftAlt) && !Input.GetKey(KeyCode.RightAlt))
+        //{
+        //    int startKey = (int)KeyCode.Alpha0;
+        //    int endKey = (int)KeyCode.Alpha9;
 
-            for (int i = startKey; i <= endKey; i++)
-            {
-                if (Input.GetKeyDown((KeyCode)i))
-                {
-                    int camNumber = i - startKey;
+        //    for (int i = startKey; i <= endKey; i++)
+        //    {
+        //        if (Input.GetKeyDown((KeyCode)i))
+        //        {
+        //            int camNumber = i - startKey;
 
-                    if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
-                    {
-                        Debug.LogFormat("Saving camera position {0}", camNumber);
-                        SaveCameraPosition(camNumber);
-                    }
-                    else
-                    {
-                        Debug.LogFormat("Switching to camera position {0}", camNumber);
-                        LoadCameraPosition(camNumber);
-                    }
+        //            if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+        //            {
+        //                Debug.LogFormat("Saving camera position {0}", camNumber);
+        //                SaveCameraPosition(camNumber);
+        //            }
+        //            else
+        //            {
+        //                Debug.LogFormat("Switching to camera position {0}", camNumber);
+        //                LoadCameraPosition(camNumber);
+        //            }
 
 
 
-                    // var camParent = GameObject.Find("SceneHighlightCams");
-                    // if (camParent == null)
-                    // 	break;
+        //            // var camParent = GameObject.Find("SceneHighlightCams");
+        //            // if (camParent == null)
+        //            // 	break;
 
-                    // Cinemachine.CinemachineVirtualCamera vcam;
+        //            // Cinemachine.CinemachineVirtualCamera vcam;
 
-                    // //deactivate all cams
-                    // foreach (Transform child in camParent.transform)
-                    // {
-                    // 	vcam = child.GetComponent<Cinemachine.CinemachineVirtualCamera>();
-                    // 	if (vcam.enabled)
-                    // 	{
-                    // 		//copy position to research cam position
-                    // 		transform.position = Camera.main.transform.position;
-                    // 		transform.rotation = Camera.main.transform.rotation;
-                    // 	}
-                    // 	vcam.enabled = false;
-                    // }
+        //            // //deactivate all cams
+        //            // foreach (Transform child in camParent.transform)
+        //            // {
+        //            // 	vcam = child.GetComponent<Cinemachine.CinemachineVirtualCamera>();
+        //            // 	if (vcam.enabled)
+        //            // 	{
+        //            // 		//copy position to research cam position
+        //            // 		transform.position = Camera.main.transform.position;
+        //            // 		transform.rotation = Camera.main.transform.rotation;
+        //            // 	}
+        //            // 	vcam.enabled = false;
+        //            // }
 
-                    // if (camNumber <= 0)
-                    // 	break;
-                    // camNumber--;
+        //            // if (camNumber <= 0)
+        //            // 	break;
+        //            // camNumber--;
 
-                    // if (camNumber >= camParent.transform.childCount)
-                    // 	break;
+        //            // if (camNumber >= camParent.transform.childCount)
+        //            // 	break;
 
-                    // vcam = camParent.transform.GetChild(camNumber).GetComponent<Cinemachine.CinemachineVirtualCamera>();
-                    // vcam.enabled = true;
-                    // break;
-                }
-            }
-        }
+        //            // vcam = camParent.transform.GetChild(camNumber).GetComponent<Cinemachine.CinemachineVirtualCamera>();
+        //            // vcam.enabled = true;
+        //            // break;
+        //        }
+        //    }
+        //}
     }
 }

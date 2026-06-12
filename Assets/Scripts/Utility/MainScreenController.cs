@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 
 public class MainScreenController : MonoBehaviour
 {
@@ -15,6 +16,8 @@ public class MainScreenController : MonoBehaviour
     //ScenarioSelection 6
     public List<GameObject> RootMenus;
     public SceneConfiguration SceneConfigurations;
+
+    private InputAction _actionLoadEditorScene;
 
     public void BackToMainMenu()
     {
@@ -98,12 +101,35 @@ public class MainScreenController : MonoBehaviour
         Application.Quit();
     }
 
+    void Start()
+    {
+        _actionLoadEditorScene = InputSystem.actions.FindAction("LoadExternalAssetsEditor");
+        if (_actionLoadEditorScene != null)
+        {
+            _actionLoadEditorScene.performed += OnActionLoadExternalAssetsEditor;
+        }
+    }
+
+    void OnDestroy()
+    {
+        if (_actionLoadEditorScene != null)
+        {
+            _actionLoadEditorScene.performed -= OnActionLoadExternalAssetsEditor;
+        }
+    }
+
+    private void OnActionLoadExternalAssetsEditor(InputAction.CallbackContext context)
+    {
+        SceneManager.LoadScene("ExternalAssetsEditorTest");
+    }
+
     void Update()
     {
         //temporary hotkey for testing external asset viewer/editor
-        if (Input.GetKeyDown(KeyCode.E) && Input.GetKey(KeyCode.LeftAlt) && Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.LeftControl))
-        {
-            SceneManager.LoadScene("ExternalAssetsEditorTest");
-        }
+        //if (Input.GetKeyDown(KeyCode.E) && Input.GetKey(KeyCode.LeftAlt) && Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.LeftControl))
+        //if (_actionLoadEditorScene.WasPressedThisFrame())
+        //{
+        //    SceneManager.LoadScene("ExternalAssetsEditorTest");
+        //}
     }
 }

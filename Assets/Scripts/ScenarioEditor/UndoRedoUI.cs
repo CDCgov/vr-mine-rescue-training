@@ -11,15 +11,15 @@ public class UndoRedoUI : MonoBehaviour
     }
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.LeftControl) && Input.GetKeyDown(KeyCode.Z))
-        {
-            PerformUndoAction();
-        }
+        //if(Input.GetKeyDown(KeyCode.LeftControl) && Input.GetKeyDown(KeyCode.Z))
+        //{
+        //    PerformUndoAction();
+        //}
 
-        if (Input.GetKeyDown(KeyCode.LeftControl) && Input.GetKeyDown(KeyCode.Y))
-        {
-            PerformRedoAction();
-        }
+        //if (Input.GetKeyDown(KeyCode.LeftControl) && Input.GetKeyDown(KeyCode.Y))
+        //{
+        //    PerformRedoAction();
+        //}
     }
 
     public void PerformUndoAction()
