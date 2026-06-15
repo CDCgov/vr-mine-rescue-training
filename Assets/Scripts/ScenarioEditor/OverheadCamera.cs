@@ -111,10 +111,10 @@ public class OverheadCamera : CameraLogic
 
     void CheckKeyboardShortcuts()
     {
-        //if (Input.GetKeyDown(KeyCode.Space))
-        //{
-        //    ToggleOrthographic();
-        //}
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            ToggleOrthographic();
+        }
     }
 
     void ForceMovePivot(Vector3 position)

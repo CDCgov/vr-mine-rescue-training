@@ -99,7 +99,7 @@ public class Placer : LayerControlledClass
 
     public bool IsInputLocked
     {
-        get => inputLocked;
+        get => _inputLocked;
     }
 
     public ObjectInfo SelectedObjectInfo
@@ -153,7 +153,7 @@ public class Placer : LayerControlledClass
     //private List<PlacerGizmo> activeGizmos = new List<PlacerGizmo>();
     private PlacerGizmo selectedGizmo;        // The gizmo currently selected/in use by the user
 
-    private bool inputLocked;
+    private bool _inputLocked;
     //private bool _usingPlacementOverride = false;
 
     //private RaycastHit[] _raycastHits;
@@ -226,6 +226,8 @@ public class Placer : LayerControlledClass
     private Vector3 prior;
 
     private List<PlacablePrefab> _sceneObjects = new List<PlacablePrefab>();
+
+    private InputActionEventManager _inputEvents = new InputActionEventManager();
 
     LayerManager.EditorLayer _currentLayer;
     GizmoOrder CreateGizmoRequest(GizmoKind kind, GizmoAxis axis)
@@ -302,17 +304,81 @@ public class Placer : LayerControlledClass
 
         }
 
-        inputTargetController = FindObjectOfType<InputTargetController>();
+        inputTargetController = FindFirstObjectByType<InputTargetController>();
 
         //LayerManager.Instance.layerChanged += LayerChanged;
         inputTargetController.onNewInputTarget += OnNewInputTarget;
 
         //DeactivateResizeGizmos();
         DeactivateGizmos();
+
+        _inputEvents.RegisterPerformedHandler("GizmosOff", (context) =>
+        {
+            if (!_inputLocked)
+                SwitchActiveGizmos(GizmoKind.None);
+        });
+
+        _inputEvents.RegisterPerformedHandler("TranslateGizmo", (context) =>
+        {
+            if (!_inputLocked)
+                SwitchActiveGizmos(GizmoKind.Pan);
+        });
+
+        _inputEvents.RegisterPerformedHandler("RotateGizmo", (context) =>
+        {
+            if (!_inputLocked)
+                SwitchActiveGizmos(GizmoKind.Rotate);
+        });
+
+        _inputEvents.RegisterPerformedHandler("ScaleGizmo", (context) =>
+        {
+            if (!_inputLocked)
+                SwitchActiveGizmos(GizmoKind.Scale);
+        });
+
+        _inputEvents.RegisterPerformedHandler("RotateObjectCW", (context) =>
+        {
+            if (!_inputLocked)
+                RotateToNextObject(true);
+        });
+
+        _inputEvents.RegisterPerformedHandler("RotateObjectCCW", (context) =>
+        {
+            if (!_inputLocked)
+                RotateToNextObject(false);
+        });
+
+        _inputEvents.RegisterPerformedHandler("DuplicateObject", (context) =>
+        {
+            if (!_inputLocked)
+                PerformDuplicate();
+        });
+
+        _inputEvents.RegisterPerformedHandler("FocusObject", (context) =>
+        {
+            if (!_inputLocked)
+                FocusSelectedObject();
+        });
+
+        _inputEvents.RegisterPerformedHandler("Cancel", (context) =>
+        {
+            if (!_inputLocked)
+                DeselectObject();
+        });
+
+        _inputEvents.RegisterPerformedHandler("Delete", (context) =>
+        {
+            if (!_inputLocked && _currentLayer != LayerManager.EditorLayer.Cables)
+                DestroySelectedObject();
+        });
     }
 
-    private void OnDestroy()
+    protected override void OnDestroy()
     {
+        base.OnDestroy();
+
+        if (_inputEvents != null)
+            _inputEvents.Dispose();
 
         inputTargetController.onNewInputTarget -= OnNewInputTarget;
         //LayerManager.Instance.layerChanged -= LayerChanged;
@@ -329,7 +395,7 @@ public class Placer : LayerControlledClass
     private void Update()
     {
         ProcessMouseInput();
-        ProcessKeyboardInput();
+        //ProcessKeyboardInput();
 
         UpdateActiveGizmos();
 
@@ -352,7 +418,7 @@ public class Placer : LayerControlledClass
         //if (_currentLayer == LayerManager.EditorLayer.Cables)
         //    return;
 
-        if (!_dragInProcess && inputLocked)
+        if (!_dragInProcess && _inputLocked)
             return; //check for mouse button up if dragging, even if input is locked
 
         //perform object raycast
@@ -380,7 +446,7 @@ public class Placer : LayerControlledClass
                 if (_selMouseClick != null)
                     selectionLocked = _selMouseClick.IsSelectionLocked;
 
-                if (!inputLocked && !selectionLocked && !_cancelSelectionClick)
+                if (!_inputLocked && !selectionLocked && !_cancelSelectionClick)
                 {
                     //scene clicked
                     SearchSceneObjects();
@@ -396,7 +462,7 @@ public class Placer : LayerControlledClass
             _cancelSelectionClick = false;
         }
 
-        if (inputLocked)
+        if (_inputLocked)
             return;
 
         if (Mouse.current.leftButton.wasPressedThisFrame)
@@ -493,69 +559,68 @@ public class Placer : LayerControlledClass
         _selMouseClick.OnScenarioEditorMouseUp(this, button, _cursorHit, _currentCursor);
     }
 
-    private void ProcessKeyboardInput()
-    {
-        return;
+    //private void ProcessKeyboardInput()
+    //{
 
-        if (inputLocked)
-            return;
+    //    if (_inputLocked)
+    //        return;
 
-        if (_allowGizmoTypeChange)
-        {
-            if (Input.GetKeyDown(KeyCode.Alpha1))
-            {
-                SwitchActiveGizmos(GizmoKind.None);
-            }
-            if (Input.GetKeyDown(KeyCode.Alpha2))
-            {
-                SwitchActiveGizmos(GizmoKind.Pan);
-            }
-            else if (Input.GetKeyDown(KeyCode.Alpha3))
-            {
-                SwitchActiveGizmos(GizmoKind.Rotate);
-            }
-            else if (Input.GetKeyDown(KeyCode.Alpha4))
-            {
-                SwitchActiveGizmos(GizmoKind.Scale);
-            }
-        }
+    //    if (_allowGizmoTypeChange)
+    //    {
+    //        if (Input.GetKeyDown(KeyCode.Alpha1))
+    //        {
+    //            SwitchActiveGizmos(GizmoKind.None);
+    //        }
+    //        if (Input.GetKeyDown(KeyCode.Alpha2))
+    //        {
+    //            SwitchActiveGizmos(GizmoKind.Pan);
+    //        }
+    //        else if (Input.GetKeyDown(KeyCode.Alpha3))
+    //        {
+    //            SwitchActiveGizmos(GizmoKind.Rotate);
+    //        }
+    //        else if (Input.GetKeyDown(KeyCode.Alpha4))
+    //        {
+    //            SwitchActiveGizmos(GizmoKind.Scale);
+    //        }
+    //    }
 
-        if (SelectedObject != null)
-        {
-            if (Input.GetKeyDown(KeyCode.Q))
-            {
-                RotateToNextObject(false);
-            }
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                RotateToNextObject(true);
-            }
+    //    if (SelectedObject != null)
+    //    {
+    //        if (Input.GetKeyDown(KeyCode.Q))
+    //        {
+    //            RotateToNextObject(false);
+    //        }
+    //        if (Input.GetKeyDown(KeyCode.E))
+    //        {
+    //            RotateToNextObject(true);
+    //        }
 
-            if((Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl)))
-            {
-                if (Input.GetKeyDown(KeyCode.D))
-                {                    
-                    PerformDuplicate();
-                }
-            }
-        }
+    //        if((Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl)))
+    //        {
+    //            if (Input.GetKeyDown(KeyCode.D))
+    //            {                    
+    //                PerformDuplicate();
+    //            }
+    //        }
+    //    }
 
 
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            FocusSelectedObject();
-        }
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            DeselectObject();
-        }
-        if (Input.GetKeyDown(KeyCode.Delete) || Input.GetKeyDown(KeyCode.Backspace))
-        {
-            if (_currentLayer != LayerManager.EditorLayer.Cables)
-                DestroySelectedObject();
-        }
+    //    if (Input.GetKeyDown(KeyCode.F))
+    //    {
+    //        FocusSelectedObject();
+    //    }
+    //    if (Input.GetKeyDown(KeyCode.Escape))
+    //    {
+    //        DeselectObject();
+    //    }
+    //    if (Input.GetKeyDown(KeyCode.Delete) || Input.GetKeyDown(KeyCode.Backspace))
+    //    {
+    //        if (_currentLayer != LayerManager.EditorLayer.Cables)
+    //            DestroySelectedObject();
+    //    }
 
-    }
+    //}
 
     private void PerformDuplicate()
     {
@@ -637,7 +702,7 @@ public class Placer : LayerControlledClass
     public void StartMouseDragFromOffScreen()
     {
         StartMouseDrag();
-        inputLocked = false;
+        _inputLocked = false;
         _objectUnderCursorAtDragStart = true;
         _dragOffScreenStart = true;
     }
@@ -1870,7 +1935,7 @@ public class Placer : LayerControlledClass
 
     void OnNewInputTarget(InputTargetController.InputTarget inputTarget)
     {
-        inputLocked = inputTarget != InputTargetController.InputTarget.Viewport;
+        _inputLocked = inputTarget != InputTargetController.InputTarget.Viewport;
     }
 }
 

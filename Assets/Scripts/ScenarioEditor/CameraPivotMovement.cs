@@ -101,7 +101,7 @@ public class CameraPivotMovement : MonoBehaviour
         {
             float zoomValue = _actionZoom.ReadValue<float>();
             Debug.Log($"CameraPivotMovement: Zoom value read {zoomValue:F2}");
-            Vector3 direction = (transform.position - Camera.main.transform.position).normalized * /*Input.mouseScrollDelta.y*/zoomValue;
+            Vector3 direction = (transform.position - Camera.main.transform.position).normalized * /*Input.mouseScrollDelta.y*/zoomValue * 10.0f;
             transform.position = new Vector3(transform.position.x + direction.x, pivotHeight, transform.position.z + direction.z);
         }
     }

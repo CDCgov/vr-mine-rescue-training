@@ -55,6 +55,8 @@ public class UIMousePanAndZoom : MonoBehaviour, IBeginDragHandler, IDragHandler,
         var delta = eventData.scrollDelta;
         //Debug.Log($"UIDrag scroll: {delta}");
 
+        float scrollDelta = Mathf.Clamp(delta.y, -1.0f, 1.0f) * 0.2f;
+
         var oldScale = Target.localScale;
         RectTransformUtility.ScreenPointToLocalPointInRectangle(Target.parent.GetComponent<RectTransform>(), 
             Mouse.current.GetPositionVec3(), null /*null for screen space overlay*/, out var bp);
@@ -66,7 +68,7 @@ public class UIMousePanAndZoom : MonoBehaviour, IBeginDragHandler, IDragHandler,
         var bpScaled = Target.localPosition - basePos;
         bpScaled.Scale(new Vector3(1.0f / oldScale.x, 1.0f / oldScale.y, 1.0f / oldScale.z));
 
-        Target.localScale *= (1.0f + delta.y * 0.2f);
+        Target.localScale *= (1.0f + scrollDelta);
         Target.localPosition = Vector3.Scale(Target.localScale, bpScaled) + basePos;
 
         //move target position so the point under the cursor doesn't move

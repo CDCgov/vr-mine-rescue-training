@@ -11,7 +11,7 @@ public class HelpMenuController : MonoBehaviour
 
     private bool _isOpen = false;
 
-    private InputActionEventManager _inputActions;
+    private InputActionEventManager _inputActions = new InputActionEventManager();
 
     // Start is called before the first frame update
     void Start()
