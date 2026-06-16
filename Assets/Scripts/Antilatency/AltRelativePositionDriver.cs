@@ -11,7 +11,8 @@ public class AltRelativePositionDriver : MonoBehaviour
     public AltPoseDriver ReferenceDriver;
     public XRNode InputDeviceNode;
     public Transform HeadTransform;
-    public InputAction ControllerPose;
+
+    public InputActionReference ControllerPose;
 
     private UnityEngine.XR.InputDevice _inputDevice;
     private Vector3 _cachedPosition;
@@ -23,29 +24,33 @@ public class AltRelativePositionDriver : MonoBehaviour
     private XRController _xrController;
     private Pose _pose;
 
+    private InputAction _actionControllerPose;
+
     // Start is called before the first frame update
     void Start()
     {
         _cachedPosition = transform.localPosition;
         _cachedRotation = Quaternion.identity;
 
-        FindXRController();
+        //FindXRController();
+
+        _actionControllerPose = ControllerPose.action;
     }
 
-    private void FindXRController()
-    {
-        switch (InputDeviceNode)
-        {
-            case XRNode.LeftHand:
-                _xrController = XRController.leftHand;
-                break;
+    //private void FindXRController()
+    //{
+    //    switch (InputDeviceNode)
+    //    {
+    //        case XRNode.LeftHand:
+    //            _xrController = XRController.leftHand;
+    //            break;
 
-            case XRNode.RightHand:
-                _xrController = XRController.rightHand;
-                break;
-        }
+    //        case XRNode.RightHand:
+    //            _xrController = XRController.rightHand;
+    //            break;
+    //    }
 
-    }
+    //}
 
     private void UpdateDevicePosition(out Vector3 pos, out Quaternion rot, out bool isTracking )
     {
@@ -58,11 +63,11 @@ public class AltRelativePositionDriver : MonoBehaviour
             return;
         }
 
-        FindXRController();
+        //FindXRController();
 
-        if (ControllerPose != null)
+        if (_actionControllerPose != null)
         {
-            var pose = ControllerPose.ReadValue<Pose>();
+            var pose = _actionControllerPose.ReadValue<PoseState>();
             pos = pose.position;
             rot = pose.rotation;
         }
