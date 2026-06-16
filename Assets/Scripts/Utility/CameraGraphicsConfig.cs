@@ -54,7 +54,48 @@ public class CameraGraphicsConfig : MonoBehaviour
         _frameMask.mask[(uint)FrameSettingsField.LODBiasMode] = true;
         _frameMask.mask[(uint)FrameSettingsField.LODBias] = true;
         _frameMask.mask[(uint)FrameSettingsField.SSAO] = true;
+        _frameMask.mask[(uint)FrameSettingsField.LitShaderMode] = true;
         _hdData.renderingPathCustomFrameSettingsOverrideMask = _frameMask;
+
+        if (config.LitShaderMode == GraphicsLitShaderMode.Forward)
+            _hdData.renderingPathCustomFrameSettings.litShaderMode = LitShaderMode.Forward;
+        else
+            _hdData.renderingPathCustomFrameSettings.litShaderMode = LitShaderMode.Deferred;
+
+        switch (config.AntiAliasingMode)
+        {
+            case AntiAliasingMode.FXAA:
+                _hdData.antialiasing = HDAdditionalCameraData.AntialiasingMode.FastApproximateAntialiasing;
+                break;
+
+            case AntiAliasingMode.TAA:
+                _hdData.antialiasing = HDAdditionalCameraData.AntialiasingMode.TemporalAntialiasing;
+                break;
+
+            case AntiAliasingMode.SMAA:
+                _hdData.antialiasing = HDAdditionalCameraData.AntialiasingMode.SubpixelMorphologicalAntiAliasing;
+                break;
+        }
+
+        switch (config.AntiAliasingQuality)
+        {
+            case AntiAliasingQuality.Low:
+                _hdData.SMAAQuality = HDAdditionalCameraData.SMAAQualityLevel.Low;
+                _hdData.TAAQuality = HDAdditionalCameraData.TAAQualityLevel.Low;
+                break;
+
+            case AntiAliasingQuality.Medium:
+                _hdData.SMAAQuality = HDAdditionalCameraData.SMAAQualityLevel.Medium;
+                _hdData.TAAQuality = HDAdditionalCameraData.TAAQualityLevel.Medium;
+                break;
+
+            case AntiAliasingQuality.High:
+                _hdData.SMAAQuality = HDAdditionalCameraData.SMAAQualityLevel.High;
+                _hdData.TAAQuality = HDAdditionalCameraData.TAAQualityLevel.High;
+                break;
+        }
+
+        
 
 
         _hdData.renderingPathCustomFrameSettings.lodBiasMode = LODBiasMode.OverrideQualitySettings;
