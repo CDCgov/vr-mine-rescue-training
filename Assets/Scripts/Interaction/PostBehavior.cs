@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PostBehavior : MonoBehaviour, IInteractableObject
+public class PostBehavior : MonoBehaviour, IInteractableObject, ISelectableObjectAction
 {
     public NetworkManager NetworkManager;
     public PlayerManager PlayerManager;
@@ -29,6 +29,7 @@ public class PostBehavior : MonoBehaviour, IInteractableObject
     private int _layerMask;
     private Vector3 _initialScale = Vector3.one;
     private bool _installed = false;
+    private bool _installedGoodRoof = true;
     private NetworkedObjectManager.NetObjData _netObjData;
     private float _grabEnableTime = -1;
 
@@ -203,6 +204,7 @@ public class PostBehavior : MonoBehaviour, IInteractableObject
 
                 PostRigidbody.isKinematic = true;
                 _installed = true;
+                _installedGoodRoof = MineUtil.IsRoofGood(hit.point);
                 RestorePostColor();
 
                 return true;
@@ -262,10 +264,13 @@ public class PostBehavior : MonoBehaviour, IInteractableObject
     private void LogPostEvent(VRNLogEventType eventType, int playerID = -1)
     {
 
-        if (playerID < 0 && PlayerManager.CurrentPlayer != null)
-        {
-            playerID = PlayerManager.CurrentPlayer.PlayerID;
-        }
+        //check roof at install position
+        //bool goodRoof = MineUtil.IsRoofGood(transform.position);
+
+        //if (playerID < 0 && PlayerManager.CurrentPlayer != null)
+        //{
+        //    playerID = PlayerManager.CurrentPlayer.PlayerID;
+        //}
 
         VRNLogEvent postEvent = new VRNLogEvent
         {
@@ -276,7 +281,7 @@ public class PostBehavior : MonoBehaviour, IInteractableObject
             ObjectType = VRNLogObjectType.Unknown,
             ObjectName = "Post",
             SourcePlayerID = playerID,
-            PositionMetadata = "",
+            PositionMetadata = _installedGoodRoof ? "Good Roof" : "Bad Roof",
         };
 
         NetworkManager.LogSessionEvent(postEvent);
@@ -412,6 +417,8 @@ public class PostBehavior : MonoBehaviour, IInteractableObject
 
     public ActivationState CanActivate => ActivationState.Unknown;
 
+    public string SelectableActionName => "Install Post";
+
     public void OnActivated(Transform interactor)
     {
         if (!ClientInstallPost())
@@ -449,5 +456,10 @@ public class PostBehavior : MonoBehaviour, IInteractableObject
     public void OnDeactivated(Transform interactor)
     {
 
+    }
+
+    public void PerformSelectableObjectAction()
+    {
+        InstallPost(0);
     }
 }
