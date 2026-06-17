@@ -25,6 +25,7 @@ public class ResizableStopping : MonoBehaviour, IScenarioEditorResizable
     public bool DoorEnabled = true;
     public MineMapSymbol SymbolWithDoor;
     public MineMapSymbol SymbolWithoutDoor;
+    public bool ShowSymbolOnMapMan = false;
 
     private MeshFilter _meshFilter;
     private Mesh _mesh;
@@ -99,7 +100,7 @@ public class ResizableStopping : MonoBehaviour, IScenarioEditorResizable
         if (SymbolWithDoor != null && SymbolWithoutDoor != null && !TryGetComponent<MineMapSymbolRenderer>(out var symbolRenderer))
         {
             symbolRenderer = gameObject.AddComponent<MineMapSymbolRenderer>();
-            symbolRenderer.ShowOnMapMan = false;
+            symbolRenderer.ShowOnMapMan = ShowSymbolOnMapMan;
             symbolRenderer.SymbolAsset = null;
             symbolRenderer.ConstantUpdate = false;
 

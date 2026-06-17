@@ -245,6 +245,7 @@ public class SessionEventManager : SceneManagerBase
                     eventData.EventData.EventType == VRNLogEventType.DmspawnObject ||
                     eventData.EventData.EventType == VRNLogEventType.MineExplosion ||
                     eventData.EventData.EventType == VRNLogEventType.Npcunconscious ||
+                    eventData.EventData.EventType == VRNLogEventType.PostInstall ||
                     eventData.EventData.EventType == VRNLogEventType.Npcdeath))
                 {
                     playerRep = dmPlayer;
@@ -786,12 +787,12 @@ public class SessionEventManager : SceneManagerBase
     {
         foreach (var data in SessionEvents.Values)
         {
-            //turn on DM events for now
-            if (data.EventData.EventData.SourcePlayerID == 0)
-            {
-                data.DBItem.EventActivate(true);
-                continue;
-            }
+            ////turn on DM events for now
+            //if (data.EventData.EventData.SourcePlayerID == 0)
+            //{
+            //    data.DBItem.EventActivate(true);
+            //    continue;
+            //}
 
             if (data.PlayerVisibilityData == null)
                 data.PlayerVisibilityData = GetPlayerVisibilityData(data.Player.PlayerID);
