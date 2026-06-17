@@ -57,6 +57,14 @@ public class CameraGraphicsConfig : MonoBehaviour
         _frameMask.mask[(uint)FrameSettingsField.LitShaderMode] = true;
         _hdData.renderingPathCustomFrameSettingsOverrideMask = _frameMask;
 
+        _hdData.allowDynamicResolution = config.EnableDynamicResolution;
+        _hdData.deepLearningSuperSamplingUseCustomQualitySettings = true;
+        _hdData.deepLearningSuperSamplingQuality = (uint)config.DLSSQuality;
+
+        //if (config.DLSSSharpening >= 0)
+        //    _hdData.deepLearningSuperSamplingSharpening = config.DLSSSharpening;
+
+
         if (config.LitShaderMode == GraphicsLitShaderMode.Forward)
             _hdData.renderingPathCustomFrameSettings.litShaderMode = LitShaderMode.Forward;
         else

@@ -24,6 +24,15 @@ public enum GraphicsLitShaderMode
     Deferred
 }
 
+public enum DLSSQuality
+{
+    Performance = 0,
+    Balanced = 1,
+    Quality = 2,
+    UltraPerformance = 3,
+    DLAA = 4
+}
+
 public class GraphicsConfig : YAMLConfig
 {    
 
@@ -48,6 +57,15 @@ public class GraphicsConfig : YAMLConfig
     [Description("Deferred or Forward rendering")]
     public GraphicsLitShaderMode LitShaderMode { get; set; }
 
+    [Description("Enable dynamic resolution upscaling using DLSS")]
+    public bool EnableDynamicResolution { get; set; }
+
+    [Description("DLSS Quality: UltraPerformance, Performance, Balanced, Quality, DLAA")]
+    public DLSSQuality DLSSQuality { get; set; }
+
+    //[Description("DLSS Sharpening level 0 to 1, -1 for default")]
+    //public float DLSSSharpening { get; set; }
+
     public override void LoadDefaults()
     {
         LODBias = 1.0f;
@@ -56,6 +74,10 @@ public class GraphicsConfig : YAMLConfig
         EnableSSAO = false;
         AntiAliasingMode = AntiAliasingMode.TAA;
         AntiAliasingQuality = AntiAliasingQuality.Medium;
+
+        EnableDynamicResolution = true;
+        DLSSQuality = DLSSQuality.Balanced;
+        //DLSSSharpening = -1;
 
         //ShadowMapResolutionLow = 512;
         //ShadowMapResolutionMedium = 1024;
