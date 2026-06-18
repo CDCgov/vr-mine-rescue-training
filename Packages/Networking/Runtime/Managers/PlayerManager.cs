@@ -942,10 +942,18 @@ public class PlayerManager : MonoBehaviour
 
     public bool TryGetCurrentPlayerPosition(out Vector3 pos)
     {
-        if (CurrentPlayer != null && CurrentPlayer.HeadTransform != null)
+        if (CurrentPlayer != null)
         {
-            pos = CurrentPlayer.HeadTransform.position;
-            return true;
+            if (CurrentPlayer.HeadTransform != null)
+            { 
+                pos = CurrentPlayer.HeadTransform.position;
+                return true;
+            }
+            else if (CurrentPlayer.RigTransform != null)
+            {
+                pos = CurrentPlayer.RigTransform.position;
+                return true;
+            }
         }
 
         pos = Vector3.zero;
