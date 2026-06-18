@@ -97,8 +97,9 @@ public class TensionedCable : MonoBehaviour
 		_maskFloor = LayerMask.GetMask("Walls", "Roof", "Floor");
 		_maskWalls = _maskFloor;
 
-		AddPathSegment(CableAnchorPoint.position);
-		AddPathSegment(CableTarget.position);
+        //AddPathSegment(CableAnchorPoint.position);
+        //AddPathSegment(CableTarget.position);
+        ResetCable();
 
         //account for scaling
         //var scale = transform.lossyScale;
@@ -124,8 +125,8 @@ public class TensionedCable : MonoBehaviour
         if (_floorPos != null)
 		    _floorPos.Clear();
 
-		AddPathSegment(CableAnchorPoint.position);
-		AddPathSegment(CableTarget.position);
+		AddPathSegment(transform.InverseTransformPoint(CableAnchorPoint.position));
+		AddPathSegment(transform.InverseTransformPoint(CableTarget.position));
 
 		RegenerateCableMesh();
 	}
@@ -137,8 +138,8 @@ public class TensionedCable : MonoBehaviour
             return;
 
 		RaycastHit hit;
-		Vector3 targetPos = CableTarget.position;
-		Vector3 pos = CableAnchorPoint.position;
+		Vector3 targetPos = transform.InverseTransformPoint(CableTarget.position);
+		Vector3 pos = transform.InverseTransformPoint(CableAnchorPoint.position);
 		Vector3 prevCorner = pos;
 
 		switch (CableTakeupMode)
@@ -285,7 +286,7 @@ public class TensionedCable : MonoBehaviour
 	{
 		RaycastHit hit;
 		Vector3 prev = Vector3.zero, next = Vector3.zero;
-		Vector3 lastCatchPoint = CableAnchorPoint.position;
+		Vector3 lastCatchPoint = transform.InverseTransformPoint(CableAnchorPoint.position);
 		float distFromAnchor = 0;
 
 		LinkedListNode<Vector3> dirChangePointNode = null;
@@ -464,7 +465,7 @@ public class TensionedCable : MonoBehaviour
 	{
 		RaycastHit hit;
 		Vector3 prev = Vector3.zero, next = Vector3.zero;
-		Vector3 lastCatchPoint = CableAnchorPoint.position;
+		Vector3 lastCatchPoint = transform.InverseTransformPoint(CableAnchorPoint.position);
 		float distFromAnchor = 0;
 
 		LinkedListNode<Vector3> node = _path.Last;
@@ -527,7 +528,7 @@ public class TensionedCable : MonoBehaviour
 	{
 		RaycastHit hit;
 		Vector3 prev = Vector3.zero, next = Vector3.zero;
-		Vector3 lastCatchPoint = CableAnchorPoint.position;
+		Vector3 lastCatchPoint = transform.InverseTransformPoint(CableAnchorPoint.position);
 		float distFromAnchor = 0;
 
 		LinkedListNode<Vector3> node = _path.Last;
@@ -596,15 +597,15 @@ public class TensionedCable : MonoBehaviour
 
 		RaycastHit hit;
 		Vector3 prev = Vector3.zero, next = Vector3.zero;
-		Vector3 lastCatchPoint = CableAnchorPoint.position;
+		Vector3 lastCatchPoint = transform.InverseTransformPoint(CableAnchorPoint.position);
 		float distFromAnchor = 0;
 
 		float initialSegmentLength = InitialSegmentLength;
 		int initialSegmentExtraIterations = InitialSegmentExtraIterations;
 
 		LinkedListNode<Vector3> node = _path.Last.Previous;
-		Vector3 startPos = CableTarget.position;
-		Vector3 startDir = CableTarget.forward;
+		Vector3 startPos = transform.InverseTransformPoint(CableTarget.position);
+		Vector3 startDir = transform.InverseTransformDirection(CableTarget.forward);
 
 		//for (int i = 1; i < _currentSegPath.Count - 1; i++)
 		while (node != null && node.Previous != null)
@@ -660,10 +661,10 @@ public class TensionedCable : MonoBehaviour
 				targetDir.Normalize();
 
 				//don't move through walls
-				if (Physics.Raycast(cur, targetDir, out hit, targetDir.magnitude, _maskWalls))
-				{
-					maxDist = Mathf.Min((hit.point - cur).magnitude - CableRadius * CableRadiusBufferMultipler, maxDist);
-				}
+				//if (Physics.Raycast(cur, targetDir, out hit, targetDir.magnitude, _maskWalls))
+				//{
+				//	maxDist = Mathf.Min((hit.point - cur).magnitude - CableRadius * CableRadiusBufferMultipler, maxDist);
+				//}
 
 				cur += targetDir * Mathf.Min(maxDist * MaxStraightenMultiplier, Time.deltaTime * MaxTakeupSpeed * speedMult);
 			}
@@ -693,7 +694,7 @@ public class TensionedCable : MonoBehaviour
 	{
 		RaycastHit hit;
 		Vector3 prev = Vector3.zero, next = Vector3.zero;
-		Vector3 lastCatchPoint = CableAnchorPoint.position;
+		Vector3 lastCatchPoint = transform.InverseTransformPoint(CableAnchorPoint.position);
 		float distFromAnchor = 0;
 
 		LinkedListNode<Vector3> dirChangePointNode = null;
@@ -844,10 +845,27 @@ public class TensionedCable : MonoBehaviour
 
 		_mesh.RecalculateNormals();
 		_mesh.RecalculateBounds();
+        /*
+		//mesh is generated in world space, undo parent transform
+        if (transform.parent != null)
+        {
+            var parent = transform.parent;
+            transform.localScale = Vector3.one.ComponentDivide(parent.lossyScale);
+            transform.localRotation = Quaternion.Inverse(parent.rotation);
 
-		//hack because the mesh is generated in world space
-		transform.localPosition = Vector3.zero;
-		transform.localPosition = transform.position * -1;
+            //undo the parent position, modified by the local scale
+            transform.localPosition = Vector3.Scale(parent.position * -1, transform.localScale);
+        }
+        else
+        {
+            transform.localPosition = Vector3.zero;
+            transform.localRotation = Quaternion.identity;
+            transform.localScale = Vector3.one;
+        }
+        */
+
+		//transform.localPosition = Vector3.zero;
+		//transform.localPosition = transform.position * -1;
 	}
 
 	bool IsPathBlocked(Vector3 p1, Vector3 p2, out RaycastHit hit)
