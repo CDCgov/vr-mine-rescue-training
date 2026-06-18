@@ -200,7 +200,7 @@ public class LinkLineObject : MonoBehaviour, IInteractableObject, ISocketableObj
 
         HighlightClosestSocket();
 
-        if (Vector3.Distance(transform.position, LinkLineBasePoint.position) > (DropLinkDistance * 1.5f))
+        if (Vector3.Distance(transform.position, LinkLineBasePoint.position) > (DropLinkDistance))
         {
             var socket = _linkLineInteractable.CurrentOwner as CustomXRSocket;
             if (socket != null)

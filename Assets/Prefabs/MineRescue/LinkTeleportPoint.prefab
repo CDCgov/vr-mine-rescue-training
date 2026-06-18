@@ -322,7 +322,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SocketManager: {fileID: 0}
   IsDemonstration: 1
-  DropLinkDistance: 2
+  DropLinkDistance: 3
   LinkLineBasePoint: {fileID: 9179592802210826066}
   xrInteractor: {fileID: 0}
   ClipAudioPlayer: {fileID: 3074261889275421953}
@@ -347,6 +347,7 @@ MonoBehaviour:
   AllowNetDestroy: 1
   UniqueIDString: 7f90ffcd-1aa1-4858-9a7a-877a10b4c104
   UseReliableSync: 0
+  SyncChildComponents: 1
   SpawnActivated: 0
   ServerExclusive: 0
   SourcePrefab: 
@@ -384,6 +385,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CurrentOwner: {fileID: 0}
   InteractableRigidbody: {fileID: 9179592802823612365}
+  ActiveInteractors: []
+  InteractableType: 0
   IsGrabbable: 1
   GrabWithoutOwnerChange: 0
   KeepOriginalParent: 1
@@ -398,6 +401,7 @@ MonoBehaviour:
   SocketManager: {fileID: 0}
   HasEmissiveTexture: 0
   IgnoreSelectHighlight: 0
+  SelectHighlightOverride: 0
   glowMaterials: []
   ModelRenderer: {fileID: 0}
   MaterialIndexToGlow: 0
