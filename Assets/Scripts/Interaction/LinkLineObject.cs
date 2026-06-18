@@ -317,6 +317,8 @@ public class LinkLineObject : MonoBehaviour, IInteractableObject, ISocketableObj
         if (IsPlayerOnLinkLine)
             return;
 
+        transform.localScale = Vector3.one;
+
         //SetPlayerLinkLineStatus(false);
         HighlightAvailableSockets();
     }
@@ -338,6 +340,8 @@ public class LinkLineObject : MonoBehaviour, IInteractableObject, ISocketableObj
 
         _dropTime = Time.time;
 
+        transform.localScale = Vector3.one;
+
         ClearHighlightedSockets();
     }
 
@@ -348,6 +352,7 @@ public class LinkLineObject : MonoBehaviour, IInteractableObject, ISocketableObj
         PlayClickSound();
         SetPlayerLinkLineStatus(true);
 
+        transform.localScale = Vector3.one;
 
         if (_netObj.HasAuthority)
         {
