@@ -101,6 +101,7 @@ public class ResizableStopping : MonoBehaviour, IScenarioEditorResizable
         {
             symbolRenderer = gameObject.AddComponent<MineMapSymbolRenderer>();
             symbolRenderer.ShowOnMapMan = ShowSymbolOnMapMan;
+            symbolRenderer.DoNotDelete = true;
             symbolRenderer.SymbolAsset = null;
             symbolRenderer.ConstantUpdate = false;
 
