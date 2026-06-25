@@ -200,7 +200,7 @@ public class LinkLineObject : MonoBehaviour, IInteractableObject, ISocketableObj
 
         HighlightClosestSocket();
 
-        if (Vector3.Distance(transform.position, LinkLineBasePoint.position) > (DropLinkDistance * 1.5f))
+        if (Vector3.Distance(transform.position, LinkLineBasePoint.position) > (DropLinkDistance))
         {
             var socket = _linkLineInteractable.CurrentOwner as CustomXRSocket;
             if (socket != null)
@@ -317,6 +317,8 @@ public class LinkLineObject : MonoBehaviour, IInteractableObject, ISocketableObj
         if (IsPlayerOnLinkLine)
             return;
 
+        transform.localScale = Vector3.one;
+
         //SetPlayerLinkLineStatus(false);
         HighlightAvailableSockets();
     }
@@ -338,6 +340,8 @@ public class LinkLineObject : MonoBehaviour, IInteractableObject, ISocketableObj
 
         _dropTime = Time.time;
 
+        transform.localScale = Vector3.one;
+
         ClearHighlightedSockets();
     }
 
@@ -348,6 +352,7 @@ public class LinkLineObject : MonoBehaviour, IInteractableObject, ISocketableObj
         PlayClickSound();
         SetPlayerLinkLineStatus(true);
 
+        transform.localScale = Vector3.one;
 
         if (_netObj.HasAuthority)
         {

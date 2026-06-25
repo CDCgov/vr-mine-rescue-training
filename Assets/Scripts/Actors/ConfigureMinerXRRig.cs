@@ -146,7 +146,7 @@ public class ConfigureMinerXRRig : MonoBehaviour
             Destroy(PlayerManager.CurrentPlayer.PlayerObject);
         }
         PlayerManager.CurrentPlayer.PlayerObject = this.gameObject;
-
+        PlayerManager.CurrentPlayer.HeadTransform = HeadCamera.transform;
 
 
         //      var playerInfo = GetComponent<PlayerInfo>();

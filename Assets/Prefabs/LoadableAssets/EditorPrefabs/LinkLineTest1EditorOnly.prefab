@@ -613,6 +613,7 @@ MonoBehaviour:
   AllowNetDestroy: 1
   UniqueIDString: 9040cf57-6fc7-41b5-b750-9cbb38a7788c
   UseReliableSync: 0
+  SyncChildComponents: 1
   SpawnActivated: 0
   ServerExclusive: 0
   SourcePrefab: 
@@ -634,6 +635,7 @@ MonoBehaviour:
   CurrentOwner: {fileID: 0}
   InteractableRigidbody: {fileID: 2144660724}
   ActiveInteractors: []
+  InteractableType: 0
   IsGrabbable: 1
   GrabWithoutOwnerChange: 0
   KeepOriginalParent: 1
@@ -648,6 +650,7 @@ MonoBehaviour:
   SocketManager: {fileID: 0}
   HasEmissiveTexture: 0
   IgnoreSelectHighlight: 0
+  SelectHighlightOverride: 0
   glowMaterials: []
   ModelRenderer: {fileID: 0}
   MaterialIndexToGlow: 0
@@ -1154,6 +1157,7 @@ MonoBehaviour:
   AllowNetDestroy: 1
   UniqueIDString: 20eabbb9-93eb-4d4d-8a7f-d65b5e457139
   UseReliableSync: 0
+  SyncChildComponents: 1
   SpawnActivated: 0
   ServerExclusive: 0
   SourcePrefab: 
@@ -1175,6 +1179,7 @@ MonoBehaviour:
   CurrentOwner: {fileID: 0}
   InteractableRigidbody: {fileID: 1755738874376461396}
   ActiveInteractors: []
+  InteractableType: 0
   IsGrabbable: 1
   GrabWithoutOwnerChange: 0
   KeepOriginalParent: 1
@@ -1189,6 +1194,7 @@ MonoBehaviour:
   SocketManager: {fileID: 0}
   HasEmissiveTexture: 0
   IgnoreSelectHighlight: 0
+  SelectHighlightOverride: 0
   glowMaterials: []
   ModelRenderer: {fileID: 0}
   MaterialIndexToGlow: 0
@@ -2127,6 +2133,7 @@ MonoBehaviour:
   AllowNetDestroy: 1
   UniqueIDString: 8ac23f8d-074d-48ee-868c-35a2cbaf19ad
   UseReliableSync: 0
+  SyncChildComponents: 1
   SpawnActivated: 0
   ServerExclusive: 0
   SourcePrefab: 
@@ -2165,6 +2172,7 @@ MonoBehaviour:
   CurrentOwner: {fileID: 0}
   InteractableRigidbody: {fileID: 5741212754391317734}
   ActiveInteractors: []
+  InteractableType: 0
   IsGrabbable: 1
   GrabWithoutOwnerChange: 0
   KeepOriginalParent: 1
@@ -2179,6 +2187,7 @@ MonoBehaviour:
   SocketManager: {fileID: 0}
   HasEmissiveTexture: 0
   IgnoreSelectHighlight: 0
+  SelectHighlightOverride: 0
   glowMaterials: []
   ModelRenderer: {fileID: 0}
   MaterialIndexToGlow: 0
@@ -2857,6 +2866,7 @@ GameObject:
   - component: {fileID: 7438209565484431066}
   - component: {fileID: 7220205602007790188}
   - component: {fileID: 3282567653423727981}
+  - component: {fileID: 166745644707334384}
   m_Layer: 0
   m_Name: LinkLineTest1EditorOnly
   m_TagString: LinkLine
@@ -2906,7 +2916,6 @@ MonoBehaviour:
   DisplayName: Link Line
   HierarchyItemPrefab: {fileID: 360079312126257609, guid: d9bfda6fec448a14faf8cebad6aa76f2,
     type: 3}
-  hierarchyContainer: {fileID: 0}
   editorLayer: 1
   simParent: {fileID: 0}
   UserSuppliedName: 
@@ -2950,6 +2959,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.5, y: 0.2, z: 5}
   m_Center: {x: 0, y: 0, z: -2.5}
+--- !u!114 &166745644707334384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7438209565484431069}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29920d7d50c0ca44189db5367ee0f413, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7438209565668077049
 GameObject:
   m_ObjectHideFlags: 0
@@ -3098,6 +3119,7 @@ MonoBehaviour:
   AllowNetDestroy: 1
   UniqueIDString: 75bfe7d6-4526-449d-b510-54e0757387cc
   UseReliableSync: 0
+  SyncChildComponents: 1
   SpawnActivated: 0
   ServerExclusive: 0
   SourcePrefab: 
@@ -3119,6 +3141,7 @@ MonoBehaviour:
   CurrentOwner: {fileID: 0}
   InteractableRigidbody: {fileID: 7438209565668077042}
   ActiveInteractors: []
+  InteractableType: 0
   IsGrabbable: 1
   GrabWithoutOwnerChange: 0
   KeepOriginalParent: 1
@@ -3133,6 +3156,7 @@ MonoBehaviour:
   SocketManager: {fileID: 0}
   HasEmissiveTexture: 0
   IgnoreSelectHighlight: 0
+  SelectHighlightOverride: 0
   glowMaterials: []
   ModelRenderer: {fileID: 0}
   MaterialIndexToGlow: 0

@@ -197,7 +197,7 @@ public class SessionEventManager : SceneManagerBase
         SegmentsPopulated?.Invoke();
         //PlayerHandler.PlayerDebriefItems = new Dictionary<int, List<GameObject>>();
         EventStartTime = SessionPlaybackControl.CurrentSessionLog.StartTime;
-        List<Vector3> _spawnedPositions = new List<Vector3>();
+        //List<Vector3> _spawnedPositions = new List<Vector3>();
 
         float eventY = EventYStart;
 
@@ -291,89 +291,76 @@ public class SessionEventManager : SceneManagerBase
                 TimeSpan timeSpan = TimeSpan.FromSeconds(eventData.EventData.Timestamp - SessionPlaybackControl.CurrentSessionLog.StartTime);
                 string time = $"{timeSpan.Minutes.ToString("00")}:{timeSpan.Seconds.ToString("00")}";
                 Vector3 pos = new Vector3(eventPosition.X, 20, eventPosition.Z);
-                if (_spawnedPositions.Contains(pos))
-                {
-                    pos.x = pos.x + UnityEngine.Random.Range(-0.1f, 0.1f);
-                    pos.z = pos.z + UnityEngine.Random.Range(-0.1f, 0.1f);
-                }
+                //if (_spawnedPositions.Contains(pos))
+                //{
+                //    pos.x = pos.x + UnityEngine.Random.Range(-0.1f, 0.1f);
+                //    pos.z = pos.z + UnityEngine.Random.Range(-0.1f, 0.1f);
+                //}
 
                 pos.y = eventY;
                 eventY += EventYIncrement;
                 if (eventY > EventYMax)
                     eventY = EventYMax;
 
-                _spawnedPositions.Add(pos);
-                //dbEventItem.PlayerColorImage.rectTransform.anchoredPosition3D = pos;//this seemed like a mistake
+                //_spawnedPositions.Add(pos);
+
                 dbEventItem.TryGetComponent<RectTransform>(out var rectTransform);
                 if (rectTransform != null)
                 {
                     rectTransform.anchoredPosition3D = pos;
                 }
-                MineSegmentInfo _associatedMineSegment = null;
-                foreach (MineSegmentInfo inf in LoadedMineSegmentInfos)
-                {
-                    MineSegment ms = inf.GetComponent<MineSegment>();
-                    Collider collider = inf.GetComponentInChildren<MeshCollider>();
-                    if (ms == null)
-                    {
-                        continue;
-                    }
 
-                    if (collider.bounds.Contains(new Vector3(eventPosition.X, eventPosition.Y, eventPosition.Z)))
-                    {
-                        _associatedMineSegment = inf;
-                        Debug.Log("Segment found");
-                        break;
-                    }
-                }
-                Vector2 dist = Vector2.zero;
-                string entry = "";
-                string crosscut = "";
-                if (_associatedMineSegment != null)
-                {
-                    dist = _associatedMineSegment.GetDistanceFromNearestIntersection(new Vector3(eventPosition.X, eventPosition.Y, eventPosition.Z), out crosscut, out entry);
-                }
-                string unit = "(ft)";
-                switch (SystemManager.SystemConfig.DistanceUnit)
-                {
-                    case 1:
-                        unit = "(m)";
-                        break;
-                    case 1.09361f:
-                        unit = "(yd)";
-                        break;
-                    case 3.28084f:
-                        unit = "(ft)";
-                        break;
-                    default:
-                        unit = "(ft)";
-                        break;
-                }
-                
-                //string meta = eventData.EventData.PositionMetadata;
-                //if(eventData.EventData.EventType == VRNLogEventType.PickupObj || eventData.EventData.EventType == VRNLogEventType.DropObj)
+                //MineSegmentInfo _associatedMineSegment = null;
+                //foreach (MineSegmentInfo inf in LoadedMineSegmentInfos)
                 //{
-                //    meta += eventData.EventData.ObjectName;
+                //    MineSegment ms = inf.GetComponent<MineSegment>();
+                //    Collider collider = inf.GetComponentInChildren<MeshCollider>();
+                //    if (ms == null)
+                //    {
+                //        continue;
+                //    }
+
+                //    if (collider.bounds.Contains(new Vector3(eventPosition.X, eventPosition.Y, eventPosition.Z)))
+                //    {
+                //        _associatedMineSegment = inf;
+                //        Debug.Log("Segment found");
+                //        break;
+                //    }
+                //}
+                //Vector2 dist = Vector2.zero;
+                //string entry = "";
+                //string crosscut = "";
+                //if (_associatedMineSegment != null)
+                //{
+                //    dist = _associatedMineSegment.GetDistanceFromNearestIntersection(new Vector3(eventPosition.X, eventPosition.Y, eventPosition.Z), out crosscut, out entry);
+                //}
+                //string unit = "(ft)";
+                //switch (SystemManager.SystemConfig.DistanceUnit)
+                //{
+                //    case 1:
+                //        unit = "(m)";
+                //        break;
+                //    case 1.09361f:
+                //        unit = "(yd)";
+                //        break;
+                //    case 3.28084f:
+                //        unit = "(ft)";
+                //        break;
+                //    default:
+                //        unit = "(ft)";
+                //        break;
                 //}
 
-                //if(meta == "")
-                //{
-                //    meta = "-";
-                //}
-
-                
-
-                //string eventText = "";
                 eventSB.Clear();
                 eventSB.AppendFormat("•<indent=8%>Player: {0}</indent>\n", playerName);
                 eventSB.AppendFormat("•<indent=8%>Event: {0}</indent>\n", ParseEventType(data.EventType));
                 eventSB.AppendFormat("•<indent=8%>Time: {0}</indent>\n", time);
 
-                if (!string.IsNullOrEmpty(entry) && !string.IsNullOrEmpty(crosscut))
-                {
-                    eventSB.AppendFormat("•<indent=8%>Entry {0}, Crosscut {1}</indent>\n", entry, crosscut);
-                    eventSB.AppendFormat("•<indent=8%>Distance{0}: {1:F2},{2:F2}</indent>\n", unit, dist.x, dist.y);
-                }
+                //if (!string.IsNullOrEmpty(entry) && !string.IsNullOrEmpty(crosscut))
+                //{
+                //    eventSB.AppendFormat("•<indent=8%>Entry {0}, Crosscut {1}</indent>\n", entry, crosscut);
+                //    eventSB.AppendFormat("•<indent=8%>Distance{0}: {1:F2},{2:F2}</indent>\n", unit, dist.x, dist.y);
+                //}
 
                 if (!string.IsNullOrEmpty(data.PositionMetadata))
                     eventSB.AppendFormat("•<indent=8%>Details: {0}</indent>\n", data.PositionMetadata);
@@ -384,20 +371,7 @@ public class SessionEventManager : SceneManagerBase
                 if (!string.IsNullOrEmpty(data.Message))
                     eventSB.AppendFormat("•<indent=8%>Message: {0}</indent>\n", data.Message);
 
-                //if (crosscut == "" && entry == "")
-                //{
-                //    eventText = $"•<indent=8%>Player: {playerName}</indent>\n•<indent=8%>Event: {ParseEventType(eventData.EventData.EventType)}</indent>\n•<indent=8%>Time: {time}</indent>";
-                //}
-                //else
-                //{
-                //    eventText = $"•<indent=8%>Player: {playerName}</indent>\n•<indent=8%>Event: {ParseEventType(eventData.EventData.EventType)}</indent>\n•<indent=8%>Time: {time}</indent>\n•<indent=8%>Entry {entry}, Crosscut {crosscut}</indent>\n•<indent=8%>Distance{unit}: {dist.x:F2},{dist.y:F2}</indent>\n•<indent=8%>Details: {meta}</indent>";
-
-                //}
-
-                //if (eventData.EventData.Message != null && eventData.EventData.Message.Length > 0)
-                //{
-                //    eventText += $"\n•<indent=8%>Message: {eventData.EventData.Message}</indent>";
-                //}
+               
 
                 var eventText = eventSB.ToString();
 

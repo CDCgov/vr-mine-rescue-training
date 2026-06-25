@@ -185,6 +185,7 @@ public class CustomXRSocket : XRObjectController
         interactable.transform.SetParent(transform, true);
         interactable.transform.localPosition = Vector3.zero;
         interactable.transform.localRotation = Quaternion.identity;
+        interactable.transform.localScale = Vector3.one;
     }
 
     private void ClearSocketedItemParent(CustomXRInteractable interactable)

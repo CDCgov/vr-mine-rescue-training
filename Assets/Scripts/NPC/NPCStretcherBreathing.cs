@@ -77,6 +77,9 @@ public class NPCStretcherBreathing : MonoBehaviour, IInteractableObject
         if (VentilationManager == null)
             VentilationManager = VentilationManager.GetDefault(gameObject);
 
+        if (PlayerManager == null)
+            PlayerManager = PlayerManager.GetDefault(gameObject);
+
         if(StretcherController == null)
             StretcherController = gameObject.GetComponentInParent<StretcherController>();
 
