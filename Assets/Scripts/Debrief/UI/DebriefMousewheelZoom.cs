@@ -71,7 +71,7 @@ public class DebriefMousewheelZoom : MonoBehaviour, IScrollHandler
 
         if (eventData.delta.y != 0)
         {
-            DebriefUIController.Zoom(scrollDelta * 0.1f);
+            DebriefUIController.Zoom(scrollDelta * 0.05f);
         }
     }
 

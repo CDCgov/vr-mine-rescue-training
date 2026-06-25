@@ -956,7 +956,7 @@ public class SessionEventManager : SceneManagerBase
     public void UpdateScale(float normalizedScale)
     {
         //float scale = Mathf.Lerp(0.01f, 0.002f, normalizedScale);
-        float scale = Mathf.Lerp(0.01f, 0.002f  * 3.0f, normalizedScale);
+        float scale = Mathf.Lerp(0.01f, 0.002f  * 6.0f, normalizedScale);
         //foreach (Transform item in SpawnedItems)
         foreach (var instData in SessionEvents.Values)
         {

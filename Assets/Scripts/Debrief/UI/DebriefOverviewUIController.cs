@@ -118,7 +118,7 @@ public class DebriefOverviewUIController : MonoBehaviour
     {
         //OverviewCamera.orthographicSize = Mathf.Lerp(_camOrthoScale, 1, ZoomSlider.value);
         //OverviewCamera.orthographicSize = Mathf.Lerp(32, 1, ZoomSlider.value);
-        OverviewCamera.orthographicSize = Mathf.Lerp(32.0f * 3.0f, 1, ZoomSlider.value);
+        OverviewCamera.orthographicSize = Mathf.Lerp(32.0f * 6.0f, 1, ZoomSlider.value);
         SessionEventManager.UpdateScale(ZoomSlider.value);
     }
 

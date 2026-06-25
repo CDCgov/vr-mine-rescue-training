@@ -73,10 +73,10 @@ public class GraphicsConfig : YAMLConfig
 
         EnableSSAO = false;
         AntiAliasingMode = AntiAliasingMode.TAA;
-        AntiAliasingQuality = AntiAliasingQuality.Medium;
+        AntiAliasingQuality = AntiAliasingQuality.High;
 
-        EnableDynamicResolution = true;
-        DLSSQuality = DLSSQuality.Balanced;
+        EnableDynamicResolution = false;
+        DLSSQuality = DLSSQuality.DLAA;
         //DLSSSharpening = -1;
 
         //ShadowMapResolutionLow = 512;
