@@ -115,13 +115,12 @@ public class ComponentInfo_Light : ModularComponentInfo, ISaveableComponent
         {
             Color col = color * Mathf.CorrelatedColorTemperatureToRGB(Temperature);
             foreach (var meshRen in emissiveMeshRenderers)
-            {
-                Material mat = new Material(meshRen.material);
+            {                
+                Material mat = new Material(meshRen.sharedMaterial);
                 float alpha = mat.color.a;
                 mat.SetColor("_EmissiveColor", col);//swapping this around to try and preserve manually set alpha values ( allow for emssive "glass")
                 col.a = alpha;
                 mat.color = col;                
-                meshRen.material = mat;
 
                 if(intensity <= 0 || !isOn)
                 {
@@ -133,10 +132,12 @@ public class ComponentInfo_Light : ModularComponentInfo, ISaveableComponent
                     else
                     {
                         mat.SetColor("_EmissiveColor", Color.black);
+                        mat.SetFloat("_EmissiveIntensity", 0);                        
                     }
                 }
 
                 HDMaterial.ValidateMaterial(mat);
+                meshRen.material = mat;
             }
             Debug.Log($"Setting emissive color from Component Info? {color.ToString()}");
         }
