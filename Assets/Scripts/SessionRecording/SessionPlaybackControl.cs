@@ -637,10 +637,10 @@ public class SessionPlaybackControl : SceneManagerBase
                 TeleportManager.ImmediateTeleport(_sessionLog.CurrentTeamstopState.TeleportTarget);
             }
 
-            foreach (var eventData in _sessionLog.GetActiveEvents())
-            {
-                //Debug.Log($"Event {eventData.EventID} active ({eventData.EventData.Position.ToVector3().ToString()})");
-            }
+            //foreach (var eventData in _sessionLog.GetActiveEvents())
+            //{
+            //    //Debug.Log($"Event {eventData.EventID} active ({eventData.EventData.Position.ToVector3().ToString()})");
+            //}
 
             if (_sessionLog.CurrentVentilationState != null && _sessionLog.CurrentVentilationState.VentStateIndex != _activeVentState)
             {

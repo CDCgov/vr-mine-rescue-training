@@ -246,6 +246,7 @@ public class SessionEventManager : SceneManagerBase
                     eventData.EventData.EventType == VRNLogEventType.MineExplosion ||
                     eventData.EventData.EventType == VRNLogEventType.Npcunconscious ||
                     eventData.EventData.EventType == VRNLogEventType.PostInstall ||
+                    eventData.EventData.EventType == VRNLogEventType.NpcremovedFromStretcher ||
                     eventData.EventData.EventType == VRNLogEventType.Npcdeath))
                 {
                     playerRep = dmPlayer;
@@ -956,7 +957,7 @@ public class SessionEventManager : SceneManagerBase
     public void UpdateScale(float normalizedScale)
     {
         //float scale = Mathf.Lerp(0.01f, 0.002f, normalizedScale);
-        float scale = Mathf.Lerp(0.01f, 0.002f  * 6.0f, normalizedScale);
+        float scale = Mathf.Lerp(0.04f, 0.003f, normalizedScale);
         //foreach (Transform item in SpawnedItems)
         foreach (var instData in SessionEvents.Values)
         {
