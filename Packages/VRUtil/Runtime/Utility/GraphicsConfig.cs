@@ -75,6 +75,8 @@ public class GraphicsConfig : YAMLConfig
         AntiAliasingMode = AntiAliasingMode.TAA;
         AntiAliasingQuality = AntiAliasingQuality.High;
 
+        LitShaderMode = GraphicsLitShaderMode.Deferred;
+
         EnableDynamicResolution = false;
         DLSSQuality = DLSSQuality.DLAA;
         //DLSSSharpening = -1;
