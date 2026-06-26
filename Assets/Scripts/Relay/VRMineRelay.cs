@@ -118,7 +118,7 @@ public class VRMineRelay : VRMineTransport
 
 
         Debug.Log("********************************************************");
-        Debug.Log("*********     VR Mine Relay September 2024     *********");
+        Debug.Log("*********     VR Mine Relay Unity 6 2026       *********");
         Debug.Log("********************************************************");
 
         Debug.Log($"VR Mine Relay listening on port {RelayPort}");
