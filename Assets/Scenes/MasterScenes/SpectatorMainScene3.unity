@@ -281,6 +281,51 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 906854949}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &300274232
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 300274234}
+  - component: {fileID: 300274233}
+  m_Layer: 0
+  m_Name: VolumeGraphicsSettings
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &300274233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 300274232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7574ab8e28949e46af09480756130ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: VRMineCore::VolumeGraphicsConfig
+  SystemManager: {fileID: 0}
+--- !u!4 &300274234
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 300274232}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -22.18632, y: -0, z: 17.52807}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &335030396
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2121,12 +2166,12 @@ PrefabInstance:
     - target: {fileID: 7067947078048662962, guid: aecd8c1571decd64dad92b79b54a43ed,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.34070197
+      value: 0.340702
       objectReference: {fileID: 0}
     - target: {fileID: 7067947078048662962, guid: aecd8c1571decd64dad92b79b54a43ed,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 3.494172e-16
+      value: 3.4941748e-16
       objectReference: {fileID: 0}
     - target: {fileID: 7067947078048662962, guid: aecd8c1571decd64dad92b79b54a43ed,
         type: 3}
@@ -2136,7 +2181,7 @@ PrefabInstance:
     - target: {fileID: 7067947078048662962, guid: aecd8c1571decd64dad92b79b54a43ed,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -9.642211e-16
+      value: -9.642219e-16
       objectReference: {fileID: 0}
     - target: {fileID: 9083534753981075985, guid: aecd8c1571decd64dad92b79b54a43ed,
         type: 3}
@@ -2886,7 +2931,7 @@ PrefabInstance:
     - target: {fileID: 7067947078048662962, guid: aecd8c1571decd64dad92b79b54a43ed,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 3.4941732e-16
+      value: 3.4941748e-16
       objectReference: {fileID: 0}
     - target: {fileID: 7067947078048662962, guid: aecd8c1571decd64dad92b79b54a43ed,
         type: 3}
@@ -2896,7 +2941,7 @@ PrefabInstance:
     - target: {fileID: 7067947078048662962, guid: aecd8c1571decd64dad92b79b54a43ed,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -9.642214e-16
+      value: -9.642219e-16
       objectReference: {fileID: 0}
     - target: {fileID: 9083534753981075985, guid: aecd8c1571decd64dad92b79b54a43ed,
         type: 3}
@@ -3203,3 +3248,4 @@ SceneRoots:
   - {fileID: 1530939974}
   - {fileID: 1750697817}
   - {fileID: 771566566}
+  - {fileID: 300274234}

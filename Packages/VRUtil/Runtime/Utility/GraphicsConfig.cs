@@ -11,7 +11,7 @@ public enum AntiAliasingMode
     SMAA
 }
 
-public enum AntiAliasingQuality
+public enum GraphicsQuality
 {
     Low,
     Medium,
@@ -45,6 +45,8 @@ public class GraphicsConfig : YAMLConfig
     //public int ShadowMapResolutionHigh { get; set; }
 
     public int DefaultShadowMapResolution { get; set; }
+    [Description("Shadow quality: Low, Medium, or High")]
+    public GraphicsQuality ShadowQuality { get; set; }
 
     public bool LODLevelDebugView { get; set; }
 
@@ -52,7 +54,7 @@ public class GraphicsConfig : YAMLConfig
     public AntiAliasingMode AntiAliasingMode  { get;set;}
 
     [Description("The anti-aliasing quality level: Low, Medium, High")]
-    public AntiAliasingQuality AntiAliasingQuality { get; set; }
+    public GraphicsQuality AntiAliasingQuality { get; set; }
 
     [Description("Deferred or Forward rendering")]
     public GraphicsLitShaderMode LitShaderMode { get; set; }
@@ -62,6 +64,8 @@ public class GraphicsConfig : YAMLConfig
 
     [Description("DLSS Quality: UltraPerformance, Performance, Balanced, Quality, DLAA")]
     public DLSSQuality DLSSQuality { get; set; }
+
+    
 
     //[Description("DLSS Sharpening level 0 to 1, -1 for default")]
     //public float DLSSSharpening { get; set; }
@@ -73,7 +77,7 @@ public class GraphicsConfig : YAMLConfig
 
         EnableSSAO = false;
         AntiAliasingMode = AntiAliasingMode.TAA;
-        AntiAliasingQuality = AntiAliasingQuality.High;
+        AntiAliasingQuality = GraphicsQuality.High;
 
         LitShaderMode = GraphicsLitShaderMode.Deferred;
 
@@ -86,6 +90,7 @@ public class GraphicsConfig : YAMLConfig
         //ShadowMapResolutionHigh = 2048;
 
         DefaultShadowMapResolution = 1024;
+        ShadowQuality = GraphicsQuality.Medium;
 
         LODLevelDebugView = false;
     }

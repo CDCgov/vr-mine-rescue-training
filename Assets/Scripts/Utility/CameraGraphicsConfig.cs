@@ -87,17 +87,17 @@ public class CameraGraphicsConfig : MonoBehaviour
 
         switch (config.AntiAliasingQuality)
         {
-            case AntiAliasingQuality.Low:
+            case GraphicsQuality.Low:
                 _hdData.SMAAQuality = HDAdditionalCameraData.SMAAQualityLevel.Low;
                 _hdData.TAAQuality = HDAdditionalCameraData.TAAQualityLevel.Low;
                 break;
 
-            case AntiAliasingQuality.Medium:
+            case GraphicsQuality.Medium:
                 _hdData.SMAAQuality = HDAdditionalCameraData.SMAAQualityLevel.Medium;
                 _hdData.TAAQuality = HDAdditionalCameraData.TAAQualityLevel.Medium;
                 break;
 
-            case AntiAliasingQuality.High:
+            case GraphicsQuality.High:
                 _hdData.SMAAQuality = HDAdditionalCameraData.SMAAQualityLevel.High;
                 _hdData.TAAQuality = HDAdditionalCameraData.TAAQualityLevel.High;
                 break;

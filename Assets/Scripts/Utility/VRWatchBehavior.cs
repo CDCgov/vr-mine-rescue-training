@@ -27,15 +27,26 @@ public class VRWatchBehavior : MonoBehaviour
         PlayerManager.CurrentPlayer.PlayerHandednessChanged += CurrentPlayer_PlayerHandednessChanged;
 
         HideWatch(PlayerManager.CurrentPlayer.PlayerDominantHand);
+
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
+  
     private void OnDestroy()
     {
         if (PlayerManager != null && PlayerManager.CurrentPlayer != null)
         {
             PlayerManager.CurrentPlayer.PlayerHandednessChanged -= CurrentPlayer_PlayerHandednessChanged;
         }
+
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
+
+    private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
+    {
+        UpdateLabelVisibility();
+    }
+
 
     private void CurrentPlayer_PlayerHandednessChanged(PlayerDominantHand obj)
     {
@@ -81,6 +92,7 @@ public class VRWatchBehavior : MonoBehaviour
 
     private void OnEnable()
     {
+        UpdateLabelVisibility();
         InvokeRepeating(nameof(UpdateWatchText), 1.0f, 1.0f);
     }
 
@@ -108,15 +120,17 @@ public class VRWatchBehavior : MonoBehaviour
 
     }
 
-    // Update is called once per frame
-    void Update()
+    void UpdateLabelVisibility()
     {
+        if (_labelMeshRenderer == null)
+            return;
 
         for (int i = 0; i < SceneManager.sceneCount; i++)
         {
             if (SceneManager.GetSceneAt(i).name == "DebriefMainScene")
             {
                 _labelMeshRenderer.enabled = false;
+                break;
             }
         }
     }
