@@ -123,13 +123,4 @@ public class MainScreenController : MonoBehaviour
         SceneManager.LoadScene("ExternalAssetsEditorTest");
     }
 
-    void Update()
-    {
-        //temporary hotkey for testing external asset viewer/editor
-        //if (Input.GetKeyDown(KeyCode.E) && Input.GetKey(KeyCode.LeftAlt) && Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.LeftControl))
-        //if (_actionLoadEditorScene.WasPressedThisFrame())
-        //{
-        //    SceneManager.LoadScene("ExternalAssetsEditorTest");
-        //}
-    }
 }

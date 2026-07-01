@@ -329,22 +329,6 @@ public class ProxSystemController : MonoBehaviour, ISerializationCallbackReceive
         }
     }
 
-    private void LateUpdate()
-    {
-        /*
-        if (ActiveProxSystem != null)
-        {
-            ProxZone activeProxZone = ActiveProxSystem.GetActiveProxZone();
-
-            if (activeProxZone != ActiveProxZone)
-            {
-                ActiveProxZone = activeProxZone;
-                RaiseProxZoneChanged(activeProxZone);
-            }
-        }
-        */
-    }
-
     private void RaiseProxZoneChanged(ProxZone zone)
     {
         var handler = ProxZoneChanged;

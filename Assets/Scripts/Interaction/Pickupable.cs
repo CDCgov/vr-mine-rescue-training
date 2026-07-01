@@ -24,25 +24,4 @@ public class Pickupable : MonoBehaviour {
         rb.isKinematic = false;
         _throwing = true;
     }
-
-    private void FixedUpdate()
-    {
-        //if (_throwing)
-        //{
-        //	Transform origin;
-        //	if(trackedObject.origin != null)
-        //	{
-        //		origin = trackedObject.origin;
-        //	}
-        //	else
-        //	{
-        //		origin = trackedObject.transform.parent;
-        //	}
-
-        //	if(origin != null)
-        //	{
-        //		rb.velocity = origin.TransformVector(control.velocity);
-        //	}
-        //}
-    }
 }
