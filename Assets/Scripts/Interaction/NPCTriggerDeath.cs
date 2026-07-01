@@ -13,7 +13,6 @@ public class NPCTriggerDeath : MonoBehaviour
 
     public NetworkManager NetworkManager;
 
-    public BAHDOL.NPC_Animator NPCAnimator;
     public VentilationManager VentilationManager;
     public NPCController NPCBehaviors;
 
@@ -28,10 +27,6 @@ public class NPCTriggerDeath : MonoBehaviour
     public bool IsActive = true;
     private float _timeout = 0;
 
-  
-    //private MineAtmosphere _atmosphere;
-    
-    private CustomXRInteractable _xrInteractable;
     public Animator _animator;
     private NetworkedObject _netObj;
     private bool _deathEventLogged = false;
@@ -60,28 +55,10 @@ public class NPCTriggerDeath : MonoBehaviour
         {
             TryGetComponent<NetworkedObject>(out _netObj);
         }
-        if (NPCAnimator == null)
-        {
-            TryGetComponent<BAHDOL.NPC_Animator>(out NPCAnimator);
-        }
-
-        if(_xrInteractable == null)
-        {
-            TryGetComponent<CustomXRInteractable>(out _xrInteractable);
-        }
 
         if(_animator == null)
         {
             _animator = GetComponentInChildren<Animator>();
-        }
-
-
-        if(_xrInteractable != null && _animator != null)
-        {
-            if (_animator.GetCurrentAnimatorStateInfo(0).IsName("Dead") || _animator.GetCurrentAnimatorStateInfo(0).IsName("Dying"))
-            {
-                _xrInteractable.enabled = false;
-            }
         }
 
         //do not immediately check - static gas zones may not have loaded until Start() is complete
@@ -100,21 +77,16 @@ public class NPCTriggerDeath : MonoBehaviour
         if ((NPCBehaviors != null && NPCBehaviors.HasBG4) || !IsActive)
             return;
 
-
-        if (HasBG4)
-        {
+        //only check on the client with network authority
+        if (_netObj != null && !_netObj.HasAuthority)
             return;
-        }
-        if (VentilationManager == null)
+
+        if (HasBG4 || Invulernable || VentilationManager == null)
             return;
 
         if (!VentilationManager.GetMineAtmosphere(transform.position + new Vector3(0, 0.2f, 0), out var atmo))
             return;
 
-        if (Invulernable)
-        {
-            return;
-        }
         int co = (int)(Mathf.Round(atmo.CarbonMonoxide * 1000000.0f));
         float oxygen = atmo.Oxygen * 100.0f;
        
