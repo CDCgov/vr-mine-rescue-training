@@ -57,7 +57,7 @@ public class DebriefMousewheelZoom : MonoBehaviour, IScrollHandler
         if (RectTransformUtility.RectangleContainsScreenPoint(rt, Mouse.current.GetPositionVec3()))
         {
             //Debug.Log($"MOUSE INSIDE RECT");
-            DebriefUIController.Zoom(wheel);
+            DebriefUIController.Zoom(wheel * 0.2f);
         }
     }
 
