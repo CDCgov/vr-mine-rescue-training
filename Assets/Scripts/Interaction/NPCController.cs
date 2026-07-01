@@ -928,6 +928,7 @@ public class NPCController : MonoBehaviour, INetSync, IInteractableObject, ISele
     {
         //Debug.Log("Setting NPC to unconscious");
         _npcAnimator.TransitionToAnimation(BAHDOL.AnimationState.Unconscious);
+        ClearFollowTarget();
         _hasBeenAssessed = false;
     }
 
