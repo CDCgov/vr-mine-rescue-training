@@ -202,7 +202,7 @@ public class ComponentInfo_NPC : ModularComponentInfo, ISaveableComponent
 
     public void SetStopDistance(float stop)
     {
-        stopDistance = Mathf.Clamp(stop, 1, 5);
+        stopDistance = Mathf.Clamp(stop, 0.1f, 10);
         if(navMesh_Component)
         {
             navMesh_Component.stoppingDistance = stopDistance;
@@ -216,7 +216,7 @@ public class ComponentInfo_NPC : ModularComponentInfo, ISaveableComponent
 
     public void SetSpeed(float spd)
     {
-        speed = Mathf.Clamp(spd, 1, 10);
+        speed = Mathf.Clamp(spd, 0.1f, 20);
         if(navMesh_Component)
         {
             navMesh_Component.speed = speed;
