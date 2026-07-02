@@ -54,8 +54,7 @@ public class CameraPan2D : MonoBehaviour, IPointerClickHandler
 
             if (saveFirstPosition)
             {
-                _cachedPosition = _camera.transform.position;
-                saveFirstPosition = false;
+                SaveStartPosition();
             }
 
 
@@ -69,6 +68,12 @@ public class CameraPan2D : MonoBehaviour, IPointerClickHandler
             _mouseCaptured = false;
             _mouseStartPos = pos;
         }
+    }
+
+    public void SaveStartPosition()
+    {
+        _cachedPosition = _camera.transform.position;
+        saveFirstPosition = false;
     }
 
     public void ResetCamera()
