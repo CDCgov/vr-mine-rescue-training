@@ -124,7 +124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f19d9143a39eb3b46bc4563e9889cfbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Version: 2
+  m_Version: 3
   m_Material: {fileID: 2100000, guid: 1a71c542a36d184478f260fa948dd303, type: 2}
   m_DrawDistance: 1000
   m_FadeScale: 0.9
@@ -388,7 +388,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f19d9143a39eb3b46bc4563e9889cfbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Version: 2
+  m_Version: 3
   m_Material: {fileID: 2100000, guid: 1a71c542a36d184478f260fa948dd303, type: 2}
   m_DrawDistance: 1000
   m_FadeScale: 0.9
@@ -634,7 +634,7 @@ Light:
   m_Intensity: 70.02817
   m_Range: 30
   m_SpotAngle: 120
-  m_InnerSpotAngle: 1
+  m_InnerSpotAngle: 72
   m_CookieSize2D: {x: 10, y: 10}
   m_Shadows:
     m_Type: 1
@@ -682,7 +682,7 @@ Light:
   m_ForceVisible: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
-  m_LightUnit: 1
+  m_LightUnit: 0
   m_LuxAtDistance: 1
   m_EnableSpotReflector: 1
 --- !u!114 &3948084065355394137
@@ -704,11 +704,11 @@ MonoBehaviour:
   m_LightUnit: 0
   m_LuxAtDistance: 1
   m_Intensity: 220
-  m_InnerSpotPercent: 60
-  m_ShapeWidth: 0.5
-  m_ShapeHeight: 0.5
+  m_InnerSpotPercent: -1
+  m_ShapeWidth: -1
+  m_ShapeHeight: -1
   m_AspectRatio: 1
-  m_Version: 11
+  m_Version: 14
   m_ObsoleteShadowResolutionTier: 1
   m_ObsoleteUseShadowQualitySettings: 0
   m_ObsoleteCustomShadowResolution: 512
@@ -1286,7 +1286,7 @@ ParentConstraint:
   serializedVersion: 2
   m_Weight: 1
   m_TranslationAtRest: {x: 0.017554149, y: -0.15466106, z: 0.011065759}
-  m_RotationAtRest: {x: 1.1754724, y: -92.554924, z: 1.5146}
+  m_RotationAtRest: {x: 1.1754723, y: -92.554924, z: 1.5146}
   m_TranslationOffsets:
   - {x: 1.0199999, y: 0, z: 0}
   m_RotationOffsets:
@@ -2888,6 +2888,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -174478873421751411, guid: 65f92a35a93509a42afb565f62c21738,
         type: 3}
+      propertyPath: m_SkinnedMotionVectors
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -174478873421751411, guid: 65f92a35a93509a42afb565f62c21738,
+        type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: c5d9523b2d44123459c89570ee85eb9e, type: 2}
@@ -3310,6 +3315,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2688404382830176426, guid: 65f92a35a93509a42afb565f62c21738,
         type: 3}
+      propertyPath: m_SkinnedMotionVectors
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2688404382830176426, guid: 65f92a35a93509a42afb565f62c21738,
+        type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: c5d9523b2d44123459c89570ee85eb9e, type: 2}
@@ -3607,6 +3617,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalRotation.z
       value: 0.32829455
+      objectReference: {fileID: 0}
+    - target: {fileID: 5693337647238749516, guid: 65f92a35a93509a42afb565f62c21738,
+        type: 3}
+      propertyPath: m_SkinnedMotionVectors
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5693337647238749516, guid: 65f92a35a93509a42afb565f62c21738,
         type: 3}
