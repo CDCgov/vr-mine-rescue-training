@@ -361,11 +361,12 @@ public static class ExternalAssetBuilder
                 GameObject targetObj = null;
                 
                 //attempt to add the collider to the LOD group object for this mesh
-                if (child.transform.parent != null && child.transform.parent.TryGetComponent<LODGroup>(out var childLodGroup))
-                {
-                    targetObj = childLodGroup.gameObject;
-                }
-                else if (lodGroup != null)
+                //if (child.transform.parent != null && child.transform.parent.TryGetComponent<LODGroup>(out var childLodGroup))
+                //{
+                //    targetObj = childLodGroup.gameObject;
+                //}
+                //else 
+                if (lodGroup != null)
                     targetObj = lodGroup.gameObject;
                 else
                     targetObj = child.gameObject;
