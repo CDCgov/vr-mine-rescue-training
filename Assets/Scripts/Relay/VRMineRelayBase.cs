@@ -18,7 +18,7 @@ public abstract class VRMineRelayBase : VRMineTransport
         _connections = new NativeList<NetworkConnection>(16, Allocator.Persistent);
 
         //NetworkDriver = NetworkDriver.Create();
-        var endpoint = NetworkEndPoint.AnyIpv4; // The local address to which the client will connect to is 127.0.0.1
+        var endpoint = NetworkEndpoint.AnyIpv4; // The local address to which the client will connect to is 127.0.0.1
         endpoint.Port = VRMineRelay.RelayPort;
         if (NetworkDriver.Bind(endpoint) != 0)
             Debug.Log($"Failed to bind to port {VRMineRelay.RelayPort}");
@@ -56,7 +56,7 @@ public abstract class VRMineRelayBase : VRMineTransport
         while ((c = NetworkDriver.Accept()) != default(NetworkConnection))
         {
             _connections.Add(c);
-            var remoteAddr = NetworkDriver.RemoteEndPoint(c);
+            var remoteAddr = NetworkDriver.GetRemoteEndpoint(c);
             Debug.Log($"Accepted a connection from {remoteAddr.Address}");
 
             OnClientConnected(c);
@@ -85,7 +85,7 @@ public abstract class VRMineRelayBase : VRMineTransport
                 }
                 else if (cmd == NetworkEvent.Type.Disconnect)
                 {
-                    var remoteAddr = NetworkDriver.RemoteEndPoint(c);
+                    var remoteAddr = NetworkDriver.GetRemoteEndpoint(c);
 
                     Debug.Log($"Client {remoteAddr.Address} disconnected from server");
 

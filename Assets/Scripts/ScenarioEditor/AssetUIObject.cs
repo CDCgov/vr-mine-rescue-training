@@ -6,6 +6,7 @@ using TMPro;
 using NIOSH_EditorLayers;
 using static NIOSH_EditorLayers.LayerManager;
 using NIOSH_MineCreation;
+using UnityEngine.InputSystem;
 
 public class AssetUIObject : MonoBehaviour
 {
@@ -131,7 +132,7 @@ public class AssetUIObject : MonoBehaviour
     {
         m_PointerEventData = new PointerEventData(m_EventSystem);
         //Set the Pointer Event Position to that of the mouse position
-        m_PointerEventData.position = Input.mousePosition;
+        m_PointerEventData.position = Mouse.current.GetPositionVec3();
 
         //Create a list of Raycast Results
         List<RaycastResult> results = new List<RaycastResult>();
@@ -250,7 +251,7 @@ public class AssetUIObject : MonoBehaviour
 
             // get placable script
             // put where hit is based on pivot
-            ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            ray = Camera.main.ScreenPointToRay(Mouse.current.GetPositionVec3());
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask))
             {
                 Vector3 placementVector = hit.point;

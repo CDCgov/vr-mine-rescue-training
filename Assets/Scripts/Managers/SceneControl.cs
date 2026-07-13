@@ -525,19 +525,19 @@ public class SceneControl : MonoBehaviour
         //    }
         //}
 
-        if (HotkeyGroups != null && EventSystem.current != null && EventSystem.current.currentSelectedGameObject == null)
-        {
-            foreach (HotkeyToggleGroup group in HotkeyGroups)
-            {
-                if (Input.GetKeyDown(group.KeyCode) && group.GameObjects != null)
-                {
-                    foreach (var obj in group.GameObjects)
-                    {
-                        obj.SetActive(!obj.activeSelf);
-                    }
-                }
-            }
-        }
+        //if (HotkeyGroups != null && EventSystem.current != null && EventSystem.current.currentSelectedGameObject == null)
+        //{
+        //    foreach (HotkeyToggleGroup group in HotkeyGroups)
+        //    {
+        //        if (Input.GetKeyDown(group.KeyCode) && group.GameObjects != null)
+        //        {
+        //            foreach (var obj in group.GameObjects)
+        //            {
+        //                obj.SetActive(!obj.activeSelf);
+        //            }
+        //        }
+        //    }
+        //}
 
      //   if (_network != null && _network._junctionMap != null && _serverControl != null)
      //   {

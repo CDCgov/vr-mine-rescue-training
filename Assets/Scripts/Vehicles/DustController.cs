@@ -23,8 +23,8 @@ public class DustController : MonoBehaviour
         Vector3 currentPos = VehicleRigidbody.transform.position;
         float vel = Vector3.Magnitude(currentPos - _priorPos) / Time.deltaTime;
         _priorPos = currentPos;
-        float spawnRate = Mathf.Lerp(0, 10, VehicleRigidbody.velocity.magnitude / TopSpeed);
-        float particleVel = Mathf.Lerp(0, -1, VehicleRigidbody.velocity.magnitude / TopSpeed);
+        float spawnRate = Mathf.Lerp(0, 10, VehicleRigidbody.linearVelocity.magnitude / TopSpeed);
+        float particleVel = Mathf.Lerp(0, -1, VehicleRigidbody.linearVelocity.magnitude / TopSpeed);
         float rate = 0;
         if (WheelCollider != null)
         {

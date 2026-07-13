@@ -147,7 +147,7 @@ public class CollisionSoundEffect : MonoBehaviour
             }
             else
             {
-                return CollisionRigidbody.velocity.magnitude;
+                return CollisionRigidbody.linearVelocity.magnitude;
             }
         }
         return vel;

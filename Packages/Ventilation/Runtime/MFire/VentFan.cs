@@ -71,7 +71,7 @@ public class VentFan : VentObj
 
     }
 
-    public void SetFanData(VentFanData fanData)
+    public void SetFanData(VentFanData fanData, float scale = 1.0f)
     {
         if (fanData.PressureData == null || fanData.AirflowData == null || 
             fanData.AirflowData.Length <= 2 ||
@@ -83,6 +83,14 @@ public class VentFan : VentObj
 
         MFFan.AirflowData = new List<double>(fanData.AirflowData);
         MFFan.PressureData = new List<double>(fanData.PressureData);
+
+        if (scale != 1.0f)
+        {
+            for (int i = 0; i < MFFan.AirflowData.Count; i++)
+            {
+                MFFan.AirflowData[i] *= scale;
+            }
+        }
 
         UpdateFan();
     }

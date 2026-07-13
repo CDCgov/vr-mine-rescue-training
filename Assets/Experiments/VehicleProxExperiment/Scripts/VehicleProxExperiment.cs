@@ -106,7 +106,7 @@ public class VehicleProxExperiment : Experiment
 		{
 			if (_vehRigidbody != null)
 			{
-				return _vehRigidbody.velocity;
+				return _vehRigidbody.linearVelocity;
 			}
 			else
 			{
@@ -610,7 +610,7 @@ public class VehicleProxExperiment : Experiment
 		_csvLog.WriteField(_miner.transform.position.x * ConvMToFt);
 		_csvLog.WriteField(_miner.transform.position.y * ConvMToFt);
 		_csvLog.WriteField(_miner.transform.position.z * ConvMToFt);
-		_csvLog.WriteField(_vehRigidbody.velocity.magnitude * ConvMSToFPS);
+		_csvLog.WriteField(_vehRigidbody.linearVelocity.magnitude * ConvMSToFPS);
 		_csvLog.WriteField(_vehRigidbody.angularVelocity.x);
 		_csvLog.WriteField(_vehRigidbody.angularVelocity.y);
 		_csvLog.WriteField(_vehRigidbody.angularVelocity.z);
@@ -1056,13 +1056,13 @@ public class VehicleProxExperiment : Experiment
 		_carReference.transform.localPosition = Vector3.zero;
 		_carReference.transform.localRotation = Quaternion.identity;
 		_vehRigidbody = _carReference.GetComponent<Rigidbody>();
-		_carReference.GetComponent<Rigidbody>().velocity = Vector3.zero;
+		_carReference.GetComponent<Rigidbody>().linearVelocity = Vector3.zero;
 		_frontOfShuttleCar = _carReference.transform.Find("FrontOfCarTransform");
 		Vector3 arbitraryPointForward = _carReference.transform.position;
 		arbitraryPointForward.z = arbitraryPointForward.z + 12;//Setting well forward of the machine based on center point
 		_frontOfShuttleCar.transform.position = _bodyCollider.ClosestPoint(arbitraryPointForward);
 
-		_vehRigidbody.velocity = Vector3.zero;
+		_vehRigidbody.linearVelocity = Vector3.zero;
 		_vehRigidbody.angularVelocity = Vector3.zero;
 		_vehRigidbody.ResetCenterOfMass();
 		//_VehRigidbody.constraints = RigidbodyConstraints.FreezeRotationY;
@@ -1415,7 +1415,7 @@ public class VehicleProxExperiment : Experiment
 
 			case VehicleState.SpeedUp:
 				//check if we have achieved the target velocity
-				if (_vehRigidbody.velocity.magnitude * ConvMSToFPS >= (_initialSpeedFPS - (_initialSpeedFPS * SteadyStateTolerance)))
+				if (_vehRigidbody.linearVelocity.magnitude * ConvMSToFPS >= (_initialSpeedFPS - (_initialSpeedFPS * SteadyStateTolerance)))
 				{
 					ChangeVehicleState(VehicleState.InitialSteady);
 				}
@@ -1494,7 +1494,7 @@ public class VehicleProxExperiment : Experiment
 				break;
 
 			case VehicleState.RedBraking:
-				if (_vehRigidbody.velocity.magnitude < 0.008f) //Approximation (uncertainty in the unity model can potentially mean it's never *actually* zero)
+				if (_vehRigidbody.linearVelocity.magnitude < 0.008f) //Approximation (uncertainty in the unity model can potentially mean it's never *actually* zero)
 				{
 					ChangeVehicleState(VehicleState.Stopped);
 				}
@@ -1668,12 +1668,12 @@ public class VehicleProxExperiment : Experiment
 
 		UpdateDistanceMeasurements();
 
-		float velocity = _carReference.transform.InverseTransformDirection(_carReference.GetComponent<Rigidbody>().velocity).z * ConvMSToFPS; //Convert vehicle velocity to feet per second rather than meters per second
+		float velocity = _carReference.transform.InverseTransformDirection(_carReference.GetComponent<Rigidbody>().linearVelocity).z * ConvMSToFPS; //Convert vehicle velocity to feet per second rather than meters per second
 		for (int i = _PriorVelocities.Length - 1; i > 0; i--)
 		{
 			_PriorVelocities[i] = _PriorVelocities[i - 1];
 		}
-		_PriorVelocities[0] = _vehRigidbody.velocity.magnitude;
+		_PriorVelocities[0] = _vehRigidbody.linearVelocity.magnitude;
 
 
 		if (GetElapsedTime() >= 90) //Trial automatically restarts after 25 seconds have passed

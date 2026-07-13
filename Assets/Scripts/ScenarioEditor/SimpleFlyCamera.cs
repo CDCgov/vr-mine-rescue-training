@@ -17,26 +17,26 @@ public class SimpleFlyCamera : CameraLogic
     {
         isActive = false;
     }
-    void LateUpdate()
-    {
-        if (!isActive) { return; }
-        if (Input.GetMouseButton(1))
-        {
-            transform.Rotate(new Vector3(0, Input.GetAxis("Mouse X"), 0) * rotationSpeed * Time.deltaTime, Space.World);
-            transform.Rotate(new Vector3(-Input.GetAxis("Mouse Y"), 0, 0) * rotationSpeed * Time.deltaTime, Space.Self);
-        }
+    //void LateUpdate()
+    //{
+    //    if (!isActive) { return; }
+    //    if (Input.GetMouseButton(1))
+    //    {
+    //        transform.Rotate(new Vector3(0, Input.GetAxis("Mouse X"), 0) * rotationSpeed * Time.deltaTime, Space.World);
+    //        transform.Rotate(new Vector3(-Input.GetAxis("Mouse Y"), 0, 0) * rotationSpeed * Time.deltaTime, Space.Self);
+    //    }
 
-        if(Input.GetKey(KeyCode.LeftShift))
-        {
-            movementModifier = 2f;
-        }
-        else
-        {
-            movementModifier = 1f;
-        }
-        transform.Translate(GetBaseInput() * moveSpeed * movementModifier * Time.deltaTime, Space.Self);
-        pivotObject.position = new Vector3(transform.position.x,0,transform.position.z);
-    }
+    //    if(Input.GetKey(KeyCode.LeftShift))
+    //    {
+    //        movementModifier = 2f;
+    //    }
+    //    else
+    //    {
+    //        movementModifier = 1f;
+    //    }
+    //    transform.Translate(GetBaseInput() * moveSpeed * movementModifier * Time.deltaTime, Space.Self);
+    //    pivotObject.position = new Vector3(transform.position.x,0,transform.position.z);
+    //}
 
     private Vector3 GetBaseInput()
     {

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class CameraPivotMovement : MonoBehaviour
 {
@@ -11,26 +12,38 @@ public class CameraPivotMovement : MonoBehaviour
 
     private Ray ray;
     private RaycastHit hit;
+
+    private InputAction _actionMove;
+    private InputAction _actionZoom;
+
     private void Start()
     {
         mask = LayerMask.GetMask("PanPlane");
         mask += LayerMask.GetMask("SelectedObject");
+
+        _actionMove = InputSystem.actions.FindAction("Move");
+        _actionZoom = InputSystem.actions.FindAction("Zoom");
     }
     public void MovePivot(float moveSpeed, Transform cameraT)
     {
         Vector3 motionVec = Vector3.zero;
 
-        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
-            motionVec += cameraT.forward;
+        //if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
+        //    motionVec += cameraT.forward;
 
-        if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
-            motionVec += -cameraT.forward;
+        //if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
+        //    motionVec += -cameraT.forward;
 
-        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
-            motionVec += -cameraT.right;
+        //if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
+        //    motionVec += -cameraT.right;
 
-        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
-            motionVec += cameraT.right;
+        //if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
+        //    motionVec += cameraT.right;
+
+        Vector2 moveVec = _actionMove.ReadValue<Vector2>();
+        motionVec += moveVec.y * cameraT.forward;
+        motionVec += moveVec.x * cameraT.right;
+        
         /*
         motionVec.y = 0;
 
@@ -47,9 +60,9 @@ public class CameraPivotMovement : MonoBehaviour
     }
     public void UpdatePivotDrag()
     {
-        if (Input.GetMouseButton(2))
+        if (Mouse.current.rightButton.IsPressed())
         {
-            ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            ray = Camera.main.ScreenPointToRay(Mouse.current.GetPositionVec3());
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, mask))
             {
                 if (hit.transform.gameObject.layer == 3)
@@ -86,7 +99,9 @@ public class CameraPivotMovement : MonoBehaviour
     {
         if(isZooming)
         {
-            Vector3 direction = (transform.position - Camera.main.transform.position).normalized * Input.mouseScrollDelta.y;
+            float zoomValue = _actionZoom.ReadValue<float>();
+            Debug.Log($"CameraPivotMovement: Zoom value read {zoomValue:F2}");
+            Vector3 direction = (transform.position - Camera.main.transform.position).normalized * /*Input.mouseScrollDelta.y*/zoomValue * 10.0f;
             transform.position = new Vector3(transform.position.x + direction.x, pivotHeight, transform.position.z + direction.z);
         }
     }

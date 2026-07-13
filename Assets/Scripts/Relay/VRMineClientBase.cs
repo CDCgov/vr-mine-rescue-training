@@ -4,6 +4,7 @@ using UnityEngine;
 using Unity.Networking.Transport;
 
 
+[System.Obsolete]
 public abstract class VRMineClientBase : VRMineTransport
 {
     //protected NetworkDriver NetworkDriver;
@@ -52,15 +53,15 @@ public abstract class VRMineClientBase : VRMineTransport
         //NetworkDriver.Dispose();
     }
 
-    protected abstract void OnConnected(DataStreamReader reader);
-    protected abstract void OnDisconnected(DataStreamReader reader);
-    protected abstract void OnDataMessage(DataStreamReader reader);
+    protected abstract void OnConnected(Unity.Collections.DataStreamReader reader);
+    protected abstract void OnDisconnected(Unity.Collections.DataStreamReader reader);
+    protected abstract void OnDataMessage(Unity.Collections.DataStreamReader reader);
 
     public void Connect(string address, ushort port)
     {
-        NetworkEndPoint ep = new NetworkEndPoint();
+        NetworkEndpoint ep = new NetworkEndpoint();
 
-        if (!NetworkEndPoint.TryParse(address, port, out ep))
+        if (!NetworkEndpoint.TryParse(address, port, out ep))
         {
             //try dns lookup
             var ip = System.Net.Dns.GetHostEntry(address);
@@ -73,13 +74,13 @@ public abstract class VRMineClientBase : VRMineTransport
             var ipstr = ip.AddressList[0].ToString();
             Debug.Log($"Found ip {ipstr} for address {address}");
 
-            ep = NetworkEndPoint.Parse(ipstr, port);
+            ep = NetworkEndpoint.Parse(ipstr, port);
         }
         
         Connect(ep);
     }
 
-    public void Connect(NetworkEndPoint endpoint)
+    public void Connect(NetworkEndpoint endpoint)
     {
         //endpoint.Port = port;
         NetworkConnection = NetworkDriver.Connect(endpoint);
@@ -105,7 +106,7 @@ public abstract class VRMineClientBase : VRMineTransport
             return;
         }
 
-        DataStreamReader stream;
+        Unity.Collections.DataStreamReader stream;
         NetworkEvent.Type cmd;
 
         while ((cmd = NetworkConnection.PopEvent(NetworkDriver, out stream)) != NetworkEvent.Type.Empty)

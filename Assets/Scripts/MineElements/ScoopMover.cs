@@ -15,16 +15,16 @@ public class ScoopMover : MonoBehaviour
     
     }
     
-    void Update () 
-    {
-        if (Input.GetKeyUp(KeyCode.Alpha1))
-        {
-            move = !move;
-        }
+    //void Update () 
+    //{
+    //    if (Input.GetKeyUp(KeyCode.Alpha1))
+    //    {
+    //        move = !move;
+    //    }
 
-        if (move)
-        {
-            transform.position = Vector3.Lerp(pos1, pos2, (-Mathf.Cos(speed * Time.time) + 1.0f) / 2.0f);
-        }
-    }
+    //    if (move)
+    //    {
+    //        transform.position = Vector3.Lerp(pos1, pos2, (-Mathf.Cos(speed * Time.time) + 1.0f) / 2.0f);
+    //    }
+    //}
 }

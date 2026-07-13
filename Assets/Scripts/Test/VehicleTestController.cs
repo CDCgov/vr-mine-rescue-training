@@ -39,14 +39,14 @@ public class VehicleTestController : MonoBehaviour
         float motor = 0;// MaxMotorTorque * Input.GetAxis("Vertical");
         float steering = 0;// MaxSteeringAngle * Input.GetAxis("Horizontal");
 
-        if (Input.GetKey(KeyCode.W))
-            motor += MaxMotorTorque;
-        if (Input.GetKey(KeyCode.S))
-            motor -= MaxMotorTorque;
-        if (Input.GetKey(KeyCode.A))
-            steering -= MaxSteeringAngle;
-        if (Input.GetKey(KeyCode.D))
-            steering += MaxSteeringAngle;
+        //if (Input.GetKey(KeyCode.W))
+        //    motor += MaxMotorTorque;
+        //if (Input.GetKey(KeyCode.S))
+        //    motor -= MaxMotorTorque;
+        //if (Input.GetKey(KeyCode.A))
+        //    steering -= MaxSteeringAngle;
+        //if (Input.GetKey(KeyCode.D))
+        //    steering += MaxSteeringAngle;
 
         foreach (AxleInfo axleInfo in axleInfos)
         {

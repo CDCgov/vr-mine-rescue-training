@@ -105,12 +105,7 @@ public class MineMapRenderer : MonoBehaviour, IPointerClickHandler
     //    _cam.orthographicSize = Mathf.Max(b.extents.x, b.extents.y) + 5;
     //    _cam.aspect = _rect.rect.width / _rect.rect.height;
     //}
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+  
 
     public void OnPointerClick(PointerEventData eventData)
     {

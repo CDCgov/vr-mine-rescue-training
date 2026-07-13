@@ -35,10 +35,10 @@ public class LightController : MonoBehaviour {
     // Update is called once per frame
     
     void Update () {
-        if (!IsUsingInputManager)
-        {
-            if (Input.GetKeyDown(KeyBind)) UpdateLight(LightState);
-        }
+        //if (!IsUsingInputManager)
+        //{
+        //    if (Input.GetKeyDown(KeyBind)) UpdateLight(LightState);
+        //}
 
         if(Time.frameCount % flareFrameUpdate == 0 ) UpdateFlareBrightness(); //flare brightness updates "each" frame. currently set to update every 5 frames. update rate can be changed using the Inspector variable flareFrameUpdate.
     }

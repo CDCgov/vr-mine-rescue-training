@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
+using Unity.XR.CoreUtils;
 
 public class PlayerSpawner : MonoBehaviour
 {
@@ -162,11 +163,11 @@ public class PlayerSpawner : MonoBehaviour
         Debug.Log("PlayerSpawner: Loading player rig");
 
         _playerRig = GameObject.Instantiate<GameObject>(rigPrefab, new Vector3(0, 1000, 0), Quaternion.identity);
-        if (_playerRig.TryGetComponent<XRRig>(out var xrrig))
+        if (_playerRig.TryGetComponent<XROrigin>(out var xrrig))
         {
-            if (xrrig.cameraGameObject != null && _audioListenerObj != null)
+            if (xrrig.Camera != null && _audioListenerObj != null)
             {
-                _audioListenerObj.transform.SetParent(xrrig.cameraGameObject.transform, false);
+                _audioListenerObj.transform.SetParent(xrrig.Camera.transform, false);
                 _audioListenerObj.transform.localPosition = Vector3.zero;
                 _audioListenerObj.transform.localRotation = Quaternion.identity;
             }

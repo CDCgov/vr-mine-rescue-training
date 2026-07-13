@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
+[System.Obsolete]
 public class EscapeKeyForTesting : MonoBehaviour 
 {
     void Start () 
@@ -11,9 +12,9 @@ public class EscapeKeyForTesting : MonoBehaviour
     
     void Update () 
     {
-        if (Input.GetKeyUp(KeyCode.Escape))
-        {
-            Application.Quit();
-        }
+        //if (Input.GetKeyUp(KeyCode.Escape))
+        //{
+        //    Application.Quit();
+        //}
     }
 }

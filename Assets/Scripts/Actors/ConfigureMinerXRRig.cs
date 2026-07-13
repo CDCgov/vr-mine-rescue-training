@@ -70,7 +70,7 @@ public class ConfigureMinerXRRig : MonoBehaviour
 #if DISSONANCE
     public DissonanceTest DissonanceSoundToggle;
 #endif
-    public XRHapticShake XRHapticShake;
+    //public XRHapticShake XRHapticShake;
 
     private List<Guid> _equippedItems;
     private VRNPlayerRole _assignedRole;
@@ -124,10 +124,10 @@ public class ConfigureMinerXRRig : MonoBehaviour
 
         _playerEquipmentSockets = GetComponentsInChildren<PlayerEquipmentSocket>();
 
-        if (XRHapticShake == null)
-        {
-            XRHapticShake = gameObject.GetComponent<XRHapticShake>();
-        }
+        //if (XRHapticShake == null)
+        //{
+        //    XRHapticShake = gameObject.GetComponent<XRHapticShake>();
+        //}
         PlayerManager.PlayerIDAssigned += OnPlayerIDAssigned;
 
         //NetworkManager.PlayerRoleChanged += ConfigurePlayerRole;
@@ -146,7 +146,7 @@ public class ConfigureMinerXRRig : MonoBehaviour
             Destroy(PlayerManager.CurrentPlayer.PlayerObject);
         }
         PlayerManager.CurrentPlayer.PlayerObject = this.gameObject;
-
+        PlayerManager.CurrentPlayer.HeadTransform = HeadCamera.transform;
 
 
         //      var playerInfo = GetComponent<PlayerInfo>();
@@ -821,6 +821,7 @@ public class ConfigureMinerXRRig : MonoBehaviour
         if (needsConfigured && !_roleConfigurationInProgress && NetworkManager.ActiveSceneID >= 0)
             ConfigurePlayerRole(_assignedRole);
 
+        /*
         if (Input.GetKeyUp(KeyCode.Alpha1))
         {
             //SetMinerRole(MineRescuerXRRole.Captain);
@@ -875,6 +876,7 @@ public class ConfigureMinerXRRig : MonoBehaviour
                     break;
             }
         }
+        */
 
         //if (Input.GetKeyUp(KeyCode.L))
         //{

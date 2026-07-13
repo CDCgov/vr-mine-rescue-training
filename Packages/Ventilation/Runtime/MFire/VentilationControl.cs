@@ -633,10 +633,10 @@ public class VentilationControl : SceneManagerBase, ISerializationCallbackReceiv
             UpdateVectorField();
         }
 
-        if (Input.GetKeyDown(KeyCode.V) && Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.RightShift))
-        {
-            //SaveFieldData();
-        }
+        //if (Input.GetKeyDown(KeyCode.V) && Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.RightShift))
+        //{
+        //    //SaveFieldData();
+        //}
     }
 
     private void SaveFieldData()

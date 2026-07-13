@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(EventSystem))]
 public class EventSystemTabNavigation : MonoBehaviour
@@ -11,51 +12,105 @@ public class EventSystemTabNavigation : MonoBehaviour
 
     private EventSystem _eventSystem;
 
+    private InputActionEventManager _inputActions = new InputActionEventManager();
+
     void Start()
     {
         TryGetComponent<EventSystem>(out _eventSystem);
+
+        _inputActions.RegisterPerformedHandler("TabNavigationNext", (context) => {
+            TabNavigation(previous:false);
+        });
+
+        _inputActions.RegisterPerformedHandler("TabNavigationPrevious", (context) => {
+            TabNavigation(previous:true);
+        });
+    }
+
+    private void OnDestroy()
+    {
+        if (_inputActions != null)
+            _inputActions.Dispose();
     }
 
     // Update is called once per frame
-    void Update()
+    //void Update()
+    //{
+    //    if (Input.GetKeyDown(KeyCode.Tab))
+    //    {
+    //        if (_eventSystem.currentSelectedGameObject == null)
+    //        {
+    //            if (InitialKeyboardNavigationObject != null)
+    //                _eventSystem.SetSelectedGameObject(InitialKeyboardNavigationObject);
+
+    //            return;
+    //        }
+
+    //        Selectable selectable = null;
+    //        Selectable next = null;
+    //        var shiftPressed = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
+
+    //        _eventSystem.currentSelectedGameObject.TryGetComponent<Selectable>(out selectable);
+
+    //        if (selectable != null)
+    //        {
+    //            if (shiftPressed)
+    //            {
+    //                next = selectable.FindSelectableOnLeft();
+    //                if (next == null)
+    //                    next = selectable.FindSelectableOnUp();
+    //            }
+    //            else
+    //            {
+    //                next = selectable.FindSelectableOnRight();
+    //                if (next == null)
+    //                    next = selectable.FindSelectableOnDown();
+
+    //            }
+
+    //        }
+
+    //        if (next != null)
+    //            _eventSystem.SetSelectedGameObject(next.gameObject);
+
+    //    }
+    //}
+
+    private void TabNavigation(bool previous = false)
     {
-        if (Input.GetKeyDown(KeyCode.Tab))
+        if (_eventSystem.currentSelectedGameObject == null)
         {
-            if (_eventSystem.currentSelectedGameObject == null)
-            {
-                if (InitialKeyboardNavigationObject != null)
-                    _eventSystem.SetSelectedGameObject(InitialKeyboardNavigationObject);
+            if (InitialKeyboardNavigationObject != null)
+                _eventSystem.SetSelectedGameObject(InitialKeyboardNavigationObject);
 
-                return;
+            return;
+        }
+
+        Selectable selectable = null;
+        Selectable next = null;
+
+        _eventSystem.currentSelectedGameObject.TryGetComponent<Selectable>(out selectable);
+
+        if (selectable != null)
+        {
+            if (previous)
+            {
+                next = selectable.FindSelectableOnLeft();
+                if (next == null)
+                    next = selectable.FindSelectableOnUp();
             }
-
-            Selectable selectable = null;
-            Selectable next = null;
-            var shiftPressed = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
-
-            _eventSystem.currentSelectedGameObject.TryGetComponent<Selectable>(out selectable);
-
-            if (selectable != null)
+            else
             {
-                if (shiftPressed)
-                {
-                    next = selectable.FindSelectableOnLeft();
-                    if (next == null)
-                        next = selectable.FindSelectableOnUp();
-                }
-                else
-                {
-                    next = selectable.FindSelectableOnRight();
-                    if (next == null)
-                        next = selectable.FindSelectableOnDown();
-
-                }
+                next = selectable.FindSelectableOnRight();
+                if (next == null)
+                    next = selectable.FindSelectableOnDown();
 
             }
-
-            if (next != null)
-                _eventSystem.SetSelectedGameObject(next.gameObject);
 
         }
+
+        if (next != null)
+            _eventSystem.SetSelectedGameObject(next.gameObject);
     }
+    
 }

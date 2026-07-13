@@ -9,6 +9,7 @@ public struct CustomScenarioData
 {
     public string ScenarioName;
     public DateTime ScenarioDate;
+    public string FilePath;
 }
 
 public static class CustomScenarioUtil
@@ -28,9 +29,30 @@ public static class CustomScenarioUtil
             CustomScenarioData data = new CustomScenarioData();
             data.ScenarioName = scenarioName;
             data.ScenarioDate = JSONFileManagement.GetDateTimeForFile(filePath/*path + scenarioName + ".json"*/);
+            data.FilePath = filePath;
             //Debug.Log($"Got date for {filePath} of {data.ScenarioDate.ToString()}");
             yield return data;
 
+        }
+    }
+
+    public static void GetCustomScenarios(List<CustomScenarioDS> scenarioList, string path = null)
+    {
+        if (scenarioList == null)
+            return;
+
+        scenarioList.Clear();
+
+        foreach (var scenarioData in GetCustomScenarios(path))
+        {
+            var ds = new CustomScenarioDS
+            {
+                ScenarioName = scenarioData.ScenarioName,
+                ScenarioDate = scenarioData.ScenarioDate,
+                FilePath = scenarioData.FilePath,
+            };
+
+            scenarioList.Add(ds);
         }
     }
 

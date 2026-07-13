@@ -35,14 +35,14 @@ public class TrackingManager : MonoBehaviour {
 
     private void Update()
     {
-        if (UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject == null)
-        {
-            //Debug.Log("Closest Node: " + CalculateClosestNode(DebugActor).gameObject.name);
-            if (Input.GetKeyDown(KeyCode.M))
-            {
-                _mControl.ToggleMiniMap();
-            }
-        }
+        //if (UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject == null)
+        //{
+        //    //Debug.Log("Closest Node: " + CalculateClosestNode(DebugActor).gameObject.name);
+        //    if (Input.GetKeyDown(KeyCode.M))
+        //    {
+        //        _mControl.ToggleMiniMap();
+        //    }
+        //}
 
         if (MasterControl.SceneControl != null && MasterControl.SceneControl.ActiveActors != null)
         {

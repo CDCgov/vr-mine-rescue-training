@@ -23,9 +23,9 @@ public struct DeferredMeshCollider
 
 public struct MeshColliderBakeJob : IJobParallelFor
 {
-    private NativeArray<int> meshIds;
+    private NativeArray<EntityId> meshIds;
 
-    public MeshColliderBakeJob(NativeArray<int> meshIds)
+    public MeshColliderBakeJob(NativeArray<EntityId> meshIds)
     {
         this.meshIds = meshIds;
     }
@@ -439,11 +439,11 @@ public class LoadableAssetManager : SceneManagerBase
             MeshColliderCookingOptions.EnableMeshCleaning |
             MeshColliderCookingOptions.UseFastMidphase;
 
-        NativeArray<int> meshIds = new NativeArray<int>(_deferredMeshColliders.Count, Allocator.Persistent);
+        NativeArray<EntityId> meshIds = new NativeArray<EntityId>(_deferredMeshColliders.Count, Allocator.Persistent);
 
         for (int i = 0; i < _deferredMeshColliders.Count; ++i)
         {
-            meshIds[i] = _deferredMeshColliders[i].Mesh.GetInstanceID();
+            meshIds[i] = _deferredMeshColliders[i].Mesh.GetEntityId();
         }
 
         var job = new MeshColliderBakeJob(meshIds);
@@ -491,6 +491,7 @@ public class LoadableAssetManager : SceneManagerBase
 
     }
 
+    /*
     private async Task BuildExternalAssets()
     {
         if (ExternalAssetManager == null)
@@ -536,7 +537,7 @@ public class LoadableAssetManager : SceneManagerBase
         sw.Stop();
 
         Debug.Log($"External Assets loading took {sw.Elapsed.TotalSeconds:F2}s");
-    }
+    } */
 
     private async Task BuildExternalAssetsParallel()
     {
@@ -547,34 +548,32 @@ public class LoadableAssetManager : SceneManagerBase
 
         sw.Start();
 
-        var loadTasks = new List<Task<LoadableAsset>>();
+        var loadTasks = new List<Task<ExternalAssetFileData>>();        
 
-        foreach (var assetData in ExternalAssetManager.GetExternalAssetMetadata())
+        foreach (var fileData in ExternalAssetManager.GetExternalAssetFileData())
         {
+            var assetData = fileData.Metadata;
+            if (assetData == null)
+                continue;
+
             try
             {
                 Debug.Log($"Loading external asset {assetData.SourceFile}");
 
-                var task = ExternalAssetManager.BuildLoadableAsset(assetData, this, _audioMaterialList);
+                //initial check for duplicate asset ID before loading
+                if (_loadables.ContainsKey(assetData.AssetID))
+                {
+                    fileData.AddError($"Duplicate asset ID: {assetData.AssetID}");
+                    continue;
+                }
+
+                var task = ExternalAssetManager.BuildLoadableAsset(fileData, assetData, this, _audioMaterialList);
                 loadTasks.Add(task);
-
-                //if (asset == null || asset.AssetID == null)
-                //{
-                //    Debug.LogError($"Failed to load asset for {assetData.SourceFile}");
-                //    continue;
-                //}
-
-                //if (_loadables.ContainsKey(asset.AssetID))
-                //{
-                //    Debug.LogError($"Error: External asset has duplicate ID {asset.AssetID}");
-                //    continue;
-                //}
-
-                //_loadables.Add(asset.AssetID, asset);
             }
             catch (Exception ex)
             {
                 Debug.LogError($"Failed loading external asset: {ex.Message} {ex.StackTrace}");
+                fileData.AddError($"Failed loading external asset: {ex.Message}");
             }
         }
 
@@ -597,28 +596,31 @@ public class LoadableAssetManager : SceneManagerBase
                 continue;
             }
 
-            var asset = task.Result;
+            var fileData = task.Result;
+            var asset = fileData.LoadableAsset;
 
             if (asset == null || asset.AssetID == null)
             {
                 //Debug.LogError($"Failed to load asset for {task}");
                 taskFailureCount++;
+                fileData.AddError("Failed to load asset");
                 continue;
             }
 
             if (_loadables.ContainsKey(asset.AssetID))
             {
                 Debug.LogError($"Error: External asset has duplicate ID {asset.AssetID}");
+                fileData.AddError($"External asset has duplicate ID {asset.AssetID}");
                 taskFailureCount++;
                 continue;
             }
 
-            if (taskFailureCount > 0)
-            {
-                Debug.LogError($"{taskFailureCount} load tasks failed");
-            }
-
             _loadables.Add(asset.AssetID, asset);
+        }
+
+        if (taskFailureCount > 0)
+        {
+            Debug.LogError($"{taskFailureCount} load tasks failed");
         }
 
         sw.Stop();

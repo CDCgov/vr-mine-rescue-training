@@ -119,7 +119,7 @@ public class ThrowInteractable : MonoBehaviour, IInteractableObject
         _interactable.ChangeOwnership(null);
         _rb.isKinematic = false;
         _rb.useGravity = true;
-        _rb.velocity = throwVelocity;
+        _rb.linearVelocity = throwVelocity;
     }
 
     private void Retrieve()

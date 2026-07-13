@@ -15,7 +15,7 @@ namespace NIOSH_EditorLayers
             }
         }
 
-        protected void OnDestroy()
+        protected virtual void OnDestroy()
         {
             if (LayerManager.Instance)
             {

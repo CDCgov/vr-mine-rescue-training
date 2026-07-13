@@ -1,4 +1,4 @@
-﻿using Cinemachine;
+﻿using Unity.Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,7 +21,7 @@ public class CineForceVC : MonoBehaviour
         }
 
         _cineBrain = GetComponent<CinemachineBrain>();
-        _overrideID = _cineBrain.SetCameraOverride(-1, VirtualCamera, VirtualCamera, 0, -1);
+        _overrideID = _cineBrain.SetCameraOverride(-1, 1000, VirtualCamera, VirtualCamera, 0, -1);
     }
 
     public void SetVirtualCamera(CinemachineVirtualCameraBase vc)
@@ -29,7 +29,7 @@ public class CineForceVC : MonoBehaviour
         VirtualCamera = vc;
 
         _cineBrain.ReleaseCameraOverride(_overrideID);
-        _overrideID = _cineBrain.SetCameraOverride(-1, VirtualCamera, VirtualCamera, 0, -1);
+        _overrideID = _cineBrain.SetCameraOverride(-1, 1000, VirtualCamera, VirtualCamera, 0, -1);
     }
 
     private void OnDestroy()

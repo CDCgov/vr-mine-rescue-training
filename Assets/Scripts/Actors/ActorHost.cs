@@ -157,10 +157,10 @@ public class ActorHost : MonoBehaviour, INetSync, IInputTarget, ISelectableObjec
                         HandSprite.transform.position = hit.point + hit.normal.normalized * 0.01f;                        
                         //HandSprite.transform.Translate(new Vector3(0, 0, 0.001f), Space.Self);
                     }
-                    if (Input.GetButtonUp("Fire1"))
-                    {
-                        inter.Interact(this);
-                    }
+                    //if (Input.GetButtonUp("Fire1"))
+                    //{
+                    //    inter.Interact(this);
+                    //}
                 }
                 else
                 {
@@ -262,23 +262,23 @@ public class ActorHost : MonoBehaviour, INetSync, IInputTarget, ISelectableObjec
 
     public virtual void ProcessCustomInput()
     {
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            RaycastHit hit;
-            if (Physics.Raycast(HeadTransform.position, HeadTransform.forward, out hit))
-            {
+        //if (Input.GetKeyDown(KeyCode.T))
+        //{
+        //    RaycastHit hit;
+        //    if (Physics.Raycast(HeadTransform.position, HeadTransform.forward, out hit))
+        //    {
 
-                GameObject cableTest = new GameObject("TensionedCableTest");
-                MeshRenderer mr = cableTest.AddComponent<MeshRenderer>();
-                mr.material = Resources.Load<Material>("CableTestMat");
+        //        GameObject cableTest = new GameObject("TensionedCableTest");
+        //        MeshRenderer mr = cableTest.AddComponent<MeshRenderer>();
+        //        mr.material = Resources.Load<Material>("CableTestMat");
 
-                TensionedCable tcable = cableTest.AddComponent<TensionedCable>();
-                GameObject cableAnchor = new GameObject("CableAnchor");
-                cableAnchor.transform.position = hit.point;
-                tcable.CableAnchorPoint = cableAnchor.transform;
-                tcable.CableTarget = transform;
-            }
-        }
+        //        TensionedCable tcable = cableTest.AddComponent<TensionedCable>();
+        //        GameObject cableAnchor = new GameObject("CableAnchor");
+        //        cableAnchor.transform.position = hit.point;
+        //        tcable.CableAnchorPoint = cableAnchor.transform;
+        //        tcable.CableTarget = transform;
+        //    }
+        //}
     }
 
     private StringBuilder _stringBuilder;
@@ -315,7 +315,7 @@ public class ActorHost : MonoBehaviour, INetSync, IInputTarget, ISelectableObjec
                 Debug.Log("Adding player orbit cam");
                 var orbitCam = Util.InstantiateResource("OrbitCam");
                 orbitCam.transform.SetParent(sceneCamParent.transform, false);
-                var vcam = orbitCam.GetComponent<Cinemachine.CinemachineVirtualCamera>();
+                var vcam = orbitCam.GetComponent<Unity.Cinemachine.CinemachineVirtualCamera>();
                 vcam.transform.position = transform.position;
                 vcam.Follow = transform;
                 vcam.LookAt = transform;

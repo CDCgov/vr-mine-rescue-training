@@ -9,6 +9,6 @@ public class TestDebugVehicleSpeed : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        Debug.Log(Time.time + ": " + Rigidbody.velocity.magnitude * 2.4f);
+        Debug.Log(Time.time + ": " + Rigidbody.linearVelocity.magnitude * 2.4f);
     }
 }

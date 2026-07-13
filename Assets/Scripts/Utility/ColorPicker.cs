@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class ColorPicker : MonoBehaviour
@@ -21,7 +22,7 @@ public class ColorPicker : MonoBehaviour
         EventSystem eventSystem;
         eventSystem = GetComponent<EventSystem>();
         pointerEventData = new PointerEventData(eventSystem);
-        pointerEventData.position = Input.mousePosition;
+        pointerEventData.position = Mouse.current.GetPositionVec3();
         List<RaycastResult> results = new List<RaycastResult>();
         graphicRaycaster.Raycast(pointerEventData, results);
         foreach (RaycastResult result in results)

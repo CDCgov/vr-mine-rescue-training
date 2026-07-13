@@ -197,7 +197,7 @@ public class NetSyncServerKinemeticTranslationInteractable : MonoBehaviour, INet
         _rb.useGravity = true;
         transform.position = _vrnPhysicsRequest.Position.ToVector3();
         transform.rotation = _vrnPhysicsRequest.Rotation.ToQuaternion();
-        _rb.velocity = _vrnPhysicsRequest.Velocity.ToVector3();
+        _rb.linearVelocity = _vrnPhysicsRequest.Velocity.ToVector3();
         _rb.angularVelocity = _vrnPhysicsRequest.AngularVelocity.ToVector3();
     }
 

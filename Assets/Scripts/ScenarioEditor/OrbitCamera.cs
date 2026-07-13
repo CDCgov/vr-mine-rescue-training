@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Camera))]
 public class OrbitCamera : CameraLogic
@@ -133,7 +134,7 @@ public class OrbitCamera : CameraLogic
     bool ManualRotation()
     {
         Vector2 input = Vector2.zero;
-        if (Input.GetMouseButton(1))
+        if (Mouse.current.rightButton.isPressed)
         {
             input = new Vector2(
             -Input.GetAxis("Mouse Y"),

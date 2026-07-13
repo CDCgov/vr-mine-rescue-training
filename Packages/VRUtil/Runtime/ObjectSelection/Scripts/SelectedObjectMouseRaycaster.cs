@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 
 public class SelectedObjectMouseRaycaster : MonoBehaviour
 {
@@ -25,7 +26,7 @@ public class SelectedObjectMouseRaycaster : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Mouse.current.leftButton.wasPressedThisFrame)
         {
             PerformRaycast();
         }
@@ -51,7 +52,8 @@ public class SelectedObjectMouseRaycaster : MonoBehaviour
             return;
 
         //RaycastHit hitInfo;
-        Ray mouseRay = RaycastSource.ScreenPointToRay(Input.mousePosition);
+        Vector2 mousePos = Mouse.current.position.ReadValue();
+        Ray mouseRay = RaycastSource.ScreenPointToRay(new Vector3(mousePos.x, mousePos.y, 0));
 
         //if (Physics.Raycast(RaycastSource.position, RaycastSource.forward, out hitInfo, MaxDistance, RaycastLayerMask, TriggerInteraction))
 

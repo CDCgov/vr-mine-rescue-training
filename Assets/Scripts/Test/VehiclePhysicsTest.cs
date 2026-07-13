@@ -44,7 +44,7 @@ public class VehiclePhysicsTest : MonoBehaviour
 	//[Button()]
 	private void SetVelocity()
 	{
-		_rb.velocity = transform.forward * 5;
+		_rb.linearVelocity = transform.forward * 5;
 	}
 
 	// Use this for initialization
@@ -120,7 +120,7 @@ public class VehiclePhysicsTest : MonoBehaviour
 		sbStatus.AppendLine();
 		
 
-		sbStatus.AppendFormat("Velocity(m/s): {0:F2}", _rb.velocity.magnitude);
+		sbStatus.AppendFormat("Velocity(m/s): {0:F2}", _rb.linearVelocity.magnitude);
 
 		StatusInfo = sbStatus.ToString();
 	}

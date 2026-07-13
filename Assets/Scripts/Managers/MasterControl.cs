@@ -362,6 +362,7 @@ public class MasterControl : MonoBehaviour
 
 	}
 
+    /*
 	void Update () 
 	{
 		
@@ -475,14 +476,14 @@ public class MasterControl : MonoBehaviour
 
 		if (Input.GetKeyDown(KeyCode.P))
 		{
-			/*
-			var defProxSystems = GameObject.FindObjectsOfType<DeformableProxSystem>();
-			foreach (var proxSystem in defProxSystems)
-			{
+			
+			//var defProxSystems = GameObject.FindObjectsOfType<DeformableProxSystem>();
+			//foreach (var proxSystem in defProxSystems)
+			//{
 		
-				proxSystem.ShowVisualization = !proxSystem.ShowVisualization;
-			}
-			*/
+			//	proxSystem.ShowVisualization = !proxSystem.ShowVisualization;
+			//}
+			
 
 			var proxControllers = GameObject.FindObjectsOfType<ProxSystemController>();
 			foreach (var proxController in proxControllers)
@@ -509,7 +510,7 @@ public class MasterControl : MonoBehaviour
 			// 		capLamp.gameObject.SetActive(!capLamp.gameObject.activeSelf);
 			// }
 		}
-	}
+	} */
 
 	public static void SetClientRole(ClientRole newRole)
 	{

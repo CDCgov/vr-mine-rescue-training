@@ -8,6 +8,8 @@ public class EnableMultiMonitor : MonoBehaviour
 
     private bool _multiMonitorEnabled = false;
 
+    private InputActionEventManager _inputEvents = new InputActionEventManager();
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,7 +21,23 @@ public class EnableMultiMonitor : MonoBehaviour
             Debug.Log($"MultiMonitor: Display {i}: {display.systemWidth}x{display.systemHeight}");
         }
 
+        _inputEvents.RegisterPerformedHandler("EnableMultiMonitor", (context) =>
+        {
+            if (!_multiMonitorEnabled)
+            {
+                EnableSecondMonitor();
+            }
+            else
+            {
+                SwapMonitors();
+            }
+        });
 
+    }
+
+    private void OnDestroy()
+    {
+        _inputEvents.Dispose();
     }
 
     private void EnableSecondMonitor()
@@ -43,7 +61,7 @@ public class EnableMultiMonitor : MonoBehaviour
 
     private void SwapMonitors()
     {
-        var cameras = FindObjectsOfType<Camera>();
+        var cameras = FindObjectsByType<Camera>(FindObjectsSortMode.None);
 
         foreach (var cam in cameras)
         {
@@ -56,19 +74,19 @@ public class EnableMultiMonitor : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown(EnableMultiMonitorHotkey))
-        {
-            if (!_multiMonitorEnabled)
-            {
-                EnableSecondMonitor();
-            }
-            else
-            {
-                SwapMonitors();
-            }
-            //this.enabled = false;
-        }
-    }
+    //void Update()
+    //{
+    //    if (Input.GetKeyDown(EnableMultiMonitorHotkey))
+    //    {
+    //        if (!_multiMonitorEnabled)
+    //        {
+    //            EnableSecondMonitor();
+    //        }
+    //        else
+    //        {
+    //            SwapMonitors();
+    //        }
+    //        //this.enabled = false;
+    //    }
+    //}
 }

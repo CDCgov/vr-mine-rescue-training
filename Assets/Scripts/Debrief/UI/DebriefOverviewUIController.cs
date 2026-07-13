@@ -20,6 +20,8 @@ public class DebriefOverviewUIController : MonoBehaviour
 
     private Vector3 _CamStartPos;
     private float _camOrthoScale;
+    private CameraPan2D _camPan2D;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -34,7 +36,8 @@ public class DebriefOverviewUIController : MonoBehaviour
         //}
         //_camOrthoScale = OverviewCamera.orthographicSize;
         DebriefSceneLoader.SceneLoaded += ConfigureCamera;
-        
+
+        _camPan2D = FindFirstObjectByType<CameraPan2D>();
 
         if(SessionEventManager == null)
         {
@@ -118,7 +121,7 @@ public class DebriefOverviewUIController : MonoBehaviour
     {
         //OverviewCamera.orthographicSize = Mathf.Lerp(_camOrthoScale, 1, ZoomSlider.value);
         //OverviewCamera.orthographicSize = Mathf.Lerp(32, 1, ZoomSlider.value);
-        OverviewCamera.orthographicSize = Mathf.Lerp(32.0f * 3.0f, 1, ZoomSlider.value);
+        OverviewCamera.orthographicSize = Mathf.Lerp(32.0f * 6.0f, 1, ZoomSlider.value);
         SessionEventManager.UpdateScale(ZoomSlider.value);
     }
 
@@ -141,6 +144,10 @@ public class DebriefOverviewUIController : MonoBehaviour
         }
         _camOrthoScale = OverviewCamera.orthographicSize;
         _CamStartPos = OverviewCamera.transform.position;
+
+        if (_camPan2D != null)
+            _camPan2D.SaveStartPosition();
+
         //Debug.Log("Camera start pos " + _CamStartPos);
     }
 

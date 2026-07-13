@@ -3,6 +3,7 @@ using UnityEngine.SceneManagement;
 using System.Collections;
 using System.Collections.Generic;
 
+[System.Obsolete]
 public class TestSceneLoader : MonoBehaviour 
 {
     void Start () 
@@ -12,22 +13,22 @@ public class TestSceneLoader : MonoBehaviour
     
     void Update () 
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            SceneManager.LoadScene(0);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            SceneManager.LoadScene(1);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
+        //if (Input.GetKeyDown(KeyCode.Alpha1))
+        //{
+        //    SceneManager.LoadScene(0);
+        //}
+        //if (Input.GetKeyDown(KeyCode.Alpha2))
+        //{
+        //    SceneManager.LoadScene(1);
+        //}
+        //if (Input.GetKeyDown(KeyCode.Alpha3))
+        //{
 
-        }
+        //}
 
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            //Application.Quit();
-        }
+        //if (Input.GetKeyDown(KeyCode.Escape))
+        //{
+        //    //Application.Quit();
+        //}
     }
 }

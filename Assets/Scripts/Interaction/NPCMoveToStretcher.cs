@@ -29,8 +29,8 @@ public class NPCMoveToStretcher : MonoBehaviour, IInteractableObject
             if (_stretcher == null)
             {
 
-                Debug.LogWarning($"NPC {gameObject.name} didn't find StretcherController on start");
-                _stretcher = GameObject.FindObjectOfType<StretcherController>();
+                //Debug.LogWarning($"NPC {gameObject.name} didn't find StretcherController on start");
+                _stretcher = GameObject.FindAnyObjectByType<StretcherController>();
 
                 if (_stretcher == null)
                     return ActivationState.Unknown;
@@ -50,7 +50,7 @@ public class NPCMoveToStretcher : MonoBehaviour, IInteractableObject
 
         if (_stretcher == null)
         {
-            _stretcher = GameObject.FindObjectOfType<StretcherController>();
+            _stretcher = GameObject.FindAnyObjectByType<StretcherController>();
             if (_stretcher == null)
             {
                 return;
@@ -114,11 +114,11 @@ public class NPCMoveToStretcher : MonoBehaviour, IInteractableObject
             _animator = GetComponent<Animator>();
         }
 
-        _stretcher = GameObject.FindObjectOfType<StretcherController>();
-        if (_stretcher == null)
-        {
-            Debug.LogWarning($"NPC {gameObject.name} couldn't find StretcherController in scene");
-        }
+        _stretcher = GameObject.FindAnyObjectByType<StretcherController>();
+        //if (_stretcher == null)
+        //{
+        //    Debug.LogWarning($"NPC {gameObject.name} couldn't find StretcherController in scene");
+        //}
 
         TryGetComponent<NetworkedObject>(out _netObj);
         TryGetComponent<NPCController>(out _npc);

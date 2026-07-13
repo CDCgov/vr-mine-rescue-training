@@ -76,24 +76,24 @@ public class PhoneNode : NetworkNode {
                 _pointLight.SetActive(false);
             }
         }
-        if (Input.GetKeyUp(KeyCode.Return))
-        {
-            Broadcast("I hit the enter key!");
-        }
+        //if (Input.GetKeyUp(KeyCode.Return))
+        //{
+        //    Broadcast("I hit the enter key!");
+        //}
 
-        if (Input.GetKeyUp(KeyCode.Alpha2) && gameObject.name == "Phone2")
-        {
-            AnswerPhone();
-            SendCall("Phone 2 responding to command");
-            HangUp();
-        }
+        //if (Input.GetKeyUp(KeyCode.Alpha2) && gameObject.name == "Phone2")
+        //{
+        //    AnswerPhone();
+        //    SendCall("Phone 2 responding to command");
+        //    HangUp();
+        //}
 
-        if (Input.GetKeyUp(KeyCode.Alpha3) && gameObject.name == "Phone3")
-        {
-            AnswerPhone();
-            SendCall("Phone 3 responding to command");
-            HangUp();
-        }
+        //if (Input.GetKeyUp(KeyCode.Alpha3) && gameObject.name == "Phone3")
+        //{
+        //    AnswerPhone();
+        //    SendCall("Phone 3 responding to command");
+        //    HangUp();
+        //}
     }
 
     /// <summary>
@@ -101,103 +101,103 @@ public class PhoneNode : NetworkNode {
     /// </summary>
     private void OnMouseOver()
     {
-        if (Input.GetMouseButtonUp(0))
-        {
-            if (!IsSimplePhone)
-            {
-                if (Input.GetKey(KeyCode.LeftControl) && PickedUp)
-                {
-                    SendCall("Sending a message");
-                }
-                else
-                {
-                    PickedUp = !PickedUp;
-                    if (GuiPhone != null)
-                    {
-                        GuiPhone.SetActive(PickedUp);
-                    }
-                    Renderer ren = GetComponent<Renderer>();
-                    if (ren != null)
-                    {
-                        if (PickedUp)
-                        {
-                            ren.material.color = Color.blue;
-                        }
-                        else
-                        {
-                            ren.material.color = Color.white;
-                            if (_auSrc != null)
-                            {
-                                _auSrc.Stop();
-                            }
-                        }
-                    }
-                }
-            }
-            else
-            {
-                if(_auSrc != null)
-                {
-                    if (!_auSrc.isPlaying)
-                    {
-                        _auSrc.Play();
-                    }
-                }
-            }
-        }
+        //if (Input.GetMouseButtonUp(0))
+        //{
+        //    if (!IsSimplePhone)
+        //    {
+        //        if (Input.GetKey(KeyCode.LeftControl) && PickedUp)
+        //        {
+        //            SendCall("Sending a message");
+        //        }
+        //        else
+        //        {
+        //            PickedUp = !PickedUp;
+        //            if (GuiPhone != null)
+        //            {
+        //                GuiPhone.SetActive(PickedUp);
+        //            }
+        //            Renderer ren = GetComponent<Renderer>();
+        //            if (ren != null)
+        //            {
+        //                if (PickedUp)
+        //                {
+        //                    ren.material.color = Color.blue;
+        //                }
+        //                else
+        //                {
+        //                    ren.material.color = Color.white;
+        //                    if (_auSrc != null)
+        //                    {
+        //                        _auSrc.Stop();
+        //                    }
+        //                }
+        //            }
+        //        }
+        //    }
+        //    else
+        //    {
+        //        if(_auSrc != null)
+        //        {
+        //            if (!_auSrc.isPlaying)
+        //            {
+        //                _auSrc.Play();
+        //            }
+        //        }
+        //    }
+        //}
 
-        if (Input.GetMouseButtonUp(1))
-        {
-            if (Input.GetKey(KeyCode.LeftControl) && PickedUp)
-            {
-                Broadcast(gameObject.name + " is Broadcasting!");
-            }
-            else
-            {
-                PickedUp = !PickedUp;
-                Renderer ren = GetComponent<Renderer>();
-                //IsCommandPhone = !IsCommandPhone;
-                if (ren != null)
-                {
-                    if (PickedUp)
-                    {
-                        ren.material.color = Color.red;
-                    }
-                    else
-                    {
-                        ren.material.color = Color.white;
-                    }
-                }
-            }
-        }
+        //if (Input.GetMouseButtonUp(1))
+        //{
+        //    if (Input.GetKey(KeyCode.LeftControl) && PickedUp)
+        //    {
+        //        Broadcast(gameObject.name + " is Broadcasting!");
+        //    }
+        //    else
+        //    {
+        //        PickedUp = !PickedUp;
+        //        Renderer ren = GetComponent<Renderer>();
+        //        //IsCommandPhone = !IsCommandPhone;
+        //        if (ren != null)
+        //        {
+        //            if (PickedUp)
+        //            {
+        //                ren.material.color = Color.red;
+        //            }
+        //            else
+        //            {
+        //                ren.material.color = Color.white;
+        //            }
+        //        }
+        //    }
+        //}
 
-        if (Input.GetMouseButtonUp(3))
-        {
-            if (Input.GetKey(KeyCode.LeftControl) && PickedUp)
-            {
-                SendCall("Sending a message");
-            }
-            else
-            {
-                PickedUp = !PickedUp;
-                Renderer ren = GetComponent<Renderer>();
-                if (ren != null)
-                {
-                    if (PickedUp)
-                    {
-                        ren.material.color = Color.yellow;
-                    }
-                    else
-                    {
-                        ren.material.color = Color.white;
-                        if (_auSrc != null)
-                        {
-                            _auSrc.Stop();
-                        }
-                    }
-                }
-            }
-        }
+        //if (Input.GetMouseButtonUp(3))
+        //{
+        //    if (Input.GetKey(KeyCode.LeftControl) && PickedUp)
+        //    {
+        //        SendCall("Sending a message");
+        //    }
+        //    else
+        //    {
+        //        PickedUp = !PickedUp;
+        //        Renderer ren = GetComponent<Renderer>();
+        //        if (ren != null)
+        //        {
+        //            if (PickedUp)
+        //            {
+        //                ren.material.color = Color.yellow;
+        //            }
+        //            else
+        //            {
+        //                ren.material.color = Color.white;
+        //                if (_auSrc != null)
+        //                {
+        //                    _auSrc.Stop();
+        //                }
+        //            }
+        //        }
+        //    }
+        //}
     }
 
     public void AnswerPhone()

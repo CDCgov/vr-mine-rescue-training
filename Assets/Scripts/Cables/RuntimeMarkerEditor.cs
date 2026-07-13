@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEditor;
 using NIOSH_EditorLayers;
+using UnityEngine.InputSystem;
 
 
 public class RuntimeMarkerEditor : MonoBehaviour
@@ -158,7 +159,7 @@ public class RuntimeMarkerEditor : MonoBehaviour
     {
         if (inputTarget == InputTargetController.InputTarget.Viewport)
         {
-            Ray mouseRay = sceneCamera.ScreenPointToRay(Input.mousePosition);
+            Ray mouseRay = sceneCamera.ScreenPointToRay(Mouse.current.GetPositionVec3());
             RaycastHit hit;
 
             ///Check for selectable Node
@@ -172,7 +173,7 @@ public class RuntimeMarkerEditor : MonoBehaviour
                 {
                    //Debug.Log("Marker detected");
                     ///Select node
-                    if (Input.GetMouseButtonDown(0))
+                    if (Mouse.current.leftButton.wasPressedThisFrame)
                     {
                         _placer.CancelSelectionClick();
                         // Debug.Log("Marker selected");
@@ -204,9 +205,9 @@ public class RuntimeMarkerEditor : MonoBehaviour
         
         if (inputTarget == InputTargetController.InputTarget.Viewport)
         {
-            Ray mouseRay = sceneCamera.ScreenPointToRay(Input.mousePosition);
+            Ray mouseRay = sceneCamera.ScreenPointToRay(Mouse.current.GetPositionVec3());
             RaycastHit hit;
-            if (Input.GetMouseButtonDown(0))
+            if (Mouse.current.leftButton.wasPressedThisFrame)
             {
                 if (Physics.Raycast(mouseRay, out hit, 100, LayerMask.GetMask("Gizmo")))
                 {

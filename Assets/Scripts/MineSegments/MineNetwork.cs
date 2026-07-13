@@ -445,6 +445,8 @@ public class MineNetwork : MonoBehaviour, ISerializationCallbackReceiver, IVentG
                 fan.WorldPosition = mineFan.transform.position;
                 fan.WorldRotation = mineFan.transform.rotation;
 
+                mineFan.SetFan(fan);
+
                 ventGraph.AddFan(fan, ventAirway);
             }
 

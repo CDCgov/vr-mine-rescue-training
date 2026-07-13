@@ -1,0 +1,13 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Image style="height: 115px; align-self: flex-end; flex-wrap: nowrap; flex-direction: column; width: 100px;"/>
+    <ui:TextField label="Asset ID" placeholder-text="filler text" readonly="true" name="TextField">
+        <Bindings>
+            <ui:DataBinding property="placeholderText" data-source-path="AssetID" binding-mode="ToTarget"/>
+        </Bindings>
+    </ui:TextField>
+    <ui:TextField label="Asset Name" placeholder-text="filler text" readonly="true">
+        <Bindings>
+            <ui:DataBinding property="placeholderText" data-source-path="AssetWindowName" binding-mode="ToTarget"/>
+        </Bindings>
+    </ui:TextField>
+</ui:UXML>

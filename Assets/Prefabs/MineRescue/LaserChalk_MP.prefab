@@ -60,6 +60,11 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -81,9 +86,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &65638885991992907
 MonoBehaviour:
@@ -102,7 +109,7 @@ MonoBehaviour:
   RaycastLayerMask:
     serializedVersion: 2
     m_Bits: 1025
-  RaycastDistance: 100
+  RaycastDistance: 1000
 --- !u!114 &6831572733433942620
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -183,10 +190,10 @@ Rigidbody:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2847645167090592682}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -218,6 +225,7 @@ MonoBehaviour:
   CurrentOwner: {fileID: 0}
   InteractableRigidbody: {fileID: 7705806392511422644}
   ActiveInteractors: []
+  InteractableType: 0
   IsGrabbable: 1
   GrabWithoutOwnerChange: 0
   KeepOriginalParent: 1
@@ -232,6 +240,7 @@ MonoBehaviour:
   SocketManager: {fileID: 0}
   HasEmissiveTexture: 0
   IgnoreSelectHighlight: 0
+  SelectHighlightOverride: 0
   glowMaterials:
   - {fileID: 2100000, guid: 42e10d61018d02e428a5e667442f1d3d, type: 2}
   ModelRenderer: {fileID: 903008345778429061}
@@ -270,9 +279,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09f56d8500ed1cc4da41e3f88d18ff3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UseGlowSurrogate: 0
-  SurrogateMesh: {fileID: 0}
-  MeshRenderer: {fileID: 0}
+  HighlightRenderers: []
 --- !u!82 &8477472929979331334
 AudioSource:
   m_ObjectHideFlags: 0
@@ -283,7 +290,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: b8e19114a55a2bd45a5382d384d30996, type: 3}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 8300000, guid: b8e19114a55a2bd45a5382d384d30996, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.1
   m_Pitch: 1
@@ -411,6 +419,7 @@ MonoBehaviour:
   AllowNetDestroy: 1
   UniqueIDString: a7c90fd5-3563-47e9-b8a3-a833382b9d77
   UseReliableSync: 0
+  SyncChildComponents: 1
   SpawnActivated: 0
   ServerExclusive: 0
   SourcePrefab: 
@@ -450,7 +459,6 @@ MonoBehaviour:
   DisplayName: Chalk
   HierarchyItemPrefab: {fileID: 360079312126257609, guid: d9bfda6fec448a14faf8cebad6aa76f2,
     type: 3}
-  hierarchyContainer: {fileID: 0}
   editorLayer: 1
   simParent: {fileID: 0}
   UserSuppliedName: 
@@ -472,7 +480,7 @@ MonoBehaviour:
   IsResizable: 0
   ScaledMaterial: {fileID: 0}
   SetLayerOnSelection: 0
-  isNetworked: 1
+  PlacementAnchor: {fileID: 0}
 --- !u!114 &7526436142372802322
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -491,6 +499,7 @@ MonoBehaviour:
   AudioCollisionManager: {fileID: 0}
   FilterSpawnCollision: 1
   DefaultPitch: 1
+  PriorityOffset: 0
   ObjectBounds:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0.01, y: 0.01, z: 0.05}
@@ -559,7 +568,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!120 &2379355547491029569
 LineRenderer:
-  serializedVersion: 2
+  serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -575,6 +584,11 @@ LineRenderer:
   m_ReflectionProbeUsage: 0
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
@@ -596,9 +610,11 @@ LineRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_Positions:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 10, z: 0}
@@ -657,7 +673,6 @@ LineRenderer:
     textureScale: {x: 1, y: 1}
     shadowBias: 0.5
     generateLightingData: 0
-  m_MaskInteraction: 0
   m_UseWorldSpace: 0
   m_Loop: 0
   m_ApplyActiveColorSpace: 0

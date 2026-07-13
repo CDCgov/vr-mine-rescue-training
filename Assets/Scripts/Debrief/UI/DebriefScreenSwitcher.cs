@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.InputSystem;
 
 public class DebriefScreenSwitcher : MonoBehaviour
 {
@@ -17,6 +17,9 @@ public class DebriefScreenSwitcher : MonoBehaviour
     public DebriefSceneLoader DebriefSceneLoader;
 
     private DebriefScreenActivationState _state = DebriefScreenActivationState.ScreenOneActive;
+
+    private InputActionEventManager _inputActions = new InputActionEventManager();
+
     // Start is called before the first frame update
     void Start()
     {
@@ -45,6 +48,25 @@ public class DebriefScreenSwitcher : MonoBehaviour
         //SetState(DebriefScreenActivationState.ScreenTwoActive);
         //SetState(_state);
         StartCoroutine(ScreenInit());
+
+        _inputActions.RegisterPerformedHandler("DebriefNextScreen", (context) =>
+        {
+            if (_state == DebriefScreenActivationState.ScreenOneActive)
+            {
+                _state = DebriefScreenActivationState.ScreenTwoActive;
+            }
+            else
+            {
+                _state = DebriefScreenActivationState.ScreenOneActive;
+            }
+            SetState(_state);
+        });
+    }
+
+    private void OnDestroy()
+    {
+        if (_inputActions != null)
+            _inputActions.Dispose();
     }
 
     private void SceneLoaded()
@@ -61,37 +83,37 @@ public class DebriefScreenSwitcher : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyUp(KeyCode.KeypadPlus))
-        {
-            if(_state == DebriefScreenActivationState.ScreenOneActive)
-            {
-                _state = DebriefScreenActivationState.ScreenTwoActive;
-            }
-            else
-            {
-                _state = DebriefScreenActivationState.ScreenOneActive;
-            }
-            SetState(_state);
-        }
+    //void Update()
+    //{
+    //    if (Input.GetKeyUp(KeyCode.KeypadPlus))
+    //    {
+    //        if(_state == DebriefScreenActivationState.ScreenOneActive)
+    //        {
+    //            _state = DebriefScreenActivationState.ScreenTwoActive;
+    //        }
+    //        else
+    //        {
+    //            _state = DebriefScreenActivationState.ScreenOneActive;
+    //        }
+    //        SetState(_state);
+    //    }
 
-        if (Input.GetKey(KeyCode.LeftControl) && Input.GetKeyUp(KeyCode.KeypadPlus) && Display.displays.Length > 1)
-        {
-            if (_state == DebriefScreenActivationState.BothActive)
-            {
-                _state = DebriefScreenActivationState.ScreenOneActive;
-            }
-            else
-            {
-                if(!Display.displays[1].active)
-                    Display.displays[1].Activate();
-                _state = DebriefScreenActivationState.BothActive;
+    //    if (Input.GetKey(KeyCode.LeftControl) && Input.GetKeyUp(KeyCode.KeypadPlus) && Display.displays.Length > 1)
+    //    {
+    //        if (_state == DebriefScreenActivationState.BothActive)
+    //        {
+    //            _state = DebriefScreenActivationState.ScreenOneActive;
+    //        }
+    //        else
+    //        {
+    //            if(!Display.displays[1].active)
+    //                Display.displays[1].Activate();
+    //            _state = DebriefScreenActivationState.BothActive;
                 
-            }
-            SetState(_state);
-        }
-    }
+    //        }
+    //        SetState(_state);
+    //    }
+    //}
 
     void SetState(DebriefScreenActivationState state)
     {

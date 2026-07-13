@@ -162,17 +162,17 @@ public class MineVentControlHost : MineElementHostBase, IMineElementHost, ISelec
 		    AssociateWithMineSegment();
 	}
 
-	private void Update()
-	{
-		if (ToggleHotkey != KeyCode.None)
-		{
-			if (Input.GetKeyDown(ToggleHotkey))
-			{
-				if (_bHighResist)
-					SetLowResistance();
-				else
-					SetHighResistance();
-			}
-		}
-	}
+	//private void Update()
+	//{
+	//	if (ToggleHotkey != KeyCode.None)
+	//	{
+	//		if (Input.GetKeyDown(ToggleHotkey))
+	//		{
+	//			if (_bHighResist)
+	//				SetLowResistance();
+	//			else
+	//				SetHighResistance();
+	//		}
+	//	}
+	//}
 }

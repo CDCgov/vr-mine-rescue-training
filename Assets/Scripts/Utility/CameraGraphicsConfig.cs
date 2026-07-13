@@ -54,7 +54,56 @@ public class CameraGraphicsConfig : MonoBehaviour
         _frameMask.mask[(uint)FrameSettingsField.LODBiasMode] = true;
         _frameMask.mask[(uint)FrameSettingsField.LODBias] = true;
         _frameMask.mask[(uint)FrameSettingsField.SSAO] = true;
+        _frameMask.mask[(uint)FrameSettingsField.LitShaderMode] = true;
         _hdData.renderingPathCustomFrameSettingsOverrideMask = _frameMask;
+
+        _hdData.allowDynamicResolution = config.EnableDynamicResolution;
+        _hdData.deepLearningSuperSamplingUseCustomQualitySettings = true;
+        _hdData.deepLearningSuperSamplingQuality = (uint)config.DLSSQuality;
+
+        //if (config.DLSSSharpening >= 0)
+        //    _hdData.deepLearningSuperSamplingSharpening = config.DLSSSharpening;
+
+
+        if (config.LitShaderMode == GraphicsLitShaderMode.Forward)
+            _hdData.renderingPathCustomFrameSettings.litShaderMode = LitShaderMode.Forward;
+        else
+            _hdData.renderingPathCustomFrameSettings.litShaderMode = LitShaderMode.Deferred;
+
+        switch (config.AntiAliasingMode)
+        {
+            case AntiAliasingMode.FXAA:
+                _hdData.antialiasing = HDAdditionalCameraData.AntialiasingMode.FastApproximateAntialiasing;
+                break;
+
+            case AntiAliasingMode.TAA:
+                _hdData.antialiasing = HDAdditionalCameraData.AntialiasingMode.TemporalAntialiasing;
+                break;
+
+            case AntiAliasingMode.SMAA:
+                _hdData.antialiasing = HDAdditionalCameraData.AntialiasingMode.SubpixelMorphologicalAntiAliasing;
+                break;
+        }
+
+        switch (config.AntiAliasingQuality)
+        {
+            case GraphicsQuality.Low:
+                _hdData.SMAAQuality = HDAdditionalCameraData.SMAAQualityLevel.Low;
+                _hdData.TAAQuality = HDAdditionalCameraData.TAAQualityLevel.Low;
+                break;
+
+            case GraphicsQuality.Medium:
+                _hdData.SMAAQuality = HDAdditionalCameraData.SMAAQualityLevel.Medium;
+                _hdData.TAAQuality = HDAdditionalCameraData.TAAQualityLevel.Medium;
+                break;
+
+            case GraphicsQuality.High:
+                _hdData.SMAAQuality = HDAdditionalCameraData.SMAAQualityLevel.High;
+                _hdData.TAAQuality = HDAdditionalCameraData.TAAQualityLevel.High;
+                break;
+        }
+
+        
 
 
         _hdData.renderingPathCustomFrameSettings.lodBiasMode = LODBiasMode.OverrideQualitySettings;

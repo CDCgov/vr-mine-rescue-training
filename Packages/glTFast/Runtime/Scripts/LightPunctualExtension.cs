@@ -116,10 +116,10 @@ namespace GLTFast
                 case RenderPipeline.HighDefinition:
                     var lightHd = lightDestination.gameObject.AddComponent<HDAdditionalLightData>();
                     if (lightSource.GetLightType() == LightPunctual.Type.Directional) {
-                        lightHd.lightUnit = LightUnit.Lux;
+                        lightHd.lightUnit = UnityEngine.Rendering.LightUnit.Lux;
                     }
                     else {
-                        lightHd.lightUnit = LightUnit.Candela;
+                        lightHd.lightUnit = UnityEngine.Rendering.LightUnit.Candela;
                     }
                     lightHd.intensity = lightSource.intensity;
                     break;

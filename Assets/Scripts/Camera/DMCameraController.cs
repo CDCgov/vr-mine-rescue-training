@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class DMCameraController : MonoBehaviour
@@ -18,6 +19,8 @@ public class DMCameraController : MonoBehaviour
     private ISceneCamera _sceneCam;
 
     private int  _sceneChangedCounter = -1;
+
+    private InputAction _actionCancel;
 
     void Start()
     {
@@ -44,6 +47,11 @@ public class DMCameraController : MonoBehaviour
             SceneLoadManager.SceneLoadFinalized += OnSceneLoadFinalized;
         }
 
+        if (InputSystem.actions.TryFindAction("Cancel", out _actionCancel))
+        {
+            _actionCancel.performed += OnActionCancel;
+        }
+
         MoveToSpawnPoint();
     }
 
@@ -61,11 +69,21 @@ public class DMCameraController : MonoBehaviour
 
         if (SceneLoadManager != null)
             SceneLoadManager.SceneLoadFinalized -= OnSceneLoadFinalized;
+
+        if (_actionCancel != null)
+        {
+            _actionCancel.performed -= OnActionCancel;
+        }
     }
 
     private void OnDisable()
     {
         _sceneChangedCounter = -1;
+    }
+
+    private void OnActionCancel(InputAction.CallbackContext context)
+    {
+        _trackPlayer = false;
     }
 
     private void OnActiveSceneChanged(Scene arg0, Scene arg1)
@@ -138,7 +156,8 @@ public class DMCameraController : MonoBehaviour
     {
         if (_trackPlayer)
         {
-            if (Input.GetKeyDown(KeyCode.Escape) || Input.GetMouseButtonDown(1))
+            //if (Input.GetKeyDown(KeyCode.Escape) || Input.GetMouseButtonDown(1))
+            if (Mouse.current.rightButton.wasPressedThisFrame)
             {
                 _trackPlayer = false;
             }

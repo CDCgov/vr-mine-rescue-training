@@ -1,0 +1,12 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Template name="ScenarioDetails" src="project://database/Assets/Prefabs/UIToolkit/ScenarioDetails.uxml?fileID=9197481963319205126&amp;guid=9a2b59793e4db70468b3d494aeb31618&amp;type=3#ScenarioDetails"/>
+    <Style src="project://database/Assets/UI%20Toolkit/DefaultUSS.uss?fileID=7433441132597879392&amp;guid=428b4e6fb25c6294c9f0a8ddbb7d203b&amp;type=3#DefaultUSS"/>
+    <ui:TwoPaneSplitView fixed-pane-initial-dimension="375" style="flex-grow: 1; flex-direction: row;">
+        <ui:GroupBox text="Scenarios" class="panel" style="width: 300px;">
+            <ui:ListView name="ScenarioList" item-template="project://database/Assets/Prefabs/UIToolkit/ScenarioListItem.uxml?fileID=9197481963319205126&amp;guid=c0be5fababd389a419343f184694fb9d&amp;type=3#ScenarioListItem" binding-source-selection-mode="AutoAssign" fixed-item-height="332" virtualization-method="DynamicHeight" show-border="true" reorderable="true"/>
+        </ui:GroupBox>
+        <ui:GroupBox text="Selected Scenario Details" class="panel" style="flex-basis: 33px; flex-grow: 1;">
+            <ui:Instance template="ScenarioDetails" name="ScenarioDetails"/>
+        </ui:GroupBox>
+    </ui:TwoPaneSplitView>
+</ui:UXML>

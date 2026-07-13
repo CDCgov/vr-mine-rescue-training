@@ -166,6 +166,10 @@ public class ToggleObject : MonoBehaviour, IInteractableObject, ISelectableObjec
         foreach(GameObject obj in ObjectsToToggle)
         {
             obj.SetActive(IsOn);
+            if (IsOn && obj.TryGetComponent<MeshRenderer>(out var meshRenderer))
+            {
+                meshRenderer.enabled = true;
+            }
         }
 
         foreach(Light light in LightsToToggle)

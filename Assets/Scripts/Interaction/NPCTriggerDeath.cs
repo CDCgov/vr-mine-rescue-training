@@ -13,7 +13,6 @@ public class NPCTriggerDeath : MonoBehaviour
 
     public NetworkManager NetworkManager;
 
-    public BAHDOL.NPC_Animator NPCAnimator;
     public VentilationManager VentilationManager;
     public NPCController NPCBehaviors;
 
@@ -28,10 +27,6 @@ public class NPCTriggerDeath : MonoBehaviour
     public bool IsActive = true;
     private float _timeout = 0;
 
-  
-    //private MineAtmosphere _atmosphere;
-    
-    private CustomXRInteractable _xrInteractable;
     public Animator _animator;
     private NetworkedObject _netObj;
     private bool _deathEventLogged = false;
@@ -56,24 +51,9 @@ public class NPCTriggerDeath : MonoBehaviour
         if (NPCBehaviors == null)
             TryGetComponent<NPCController>(out NPCBehaviors);
 
-        //if (VentilationManager != null)
-        //    VentilationManager.ReceivedMineAtmosphere += OnReceivedMineAtmosphere;
-
         if(_netObj == null)
         {
-            //_netObj = GetComponent<NetworkedObject>();
             TryGetComponent<NetworkedObject>(out _netObj);
-        }
-        if (NPCAnimator == null)
-        {
-            //NPCAnimator = GetComponent<BAHDOL.NPC_Animator>();
-            TryGetComponent<BAHDOL.NPC_Animator>(out NPCAnimator);
-        }
-
-        if(_xrInteractable == null)
-        {
-            //_xrInteractable = GetComponent<CustomXRInteractable>();
-            TryGetComponent<CustomXRInteractable>(out _xrInteractable);
         }
 
         if(_animator == null)
@@ -81,16 +61,8 @@ public class NPCTriggerDeath : MonoBehaviour
             _animator = GetComponentInChildren<Animator>();
         }
 
-
-        if(_xrInteractable != null && _animator != null)
-        {
-            if (_animator.GetCurrentAnimatorStateInfo(0).IsName("Dead") || _animator.GetCurrentAnimatorStateInfo(0).IsName("Dying"))
-            {
-                _xrInteractable.enabled = false;
-            }
-        }
-
-        InvokeRepeating("GasUpdate", 0.0f, 0.7f);
+        //do not immediately check - static gas zones may not have loaded until Start() is complete
+        InvokeRepeating(nameof(CheckForDeath), 1.0f, 0.7f);
     }
 
     private void TeleportManager_AfterTeleport(Transform obj)
@@ -100,80 +72,21 @@ public class NPCTriggerDeath : MonoBehaviour
         _timeout = Time.time;
     }
 
-    //private void Update()
-    //{
-    //    if (Input.GetKeyDown(KeyCode.KeypadEnter))
-    //    {
-    //        Vector3 pos = Vector3.Normalize(transform.position + transform.forward + transform.up);
-    //        Kill();
-    //        Explode(pos, 100000, 10);            
-    //    }
-    //}
-
-    //private void OnReceivedMineAtmosphere(Vector3 worldPos, MineAtmosphere atm)
-    //{
-    //    if (!gameObject)
-    //        return;
-
-    //    if (Vector3.Distance(worldPos, transform.position) < 2.0f)
-    //    {
-    //        _atmosphere = atm;
-    //        CheckForDeath();
-    //    }
-    //}
-
-    private void GasUpdate()
-    {
-        CheckForDeath();
-        //if (VentilationManager != null)
-        //{
-        //    //VentilationManager.RequestMineAtmosphere(transform.position);
-
-        //    MineAtmosphere atm;
-        //    if (VentilationManager.GetMineAtmosphere(transform.position, out atm))
-        //    {
-        //        //_atmosphere = atm;
-        //        CheckForDeath();
-        //    }
-        //}
-    }
-
-    private void OnDestroy()
-    {
-        //if (VentilationManager != null)
-        //    VentilationManager.ReceivedMineAtmosphere -= OnReceivedMineAtmosphere;
-    }
-
-
-    //public void Explode(Vector3 position, float force, float radius)
-    //{
-    //    Ragdoll(true);
-    //    foreach (var rb in _ragdollBodies)
-    //    {
-    //        rb.AddExplosionForce(force, position, radius);
-    //    }
-    //}
-
     private void CheckForDeath()
     {
         if ((NPCBehaviors != null && NPCBehaviors.HasBG4) || !IsActive)
             return;
 
-
-        if (HasBG4)
-        {
+        //only check on the client with network authority
+        if (_netObj != null && !_netObj.HasAuthority)
             return;
-        }
-        if (VentilationManager == null)
+
+        if (HasBG4 || Invulernable || VentilationManager == null)
             return;
 
         if (!VentilationManager.GetMineAtmosphere(transform.position + new Vector3(0, 0.2f, 0), out var atmo))
             return;
 
-        if (Invulernable)
-        {
-            return;
-        }
         int co = (int)(Mathf.Round(atmo.CarbonMonoxide * 1000000.0f));
         float oxygen = atmo.Oxygen * 100.0f;
        
@@ -181,29 +94,7 @@ public class NPCTriggerDeath : MonoBehaviour
 
         if ((co > FatalCOLevel || oxygen < FatalO2Level))
         {
-            //NPCAnimator.TransitionToAnimation(BAHDOL.AnimationState.Dying);
-            ////NPCAnimator.JumpToAnimationState(BAHDOL.AnimationState.Dying);
-
-            //if (NPCBehaviors != null)
-            //{
-            //    if (_netObj != null && _netObj.HasAuthority)
-            //    {
-            //        OnDeath.Invoke();
-            //        NPCBehaviors.NPCDeath();
-            //    }                
-            //}
-            //else
-            //{
-            //    if (_netObj != null && _netObj.HasAuthority)
-            //    {
-            //        OnDeath.Invoke();
-
-            //    }
-            //}
-            //if (_xrInteractable != null)
-            //{
-            //    _xrInteractable.enabled = false;
-            //}
+          
             if (_deathEventLogged || Time.time < _timeout)
             {
                 return;
@@ -302,66 +193,4 @@ public class NPCTriggerDeath : MonoBehaviour
         }
     }
 
-    //[Obsolete]
-    //public static bool CheckForDeath(Vector3 pos, MineAtmosphere atmo, out string desc, bool IsInvulnerable = false)
-    //{
-    //    //if (NPCBehaviors != null && NPCBehaviors.HasBG4)
-    //    //    return;
-
-    //    //if (VentilationManager == null)
-    //    //    return;
-
-    //    //if (!VentilationManager.GetMineAtmosphere(transform.position, out var atmo))
-    //    //    return;
-    //    desc = string.Empty;
-    //    if (IsInvulnerable)
-    //    {
-    //        desc = "Invulnerable";
-    //        return false;
-    //    }
-    //    int co = (int)(Mathf.Round(atmo.CarbonMonoxide * 1000000.0f));
-    //    float oxygen = atmo.Oxygen * 100.0f;
-
-    //    //CarbonMonoxideDisplay.text = _Atmosphere.CarbonMonoxide.ToString ("F1");
-
-    //    if ((co > FatalCOLevel || oxygen < FatalO2Level))
-    //    {
-    //        //Log it?
-    //        if (co < FatalCOLevel)
-    //        {
-    //            desc = $"High CO: {co}ppm";
-    //        }
-    //        if (oxygen < FatalO2Level)
-    //        {
-    //            if (!string.IsNullOrEmpty(desc))
-    //            {
-    //                desc += ", ";
-    //            }
-    //            desc += $"Critically Low Oxygen: {oxygen}%";
-    //        }
-    //        return true;
-    //    }
-
-    //    return false;
-    //}
-    //[Obsolete]
-    //public static bool CheckForUnconscious(Vector3 pos, MineAtmosphere atmo, out string desc, bool IsInvulnerable = false)
-    //{
-    //    desc = string.Empty;
-    //    if (IsInvulnerable)
-    //    {
-    //        desc = "Invulnerable";
-    //        return false;
-    //    }
-    //    float oxygen = atmo.Oxygen * 100.0f;
-
-    //    if (oxygen < UnconsciousO2Level)
-    //    {
-    //        //Log it?
-    //        desc = $"Low Oxygen: {oxygen}%";
-    //        return true;
-    //    }
-
-    //    return false;
-    //}
 }

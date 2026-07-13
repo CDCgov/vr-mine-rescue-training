@@ -1,0 +1,21 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/DefaultUSS.uss?fileID=7433441132597879392&amp;guid=428b4e6fb25c6294c9f0a8ddbb7d203b&amp;type=3#DefaultUSS"/>
+    <ui:VisualElement style="flex-grow: 1; flex-direction: row;">
+        <ui:VisualElement style="flex-grow: 1;">
+            <ui:VisualElement style="flex-grow: 1; flex-direction: row;">
+                <ui:Label text="MetadataFilename.yaml" name="YAML" class="asset-list__filename">
+                    <Bindings>
+                        <ui:DataBinding property="text" data-source-path="FileData.Filename" data-source-type="ExternalAssetDS, VRMineCore" binding-mode="ToTarget"/>
+                    </Bindings>
+                </ui:Label>
+                <ui:Image source="project://database/Assets/Art/GoogleMaterialSymbols/error_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.svg?fileID=7388822144124034973&amp;guid=d331481852bd1b04caba57fba2f63383&amp;type=3#error_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24" name="Decorator" class="asset-list__decorator"/>
+            </ui:VisualElement>
+            <ui:Label text="ObjectName" class="asset-list__subtitle">
+                <Bindings>
+                    <ui:DataBinding property="text" data-source-path="FileData.Metadata.AssetName" binding-mode="ToTarget"/>
+                </Bindings>
+            </ui:Label>
+        </ui:VisualElement>
+        <ui:Image name="AssetIcon" source="project://database/Assets/UI%20Toolkit/UnityThemes/UnityDefaultRuntimeTheme.tss?fileID=-2236324273849735119&amp;guid=b725b4c03566497489042c1727d809e5&amp;type=3#arrow-up" style="width: 50px; height: 50px; align-self: center; margin-top: 3px; margin-right: 3px; margin-bottom: 3px; margin-left: 3px; flex-grow: 0; flex-basis: initial; min-width: 50px;"/>
+    </ui:VisualElement>
+</ui:UXML>

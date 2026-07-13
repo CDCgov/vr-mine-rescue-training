@@ -238,6 +238,37 @@ public class SavedScenario
         return savedScenario;
     }
 
+    public static SavedScenarioHeader ReadScenarioHeader(string filename)
+    {
+        SavedScenarioHeader header = null;
+        var serializer = CreateSerializer();
+
+        try
+        {
+            using (var streamReader = new StreamReader(filename, Encoding.UTF8, false, 512))
+            using (var reader = new JsonTextReader(streamReader))
+            {
+                reader.SupportMultipleContent = true;
+
+                var fileVersion = ReadVersion(streamReader);
+                if (fileVersion != ScenarioFileVersion)
+                {
+                    return null;
+                }
+
+                header = serializer.Deserialize<SavedScenarioHeader>(reader);
+                if (header == null)
+                    throw new System.ApplicationException($"SavedScenario: Couldn't read header from {filename}");           
+            }
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError($"Exception reading scenario header from {filename}: {ex.Message}");
+        }
+
+        return header;
+    }
+
     private static SavedScenario LoadScenarioV1(string filename)
     {
         string json = JSONFileManagement.LoadJSONAsString(filename);

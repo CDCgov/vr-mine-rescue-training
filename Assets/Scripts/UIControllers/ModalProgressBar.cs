@@ -5,6 +5,10 @@ using TMPro;
 
 public class ModalProgressBar : MonoBehaviour
 {
+    public static event System.Action ProgressChanged;
+    public static float ProgressValue;
+    public static string ProgressMessage;
+
     public TMP_Text StatusText;
     public RectTransform ProgressBar;
 
@@ -12,9 +16,14 @@ public class ModalProgressBar : MonoBehaviour
 
     public static void ShowProgressBar(string message, float progress)
     {
+        ProgressValue = progress;
+        ProgressMessage = message;
+
+        ProgressChanged?.Invoke();
+
         if (_instance == null)
         {
-            _instance = FindObjectOfType<ModalProgressBar>(true);
+            _instance = FindAnyObjectByType<ModalProgressBar>(FindObjectsInactive.Include);
         }
 
         if (_instance == null)
@@ -28,9 +37,14 @@ public class ModalProgressBar : MonoBehaviour
 
     public static void HideProgressBar()
     {
+        ProgressMessage = null;
+        ProgressValue = -1;
+
+        ProgressChanged?.Invoke();
+
         if (_instance == null)
         {
-            _instance = FindObjectOfType<ModalProgressBar>(true);
+            _instance = FindAnyObjectByType<ModalProgressBar>(FindObjectsInactive.Include);
         }
 
         if (_instance == null)

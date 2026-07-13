@@ -34,10 +34,10 @@ namespace UnityStandardAssets.Vehicles.Car
             rb = GetComponent<Rigidbody>();
             if (PlayerNumber == 1)
             {
-                foreach (string id in Input.GetJoystickNames())
-                {
-                    Debug.Log(id);
-                }
+                //foreach (string id in Input.GetJoystickNames())
+                //{
+                //    Debug.Log(id);
+                //}
             }
             LocalMultiplayerUserControl[] controls = GameObject.FindObjectsOfType<LocalMultiplayerUserControl>();
             OtherPlayers = new List<LocalMultiplayerUserControl>();

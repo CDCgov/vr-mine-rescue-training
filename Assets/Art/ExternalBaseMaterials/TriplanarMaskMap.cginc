@@ -20,11 +20,11 @@ void TriplanarMaskMap_float(
 
     //float roofOrFloor = dot(Normal, float3(0, 1, 0));
 
-    float3 normX = UnpackNormalmapRGorAG(SAMPLE_TEXTURE2D(WallNormal, Sampler, uvWall.zy));    
-    float3 normZ = UnpackNormalmapRGorAG(SAMPLE_TEXTURE2D(WallNormal, Sampler, uvWall.xy));
+    float3 normX = UnpackNormal(SAMPLE_TEXTURE2D(WallNormal, Sampler, uvWall.zy));    
+    float3 normZ = UnpackNormal(SAMPLE_TEXTURE2D(WallNormal, Sampler, uvWall.xy));
 
-    float3 diffX = SAMPLE_TEXTURE2D(WallDiffuse, Sampler, uvWall.zy);    
-    float3 diffZ = SAMPLE_TEXTURE2D(WallDiffuse, Sampler, uvWall.xy);
+    float3 diffX = SAMPLE_TEXTURE2D(WallDiffuse, Sampler, uvWall.zy).rgb;    
+    float3 diffZ = SAMPLE_TEXTURE2D(WallDiffuse, Sampler, uvWall.xy).rgb;
     
     float4 maskX = SAMPLE_TEXTURE2D(WallMaskMap, Sampler, uvWall.zy);
     float4 maskZ = SAMPLE_TEXTURE2D(WallMaskMap, Sampler, uvWall.xy);
@@ -49,8 +49,8 @@ void TriplanarMaskMap_float(
     
     //sample floor textures into Y
     float3 uvFloor = ComputeTriplanarUV(Position, FloorTile);
-    normY = UnpackNormalmapRGorAG(SAMPLE_TEXTURE2D(FloorNormal, Sampler, uvFloor.xz));    
-    diffY = SAMPLE_TEXTURE2D(FloorDiffuse, Sampler, uvFloor.xz);
+    normY = UnpackNormal(SAMPLE_TEXTURE2D(FloorNormal, Sampler, uvFloor.xz));    
+    diffY = SAMPLE_TEXTURE2D(FloorDiffuse, Sampler, uvFloor.xz).rgb;
     float4 maskY = SAMPLE_TEXTURE2D(FloorMaskMap, Sampler, uvFloor.xz);
      
     //Scale normal strength

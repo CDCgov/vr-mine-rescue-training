@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class LayoutSeam : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,  IDragHandler
+public class LayoutSeam : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,  IDragHandler, IEndDragHandler
 {
 
     public SeamLineType SeamLine;
@@ -64,7 +64,7 @@ public class LayoutSeam : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
     void Update()
     {
-        if (_dragging == true) { CheckEndDrag(); }
+        //if (_dragging == true) { CheckEndDrag(); }
         AdjustHandle();
     }
     void OnDisable()
@@ -98,14 +98,24 @@ public class LayoutSeam : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         NewPosition = _rt.anchoredPosition + new Vector2(delta.x, delta.y);
     }
 
-    private void CheckEndDrag()
+
+    public void OnEndDrag(PointerEventData eventData)
     {
-        if (Input.GetMouseButtonUp(0)) 
-        {
-            CursorImageController.instance.ChangeCursorImage(CursorImageController.CursorImage.Arrow);
-            _dragging = false;
-        }
+        if (!_dragging)
+            return;
+
+        CursorImageController.instance.ChangeCursorImage(CursorImageController.CursorImage.Arrow);
+        _dragging = false;
     }
+
+    //private void CheckEndDrag()
+    //{
+    //    if (Input.GetMouseButtonUp(0)) 
+    //    {
+    //        CursorImageController.instance.ChangeCursorImage(CursorImageController.CursorImage.Arrow);
+    //        _dragging = false;
+    //    }
+    //}
 
     /// <summary>
     /// Adjust position and scale of seam handle

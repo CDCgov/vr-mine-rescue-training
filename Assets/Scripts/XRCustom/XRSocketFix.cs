@@ -1,10 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.XR.Interaction.Toolkit;
 
 
-public class XRSocketFix : XRSocketInteractor
+
+public class XRSocketFix : UnityEngine.XR.Interaction.Toolkit.Interactors.XRSocketInteractor
 {
     //protected override void OnSelectEnter(XRBaseInteractable interactable)
     //{

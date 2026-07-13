@@ -20,11 +20,13 @@ public class ModalYesNoCancel : UIDialogResult
 
     private static ModalYesNoCancel _instance;
 
+    private InputActionEventManager _inputActions = new InputActionEventManager();
+
     public static void ShowDialog(string labelText, string yesText, string noText, DialogResult defaultResult, DialogResultCallback callback)
     {
         if (_instance == null)
         {
-            _instance = FindObjectOfType<ModalYesNoCancel>(true);
+            _instance = FindFirstObjectByType<ModalYesNoCancel>(FindObjectsInactive.Include);
         }
 
         if (_instance == null)
@@ -62,6 +64,20 @@ public class ModalYesNoCancel : UIDialogResult
             NoButton.onClick.AddListener(OnNoButton);
         if (CancelButton != null)
             CancelButton.onClick.AddListener(OnCancelButton);
+
+        _inputActions.RegisterPerformedHandler("Cancel", (context) =>
+        {
+            if (!gameObject.activeSelf)
+                return;
+
+            SetDialogResult(DialogResult.Cancel);
+        });
+    }
+
+    private void OnDestroy()
+    {
+        if (_inputActions != null)
+            _inputActions.Dispose();
     }
 
     private void OnCancelButton()
@@ -82,11 +98,11 @@ public class ModalYesNoCancel : UIDialogResult
         SetDialogResult(DialogResult.Yes);
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape))
-            SetDialogResult(DialogResult.Cancel);
-        //_result = DialogResult.Cancel;
-    }
+    //private void Update()
+    //{
+    //    if (Input.GetKeyDown(KeyCode.Escape))
+    //        SetDialogResult(DialogResult.Cancel);
+    //    //_result = DialogResult.Cancel;
+    //}
 
 }

@@ -59,7 +59,7 @@ public class ResetNestedNetworkedObjects : MonoBehaviour
 
             if (data.rigidbody != null && !data.rigidbody.isKinematic) 
             {
-                data.rigidbody.velocity = Vector3.zero;
+                data.rigidbody.linearVelocity = Vector3.zero;
                 data.rigidbody.angularVelocity = Vector3.zero;
             }
 

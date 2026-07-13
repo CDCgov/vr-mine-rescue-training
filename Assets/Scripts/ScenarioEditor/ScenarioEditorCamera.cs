@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 using System.Collections;
 
 
@@ -84,6 +85,14 @@ public class ScenarioEditorCamera : CameraLogic, ISceneCamera
     private PointerEventData _pointerData = null;
     private List<RaycastResult> _pointerRaycastResults = new List<RaycastResult>();
 
+    private InputAction _actionMove;
+    private InputAction _actionLook;
+    private InputAction _actionZoom;
+    private InputAction _actionVerticalMove;
+    private InputAction _actionZoomToFit;
+    private InputAction _actionCameraFastMove;
+    private InputAction _actionCameraSlowMove;
+
     //private float _currentZoom = 0;
     //private float Zoom
     //{
@@ -122,14 +131,20 @@ public class ScenarioEditorCamera : CameraLogic, ISceneCamera
     // Start is called before the first frame update
     void Start()
     {
-
+        _actionLook = InputSystem.actions.FindAction("Look");
+        _actionMove = InputSystem.actions.FindAction("Move");
+        _actionZoom = InputSystem.actions.FindAction("Zoom");
+        _actionVerticalMove = InputSystem.actions.FindAction("VerticalMove");
+        _actionZoomToFit = InputSystem.actions.FindAction("ZoomToFit");
+        _actionCameraFastMove = InputSystem.actions.FindAction("CameraFastMove");
+        _actionCameraSlowMove = InputSystem.actions.FindAction("CameraSlowMove");
 
         _assetContainer = GameObject.Find("Assets")?.transform;
 
         Activate();
 
         if (InputTargetController == null)
-            InputTargetController = FindObjectOfType<InputTargetController>();
+            InputTargetController = FindFirstObjectByType<InputTargetController>();
 
         if (InputTargetController != null)
         {
@@ -137,7 +152,7 @@ public class ScenarioEditorCamera : CameraLogic, ISceneCamera
             InputTargetController.SetInputTargetToViewPort();
         }
 
-        _lastMousePos = Input.mousePosition;
+        _lastMousePos = Mouse.current.GetPositionVec3();
 
     }
 
@@ -155,14 +170,16 @@ public class ScenarioEditorCamera : CameraLogic, ISceneCamera
         //Debug.Log($"Pointer over UI: {Util.IsPointerOverUI}");
         if (_inputLocked || (Util.IsPointerOverUI && _moveMode != CameraMoveMode.MouseDrag && !_isRotating))
         {
-            _lastMousePos = Input.mousePosition;
+            _lastMousePos = Mouse.current.GetPositionVec3();
             return;
         }
 
         UpdateInput();
 
         //apply mouse wheel zoom even if a UI element is focused
-        ApplyMouseScrollZoom(Input.mouseScrollDelta.y);
+        //ApplyMouseScrollZoom(Input.mouseScrollDelta.y);
+        var zoom = _actionZoom.ReadValue<float>();
+        ApplyMouseScrollZoom(zoom);
 
         //check if a UI element has focus
         if (EventSystem.current.currentSelectedGameObject != null)
@@ -170,7 +187,7 @@ public class ScenarioEditorCamera : CameraLogic, ISceneCamera
             if (EventSystem.current.currentSelectedGameObject.TryGetComponent<Selectable>(out var inputComp))
             {
                 UpdateCameraPosition();
-                _lastMousePos = Input.mousePosition;
+                _lastMousePos = Mouse.current.GetPositionVec3();
                 return;
             }
         }
@@ -182,7 +199,7 @@ public class ScenarioEditorCamera : CameraLogic, ISceneCamera
 
 
         UpdateCameraPosition();
-        if (Input.GetKeyDown(KeyCode.V) && ScenarioSaveLoad.Instance != null)
+        if (/*Input.GetKeyDown(KeyCode.V)*/_actionZoomToFit.WasPressedThisFrame()  && ScenarioSaveLoad.Instance != null)
         {
             ZoomToFit(new Vector3(-1, -1, 1));
             //var bounds = ScenarioSaveLoad.Instance.MineBounds;
@@ -192,7 +209,7 @@ public class ScenarioEditorCamera : CameraLogic, ISceneCamera
             //EnableOrbit(bounds.center, max * 1.25f);
         }
 
-        _lastMousePos = Input.mousePosition;
+        _lastMousePos = Mouse.current.GetPositionVec3();
     }
 
 
@@ -235,7 +252,7 @@ public class ScenarioEditorCamera : CameraLogic, ISceneCamera
             CursorImageController.instance.ChangeCursorImage(CursorImageController.CursorImage.HandClosed);
 
         _moveMode = CameraMoveMode.MouseDrag;
-        _lastMousePos = Input.mousePosition;
+        _lastMousePos = Mouse.current.GetPositionVec3();
 
         var camDir = _camera.transform.forward;
         var angle = Vector3.Angle(camDir, Vector3.down);
@@ -248,7 +265,7 @@ public class ScenarioEditorCamera : CameraLogic, ISceneCamera
         else //calculate orthogonal plane for panning
         {
             Vector3 planePt;
-            Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
+            Ray ray = _camera.ScreenPointToRay(Mouse.current.GetPositionVec3());
             if (Physics.Raycast(ray, out var hit, Mathf.Infinity, panningLayerMask))
             {
                 planePt = hit.point;
@@ -281,7 +298,7 @@ public class ScenarioEditorCamera : CameraLogic, ISceneCamera
         //RaycastGroundPlane(oldRay, out var oldGroundPos);
         _mouseDragPlane.Raycast(oldRay, out Vector3 oldGroundPos);
 
-        Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
+        Ray ray = _camera.ScreenPointToRay(Mouse.current.GetPositionVec3());
         if (Mathf.Abs(Vector3.Dot(ray.direction, _mouseDragPlane.normal)) < 0.1f)
             return;
 
@@ -359,8 +376,9 @@ public class ScenarioEditorCamera : CameraLogic, ISceneCamera
         //else
         //    _currentZoom = Input.mouseScrollDelta.y * _currentCameraSettings.zoomSpeed;        
         //Debug.Log("LastMouse: " + _lastMousePos);
-        if (Input.GetMouseButton(1))
+        if (Mouse.current.rightButton.isPressed)
         {
+            /*
             float mouseX = Input.GetAxis("Mouse X");
             float mouseY = Input.GetAxis("Mouse Y");
 
@@ -371,15 +389,18 @@ public class ScenarioEditorCamera : CameraLogic, ISceneCamera
                 mouseY *= -1.0f;
 
             _mouseAxisDelta = new Vector2(mouseX, mouseY);
+            */
+
+            _mouseAxisDelta = _actionLook.ReadValue<Vector2>();
+
+            if (_currentCameraSettings.invertYaw)
+                _mouseAxisDelta.x *= -1.0f;
+
+            if (!_currentCameraSettings.invertPitch)
+                _mouseAxisDelta.y *= -1.0f;
+
             _isRotating = true;
 
-            //Vector2 mousePos = Input.mousePosition;
-            //_mouseAxisDelta = (mousePos - _lastMousePos) * 0.1f;
-
-            //if (_currentCameraSettings.invertYaw)
-            //    _mouseAxisDelta.x *= -1.0f;
-            //if (!_currentCameraSettings.invertPitch)
-            //    _mouseAxisDelta.y *= -1.0f;
         }
         else
         {
@@ -398,7 +419,7 @@ public class ScenarioEditorCamera : CameraLogic, ISceneCamera
 
         _motionVector = Vector3.zero;
 
-        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
+        /*if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
             _motionVector += _cameraForward;
 
         if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
@@ -410,7 +431,15 @@ public class ScenarioEditorCamera : CameraLogic, ISceneCamera
         if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
             _motionVector += _cameraTransform.right;
 
+        _motionVector.y = 0; */
+
+        var move = _actionMove.ReadValue<Vector2>();
+        _motionVector += move.y * _cameraForward;
+        _motionVector += move.x * _cameraTransform.right;
         _motionVector.y = 0;
+
+        var verticalMove = _actionVerticalMove.ReadValue<float>();
+        _motionVector += PivotTransform.up * verticalMove;
 
         //if (_topDownPerspective && AllowOrthographic)
         //{
@@ -434,10 +463,13 @@ public class ScenarioEditorCamera : CameraLogic, ISceneCamera
         //        _motionVector += PivotTransform.up;
         //}
 
-        if (Input.GetKey(KeyCode.C))
-            _motionVector += -PivotTransform.up;
-        if (Input.GetKey(KeyCode.Space))
-            _motionVector += PivotTransform.up;
+
+        //if (Input.GetKey(KeyCode.C))
+        //    _motionVector += -PivotTransform.up;
+        //if (Input.GetKey(KeyCode.Space))
+        //    _motionVector += PivotTransform.up;
+
+
 
 
         //if (Input.GetKey(KeyCode.LeftAlt) || Input.GetKey(KeyCode.RightAlt) || Input.GetKey(KeyCode.F))
@@ -451,14 +483,21 @@ public class ScenarioEditorCamera : CameraLogic, ISceneCamera
 
         _motionVector = _motionVector.normalized;
 
-        if (Input.GetKey(KeyCode.LeftShift))
+        //if (Input.GetKey(KeyCode.LeftShift))
+        //    _moveSpeed = _currentCameraSettings.moveSpeed * SpeedMultiplier;
+        //else
+        //    _moveSpeed = _currentCameraSettings.moveSpeed;
+
+        if (_actionCameraFastMove.IsPressed())
             _moveSpeed = _currentCameraSettings.moveSpeed * SpeedMultiplier;
+        else if (_actionCameraSlowMove.IsPressed())
+            _moveSpeed = _currentCameraSettings.moveSpeed * 0.5f;
         else
             _moveSpeed = _currentCameraSettings.moveSpeed;
 
-        if (Input.GetMouseButtonDown(2))
+        if (Mouse.current.middleButton.wasPressedThisFrame /*Input.GetMouseButtonDown(2)*/)
             StartDrag();
-        if (!Input.GetMouseButton(2) && _moveMode == CameraMoveMode.MouseDrag)
+        if (/*!Input.GetMouseButton(2)*/ !Mouse.current.middleButton.isPressed && _moveMode == CameraMoveMode.MouseDrag)
             EndDrag();
 
 
@@ -490,7 +529,7 @@ public class ScenarioEditorCamera : CameraLogic, ISceneCamera
         if (Mathf.Abs(zoom) <= 0.01f)
             return;
 
-        var viewportPos = _camera.ScreenToViewportPoint(Input.mousePosition);
+        var viewportPos = _camera.ScreenToViewportPoint(Mouse.current.GetPositionVec3());
         //Debug.Log(viewportPos);
         if (viewportPos.x > 1 || viewportPos.x < 0 ||
             viewportPos.y > 1 || viewportPos.y < 0)
@@ -506,7 +545,7 @@ public class ScenarioEditorCamera : CameraLogic, ISceneCamera
                 _pointerData = new PointerEventData(EventSystem.current);
 
             _pointerRaycastResults.Clear();
-            _pointerData.position = Input.mousePosition;
+            _pointerData.position = Mouse.current.GetPositionVec3();
 
             EventSystem.current.RaycastAll(_pointerData, _pointerRaycastResults);
 
@@ -531,7 +570,7 @@ public class ScenarioEditorCamera : CameraLogic, ISceneCamera
 
         if (_orbitRotate)
         {
-            var zoomOffset = _zoomDistance * zoom * -0.15f;
+            var zoomOffset = _zoomDistance * zoom * -1.5f;
             zoomOffset = Mathf.Clamp(zoomOffset, -5, 5);
             _zoomDistance += zoomOffset;
             if (_zoomDistance < 0)
@@ -544,7 +583,7 @@ public class ScenarioEditorCamera : CameraLogic, ISceneCamera
             var dir = _camera.transform.forward;
             var origin = PivotTransform.position;
             //var ray = new Ray(origin, dir);
-            Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
+            Ray ray = _camera.ScreenPointToRay(Mouse.current.GetPositionVec3());
             Vector3 groundPos = Vector3.zero;
 
             if (!RaycastGroundPlane(ray, out groundPos))
@@ -557,7 +596,7 @@ public class ScenarioEditorCamera : CameraLogic, ISceneCamera
 
             var dist = Vector3.Distance(origin, groundPos);
 
-            dist = dist * zoom * 0.15f;
+            dist = dist * zoom * 1.5f;
             dist = Mathf.Clamp(dist, -5, 5);
             //Debug.Log($"ScenarioEditorCamera: Mouse zoom distance {dist:F2}");
             PivotTransform.position += dir * dist;

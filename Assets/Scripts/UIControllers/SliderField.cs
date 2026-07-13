@@ -6,6 +6,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine.Serialization;
+using UnityEngine.InputSystem;
 
 public enum UnitsEditor
 {
@@ -636,7 +637,11 @@ public class SliderField : MonoBehaviour
         slider.value = curValue;
         
         // if using keys to change slider, submit changes 
-        if (sliderObject == eventSystem.currentSelectedGameObject && (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow))) onSubmitValue.Invoke(slider.value, true);
+        //TODO: Refactor this
+        if (sliderObject == eventSystem.currentSelectedGameObject && 
+            (Keyboard.current.aKey.isPressed || Keyboard.current.dKey.isPressed || 
+            Keyboard.current.leftArrowKey.isPressed || Keyboard.current.rightArrowKey.isPressed))
+            onSubmitValue.Invoke(slider.value, true);
 
         //Debug.Log("Change from slider");
         //changes from slider can occur rapidly, so submitting is handled seperately onCursorUp to prevent spamming changes

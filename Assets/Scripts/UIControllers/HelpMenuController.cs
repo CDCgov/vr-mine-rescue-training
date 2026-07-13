@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 public class HelpMenuController : MonoBehaviour
 {
@@ -9,6 +10,9 @@ public class HelpMenuController : MonoBehaviour
     public CanvasGroup HelpMenuCanvasGroup;
 
     private bool _isOpen = false;
+
+    private InputActionEventManager _inputActions = new InputActionEventManager();
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,12 +23,8 @@ public class HelpMenuController : MonoBehaviour
         HelpMenuCanvasGroup.alpha = 0;
         HelpMenuCanvasGroup.interactable = false;
         HelpMenuCanvasGroup.blocksRaycasts = false;
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyUp(KeyCode.F1))
+        _inputActions.RegisterPerformedHandler("Help", (context) =>
         {
             if (_isOpen)
             {
@@ -34,12 +34,40 @@ public class HelpMenuController : MonoBehaviour
             {
                 Open();
             }
-        }
-        if(_isOpen && Input.GetKeyUp(KeyCode.Escape))
+        });
+
+        _inputActions.RegisterPerformedHandler("Cancel", (context) =>
         {
-            Close();
-        }
+            if (_isOpen)
+                Close();
+        });
     }
+
+    private void OnDestroy()
+    {
+        if (_inputActions != null)
+            _inputActions.Dispose();
+    }
+
+    //// Update is called once per frame
+    //void Update()
+    //{
+    //    if (Input.GetKeyUp(KeyCode.F1))
+    //    {
+    //        if (_isOpen)
+    //        {
+    //            Close();
+    //        }
+    //        else
+    //        {
+    //            Open();
+    //        }
+    //    }
+    //    if(_isOpen && Input.GetKeyUp(KeyCode.Escape))
+    //    {
+    //        Close();
+    //    }
+    //}
 
     public void Close()
     {

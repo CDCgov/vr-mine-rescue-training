@@ -180,18 +180,18 @@ public class BasicProxSystem : ProxSystem
         //Debug.Log(curZone);
 
         ////////TEMP DEBUG INPUT//////////////////
-        if (Input.GetKeyDown(KeyCode.Alpha8))
-        {
-            DisableZoneVisualization();
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha9))
-        {
-            EnableZoneVisualization(new VisOptions(false, true));
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha0))
-        {
-            EnableZoneVisualization(new VisOptions(true, false));
-        }
+        //if (Input.GetKeyDown(KeyCode.Alpha8))
+        //{
+        //    DisableZoneVisualization();
+        //}
+        //if (Input.GetKeyDown(KeyCode.Alpha9))
+        //{
+        //    EnableZoneVisualization(new VisOptions(false, true));
+        //}
+        //if (Input.GetKeyDown(KeyCode.Alpha0))
+        //{
+        //    EnableZoneVisualization(new VisOptions(true, false));
+        //}
         //////////////////////////////////////////
 
         //_activeProxZone = curZone;

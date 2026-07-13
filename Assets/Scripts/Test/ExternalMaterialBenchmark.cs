@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using Cinemachine;
+using Unity.Cinemachine;
 using System.Text;
 using UnityEngine.UI;
 
@@ -142,8 +142,8 @@ public class ExternalMaterialBenchmark : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R))
-            RestartTiming();
+        //if (Input.GetKeyDown(KeyCode.R))
+        //    RestartTiming();
 
         UpdateText();
     }

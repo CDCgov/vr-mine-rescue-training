@@ -16,11 +16,11 @@ public class RepeatingMessageTest : MonoBehaviour
         Debug.Log($"Test Message {Time.time,-10:F1} {Time.frameCount,-10} {fps,-10:F1}");
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            Debug.Log("Key Pressed");
-        }
-    }
+    //private void Update()
+    //{
+    //    if (Input.GetKeyDown(KeyCode.A))
+    //    {
+    //        Debug.Log("Key Pressed");
+    //    }
+    //}
 }

@@ -117,7 +117,7 @@ public class MineSegNavTest : MonoBehaviour
         transform.rotation = _startRot;
         _rb.position = pos;
         _rb.rotation = _startRot;
-        _rb.velocity = Vector3.zero;
+        _rb.linearVelocity = Vector3.zero;
 
         Invoke("MoveFinal", 0.25f);
     }
@@ -128,7 +128,7 @@ public class MineSegNavTest : MonoBehaviour
         transform.rotation = _startRot;
         _rb.position = _startPos;
         _rb.rotation = _startRot;
-        _rb.velocity = Vector3.zero;
+        _rb.linearVelocity = Vector3.zero;
 
         _pathIndex = -1;
         ChooseNextDestination();
@@ -162,13 +162,13 @@ public class MineSegNavTest : MonoBehaviour
     void Update () 
     {
 
-        if (RestartOnKeypress)
-        {
-            if (Input.GetKeyDown(RestartKey))
-            {
-                Restart();
-            }
-        }
+        //if (RestartOnKeypress)
+        //{
+        //    if (Input.GetKeyDown(RestartKey))
+        //    {
+        //        Restart();
+        //    }
+        //}
 
         if (_destSegment == null)
             return;

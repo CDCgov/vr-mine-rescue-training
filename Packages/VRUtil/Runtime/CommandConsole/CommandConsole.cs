@@ -462,31 +462,31 @@ public class CommandConsole : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.BackQuote))
-        {
-            ShowCommandConsole(!CommandConsoleObj.activeSelf);
-        }
+        //if (Input.GetKeyDown(KeyCode.BackQuote))
+        //{
+        //    ShowCommandConsole(!CommandConsoleObj.activeSelf);
+        //}
 
-        if (ConsoleInput != null && ConsoleInput.isFocused)
-        {
-            if (Input.GetKeyDown(KeyCode.UpArrow))
-            {
-                ConsoleInput.text = _lastCommandHistoryNode.Value;
-                if (_lastCommandHistoryNode.Previous != null)
-                    _lastCommandHistoryNode = _lastCommandHistoryNode.Previous;
-            }
-            else if (Input.GetKeyDown(KeyCode.DownArrow))
-            {
-                ConsoleInput.text = _lastCommandHistoryNode.Value;
-                if (_lastCommandHistoryNode.Next != null)
-                    _lastCommandHistoryNode = _lastCommandHistoryNode.Next;
-            }
-            else if (Input.GetKeyDown(KeyCode.Backspace) || Input.GetKeyDown(KeyCode.Delete))
-            {
-                _autocompleteList.Clear();
-                _autocompleteIndex = 0;
-            }
-        }
+        //if (ConsoleInput != null && ConsoleInput.isFocused)
+        //{
+        //    if (Input.GetKeyDown(KeyCode.UpArrow))
+        //    {
+        //        ConsoleInput.text = _lastCommandHistoryNode.Value;
+        //        if (_lastCommandHistoryNode.Previous != null)
+        //            _lastCommandHistoryNode = _lastCommandHistoryNode.Previous;
+        //    }
+        //    else if (Input.GetKeyDown(KeyCode.DownArrow))
+        //    {
+        //        ConsoleInput.text = _lastCommandHistoryNode.Value;
+        //        if (_lastCommandHistoryNode.Next != null)
+        //            _lastCommandHistoryNode = _lastCommandHistoryNode.Next;
+        //    }
+        //    else if (Input.GetKeyDown(KeyCode.Backspace) || Input.GetKeyDown(KeyCode.Delete))
+        //    {
+        //        _autocompleteList.Clear();
+        //        _autocompleteIndex = 0;
+        //    }
+        //}
 
         /*
         if (ConsoleInput != null && ConsoleInput.isFocused)

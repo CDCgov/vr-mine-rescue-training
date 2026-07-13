@@ -272,6 +272,7 @@ public class CharacterPlacerLogic : PlacerLogic
 
     //}
 
+    /*
     void PanObject(PlacerGizmo gizmo)
     {
         Vector3 mousePos = Vector3.zero;
@@ -410,6 +411,7 @@ public class CharacterPlacerLogic : PlacerLogic
         previousMousePos = mousePos;
         prevMosPosY = mosInput;
     }
+    */
 
     //void SwitchGizmoType(GizmoKind kind)
     //{

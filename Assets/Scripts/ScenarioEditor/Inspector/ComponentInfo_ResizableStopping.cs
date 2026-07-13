@@ -68,14 +68,29 @@ public class ComponentInfo_ResizableStopping : ModularComponentInfo, ISaveableCo
         }
     }
 
+    [InspectableBoolProperty("Show Symbol On Map Man", Tooltip = "Show symbol on map man map")]
+    public bool ShowSymbolOnMapMan
+    {
+        get { return _showSymbolOnMapMan; }
+        set
+        {
+            _showSymbolOnMapMan = value;
+            if (ResizableStopping != null)
+            {
+                ResizableStopping.ShowSymbolOnMapMan = value;
+            }
+        }
+    }
+
     public string ComponentName = "Resizable Stopping";
     public bool ShowDoorEnabledInspector = true;
 
     private float _tilesPerMeter = 2.0f;
     private float _doorHeight = 0.5f;
     private bool _flipDoorRotation = false;
-    private bool _doorEnabled = true;
+    private bool _doorEnabled = true;    
     private Vector3 _size;
+    private bool _showSymbolOnMapMan = false;
 
     public string ComponentInspectorTitle 
     {
@@ -115,6 +130,7 @@ public class ComponentInfo_ResizableStopping : ModularComponentInfo, ISaveableCo
         DoorHeight = component.GetParamValueFloat("DoorHeight", 0.5f);
         FlipDoorRotation = component.GetParamValueBool("FlipDoorRotation", false);
         DoorEnabled = component.GetParamValueBool("DoorEnabled", true);
+        ShowSymbolOnMapMan = component.GetParamValueBool("MapManSymbol", false);
 
         _size.x = component.GetParamValueFloat("Width", 1.0f);
         _size.y = component.GetParamValueFloat("Height", 1.0f);
@@ -137,6 +153,7 @@ public class ComponentInfo_ResizableStopping : ModularComponentInfo, ISaveableCo
             "DoorEnabled|" + DoorEnabled,
             "Width|" + _size.x,
             "Height|" + _size.y,
+            "MapManSymbol|" + ShowSymbolOnMapMan,
         };
     }
 

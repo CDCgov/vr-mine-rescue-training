@@ -25,13 +25,13 @@ public class CameraManager : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.X))
-        {
-           // CycleCameraLogic();
-        }
-    }
+    //private void Update()
+    //{
+    //    if(Input.GetKeyDown(KeyCode.X))
+    //    {
+    //       // CycleCameraLogic();
+    //    }
+    //}
 
     public void CycleCameraLogic()
     {

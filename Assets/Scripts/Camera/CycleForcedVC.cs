@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Cinemachine;
+using Unity.Cinemachine;
 
 [RequireComponent(typeof(CineForceVC))]
 public class CycleForcedVC : MonoBehaviour

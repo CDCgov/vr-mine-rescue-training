@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-using UnityEngine.XR.Interaction.Toolkit;
+
 using UnityEngine.XR.Interaction.Toolkit.UI;
 using UnityEngine.XR;
 
@@ -17,7 +17,7 @@ public enum ControllerType
 }
 
 [RequireComponent(typeof(Rigidbody))]
-public class CustomXRInteractor : XRObjectController, IUIInteractor, ILineRenderable
+public class CustomXRInteractor : XRObjectController, IUIInteractor, UnityEngine.XR.Interaction.Toolkit.Interactors.Visuals.ILineRenderable
 {
     //note: upgrade to Unity 2022.3, was IUIInteractable
 
@@ -755,7 +755,7 @@ public class CustomXRInteractor : XRObjectController, IUIInteractor, ILineRender
             else if (droppedInteractable.InteractableRigidbody != null)
             {
                 droppedInteractable.InteractableRigidbody.isKinematic = false;
-                droppedInteractable.InteractableRigidbody.velocity = throwVelocity;
+                droppedInteractable.InteractableRigidbody.linearVelocity = throwVelocity;
                 droppedInteractable.InteractableRigidbody.angularVelocity = throwAngularVelocity;
                 //droppedInteractable.InteractableRigidbody.velocity = (_positionDelta / Time.deltaTime) * ThrowMultiplier;
             }
@@ -978,7 +978,7 @@ public class CustomXRInteractor : XRObjectController, IUIInteractor, ILineRender
     /// <param name="model">The model that will match this Interactor</param>
     public void UpdateUIModel(ref TrackedDeviceModel model)
     {
-        model.maxRaycastDistance = 10;
+        //model.maxRaycastDistance = 10; //obsolete
         model.position = transform.position;
         model.orientation = transform.rotation;
         //model.select = Input.GetKey(KeyCode.Space);

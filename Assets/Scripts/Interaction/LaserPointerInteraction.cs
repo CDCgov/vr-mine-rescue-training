@@ -316,7 +316,7 @@ public class LaserPointerInteraction : MonoBehaviour, IInteractableObject, INetS
         dir.Normalize();
 
         target.isKinematic = false;
-        target.velocity = dir * 2;        
+        target.linearVelocity = dir * 2;        
     }
 
     void BoomEffect(Rigidbody target)

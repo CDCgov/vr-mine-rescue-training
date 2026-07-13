@@ -19,11 +19,13 @@ void TriplanarRoofFloor_float(
 
     float roofOrFloor = dot(Normal, float3(0, 1, 0));
 
-    float3 normX = UnpackNormalmapRGorAG(SAMPLE_TEXTURE2D(WallNormal, Sampler, uvWall.zy));    
-    float3 normZ = UnpackNormalmapRGorAG(SAMPLE_TEXTURE2D(WallNormal, Sampler, uvWall.xy));
+    //float3 normX = UnpackNormalmapRGorAG(SAMPLE_TEXTURE2D(WallNormal, Sampler, uvWall.zy));    
+    //float3 normZ = UnpackNormalmapRGorAG(SAMPLE_TEXTURE2D(WallNormal, Sampler, uvWall.xy));
+    float3 normX = UnpackNormal(SAMPLE_TEXTURE2D(WallNormal, Sampler, uvWall.zy));
+    float3 normZ = UnpackNormal(SAMPLE_TEXTURE2D(WallNormal, Sampler, uvWall.xy));
 
-    float3 diffX = SAMPLE_TEXTURE2D(WallDiffuse, Sampler, uvWall.zy);    
-    float3 diffZ = SAMPLE_TEXTURE2D(WallDiffuse, Sampler, uvWall.xy);
+    float3 diffX = SAMPLE_TEXTURE2D(WallDiffuse, Sampler, uvWall.zy).rgb;    
+    float3 diffZ = SAMPLE_TEXTURE2D(WallDiffuse, Sampler, uvWall.xy).rgb;
 
     float3 normY;
     float3 diffY;
@@ -31,16 +33,18 @@ void TriplanarRoofFloor_float(
     if (roofOrFloor < 0)
     {
         float3 uvRoof = ComputeTriplanarUV(Position, RoofTile);
-        normY = UnpackNormalmapRGorAG(SAMPLE_TEXTURE2D(RoofNormal, Sampler, uvRoof.xz));
+        //normY = UnpackNormalmapRGorAG(SAMPLE_TEXTURE2D(RoofNormal, Sampler, uvRoof.xz));
+        normY = UnpackNormal(SAMPLE_TEXTURE2D(RoofNormal, Sampler, uvRoof.xz));
         normY = NormalStrength(normY, NormalRoofScale);
-        diffY = SAMPLE_TEXTURE2D(RoofDiffuse, Sampler, uvRoof.xz);
+        diffY = SAMPLE_TEXTURE2D(RoofDiffuse, Sampler, uvRoof.xz).rgb;
     }
     else
     {
         float3 uvFloor = ComputeTriplanarUV(Position, FloorTile);
-        normY = UnpackNormalmapRGorAG(SAMPLE_TEXTURE2D(FloorNormal, Sampler, uvFloor.xz));
+        //normY = UnpackNormalmapRGorAG(SAMPLE_TEXTURE2D(FloorNormal, Sampler, uvFloor.xz));
+        normY = UnpackNormal(SAMPLE_TEXTURE2D(FloorNormal, Sampler, uvFloor.xz));
         normY = NormalStrength(normY, NormalFloorScale);
-        diffY = SAMPLE_TEXTURE2D(FloorDiffuse, Sampler, uvFloor.xz);
+        diffY = SAMPLE_TEXTURE2D(FloorDiffuse, Sampler, uvFloor.xz).rgb;
     }
      
     normX = NormalStrength(normX, NormalWallScale);    

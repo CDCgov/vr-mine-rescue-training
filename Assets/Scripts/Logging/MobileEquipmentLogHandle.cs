@@ -55,7 +55,7 @@ public class MobileEquipmentLogHandle : LogHandle
         _MobileEquipmentData.Rotation = transform.rotation;
         if (_MERigidbody != null)
         {
-            _MobileEquipmentData.Velocity = _MERigidbody.velocity.magnitude;
+            _MobileEquipmentData.Velocity = _MERigidbody.linearVelocity.magnitude;
         }
         else
         {

@@ -17,13 +17,13 @@ void SimpleTriplanar_float(
     float3 blend = max(pow(abs(Normal), Blend), 0);
     blend /= (blend.x + blend.y + blend.z).xxx;
 
-    float3 normX = UnpackNormalmapRGorAG(SAMPLE_TEXTURE2D(WallNormal, Sampler, uvWall.zy));
-    float3 normY = UnpackNormalmapRGorAG(SAMPLE_TEXTURE2D(RoofNormal, Sampler, uvRoof.xz));
-    float3 normZ = UnpackNormalmapRGorAG(SAMPLE_TEXTURE2D(WallNormal, Sampler, uvWall.xy));
+    float3 normX = UnpackNormal(SAMPLE_TEXTURE2D(WallNormal, Sampler, uvWall.zy));
+    float3 normY = UnpackNormal(SAMPLE_TEXTURE2D(RoofNormal, Sampler, uvRoof.xz));
+    float3 normZ = UnpackNormal(SAMPLE_TEXTURE2D(WallNormal, Sampler, uvWall.xy));
 
-    float3 diffX = SAMPLE_TEXTURE2D(WallDiffuse, Sampler, uvWall.zy);
-    float3 diffY = SAMPLE_TEXTURE2D(RoofDiffuse, Sampler, uvRoof.xz);
-    float3 diffZ = SAMPLE_TEXTURE2D(WallDiffuse, Sampler, uvWall.xy);
+    float3 diffX = SAMPLE_TEXTURE2D(WallDiffuse, Sampler, uvWall.zy).rgb;
+    float3 diffY = SAMPLE_TEXTURE2D(RoofDiffuse, Sampler, uvRoof.xz).rgb;
+    float3 diffZ = SAMPLE_TEXTURE2D(WallDiffuse, Sampler, uvWall.xy).rgb;
 
     normX = NormalStrength(normX, NormalWallScale);
     normY = NormalStrength(normY, NormalRoofScale);

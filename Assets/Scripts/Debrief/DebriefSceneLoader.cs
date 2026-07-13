@@ -90,7 +90,7 @@ public class DebriefSceneLoader : MonoBehaviour
     {
         
         Vector3 pos = POIManager.GetFirstOfType(POIType.SpawnPoint).transform.position;
-        pos.y += 60;
+        pos.y += 250;
         Vector3 rotEuler = new Vector3(90, 0, 0);
         
         CameraScreenOne.transform.position = pos;
@@ -109,7 +109,7 @@ public class DebriefSceneLoader : MonoBehaviour
 
     IEnumerator PeekAtProgress()
     {
-        Debug.Log("In Peek at Progress");
+        //Debug.Log("In Peek at Progress");
         while (!_sceneLoaded)
         {
            

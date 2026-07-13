@@ -37,7 +37,7 @@ public class NetSendBatteryStatus : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSecondsRealtime(5.0f);
+            yield return new WaitForSecondsRealtime(15.0f);
 
             //start process
             try
@@ -50,7 +50,7 @@ public class NetSendBatteryStatus : MonoBehaviour
             }
 
             //give process time to run
-            yield return new WaitForSecondsRealtime(3.0f);
+            yield return new WaitForSecondsRealtime(5.0f);
 
 
             //collect results

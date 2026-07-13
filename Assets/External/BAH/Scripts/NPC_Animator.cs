@@ -197,6 +197,7 @@ namespace BAHDOL
                     //animator.SetBool("running", false);
                     //animator.SetBool("crouching", false);
                     //animator.SetBool("Seated", true);
+                    animator.ResetTrigger("StandUp");
                     animator.SetTrigger("Sit");
                     break;
                 case AnimationState.Sitting_On_Ground:
@@ -204,6 +205,7 @@ namespace BAHDOL
                     //animator.SetBool("atDestination", false);
                     //animator.SetBool("running", false);
                     //animator.SetBool("crouching", false);
+                    animator.ResetTrigger("StandUp");
                     animator.SetTrigger("SitOnGround");
                     
                     break;
@@ -212,12 +214,15 @@ namespace BAHDOL
                     //animator.SetBool("atDestination", false);
                     //animator.SetBool("running", false);
                     //animator.SetBool("crouching", false);
+                    animator.ResetTrigger("StandUp");
                     animator.SetBool("Death", true);
                     break;
                 case AnimationState.Dizzy:
+                    animator.ResetTrigger("StandUp");
                     animator.SetTrigger("Dizzy");
                     break;
                 case AnimationState.Unconscious:
+                    animator.ResetTrigger("StandUp");
                     animator.SetTrigger("Unconscious");
                     break;
                 case AnimationState.NONE:

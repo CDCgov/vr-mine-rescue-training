@@ -6,6 +6,7 @@ using TMPro;
 using NIOSH_EditorLayers;
 using static NIOSH_EditorLayers.LayerManager;
 using NIOSH_MineCreation;
+using UnityEngine.InputSystem;
 
 public class InputTargetController : MonoBehaviour
 {
@@ -83,7 +84,8 @@ public class InputTargetController : MonoBehaviour
 
         if (nextInputTarget != inputTarget)
         {
-            if ((nextInputTarget == InputTarget.Viewport || nextInputTarget == InputTarget.PartialViewport) && (Input.GetMouseButton(0) || Input.GetMouseButton(1) || Input.GetMouseButton(2))) // if hovering viewport, switch on mouse click events
+            if ((nextInputTarget == InputTarget.Viewport || nextInputTarget == InputTarget.PartialViewport) && 
+                (Mouse.current.leftButton.wasPressedThisFrame || Mouse.current.rightButton.wasPressedThisFrame || Mouse.current.middleButton.wasPressedThisFrame)) // if hovering viewport, switch on mouse click events
             {
                 ChangeInputTarget();
             }
@@ -112,7 +114,7 @@ public class InputTargetController : MonoBehaviour
         if (m_PointerEventData == null)
             m_PointerEventData = new PointerEventData(m_EventSystem);
 
-        m_PointerEventData.position = Input.mousePosition;
+        m_PointerEventData.position = Mouse.current.GetPositionVec3();
 
         //List<RaycastResult> results = new List<RaycastResult>();
         _raycastResults.Clear();
@@ -121,7 +123,7 @@ public class InputTargetController : MonoBehaviour
         //Automatically set to viewport if no GUI detected
         if (_raycastResults.Count <= 0)
         {
-            Vector2 mousePos = sceneCamera.ScreenToViewportPoint(Input.mousePosition);
+            Vector2 mousePos = sceneCamera.ScreenToViewportPoint(Mouse.current.GetPositionVec3());
            
             if (mousePos.x < 0 || mousePos.y < 0 || mousePos.x > 1 || mousePos.y > 1 )
             {

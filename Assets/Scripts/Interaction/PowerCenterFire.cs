@@ -18,19 +18,19 @@ public class PowerCenterFire : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.Return) && _notExploded)
-        {
-            foreach (GameObject sE in SparkEmitters)
-            {
-                sE.SetActive(false);
-            }
-            foreach (GameObject fE in FireEmitters)
-            {
-                fE.SetActive(true);
-            }
-            BoomAudioSource.Play();
-            _notExploded = false;
-        }
+        //if (Input.GetKeyUp(KeyCode.Return) && _notExploded)
+        //{
+        //    foreach (GameObject sE in SparkEmitters)
+        //    {
+        //        sE.SetActive(false);
+        //    }
+        //    foreach (GameObject fE in FireEmitters)
+        //    {
+        //        fE.SetActive(true);
+        //    }
+        //    BoomAudioSource.Play();
+        //    _notExploded = false;
+        //}
     }
 
     private void OnTriggerEnter(Collider other)

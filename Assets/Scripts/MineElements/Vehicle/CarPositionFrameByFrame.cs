@@ -31,7 +31,7 @@ public class CarPositionFrameByFrame : MonoBehaviour {
         }
         if (Time.time >= reportTime)
         {
-            sw.WriteLine(Time.time + "," + Time.deltaTime + "," + Time.frameCount + "," + transform.position.x + "," + transform.position.y + "," + transform.position.z + "," + transform.rotation.eulerAngles.x + "," + transform.rotation.eulerAngles.y + "," + transform.rotation.eulerAngles.z + "," + rb.velocity.magnitude);
+            sw.WriteLine(Time.time + "," + Time.deltaTime + "," + Time.frameCount + "," + transform.position.x + "," + transform.position.y + "," + transform.position.z + "," + transform.rotation.eulerAngles.x + "," + transform.rotation.eulerAngles.y + "," + transform.rotation.eulerAngles.z + "," + rb.linearVelocity.magnitude);
             reportTime += 0.5f;
         }
     }

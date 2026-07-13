@@ -11,7 +11,7 @@ public class SetInitialVelocity : MonoBehaviour
     void Start()
     {
         var rb = GetComponent<Rigidbody>();
-        rb.velocity = transform.TransformDirection(InitialVelocity);
+        rb.linearVelocity = transform.TransformDirection(InitialVelocity);
         rb.angularVelocity = transform.TransformDirection(InitialAngularVelocity);
     } 
 

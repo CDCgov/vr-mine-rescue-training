@@ -51,6 +51,8 @@ public class UIDebriefZoomDropdown : MonoBehaviour
 
     public void OnReset()
     {
-        ZoomDropdown.value = 0;
+        //ZoomDropdown.value = 0;
+        if (ZoomSlider != null)
+            ZoomSlider.value = 0.75f;
     }
 }

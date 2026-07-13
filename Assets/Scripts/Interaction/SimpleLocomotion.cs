@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.XR;
 using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.XR.Interaction.Toolkit.Locomotion.Teleportation;
 
 
 
@@ -26,7 +27,7 @@ public class SimpleLocomotion : MonoBehaviour
     public GameObject TeleportTargetReticle;
     public Transform ReticleTransform;
 
-    public LocomotionSystem Loco;
+    //public LocomotionSystem Loco;
     public SceneFadeManager SceneFadeManager;
     public TeleportationProvider TeleProvider;
     //[UnityEngine.Serialization.FormerlySerializedAs("watcher")]
@@ -224,11 +225,11 @@ public class SimpleLocomotion : MonoBehaviour
             UpdateTeleportDestination();
         }
 
-
-        if (Input.GetKeyUp(KeyCode.Home))
-        {
-            Teleport(_startPos);
-        }
+        //TODO: Is this still needed?
+        //if (Input.GetKeyUp(KeyCode.Home))
+        //{
+        //    Teleport(_startPos);
+        //}
     }
 
     void TeleportButtonPressed(bool buttonPressed)

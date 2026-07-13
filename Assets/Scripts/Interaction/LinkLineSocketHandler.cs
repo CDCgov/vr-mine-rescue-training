@@ -1,11 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.XR.Interaction.Toolkit;
+
 
 public class LinkLineSocketHandler : MonoBehaviour
 {
-    public XRSocketInteractor Socket;
+    public UnityEngine.XR.Interaction.Toolkit.Interactors.XRSocketInteractor Socket;
     public CustomXRSocket CustomSocket;
     public TeleportController TeleportCont;
 

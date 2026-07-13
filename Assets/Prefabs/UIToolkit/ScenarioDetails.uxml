@@ -1,0 +1,44 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:ScrollView name="scenario-details-scroll-view" class="scenario-details-scroll-view" style="flex-grow: 1;">
+        <ui:VisualElement name="scenario-header-section" class="scenario-section">
+            <ui:VisualElement class="field-editor__container">
+                <ui:Label text="Scenario Name" class="field-editor__label"/>
+                <ui:TextField name="scenario-name-value" readonly="true" class="field-editor__editor">
+                    <Bindings>
+                        <ui:DataBinding property="value" data-source-path="SelectedScenario.ScenarioName" data-source-type="CustomScenarioDS, Assembly-CSharp" binding-mode="ToTarget"/>
+                    </Bindings>
+                </ui:TextField>
+            </ui:VisualElement>
+            <ui:VisualElement class="field-editor__container">
+                <ui:Label text="Scenario Date" class="field-editor__label"/>
+                <ui:TextField name="scenario-date-value" readonly="true" class="field-editor__editor">
+                    <Bindings>
+                        <ui:DataBinding property="value" data-source-path="SelectedScenario.ScenarioDate" data-source-type="CustomScenarioDS, Assembly-CSharp" binding-mode="ToTarget"/>
+                    </Bindings>
+                </ui:TextField>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="scenario-header-info-section" class="scenario-section">
+            <ui:VisualElement class="field-editor__container">
+                <ui:Label text="VR-MRT Version" class="field-editor__label"/>
+                <ui:TextField name="scenario-header-value" readonly="true" class="field-editor__editor">
+                    <Bindings>
+                        <ui:DataBinding property="value" data-source-path="SelectedScenario.ScenarioHeader.VRMineVersion" data-source-type="CustomScenarioDS, Assembly-CSharp" binding-mode="ToTarget"/>
+                    </Bindings>
+                </ui:TextField>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="scenario-assets-section" class="scenario-section">
+            <ui:Label text="Scenario Assets" class="field-editor__label"/>
+            <ui:ListView name="scenario-assets-list-view" fixed-item-height="28" virtualization-method="DynamicHeight" selection-type="Single" show-border="true" show-alternating-row-backgrounds="All" show-foldout-header="false" reorderable="false" item-template="project://database/Assets/Prefabs/UIToolkit/ScenarioAssetDetails.uxml?fileID=9197481963319205126&amp;guid=bc640393f494b47468a87e686d171623&amp;type=3#ScenarioAssetDetails" binding-source-selection-mode="AutoAssign" class="scenario-assets-list" style="flex-grow: 1; min-height: 150px;">
+                <Bindings>
+                    <ui:DataBinding property="itemsSource" data-source-path="SelectedScenario.ScenarioAssets" data-source-type="CustomScenarioDS, Assembly-CSharp" binding-mode="ToTarget"/>
+                </Bindings>
+            </ui:ListView>
+        </ui:VisualElement>
+    </ui:ScrollView>
+    <ui:VisualElement name="AssetButtons" class="container__horizontal-buttons">
+            <ui:Button name="SaveFileList" text="Save File List"/>
+            <ui:Button name="SaveToZip" text="Save To Zip"/>
+    </ui:VisualElement>
+</ui:UXML>

@@ -53,6 +53,7 @@ public static class ExternalAssetBuilder
         {
             success = false;
             Debug.LogError($"Error importing external asset {metadata.AssetID}: {ex.Message}");
+            metadata.AddImportLog($"Error importing: {ex.Message}");
         }
 
         // Error check to ensure everything loaded okay
@@ -71,6 +72,7 @@ public static class ExternalAssetBuilder
             UnityEngine.Object.Destroy(geometryObj);
 
             Debug.LogError("ERROR! Failed to build geometry object (" + metadata.AssetName + ")");
+            metadata.AddImportLog("Error: failed to build geometry object");
 
             return null;
         }
@@ -132,6 +134,7 @@ public static class ExternalAssetBuilder
         catch (System.Exception ex)
         {
             Debug.LogError($"Error loading icon for {metadata.AssetID} : {ex.Message} {ex.StackTrace}");
+            metadata.AddImportLog($"Error loading icon: {ex.Message}");
             return loadableAssetManager.DefaultIcon;
         }
     }
@@ -249,6 +252,7 @@ public static class ExternalAssetBuilder
         if (!File.Exists(targetFile))
         {
             Debug.LogError($"Error loading {metadata.AssetID}, geometry file ({targetFile}) does not exist!");
+            metadata.AddImportLog($"Error: geometry file {targetFile} does not exist!");
             return false;
         }
 
@@ -260,6 +264,7 @@ public static class ExternalAssetBuilder
         if (!success)
         {
             Debug.LogError($"Error loading {metadata.AssetID}, Failed to load GLTF binary");
+            metadata.AddImportLog("Error: failed to load GLTF binary");
             return false;
         }
 
@@ -273,6 +278,7 @@ public static class ExternalAssetBuilder
         if(!success)
         {
             Debug.LogError($"Error loading {metadata.AssetID}, Failed to instantiate geometry!");
+            metadata.AddImportLog("Error: failed to instantiate geometry");
             return false;
         }
 
@@ -313,6 +319,7 @@ public static class ExternalAssetBuilder
         catch (System.Exception ex)
         {
             Debug.LogError($"Error loading audio properties: {ex.Message} {ex.StackTrace}");
+            metadata.AddImportLog($"Error loading audio properties: {ex.Message}");
         }
         
         return lAP;
@@ -340,6 +347,7 @@ public static class ExternalAssetBuilder
         if (childFilters == null || childFilters.Length <= 0)
         {
             Debug.LogError($"ExternalAsset: Couldn't add colliders to {metadata.AssetID}: no mesh filters found");
+            metadata.AddImportLog("Error: couldn't add colliders, no mesh filters found!");
             return;
         }
 
@@ -351,6 +359,13 @@ public static class ExternalAssetBuilder
             {
                 //AddMeshCollider(child.gameObject);
                 GameObject targetObj = null;
+                
+                //attempt to add the collider to the LOD group object for this mesh
+                //if (child.transform.parent != null && child.transform.parent.TryGetComponent<LODGroup>(out var childLodGroup))
+                //{
+                //    targetObj = childLodGroup.gameObject;
+                //}
+                //else 
                 if (lodGroup != null)
                     targetObj = lodGroup.gameObject;
                 else
@@ -429,6 +444,7 @@ public static class ExternalAssetBuilder
         if(baseObj.transform.childCount < 1)
         {
             Debug.LogWarning($"Base object for {metadata.AssetID} does not have a child, so no LODS or colliders will be generated.");
+            metadata.AddImportLog("Warning: base object does not have a child, so no LODS or colliders will be generated");
             return;
         }
 
@@ -466,25 +482,6 @@ public static class ExternalAssetBuilder
             }
         }
 
-        // Check if we didnt find any children with the LOD tag and log
-        //if(lodGroupMap.Keys.Count == 0)
-        //{
-        //    Debug.LogWarning("No LOD tags found in children, so no LODS will be generated. Adding mesh collider to all meshes");
-
-        //    // If not LODs are present, add mesh collider to all meshes.
-        //    foreach (MeshFilter filter in childFilters)
-        //    {
-        //        //filter.gameObject.AddComponent<MeshCollider>();
-        //    }
-        //    return;
-        //}
-
-        ////bool noColliders = false;
-        //// Check if we didnt set up any colliders
-        //if (baseObj.GetComponentInChildren<Collider>() == null)
-        //{
-        //    Debug.LogWarning("No colliders were created. Add default colliders during LOD grouping!");
-        //}
 
         Regex lodReg = new Regex("^.*?LOD(\\d+)");
 
@@ -503,14 +500,7 @@ public static class ExternalAssetBuilder
 
             List<LOD> lods = new List<LOD>();
             SortedDictionary<int, List<MeshRenderer>> lodMeshRenderers = new SortedDictionary<int, List<MeshRenderer>>();
-            
-            // If we found only one LOD in the group then we should skip doing grouping and just attach collider
-            //if(lodGroupMap[groupName].Count == 1)
-            //{
-            //    Object.Destroy(groupObj);
-            //    //lodGroupMap[groupName][0].gameObject.AddComponent<MeshCollider>();
-            //    continue;
-            //}
+         
 
             foreach(MeshFilter lodChild in lodGroupMap[groupName])
             {
@@ -525,6 +515,7 @@ public static class ExternalAssetBuilder
                 if (!match.Success || match.Groups.Count < 2 || !int.TryParse(match.Groups[1].Value, out lodNumber))
                 {
                     Debug.LogError($"Couldn't parse LOD group from {lodChild.name} when importing {metadata.AssetID}");
+                    metadata.AddImportLog($"Error: couldn't parse LOD group from {lodChild.name}");
                     continue;
                 }
 
@@ -542,33 +533,14 @@ public static class ExternalAssetBuilder
 
                 rendererList.Add(lodRenderer);
 
-                //if (metadata.LODLevels != null && lodNumber < metadata.LODLevels.Count)
-                //{
-                //    // If we have less LODs than expected, make sure not to cull.
-                //    if (lodNumber == lodGroupMap[groupName].Count - 1 && lodGroupMap[groupName].Count < metadata.LODLevels.Count)
-                //    {
-                //        Debug.LogWarning("Number of children with LOD tag does not match number of LOD levels in metadata! Avoiding culling!");
-                //        lods.Add(new LOD(0, new[] { lodRenderer }));
-                //    }
-                //    else
-                //    {
-                //        lods.Add(new LOD(metadata.LODLevels[lodNumber].ScreenRelativeHeight, new[] { lodRenderer }));
-                //    }
-                //}
-                //else
-                //{// Dont have or missing LOD levels, so we need to generate some
-                //    Debug.LogWarning("Missing LOD values, generating default values!");
-
-                //    List<LODLevelData> defaultLevels = ExternalAssetManager.GenerateLODValues(lodGroupMap[groupName].Count);
-
-                //    lods.Add(new LOD(defaultLevels[lodNumber].ScreenRelativeHeight, new[] { lodRenderer }));
-                //}
+               
             }
 
             List<LODLevelData> lodLevelData = metadata.LODLevels;
             if (lodLevelData == null || lodMeshRenderers.Count != metadata.LODLevels.Count)
             {
                 Debug.LogWarning($"Lod level count mismatch on {metadata.AssetID} using default lod levels (expected {lodMeshRenderers.Count})");
+                metadata.AddImportLog($"Warning: lod level count mismatch, expected {lodMeshRenderers.Count} levels", LogType.Warning);
                 lodLevelData = ExternalAssetManager.GenerateLODValues(lodMeshRenderers.Count);
             }
 
@@ -580,6 +552,7 @@ public static class ExternalAssetBuilder
                 if (kvp.Key < lastLodLevel)
                 {
                     Debug.LogError($"Error in lod level sorting for {metadata.AssetID}, lod {kvp.Key}");
+                    metadata.AddImportLog($"Error in lod level sorting, lod: {kvp.Key}");
                 }
                 lastLodLevel = kvp.Key;
                 var lodData = lodLevelData[lodLevel];
@@ -604,10 +577,10 @@ public static class ExternalAssetBuilder
             lods = lods.OrderByDescending(lod => lod.screenRelativeTransitionHeight).ToList();
 
             // Use least detailed LOD to be default collider
-            if (groupObj.gameObject.GetComponentsInChildren<Collider>().Length == 0)
-            {
-                //lods[lods.Count - 1].renderers[0].gameObject.AddComponent<MeshCollider>();
-            }
+            //if (groupObj.gameObject.GetComponentsInChildren<Collider>().Length == 0)
+            //{
+            //    //lods[lods.Count - 1].renderers[0].gameObject.AddComponent<MeshCollider>();
+            //}
 
             // Sort the lod array to ensure LODs are ordered from LOD0 to LOD2
             groupLODGroup.SetLODs(lods.ToArray());

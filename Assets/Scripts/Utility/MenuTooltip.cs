@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TMPro;
+using UnityEngine.InputSystem;
 
 public class MenuTooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
@@ -108,7 +109,7 @@ public class MenuTooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     {
         if (_tooltipInstance != null && _tooltipInstance.activeSelf)
         {
-            if (!RectTransformUtility.RectangleContainsScreenPoint((RectTransform)transform, Input.mousePosition))
+            if (!RectTransformUtility.RectangleContainsScreenPoint((RectTransform)transform, Mouse.current.GetPositionVec3()))
             {
                 //_tooltipInstance.SetActive(false);
                 TooltipManager.DisableTooltip();

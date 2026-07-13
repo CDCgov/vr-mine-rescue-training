@@ -7,6 +7,7 @@ using System;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.AddressableAssets;
+using UnityEngine.InputSystem;
 
 public class SpawnObjectListController : MonoBehaviour, IMinimizableWindow
 {
@@ -92,7 +93,7 @@ public class SpawnObjectListController : MonoBehaviour, IMinimizableWindow
             return false;
 
         RaycastHit hit;
-        Ray ray = camera.ScreenPointToRay(Input.mousePosition);
+        Ray ray = camera.ScreenPointToRay(Mouse.current.GetPositionVec3());
 
         if (Physics.Raycast(ray, out hit, 100.0f, LayerMask.GetMask("Floor", "Default"), 
             QueryTriggerInteraction.Ignore))
@@ -109,7 +110,7 @@ public class SpawnObjectListController : MonoBehaviour, IMinimizableWindow
         if (SelectedObject == null)
             return;
 
-        if (Input.GetMouseButtonDown(0))
+        if (Mouse.current.leftButton.wasPressedThisFrame)
         {
             _validMouseDownPos = false;
 
@@ -133,10 +134,10 @@ public class SpawnObjectListController : MonoBehaviour, IMinimizableWindow
             Debug.Log($"Spawning object using camera {camera.name}");
 
 
-            SelectedObject.Spawn(camera, LayerMask.GetMask("Floor", "Default"), NetworkManager);
+            SelectedObject.Spawn(camera, Mouse.current.GetPositionVec3(), LayerMask.GetMask("Floor", "Default"), NetworkManager);
             //_selectedObject = null;
         }
-        else if (_validMouseDownPos && SelectedObject.SpanEntry && Input.GetMouseButtonUp(0))
+        else if (_validMouseDownPos && SelectedObject.SpanEntry && Mouse.current.leftButton.wasReleasedThisFrame)
         {
             if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject())
                 return;

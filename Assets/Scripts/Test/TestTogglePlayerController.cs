@@ -5,6 +5,7 @@ using UnityEngine;
 /// <summary>
 /// This is only for testing the phone during the sprint
 /// </summary>
+[System.Obsolete]
 public class TestTogglePlayerController : MonoBehaviour {
 
 	//public UnityStandardAssets.Characters.FirstPerson.FirstPersonController FPSScript;
@@ -12,21 +13,21 @@ public class TestTogglePlayerController : MonoBehaviour {
 	bool IsOn = true;
 	
 	// Update is called once per frame
-	void Update () {
-		if (Input.GetKeyUp(KeyCode.F5))
-		{
-			IsOn = !IsOn;            
-			//FPSScript.enabled = IsOn;
-			if (IsOn)
-			{
-				Cursor.lockState = CursorLockMode.Locked;                
-			}
-			else
-			{
-				Cursor.lockState = CursorLockMode.None;
+	//void Update () {
+	//	if (Input.GetKeyUp(KeyCode.F5))
+	//	{
+	//		IsOn = !IsOn;            
+	//		//FPSScript.enabled = IsOn;
+	//		if (IsOn)
+	//		{
+	//			Cursor.lockState = CursorLockMode.Locked;                
+	//		}
+	//		else
+	//		{
+	//			Cursor.lockState = CursorLockMode.None;
 				
-				Cursor.visible = true;
-			}
-		}
-	}
+	//			Cursor.visible = true;
+	//		}
+	//	}
+	//}
 }
