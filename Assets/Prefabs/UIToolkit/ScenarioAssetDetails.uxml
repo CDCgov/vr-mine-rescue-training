@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ui:UXML
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ui="UnityEngine.UIElements"
+    xmlns:uie="UnityEditor.UIElements"
+    xsi:noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd"
+>
+    <ui:VisualElement name="scenario-asset-item" class="scenario-asset-item__container">
+        <ui:Label name="asset-name-value" class="scenario-asset-item__field">
+            <Bindings> 
+                <ui:DataBinding
+                    property="text"
+                    data-source-path="AssetName"
+                    
+                    binding-mode="ToTarget"
+                />
+            </Bindings>
+        </ui:Label>
+
+        <ui:Label name="asset-id-value" class="scenario-asset-item__field">
+            <Bindings>
+                <ui:DataBinding
+                    property="text"
+                    data-source-path="AssetID"
+                    
+                    binding-mode="ToTarget"
+                />
+            </Bindings>
+        </ui:Label>
+
+        <ui:Label name="count-value" class="scenario-asset-item__field">
+            <Bindings>
+                <ui:DataBinding
+                    property="text"
+                    data-source-path="Count"
+                     
+                    binding-mode="ToTarget"
+                />
+            </Bindings>
+        </ui:Label>
+    </ui:VisualElement>
+</ui:UXML>

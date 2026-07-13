@@ -132,6 +132,8 @@ GameObject:
   - component: {fileID: 212950620}
   - component: {fileID: 212950619}
   - component: {fileID: 212950621}
+  - component: {fileID: 212950622}
+  - component: {fileID: 212950623}
   m_Layer: 5
   m_Name: UIDocument
   m_TagString: Untagged
@@ -153,7 +155,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: UnityEngine.dll::UnityEngine.UIElements.UIDocument
   m_PanelSettings: {fileID: 11400000, guid: fdc53d2578c661844b73d76412b50d56, type: 2}
   m_ParentUI: {fileID: 0}
-  sourceAsset: {fileID: 9197481963319205126, guid: bcd4b41fa39e7884ead473c83bf1274e,
+  sourceAsset: {fileID: 9197481963319205126, guid: e51cc4fe86afc08428ee1d84d832542a,
     type: 3}
   m_SortingOrder: 0
   m_Position: 0
@@ -223,6 +225,39 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: VRMineCore::UIExternalAssetDetails
   ElementName: ExternalAssetDetails
+--- !u!114 &212950622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 212950616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8b64f980b2c0134d98acf7dfe0560e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: VRMineCore::UIScenarioList
+  SystemManager: {fileID: 0}
+  LoadableAssetManager: {fileID: 0}
+  ExternalAssetManager: {fileID: 0}
+  ScenarioListName: ScenarioList
+  ErrorImage: {fileID: 7388822144124034973, guid: d331481852bd1b04caba57fba2f63383,
+    type: 3}
+  WarningImage: {fileID: 7388822144124034973, guid: 1e6e9caa4a267834bb6a2634a8d9275e,
+    type: 3}
+--- !u!114 &212950623
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 212950616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e95b3e68421c024db56fb34005de5ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: VRMineCore::UIScenarioDetails
+  ElementName: ScenarioDetails
 --- !u!1 &247395292
 GameObject:
   m_ObjectHideFlags: 0

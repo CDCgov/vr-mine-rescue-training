@@ -1,0 +1,23 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:Template name="ExternalAssetsEditor" src="project://database/Assets/Prefabs/UIToolkit/ExternalAssetsEditor.uxml?fileID=9197481963319205126&amp;guid=bcd4b41fa39e7884ead473c83bf1274e&amp;type=3#ExternalAssetsEditor"/>
+    <ui:Template name="ScenarioDetailsViewer" src="project://database/Assets/Prefabs/UIToolkit/ScenarioDetailsViewer.uxml?fileID=9197481963319205126&amp;guid=2e04bbfe1b225f74c8bd515875193327&amp;type=3#ScenarioDetailsViewer"/>
+    <Style src="project://database/Assets/UI%20Toolkit/DefaultUSS.uss?fileID=7433441132597879392&amp;guid=428b4e6fb25c6294c9f0a8ddbb7d203b&amp;type=3#DefaultUSS"/>
+    <ui:VisualElement name="VisualElement" class="window" style="flex-grow: 1;">
+        <ui:Label text="External Resources Viewer" name="ScreenTitle" class="label__screen-title"/>
+        <ui:ProgressBar value="0.68" title="load progress" high-value="1" name="LoadProgress">
+            <Bindings>
+                <ui:DataBinding property="title" data-source-path="LoadMessage" binding-mode="ToTarget" data-source-type="ExternalAssetsEditorDS, VRMineCore"/>
+                <ui:DataBinding property="value" data-source-path="LoadProgress" binding-mode="ToTarget" data-source-type="ExternalAssetsEditorDS, VRMineCore" update-trigger="EveryUpdate"/>
+                <ui:DataBinding property="style.display" data-source-path="ShowProgressBar" data-source-type="UIExternalAssetLoadProgress, VRMineCore" binding-mode="ToTarget"/>
+            </Bindings>
+        </ui:ProgressBar>
+        <ui:TabView style="flex-grow: 1;">
+            <ui:Tab label="External Assets" style="flex-grow: 1;">
+                <ui:Instance template="ExternalAssetsEditor" style="flex-grow: 1;"/>
+            </ui:Tab>
+            <ui:Tab label="Scenarios" style="flex-grow: 1;">
+                <ui:Instance template="ScenarioDetailsViewer" style="flex-grow: 1;"/>
+            </ui:Tab>
+        </ui:TabView>
+    </ui:VisualElement>
+</ui:UXML>

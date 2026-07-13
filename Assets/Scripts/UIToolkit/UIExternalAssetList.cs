@@ -72,7 +72,7 @@ public class UIExternalAssetList : MonoBehaviour, INotifyBindablePropertyChanged
         if (asset == null)
             return;
 
-        ExternalAssetEditorEvents.RaiseExternalAssetSelected(asset);
+        VRMineUIEvents.RaiseExternalAssetSelected(asset);
     }
 
     void OnProgressChanged()

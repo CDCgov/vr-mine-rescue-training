@@ -26,12 +26,12 @@ public class UIExternalAssetDetails : UIElementControllerBase
 
         AddAllEditors();
 
-        ExternalAssetEditorEvents.ExternalAssetSelected += OnExternalAssetSelected;
+        VRMineUIEvents.ExternalAssetSelected += OnExternalAssetSelected;
     }
 
     protected override void Cleanup()
     {
-        ExternalAssetEditorEvents.ExternalAssetSelected -= OnExternalAssetSelected;
+        VRMineUIEvents.ExternalAssetSelected -= OnExternalAssetSelected;
     }
 
     private void OnExternalAssetSelected(ExternalAssetDS obj)
@@ -53,7 +53,7 @@ public class UIExternalAssetDetails : UIElementControllerBase
 
         var dataSource = SelectedAsset.LoadableAsset.ExternalAssetMetadata;
         AddEditor(dataSource, "Asset ID", nameof(ExternalAssetMetadata.AssetID), true);
-        AddEditor(dataSource, "Asset Name", nameof(ExternalAssetMetadata.AssetName));
+        AddEditor(dataSource, "Asset Name", nameof(ExternalAssetMetadata.AssetName), false);
     }
 
     private void AddEditor(object dataSource, string labelText, string fieldName, bool readOnly = true)

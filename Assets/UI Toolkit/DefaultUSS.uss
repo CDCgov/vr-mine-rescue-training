@@ -1,3 +1,5 @@
+@import url("project://database/Assets/UI%20Toolkit/UIIcons.uss?fileID=7433441132597879392&guid=7e2b47d088bfd194cb1241a4e22ce90e&type=3#UIIcons");
+
 :root {
     --bg-color-light: rgb(170, 170, 170);
     --bg-color-dark: rgb(75, 75, 75);
@@ -13,6 +15,7 @@
     --text-color-field: rgb(255, 255, 255);
     --load-warning-background: rgb(89, 94, 0);
     --load-error-background: rgb(79, 0, 0);
+    --resize-cursor: url("project://database/Assets/Art/GoogleMaterialSymbols/Cursors/arrows_outward.png?fileID=2800000&guid=731659dd7480d4545a33f2fb23eb7bde&type=3#arrows_outward");
 }
 
 .window {
@@ -204,6 +207,9 @@
     align-self: center;
     justify-content: flex-end;
     align-items: center;
+    flex-grow: 0;
+    flex-shrink: 0;
+    margin: 3px;
 }
 
 .container__vertical-scroll {
@@ -340,4 +346,49 @@
 
 .unity-base-slider__dragger.unity-base-slider--movable {
     border-color: var(--border-focused);
+}
+
+.unity-tab-view__content-container {
+    flex-grow: 1;
+}
+
+.unity-tab__content-container {
+    flex-grow: 1;
+}
+
+.unity-two-pane-split-view__dragline--horizontal {
+    cursor: var(--resize-cursor) 12 12;
+    --unity-cursor-color: rgb(255, 0, 0);
+}
+
+.scenario-asset-item__container {
+    flex-direction: row;
+}
+
+.scenario-asset-item__field {
+    width: 150px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+
+    font-size: 13px;
+    -unity-font-style: normal;
+}
+
+.asset-error .scenario-asset-item__field {
+    color: red;
+}
+
+.asset-warning .scenario-asset-item__field {
+    color: yellow;
+}
+
+#asset-name-value {
+    width: 250px;
+}
+
+#unity-tab__header {
+    background-color: var(--bg-color-dark);
+    color: white;
+    font-size: 18px;
+    -unity-font-style: bold;
 }

@@ -390,6 +390,9 @@ public class ScenarioSaveLoad : MonoBehaviour
 
     private void OnActionSceneLightingToggle(InputAction.CallbackContext context)
     {
+        if (_scenePlacer != null && _scenePlacer.IsInputLocked)
+            return;
+
         if (IsScenarioEditor)
             EnableSceneLighting(!_sceneLightingEnabled);
     }
